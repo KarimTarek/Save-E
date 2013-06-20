@@ -1,0 +1,138 @@
+<div id="{{userNumber}}ColorDiv" class=""></div>
+<script>
+	var chan = "channel";
+	if("{{userNumber}}" == "one"){
+	    window["{{userNumber}}"]= "1";
+	    $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-1');
+	}
+	else{
+	    if("{{userNumber}}" == "two") {
+	        window["{{userNumber}}"] ="2";
+	        $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	        $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-2');
+	    }
+	    else{
+	        if("{{userNumber}}" == "three") {
+	            window["{{userNumber}}"] ="3";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	            $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-3');
+	        }
+	        else{
+	            window["{{userNumber}}"] ="4";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	            $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-4');
+	        }
+	    }
+	}
+
+
+	Pusher.channel_auth_endpoint = '/auth/';
+	Pusher.channel_auth_transport = 'ajax';
+	// alert(chan + userNumber);
+
+	var login = function(data) {
+					var username = document.getElementById("id_user_"+"{{userNumber}}"+"-username");
+					var password = document.getElementById("id_user_"+"{{userNumber}}"+"-password");
+					username.value = data.username;
+					password.value = data.pass;
+					setTimeout(function () {
+						$.ajax({
+			                url: "/login/",
+			                type: "POST",
+			                data: {
+			                	'csrfmiddlewaretoken' : "{{csrf_token}}", 
+			                	'username' : username.value , 
+			                	'password' : password.value , 
+			                	'userNumber' : "{{userNumber}}" ,
+			                	'userID':'{{userID}}'
+			                },
+			                success: function(data){
+			                	// alert("success");
+			                	// console.log(window[userNO + userNumber] + "Login Page");
+			                	$('#'+"{{userNumber}}").html(data);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);
+								window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',goToRegister);
+			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+			                }
+			    		});
+					}, 1000);
+				};
+
+	var startPage = function(data) {
+					sessionStorage.noOfUsers = sessionStorage.noOfUsers -1;
+	            	if(sessionStorage.noOfUsers == 0){
+	            		var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+	            		setTimeout(function () {
+	            			pusher.disconnect();
+							$.ajax({
+				                url: "/",
+				                type: "POST",
+				                data: {
+				                	'csrfmiddlewaretoken' : "{{csrf_token}}",
+				                	'userID':'{{userID}}'
+				                },
+				                success: function(data){
+				                	// console.log(userNumber + "Login Page");
+				                	// alert("success");
+				                	$('#'+"{{userNumber}}").html(data);
+				                }
+				    		});
+						}, 1000);
+	            		
+	            	}
+	            	else{
+	            		$('#'+"{{userNumber}}").hide(1000);
+	            		window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
+	            		window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);
+	            		window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',goToRegister);
+	            		$('#'+"{{userNumber}}").html('');
+	            	}
+				};
+
+	var goToRegister = function(data) {
+							$.ajax({
+					            url: "/register/",
+					            type: "GET",
+					            data: {
+					            	'csrfmiddlewaretoken':"{{csrf_token}}" , 
+					            	'userNumber':"{{userNumber}}",
+					            	'userID':'{{userID}}'
+					            },
+					            success: function(data){
+					            	console.log("{{userNumber}}" + "Login Page");
+					            	$('#'+"{{userNumber}}").html(data);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
+									window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',goToRegister);
+					            	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+					            }
+					    	});
+						};
+
+	window[ chan + window["{{userNumber}}"] ].bind('client-login',login);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToStartPage',startPage);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goToRegister',goToRegister);
+</script>
+
+<div class="loginBox">
+	<form action="/login/" method="post">
+		{% csrf_token %}
+		{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
+		<div class="register_div">
+		    {% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
+	        <p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label></p>
+	        <p>{{ form.username }}</p>
+		</div>
+		<div class="register_div">
+	        {% if form.password.errors %}<p class="error">{{ form.password.errors }}</p>{% endif %}
+	        <p><label for="password"{% if form.password.errors %} class="error"{% endif %}>Password:</label></p>
+	        <p>{{ form.password }}</p>
+		</div>
+	</form>
+</div>
+<div class="LoginActions">
+	<div style="background-color:#F2FFE1;border-radius:15px;"></div>
+	<div style="background-color:#F2FFE1;border-radius:15px;"></div>
+</div>

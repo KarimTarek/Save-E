@@ -1,0 +1,119 @@
+<div id="{{userNumber}}ColorDiv" class=""></div>
+<script>
+    chan = "channel";
+    if("{{userNumber}}" == "one"){
+        window["{{userNumber}}"] = "1";
+        $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+        $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-1');
+    }
+    else{
+        if("{{userNumber}}" == "two") {
+            window["{{userNumber}}"] ="2";
+            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+            $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-2');
+        }
+        else{
+            if("{{userNumber}}" == "three") {
+                window["{{userNumber}}"] ="3";
+                $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+                $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-3');
+            }
+            else{
+                window["{{userNumber}}"] ="4";
+                $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+                $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-4');
+            }
+        }
+    }
+    Pusher.channel_auth_endpoint = '/auth/';
+    Pusher.channel_auth_transport = 'ajax';
+
+    var register = function(data) {
+            var username = document.getElementById("id_user_"+"{{userNumber}}"+"-username");
+            var email = document.getElementById("id_user_"+"{{userNumber}}"+"-email");
+            var password = document.getElementById("id_user_"+"{{userNumber}}"+"-password");
+            var password1 = document.getElementById("id_user_"+"{{userNumber}}"+"-password1");
+            email.value = data.email;
+            username.value = data.username;
+            password.value = data.pass;
+            password1.value = data.confirmedPass;
+            setTimeout(function () {
+                $.ajax({
+                    url: "/register/",
+                    type: "POST",
+                    data: {
+                        'csrfmiddlewaretoken' : "{{csrf_token}}", 
+                        'username' : username.value ,
+                        'email' : email.value ,
+                        'password' : password.value ,
+                        'password1' : password1.value ,
+                        'userNumber' : "{{userNumber}}"
+                    },
+                    success: function(data){
+                        // alert("success");
+                        // console.log(userNumber + "Register Page");
+                        window[ chan + window["{{userNumber}}"] ].unbind('client-register',register);
+                        window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',goBackToLoginPage);
+                        $('#'+"{{userNumber}}").html(data);
+                        var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+                    }
+                });
+            }, 1000);
+        };
+
+    var goBackToLoginPage = function(data) {
+                        $.ajax({
+                            url: "/login/",
+                            type: "GET",
+                            data: {
+                                'csrfmiddlewaretoken':"{{csrf_token}}" ,
+                                'userNumber':sessionStorage.noOfUsers
+                            },
+                            success: function(data){
+                                // alert("success");
+                                console.log("{{userNumber}}" + "Register Page");
+                                window[ chan + window["{{userNumber}}"] ].unbind('client-register',register);
+                                window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',goBackToLoginPage);
+                                $('#one').html(data);
+                                $('#one').removeClass();
+                                $('#one').addClass("one_one" , 1000);
+                                $('#one').show(1000);
+                                var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+                            }
+                        });
+                    };
+
+    window[ chan + window["{{userNumber}}"] ].bind('client-register',register);
+    window[ chan + window["{{userNumber}}"] ].bind('client-goBackToLoginPage',goBackToLoginPage);
+</script>
+
+<div class="registerForm">
+    <form action="/register/" method="post">
+        {% csrf_token %}
+        {{ form.errors }}
+        {{ form.non_field_errors }}
+        {% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
+        <div class="register_div">
+            {% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
+            <p><label for="username"{% if form.username.errors %} class="error"{% endif %}>Username:</label></p>
+            <p>{{ form.username }}</p>
+        </div>
+        <div class="register_div">
+            {% if form.email.errors %}<p class="error">{{ form.email.errors }}</p>{% endif %}
+            <p><label for="email"{% if form.email.errors %} class="error"{% endif %}>Email:</label></p>
+            <p>{{ form.email }}</p>
+        </div>
+        <div class="register_div">
+            {% if form.password.errors %}<p class="error">{{ form.password.errors }}</p>{% endif %}
+            <p><label for="password"{% if form.password.errors %} class="error"{% endif %}>Password:</label></p>
+            <p>{{ form.password }}</p>
+        </div>
+        <div class="register_div">
+            {% if form.password1.errors %}<p class="error">{{ form.password1.errors }}</p>{% endif %}
+            <p><label for="password1"{% if form.password1.errors %} class="error"{% endif %}>Verify Password:</label></p>
+            <p>{{ form.password1 }}</p>
+        </div>
+        
+        <p><input type="submit" id="submit" class="btn btn-warning" alt="register" /></p>
+    </form>
+</div>

@@ -1,0 +1,12 @@
+.devicesContainer {
+	max-height: 55%;
+	overflow: auto;
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 3%;
+}
+
+.addDeviceButton {
+	margin-left: 35%;
+	margin-top: 5%;
+}

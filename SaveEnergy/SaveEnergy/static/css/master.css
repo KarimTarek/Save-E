@@ -1,0 +1,141 @@
+.headerMaster{
+	height: 18%;
+	width: 100%;
+	background-color: rgb(179, 180, 180);
+}
+
+.slogan{
+	margin-top: 20%;
+	margin-left: 20%;
+	font-size: 170%;
+	color: white
+}
+
+.welcomePage{
+	height: 100%;
+	width: 100%;
+	background-color: rgb(2, 180, 73);
+	position:fixed;
+}
+
+.screensContainer{
+	overflow: hidden;
+}
+
+/* in case of 1 users */
+.one_one{
+	width: 99.7%;
+	height:99.7%;
+	overflow: auto;
+	display: none;
+}
+
+/* --------------------- */
+
+
+/* in case of 2 users */
+.one_two{
+	width: 49.7%;
+	height:99.7%;
+	overflow: auto;
+	float: left;
+	display: none;
+}
+
+.two_two{
+	width: 49.7%;
+	height: 99.7%;
+	overflow: auto;
+	float:right;
+	border: 1px solid black;
+	display: none;
+}
+
+/* --------------------- */
+
+/* in case of 3 users */
+.one_three{
+	width: 49.7%;
+	height:49.7%;
+	overflow: auto;
+	float: left;
+	display: none;
+}
+
+.two_three{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	border: 1px solid black;
+	display: none;
+}
+
+.three_three{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	margin-left: 20%;
+	border: 1px solid red;
+	display: none;
+}
+
+/* --------------------- */
+
+/* in case of 4 users */
+.one_four{
+	width: 49.7%;
+	height:49.7%;
+	overflow: auto;
+	float: left;
+	display: none;
+}
+
+.two_four{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	border: 1px solid black;
+	display: none;
+}
+
+.three_four{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	float: left;
+	border: 1px solid red;
+	display: none;
+}
+
+.four_four{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	border: 1px solid red;
+	display: none;
+}
+
+.glowing-box-1 {
+    width: 100%;
+	height: 2%;
+	background-color: rgb(179, 17, 17);
+}
+
+.glowing-box-2 {
+ 	width: 100%;
+	height: 2%;
+	background-color: rgb(57, 179, 18);   
+}
+
+.glowing-box-3 {
+    width: 100%;
+	height: 2%;
+	background-color: rgb(18, 179, 179);
+}
+
+.glowing-box-4 {
+	width: 100%;
+	height: 2%;
+	background-color: rgb(202, 195, 27);
+}
+/* --------------------- */

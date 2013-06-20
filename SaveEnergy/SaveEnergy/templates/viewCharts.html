@@ -1,0 +1,26 @@
+<script>
+	function getRandomColor() {
+		var letters = '0123456789ABCDEF'.split('');
+		var color = '#';
+		for (var i = 0; i < 6; i++ ) {
+			color += letters[Math.round(Math.random() * 15)];
+		}
+		return color;
+	}
+
+	window['{{userID}}'+"PieChart"] = [];
+	{% for device,usage in devices_and_usage %}
+		var DeviceColor = getRandomColor();
+		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({value: ((parseInt('{{usage}}') / {{total_usage}})*100) , color:DeviceColor});
+		
+		$('#{{userID}}chartInfo').append('<div><canvas id="{{userID}}devicesInfo" width="15%" height="15%" style="background-color:'+DeviceColor+';"></canvas><span>  {{device.name}}</span></div></br>');
+	{% endfor %}
+	window['{{userID}}'+"PieChart"] = new Chart(document.getElementById("{{userID}}canvas").getContext("2d")).Pie(window['{{userID}}'+"PieChart"]);
+
+</script>
+<div id="{{userID}}charts" class="chartContainer">
+	<canvas id="{{userID}}canvas" width="400" height="400"></canvas>
+	<div id="{{userID}}chartInfo" class="chartInfo">
+
+	</div>
+</div>

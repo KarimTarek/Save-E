@@ -1,0 +1,159 @@
+<div id="{{userNumber}}ColorDiv" class=""></div>
+<script>
+	var chan = "channel"
+	if("{{userNumber}}" == "one"){
+	    window["{{userNumber}}"] = "1";
+	    $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-1');
+	}
+	else{
+	    if("{{userNumber}}" == "two") {
+	        window["{{userNumber}}"] ="2";
+	        $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    	$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-2');
+	    }
+	    else{
+	        if("{{userNumber}}" == "three") {
+	            window["{{userNumber}}"] ="3";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    		$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-3');
+	        }
+	        else{
+	            window["{{userNumber}}"] ="4";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    		$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-4');
+	        }
+	    }
+	}
+	
+	//------------------ Log Out listeners -------------------
+		var logout = function(data) {
+						sessionStorage.noOfUsers = sessionStorage.noOfUsers - 1;
+						console.log("Session no of users :"+sessionStorage.noOfUsers);
+						$.ajax({
+				            url: "/logout/",
+				            type: "POST",
+				            data: {
+				            	'csrfmiddlewaretoken':"{{csrf_token}}",
+				            	'userID':"{{user_id}}"
+				           	},
+				            success: function(data){
+				            	// alert("Logged out");
+				            	$('#'+"{{userNumber}}").html("");
+				            	$('#'+"{{userNumber}}").hide(1000);
+				            	if(sessionStorage.noOfUsers == 0) {
+		                            $('#welcomePage').show(1000);
+		                        }
+		                        else{
+		                            if(sessionStorage.noOfUsers == 1){
+		                                $('#'+"{{userNumber}}").removeClass();
+		                                $('#two').removeClass();
+		                                $('#two').addClass("one_one" , 1000);
+		                            }
+		                            else{
+		                                if(sessionStorage.noOfUsers == 2){
+		                                    $('#one').removeClass();
+		                                    $('#one').addClass("one_two" , 1500);
+		                                    $('#two').removeClass();
+		                                    $('#two').addClass("two_two" , 1500);
+		                                    $('#three').removeClass();
+		                                    $('#three').addClass("three_two" , 1500);
+		                                    $('#'+"{{userNumber}}").removeClass();
+		                                }
+		                                else{
+		                                    if(sessionStorage.noOfUsers == 3){
+		                                        $('#one').removeClass();
+		                                        $('#one').addClass("one_three" , 1500);
+		                                        $('#two').removeClass();
+		                                        $('#two').addClass("two_three" , 1500);
+		                                        $('#three').removeClass();
+		                                        $('#three').addClass("three_three" , 1500);
+		                                        $('#four').removeClass();
+		                                        $('#four').addClass("four_three" , 1500);
+		                                        $('#'+"{{userNumber}}").removeClass();
+		                                    }
+		                                    else{
+		                                    }
+		                                }
+		                            }
+		                        }
+				            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', goToChart);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',logout);
+			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+				            }
+						});
+					};
+	//-----------------------------------------
+
+	var goToAddDevice = function(data) {
+							$.cookie('userSession', "bf94f04fdf144e66e2c07c5e8a09fda6");
+							$.ajax({
+					                url: "/add_device/",
+					                type: "GET",
+					                data: {
+					                	'csrfmiddlewaretoken':"{{csrf_token}}" ,
+					                 	'userNumber':"{{userNumber}}",
+					                 	'userID':"{{user_id}}"
+					             	},
+					                success: function(data){
+					                	// alert("success went to add device page Profile page");
+					                	$('#'+"{{userNumber}}").html(data);
+					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
+					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', goToChart);
+					                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',logout);
+					                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+					                }
+					    		});
+						};
+
+	var goToChart = function(data) {
+						$.ajax({
+					            url: "/charts/",
+					            type: "GET",
+					            data: {
+					            	'csrfmiddlewaretoken':"{{csrf_token}}" ,
+					            	'userNumber':"{{userNumber}}" ,
+					            	'userID':"{{user_id}}",
+					            	'userNo': window["{{userNumber}}"]
+					            },
+					            success: function(data,textStatus, jqXHR){
+					            	$('#'+"{{userNumber}}").html(data);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', goToChart);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',logout);
+					            	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+					            }
+							});
+					};
+
+	var scrollUp = function(data) {
+		var y = $('#devicesUsage{{user_id}}').scrollTop();
+		$('#devicesUsage{{user_id}}').scrollTop(y-150);
+	}
+
+	var scrollDown = function(data) {
+		var y = $('#devicesUsage{{user_id}}').scrollTop();
+		$('#devicesUsage{{user_id}}').scrollTop(y+150);
+	}
+	window[ chan + window["{{userNumber}}"] ].bind('client-goToAddDevice', goToAddDevice);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goToChart',goToChart);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpProfile',scrollUp);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownProfile',scrollDown);
+	window[ chan + window["{{userNumber}}"] ].bind('client-logout',logout);
+</script>
+
+<div id="devicesUsage{{user_id}}" class="devicesContainer">
+	{% for device,usage in devices_and_usage %}
+		<label for="{{device.name}}">{{device.name}} :</label>
+ 		<div style="width:95%;" class="progress progress-striped active">
+		  		<div class="bar" style="width:{{ usage }}%;"></div>
+		</div>
+		
+		</br>
+	{% endfor %}
+</div>
+
+<div class="btn-group addDeviceButton">
+	<button class="btn">Add a new device | <i class="icon-plus"></i></button>
+</div>

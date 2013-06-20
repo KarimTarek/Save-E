@@ -1,0 +1,157 @@
+<div id="{{userNumber}}ColorDiv" class=""></div>
+<script>
+
+	if("{{userNumber}}" == "one"){
+	    window["{{userNumber}}"] = "1";
+	    $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-1');
+	}
+	else{
+	    if("{{userNumber}}" == "two") {
+	        window["{{userNumber}}"] ="2";
+	        $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    	$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-2');
+	    }
+	    else{
+	        if("{{userNumber}}" == "three") {
+	            window["{{userNumber}}"] ="3";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    		$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-3');
+	        }
+	        else{
+	            window["{{userNumber}}"] ="4";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    		$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-4');
+	        }
+	    }
+	}
+
+	Pusher.channel_auth_endpoint = '/auth/';
+	Pusher.channel_auth_transport = 'ajax';
+
+	window[window["{{userNumber}}"]+'logoutPreChart'] = function(data) {
+	                sessionStorage.noOfUsers = sessionStorage.noOfUsers - 1;
+	                console.log("Session no of users :"+sessionStorage.noOfUsers);
+	                $.ajax({
+	                    url: "/logout/",
+	                    type: "POST",
+	                    data: {
+	                        'csrfmiddlewaretoken':"{{csrf_token}}",
+	                        'userID':"{{userID}}",
+	                    },
+	                    success: function(data){
+	                        // alert("Logged out");
+	                        $('#'+"{{userNumber}}").html("");
+	                        $('#'+"{{userNumber}}").hide(1000);
+	                        if(sessionStorage.noOfUsers == 0) {
+	                            $('#welcomePage').show(1000);
+	                        }
+	                        else{
+	                            if(sessionStorage.noOfUsers == 1){
+	                                $('#'+"{{userNumber}}").removeClass();
+	                                $('#two').removeClass();
+	                                $('#two').addClass("one_one" , 1000);
+	                            }
+	                            else{
+	                                if(sessionStorage.noOfUsers == 2){
+	                                    $('#one').removeClass();
+	                                    $('#one').addClass("one_two" , 1500);
+	                                    $('#two').removeClass();
+	                                    $('#two').addClass("two_two" , 1500);
+	                                    $('#three').removeClass();
+	                                    $('#three').addClass("three_two" , 1500);
+	                                    $('#'+"{{userNumber}}").removeClass();
+	                                }
+	                                else{
+	                                    if(sessionStorage.noOfUsers == 3){
+	                                        $('#one').removeClass();
+	                                        $('#one').addClass("one_three" , 1500);
+	                                        $('#two').removeClass();
+	                                        $('#two').addClass("two_three" , 1500);
+	                                        $('#three').removeClass();
+	                                        $('#three').addClass("three_three" , 1500);
+	                                        $('#four').removeClass();
+	                                        $('#four').addClass("four_three" , 1500);
+	                                        $('#'+"{{userNumber}}").removeClass();
+	                                    }
+	                                    else{
+	                                        // if(sessionStorage.noOfUsers == 4){
+	                                        //     $('#one').removeClass();
+	                                        //     $('#one').addClass("one_four" , 1500);
+	                                        //     $('#two').removeClass();
+	                                        //     $('#two').addClass("two_four" , 1500);
+	                                        //     $('#three').removeClass();
+	                                        //     $('#three').addClass("three_four" , 1500);
+	                                        //     $('#four').removeClass();
+	                                        //     $('#four').addClass("four_four" , 1500);
+	                                        // }
+	                                    }
+	                                }
+	                            }
+	                        }
+	                        window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
+							window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
+							window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+	                        var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+	                    }
+	                });
+	            };
+
+
+
+	window[window["{{userNumber}}"]+'backToProfile'] = function(data) {
+	                        setTimeout(function () {
+	                            $.ajax({
+	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/",
+	                                type: "GET",
+	                                data: {
+	                                    'csrfmiddlewaretoken' : '{{csrfToken}}', 
+	                                    'userID':'{{userID}}'
+	                                },
+	                                success: function(data){
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+	                                    $('#'+"{{userNumber}}").html(data);
+	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+	                                }
+	                            });
+	                        }, 1000);
+	                    };
+
+	window[window["{{userNumber}}"]+'viewCharts'] = function(data) {
+														$.ajax({
+							                                url: "/viewCharts/",
+							                                type:"GET",
+							                                data: {
+							                                    'csrfmiddlewaretoken':'{{csrfToken}}', 
+							                                    'userID':'{{userID}}',
+							                                    'userNumber':'{{userNumber}}',
+							                                    'FromMonth':data.FromMonth,
+							                                    'ToMonth':data.ToMonth,
+							                                    'FromYear':data.FromYear,
+							                                    'ToYear':data.ToYear,
+							                                    'FromDay':data.FromDay,
+							                                    'ToDay':data.ToDay
+							                                },
+							                                success: function(data){
+							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
+							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
+							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+							                                    $('#'+"{{userID}}preChart").html(data);
+							                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+							                                }
+							                            });
+													};
+
+
+	
+	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+</script>
+
+<div id="{{userID}}preChart" class="preChartContainer">
+
+
+</div>

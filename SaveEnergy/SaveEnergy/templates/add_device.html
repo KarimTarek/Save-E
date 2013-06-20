@@ -1,0 +1,156 @@
+<div id="{{userNumber}}ColorDiv" class=""></div>
+<script>
+	var chan = "channel";
+	if("{{userNumber}}" == "one"){
+	    window["{{userNumber}}"] = "1";
+	    $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-1');
+	}
+	else{
+	    if("{{userNumber}}" == "two") {
+	        window["{{userNumber}}"] ="2";
+	        $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    	$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-2');
+	    }
+	    else{
+	        if("{{userNumber}}" == "three") {
+	            window["{{userNumber}}"] ="3";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    		$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-3');
+	        }
+	        else{
+	            window["{{userNumber}}"] ="4";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    		$('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-4');
+	        }
+	    }
+	}
+
+	var logout = function(data) {
+	                sessionStorage.noOfUsers = sessionStorage.noOfUsers - 1;
+	                $.ajax({
+	                    url: "/logout/",
+	                    type: "POST",
+	                    data: {
+	                        'csrfmiddlewaretoken':"{{csrf_token}}",
+	                        'userID':'{{userID}}'
+	                    },
+	                    success: function(data){
+	                        // alert("Logged out");
+	                        $('#'+"{{userNumber}}").html("");
+	                        $('#'+"{{userNumber}}").hide(1000);
+	                        if(sessionStorage.noOfUsers == 0) {
+	                            $('#welcomePage').show(1000);
+	                        }
+	                        else{
+	                            if(sessionStorage.noOfUsers == 1){
+	                                $('#'+"{{userNumber}}").removeClass();
+	                                $('#two').removeClass();
+	                                $('#two').addClass("one_one" , 1000);
+	                            }
+	                            else{
+	                                if(sessionStorage.noOfUsers == 2){
+	                                    $('#one').removeClass();
+	                                    $('#one').addClass("one_two" , 1500);
+	                                    $('#two').removeClass();
+	                                    $('#two').addClass("two_two" , 1500);
+	                                    $('#three').removeClass();
+	                                    $('#three').addClass("three_two" , 1500);
+	                                    $('#'+"{{userNumber}}").removeClass();
+	                                }
+	                                else{
+	                                    if(sessionStorage.noOfUsers == 3){
+	                                        $('#one').removeClass();
+	                                        $('#one').addClass("one_three" , 1500);
+	                                        $('#two').removeClass();
+	                                        $('#two').addClass("two_three" , 1500);
+	                                        $('#three').removeClass();
+	                                        $('#three').addClass("three_three" , 1500);
+	                                        $('#four').removeClass();
+	                                        $('#four').addClass("four_three" , 1500);
+	                                        $('#'+"{{userNumber}}").removeClass();
+	                                    }
+	                                    else{
+	                                        // if(sessionStorage.noOfUsers == 4){
+	                                        //     $('#one').removeClass();
+	                                        //     $('#one').addClass("one_four" , 1500);
+	                                        //     $('#two').removeClass();
+	                                        //     $('#two').addClass("two_four" , 1500);
+	                                        //     $('#three').removeClass();
+	                                        //     $('#three').addClass("three_four" , 1500);
+	                                        //     $('#four').removeClass();
+	                                        //     $('#four').addClass("four_four" , 1500);
+	                                        // }
+	                                    }
+	                                }
+	                            }
+	                        }
+	                        window[ chan + window["{{userNumber}}"] ].unbind('client-AddDevice',clientAddDevice);
+	                        window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',backToProfile);
+	                        window[ chan + window["{{userNumber}}"] ].unbind('client-logout',logout);
+	                        var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+	                    }
+	                });
+	            };
+
+
+
+	var clientAddDevice = function(data) {
+	                        var device_name = document.getElementById("id_user_"+"{{userNumber}}"+"-name");
+	                        device_name.value = data.device_name
+	                        $.ajax({
+	                                url: "/add_device/",
+	                                type: "POST",
+	                                data: {
+	                                	'csrfmiddlewaretoken' : "{{csrf_token}}" , 
+	                                	'userNumber' : "{{userNumber}}",
+	                                	'name' : device_name.value,
+	                                	'userID':'{{userID}}'
+	                                },
+	                                success: function(data, textStatus, jqXHR){
+	                                	// alert("success device added and you will be redirected to your profile");
+	                                	window[ chan + window["{{userNumber}}"] ].unbind('client-AddDevice',clientAddDevice);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',backToProfile);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',logout);
+	                                    $('#'+"{{userNumber}}").html(data);
+	                                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {}); 
+	                                }
+	                        	});
+	                    };
+
+	var backToProfile = function(data) {
+	                        setTimeout(function () {
+	                            $.ajax({
+	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/",
+	                                type: "GET",
+	                                data: {
+	                                    'csrfmiddlewaretoken' : "{{csrf_token}}", 
+	                                    'userID':'{{userID}}'
+	                                },
+	                                success: function(data){
+	                                    // alert("success");
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-AddDevice',clientAddDevice);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',backToProfile);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',logout);
+	                                    $('#'+"{{userNumber}}").html(data);
+	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+	                                }
+	                            });
+	                        }, 1000);
+	                    };
+
+	window[ chan + window["{{userNumber}}"] ].bind('client-AddDevice',clientAddDevice);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',backToProfile);
+	window[ chan + window["{{userNumber}}"] ].bind('client-logout',logout);
+</script>
+
+<form action="/add_device/" method="post">
+	{% csrf_token %}
+	{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
+	<div class="add_deviceContainer">
+	    {% if form.name.errors %}<p class="error">{{ form.name.errors }}</p>{% endif %}
+        <p><label for="name"{% if form.name.errors %} class="error"{% endif %}>Device Name :</label></p>
+        <p>{{ form.name }}</p>
+		<p><input type="submit" class="btn btn-success" id="submit" alt="login" /></p>
+	</div>
+</form>

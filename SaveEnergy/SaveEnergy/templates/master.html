@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<script src="{{STATIC_URL}}js/pusher.js"></script>
+		<script type="text/javascript" src="{{STATIC_URL}}js/jquery-1.9.1.min.js"></script>
+		<script src="{{STATIC_URL}}js/jquery.cookie.js"></script>
+		<script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+		<script src="{{STATIC_URL}}js/Chart.js"></script>
+		<script src="{{STATIC_URL}}js/master.js"></script>
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/login.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/register.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/profile.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/master.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/add_device.css" />
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/preCharts.css" />
+
+		<script>
+			var csrfToken = '{{csrf_token}}';
+		</script>
+	</head>
+	
+	<body>
+		<div id="welcomePage" class="welcomePage">
+			<div class="slogan">
+				{% block dashboard %}
+
+				{% endblock dashboard %}
+			</div>
+		</div>
+		<div class="screensContainer">
+			
+			<div id="one" class="one">
+				
+		    </div>
+		    <div id="two" class="two">
+				
+		    </div>
+		    <div id="three" class="three">
+				
+		    </div>
+		    <div id="four" class="four">
+				
+		    </div>
+		</div>
+	</body>
+</html>
