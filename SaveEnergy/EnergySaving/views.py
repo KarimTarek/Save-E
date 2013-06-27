@@ -10,10 +10,12 @@ from django.db.models.query import QuerySet
 from django.db.models import Q
 from django.contrib import auth
 import pusher
+import json
 from django.core.context_processors import csrf
 from django.conf import settings
 from django.core.serializers import serialize
 from django.utils.simplejson import dumps, loads, JSONEncoder
+from django.core import serializers
 from django.db.models.query import QuerySet
 from django.utils.functional import curry
 from django.utils import simplejson
@@ -93,27 +95,78 @@ def viewCharts(request):
 	ToYear = request.GET['ToYear']
 	FromDay = request.GET['FromDay']
 	ToDay = request.GET['ToDay']
-	FromDate = datetime.strptime(FromDay+" "+FromMonth+" "+FromYear, "%d %B %Y")
-	ToDate = datetime.strptime(ToDay+" "+ToMonth+" "+ToYear, "%d %B %Y")
+	FromDate = datetime.strptime(FromDay+" "+FromMonth+" "+FromYear, '%d %B %Y')
+	ToDate = datetime.strptime(ToDay+" "+ToMonth+" "+ToYear, '%d %B %Y')
 	curr_user = User.objects.get(id = request.GET['userID'])
 	all_user_devices = Device.objects.filter(user = curr_user)
 	total_usage = 0
 	deviceUsage = 0
+	MonthlydeviceUsage = 0
 	usages=[]
+	monthsChosenString =[]
+	monthsChosenInt =[]
+	devicesMonthlyUsage = [[] for _ in range(12)]
+	monthAndYear = []
+	#####Filtering the usages by Device within the period defined by the user######
 	for device in all_user_devices:
-		newUsage = Usage.objects.filter(device = device and (date <= ToDate or date>= FromDate))
-		print newUsage
+		newUsage = Usage.objects.filter(device = device , date__gte=FromYear+"-"+FromDate.strftime('%m')+"-"+FromDay+" "+"00:00:00" , date__lte=ToYear+"-"+ToDate.strftime('%m')+"-"+ToDay+" "+"23:59:59")
 		for usage in newUsage:
 			deviceUsage = deviceUsage + int(usage.value)
 			total_usage = total_usage + int(usage.value)
-		if total_usage != 0:
+		if deviceUsage != 0:
 			usages.append((float(int(deviceUsage) / float(total_usage) )) * 100)
 		else:
 			usages.append(0)
 		deviceUsage = 0
+	#####Filtering the usages by Month within the period defined by the user######
+	if int(FromDate.strftime('%m')) == int(ToDate.strftime('%m')) :
+		monthsChosenString.append(getMonthName(int(FromDate.strftime('%m')))) 
+		monthsChosenInt.append(int(FromDate.strftime('%m'))) 
+	else:
+		for month in range(int(FromDate.strftime('%m')),int(ToDate.strftime('%m'))+1):
+			monthsChosenString.append(getMonthName(month))
+			monthsChosenInt.append(month)
+	for counter in range(len(monthsChosenInt)):
+		for device in all_user_devices:
+			MonthlyUsage = Usage.objects.filter(device = device , date__gte=FromYear+"-"+str(monthsChosenInt[counter])+"-"+"1"+" "+"00:00:00" , date__lte=ToYear+"-"+str(monthsChosenInt[counter])+"-"+"30"+" "+"23:59:59")
+			for usage in MonthlyUsage:
+				MonthlydeviceUsage = MonthlydeviceUsage + int(usage.value)
+			if MonthlydeviceUsage != 0:
+				monthAndYear.append(FromYear+"-"+str(monthsChosenInt[counter]))
+				devicesMonthlyUsage[counter].append(int(MonthlydeviceUsage))
+			else:
+				monthAndYear.append(FromYear+"-"+str(monthsChosenInt[counter]))
+				devicesMonthlyUsage[counter].append(0)
+			MonthlydeviceUsage = 0
+			# print '-------------------------------------'
+			# print MonthlyUsage
+			# print devicesMonthlyUsage
+			# print '-------------------------------------'
+
+	# devicesMonthlyUsage = serializers.serialize('json', devicesMonthlyUsage)
+	# monthsChosenString = json.dumps(monthsChosenString)
+	# monthsChosenString = serializers.serialize('json', monthsChosenString, ensure_ascii=False)
+	devicesMonthlyUsage = json.dumps(devicesMonthlyUsage)
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
-	return render_to_response('viewCharts.html',{'devices':all_user_devices ,'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':request.GET['userID'] ,'total_usage':float(total_usage)} ,RequestContext(request))
+	# print devices_and_usage
+	return render_to_response('viewCharts.html',{'devices':all_user_devices ,'devicesMonthlyUsage':devicesMonthlyUsage,'monthsChosenString':monthsChosenString,'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':request.GET['userID'] ,'total_usage':float(total_usage)} ,RequestContext(request))
+
+def getMonthName(month):
+    return {
+        1: 'January',
+        2:'February',
+        3:'March',
+        4:'April',
+        5:'May',
+        6:'June',
+        7:'July',
+        8:'August',
+        9:'September',
+        10:'October',
+        11:'November',
+        12:'December',
+    }.get(month)
 
 def UserRegistration(request):
 	# if request.user.is_authenticated():

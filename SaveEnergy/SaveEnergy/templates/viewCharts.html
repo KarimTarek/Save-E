@@ -9,17 +9,45 @@
 	}
 
 	window['{{userID}}'+"PieChart"] = [];
+	window['{{userID}}'+"LineChart"] = [];
+	window['{{userID}}'+"dataSets"] = [];
+	window['{{userID}}'+"LineData"] = [];
+	// alert({{monthsChosenString}});
+	alert({{devicesMonthlyUsage}});
+
 	{% for device,usage in devices_and_usage %}
 		var DeviceColor = getRandomColor();
 		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({value: ((parseInt('{{usage}}') / {{total_usage}})*100) , color:DeviceColor});
 		
 		$('#{{userID}}chartInfo').append('<div><canvas id="{{userID}}devicesInfo" width="15%" height="15%" style="background-color:'+DeviceColor+';"></canvas><span>  {{device.name}}</span></div></br>');
 	{% endfor %}
+
+
+	{% for counter in  range(0,10) %}
+			window['{{userID}}'+"dataSets"] = window['{{userID}}'+"dataSets"].concat(
+					{	
+						fillColor : "rgba(220,220,220,0.5)",
+						strokeColor : "rgba(220,220,220,1)",
+						pointColor : "rgba(220,220,220,1)",
+						pointStrokeColor : "#fff",
+						data:{{devicesMonthlyUsage}}[counter]
+					}
+				);
+	{% endfor %}
+
+	// window['{{userID}}'+"LineData"] = window['{{userID}}'+"LineData"].concat({{monthsChosenString}});
+	// window['{{userID}}'+"LineData"] = window['{{userID}}'+"LineData"].concat(window['{{userID}}'+"dataSets"]);
+
+	// alert(window['{{userID}}'+"LineData"]);
+
+	// window['{{userID}}'+"LineChart"] = new Chart(document.getElementById("{{userID}}LineCanvas").getContext("2d")).Line(window['{{userID}}'+"LineData"]);
+
 	window['{{userID}}'+"PieChart"] = new Chart(document.getElementById("{{userID}}canvas").getContext("2d")).Pie(window['{{userID}}'+"PieChart"]);
 
 </script>
 <div id="{{userID}}charts" class="chartContainer">
 	<canvas id="{{userID}}canvas" width="400" height="400"></canvas>
+	<canvas id="{{userID}}LineCanvas" width="400" height="400"></canvas>
 	<div id="{{userID}}chartInfo" class="chartInfo">
 
 	</div>

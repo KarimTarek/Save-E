@@ -78,7 +78,7 @@
             }
 
             .dateSelect{
-                width:10%;
+                width:35%;
             }
         </style>
     </head>
@@ -266,11 +266,37 @@
             </div>
         </div>
     <!-- .................. -->
+
+    <!-- /popup to ask if u want to exit the app -->
+        <div data-role="popup" id="exitApp" date-theme="b">
+                <p>Are you sure you want to exit the application?</p>
+                <a href="#" data-role="button" id="ExitApp" onClick="exitApp()">Exit</a>
+                <a href="#" data-role="button" id="CancelExit" onClick="cancelExit()">Cancel</a>
+        </div>
+    <!-- .................. -->
         	
         
         <script type="text/javascript">
             var channelName = "private-SaveE";
+            document.addEventListener("deviceready", onDeviceReady, false);
 
+            function exitApp(){
+                navigator.app.exitApp();
+            }
+
+            function cancelExit(){
+                $('#exitApp').popup("close");
+            }
+
+            function onDeviceReady() {
+                $( "#exitApp" ).popup();
+                document.addEventListener("backbutton", onBackKeyDown, false);
+            }
+
+            // Handle the back button
+            function onBackKeyDown() {
+                $( "#exitApp" ).popup( "open" );
+            }
         // Sending Registration Form to WEB APP -------------
             function SubmitRegistrationForm() {
                 $('a').addClass('ui-disabled');
@@ -440,7 +466,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.151.226:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.6:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 var migratingContent = function(data){
@@ -544,7 +570,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.151.226:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.6:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',
