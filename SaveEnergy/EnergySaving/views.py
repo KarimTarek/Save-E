@@ -72,16 +72,19 @@ def charts(request):
 		newUsage = Usage.objects.filter(device = device)
 		for usage in newUsage:
 			deviceUsage = deviceUsage + int(usage.value)
-			total_usage = total_usage + int(usage.value)
 			if usage.date.strftime('%B') not in months:
 				months.append(usage.date.strftime('%B'))
 			if usage.date.year not in years:
 				years.append(usage.date.year)
+		total_usage = total_usage + deviceUsage
 		if total_usage != 0:
-			usages.append((float(int(deviceUsage) / float(total_usage) )) * 100)
+			usages.append(int(deviceUsage))
 		else:
 			usages.append(0)
 		deviceUsage = 0
+
+	for counter in range(len(usages)):
+		usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
 	p = pusher.Pusher(app_id='42846', key='35bf6495b4677801c17e', secret='7ef9690d99684e1b6b68')
 	p['private-SaveE'+request.GET['userNo']].trigger('dates',{'months':months,'years':years})
 	devices_and_usage = {}
@@ -107,17 +110,22 @@ def viewCharts(request):
 	monthsChosenInt =[]
 	devicesMonthlyUsage = [[] for _ in range(12)]
 	monthAndYear = []
+
 	#####Filtering the usages by Device within the period defined by the user######
 	for device in all_user_devices:
 		newUsage = Usage.objects.filter(device = device , date__gte=FromYear+"-"+FromDate.strftime('%m')+"-"+FromDay+" "+"00:00:00" , date__lte=ToYear+"-"+ToDate.strftime('%m')+"-"+ToDay+" "+"23:59:59")
 		for usage in newUsage:
 			deviceUsage = deviceUsage + int(usage.value)
-			total_usage = total_usage + int(usage.value)
 		if deviceUsage != 0:
-			usages.append((float(int(deviceUsage) / float(total_usage) )) * 100)
+			usages.append(int(deviceUsage))
 		else:
 			usages.append(0)
+		total_usage = total_usage + deviceUsage
 		deviceUsage = 0
+
+	for counter in range(len(usages)):
+		usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
+
 	#####Filtering the usages by Month within the period defined by the user######
 	if int(FromDate.strftime('%m')) == int(ToDate.strftime('%m')) :
 		monthsChosenString.append(getMonthName(int(FromDate.strftime('%m')))) 
@@ -126,8 +134,11 @@ def viewCharts(request):
 		for month in range(int(FromDate.strftime('%m')),int(ToDate.strftime('%m'))+1):
 			monthsChosenString.append(getMonthName(month))
 			monthsChosenInt.append(month)
+
+	devicesName = []
 	for counter in range(len(monthsChosenInt)):
 		for device in all_user_devices:
+			devicesName.append(device.name)
 			MonthlyUsage = Usage.objects.filter(device = device , date__gte=FromYear+"-"+str(monthsChosenInt[counter])+"-"+"1"+" "+"00:00:00" , date__lte=ToYear+"-"+str(monthsChosenInt[counter])+"-"+"30"+" "+"23:59:59")
 			for usage in MonthlyUsage:
 				MonthlydeviceUsage = MonthlydeviceUsage + int(usage.value)
@@ -144,13 +155,17 @@ def viewCharts(request):
 			# print '-------------------------------------'
 
 	# devicesMonthlyUsage = serializers.serialize('json', devicesMonthlyUsage)
-	# monthsChosenString = json.dumps(monthsChosenString)
+	
+	# monthsChosenString = {"monthsChosenString":monthsChosenString}
+	#monthsChosenString = json.dumps(monthsChosenString)
 	# monthsChosenString = serializers.serialize('json', monthsChosenString, ensure_ascii=False)
+	MonthsloopCounter = [i for i in range(len(monthsChosenString))]
+	devicesLoopCounter = [i for i in range(len(all_user_devices))]
 	devicesMonthlyUsage = json.dumps(devicesMonthlyUsage)
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
 	# print devices_and_usage
-	return render_to_response('viewCharts.html',{'devices':all_user_devices ,'devicesMonthlyUsage':devicesMonthlyUsage,'monthsChosenString':monthsChosenString,'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':request.GET['userID'] ,'total_usage':float(total_usage)} ,RequestContext(request))
+	return render_to_response('viewCharts.html',{'devices':all_user_devices ,'devicesLoopCounter':devicesLoopCounter,'devicesName':simplejson.dumps(devicesName),'MonthsloopCounter':MonthsloopCounter ,'devicesMonthlyUsage':devicesMonthlyUsage,'monthsChosenString':simplejson.dumps(monthsChosenString),'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':request.GET['userID'] ,'total_usage':float(total_usage)} ,RequestContext(request))
 
 def getMonthName(month):
     return {

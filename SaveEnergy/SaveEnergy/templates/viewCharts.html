@@ -1,4 +1,5 @@
 <script>
+
 	function getRandomColor() {
 		var letters = '0123456789ABCDEF'.split('');
 		var color = '#';
@@ -8,47 +9,68 @@
 		return color;
 	}
 
-	window['{{userID}}'+"PieChart"] = [];
-	window['{{userID}}'+"LineChart"] = [];
-	window['{{userID}}'+"dataSets"] = [];
-	window['{{userID}}'+"LineData"] = [];
-	// alert({{monthsChosenString}});
-	alert({{devicesMonthlyUsage}});
+	window.onload = function () {
+		chart.render();
+	}	
+		window['{{userID}}'+"PieChart"] = [];
+		window['{{userID}}'+"BarChart"] = [];
+		window['{{userID}}'+"RadarChart"] = [];
+		window['{{userID}}'+"barDataSets"] = [];
+		window['{{userID}}'+"barData"] = [];
+		window['{{userID}}'+"radarDataSets"] =[];
+		window['{{userID}}'+"radarData"] = [];
+		window['{{userID}}barDataPoints']=[];
 
-	{% for device,usage in devices_and_usage %}
-		var DeviceColor = getRandomColor();
-		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({value: ((parseInt('{{usage}}') / {{total_usage}})*100) , color:DeviceColor});
-		
-		$('#{{userID}}chartInfo').append('<div><canvas id="{{userID}}devicesInfo" width="15%" height="15%" style="background-color:'+DeviceColor+';"></canvas><span>  {{device.name}}</span></div></br>');
-	{% endfor %}
+		{% for device,usage in devices_and_usage %}
+			window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}',y: ((parseInt('{{usage}}') / {{total_usage}})*100)});
+		{% endfor %}
 
-
-	{% for counter in  range(0,10) %}
-			window['{{userID}}'+"dataSets"] = window['{{userID}}'+"dataSets"].concat(
-					{	
-						fillColor : "rgba(220,220,220,0.5)",
-						strokeColor : "rgba(220,220,220,1)",
-						pointColor : "rgba(220,220,220,1)",
-						pointStrokeColor : "#fff",
-						data:{{devicesMonthlyUsage}}[counter]
+		{% for c in devicesLoopCounter %}
+			window['{{userID}}'+'barDataPoints'] = window['{{userID}}'+'barDataPoints'].concat(
+					{
+						indexLabelPlacement: "inside",
+						type: "column",
+				        showInLegend: true,
+				        legendText: {{devicesName|safe}}[{{c}}],
+						dataPoints:[
+							{% for counter in MonthsloopCounter %}
+								{
+									y:{{devicesMonthlyUsage}}[{{counter}}][{{c}}],
+									indexLabel:{{devicesMonthlyUsage}}[{{counter}}][{{c}}]+'',
+									label:{{monthsChosenString|safe}}[{{counter}}]
+									
+								},
+							{% endfor %}
+						]
 					}
-				);
-	{% endfor %}
+				); 
+			
+		{% endfor %}
+		
+		window['{{userID}}Piechart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
+			theme: "theme2",//theme1
+			title:{
+				text: "Total energy usage within the dates entered"              
+			},
+			data: [              
+				{
+				type: "pie",
+				dataPoints: window['{{userID}}'+"PieChart"]
+				}
+			]
+		});
 
-	// window['{{userID}}'+"LineData"] = window['{{userID}}'+"LineData"].concat({{monthsChosenString}});
-	// window['{{userID}}'+"LineData"] = window['{{userID}}'+"LineData"].concat(window['{{userID}}'+"dataSets"]);
-
-	// alert(window['{{userID}}'+"LineData"]);
-
-	// window['{{userID}}'+"LineChart"] = new Chart(document.getElementById("{{userID}}LineCanvas").getContext("2d")).Line(window['{{userID}}'+"LineData"]);
-
-	window['{{userID}}'+"PieChart"] = new Chart(document.getElementById("{{userID}}canvas").getContext("2d")).Pie(window['{{userID}}'+"PieChart"]);
+		window['{{userID}}Barchart'] = new CanvasJS.Chart("{{userID}}BarCanvas", {
+			theme: "theme1",//theme1
+			title:{
+				text: "Total energy usage within the dates entered sorted monthly"             
+			},
+			data:window['{{userID}}'+'barDataPoints']
+      	});
 
 </script>
 <div id="{{userID}}charts" class="chartContainer">
-	<canvas id="{{userID}}canvas" width="400" height="400"></canvas>
-	<canvas id="{{userID}}LineCanvas" width="400" height="400"></canvas>
-	<div id="{{userID}}chartInfo" class="chartInfo">
-
-	</div>
+	<div id="{{userID}}PieCanvas" style="width:40%;height:40%"></div>
+	<div id="{{userID}}BarCanvas" style="width:40%;height:40%"></div>
+	<div id="{{userID}}RadarCanvas" style="width:40%;height:40%"></div>
 </div>
