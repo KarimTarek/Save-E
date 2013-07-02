@@ -27,7 +27,6 @@ from datetime import *
 import time
 import random
 
-
 def home(request):
 	return render_to_response('home.html',{} ,RequestContext(request))
 
@@ -40,13 +39,17 @@ def profile(request,user_id,user_number):
 	for device in all_user_devices:
 		newUsage = Usage.objects.filter(device = device)
 		for usage in newUsage:
-			deviceUsage = deviceUsage + int(usage.value)
-			total_usage = total_usage + int(usage.value)
-		if total_usage != 0:
-			usages.append((float(int(deviceUsage) / float(total_usage) )) * 100)
+			deviceUsage = deviceUsage + int(usage.value)	
+		if deviceUsage != 0:
+			usages.append(int(deviceUsage))
 		else:
 			usages.append(0)
+		total_usage = total_usage + deviceUsage
 		deviceUsage = 0
+
+	for counter in range(len(usages)):
+		usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
+
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
 	return render_to_response('profile.html',{'user_id':user_id , 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages , 'devices_and_usage' : devices_and_usage},RequestContext(request))
