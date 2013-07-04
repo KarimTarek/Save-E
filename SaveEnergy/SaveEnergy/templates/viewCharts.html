@@ -1,4 +1,110 @@
 <script>
+	//logout listener ------------------------------------------------
+	window['{{userID}}logOutViewCharts'] = function(data){
+		sessionStorage.noOfUsers = sessionStorage.noOfUsers - 1;
+		userArray[parseInt(window["{{userNumber}}"])-1] = false;
+		console.log("Session no of users :"+sessionStorage.noOfUsers);
+		$.ajax({
+            url: "/logout/",
+            type: "POST",
+            data: {
+            	'csrfmiddlewaretoken':"{{csrf_token}}",
+            	'userID':"{{user_id}}"
+           	},
+            success: function(data){
+            	// alert("Logged out");
+            	$('#'+"{{userNumber}}").html("");
+            	$('#'+"{{userNumber}}").hide(1000);
+            	if(sessionStorage.noOfUsers == 0) {
+                    $('#welcomePage').show(1000);
+                }
+                else{
+                    if(sessionStorage.noOfUsers == 1){
+                		for(int i=0 ; i<userArray.length ; i++){
+                			if(userArray[i] == true){
+                				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
+								break;
+                			}
+                		}
+                    }
+                    else{
+                        if(sessionStorage.noOfUsers == 2){
+                        	j=0;
+                        	for(int i=0 ; i<userArray.length ; i++){
+                    			if(userArray[i] == true){
+                    				if(j%2 == 0){
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
+                    				}
+                    				else {
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
+                    				}
+                    				j++;
+                    			}
+                    		}
+                        }
+                        else{
+                            if(sessionStorage.noOfUsers == 3){
+                            	j=0;
+                                for(int i=0 ; i<userArray.length ; i++){
+                        			if(userArray[i] == true){
+                        				if(j==2){
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
+                        				}
+                        				else{
+                        					if(j%2 == 0){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
+                            				}
+                            				else {
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
+                            				}
+                        				}
+                        				
+                        				j++;
+                        			}
+                        		}
+                            }
+                            else{
+                            }
+                        }
+                    }
+                }
+            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
+            	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutViewCharts']);
+            	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+            }
+		});
+	};
+
+	//------------------------------------------------------------------------------------------------------------------------------------
+
+	window['{{userID}}backToProfile'] = function(data) {
+	                        setTimeout(function () {
+	                            $.ajax({
+	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/",
+	                                type: "GET",
+	                                data: {
+	                                    'csrfmiddlewaretoken' : "{{csrf_token}}", 
+	                                    'userID':'{{userID}}'
+	                                },
+	                                success: function(data){
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutViewCharts']);
+	                                    $('#'+"{{userNumber}}").html(data);
+	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+	                                }
+	                            });
+	                        }, 1000);
+	                    };
+
+
+
+	//charts section ---------------------------------------------------------------------------------------------------------------------
 
 	function getRandomColor() {
 		var letters = '0123456789ABCDEF'.split('');
@@ -12,62 +118,65 @@
 	window.onload = function () {
 		chart.render();
 	}	
-		window['{{userID}}'+"PieChart"] = [];
-		window['{{userID}}'+"BarChart"] = [];
-		window['{{userID}}'+"RadarChart"] = [];
-		window['{{userID}}'+"barDataSets"] = [];
-		window['{{userID}}'+"barData"] = [];
-		window['{{userID}}'+"radarDataSets"] =[];
-		window['{{userID}}'+"radarData"] = [];
-		window['{{userID}}barDataPoints']=[];
+	window['{{userID}}'+"PieChart"] = [];
+	window['{{userID}}'+"BarChart"] = [];
+	window['{{userID}}'+"RadarChart"] = [];
+	window['{{userID}}'+"barDataSets"] = [];
+	window['{{userID}}'+"barData"] = [];
+	window['{{userID}}'+"radarDataSets"] =[];
+	window['{{userID}}'+"radarData"] = [];
+	window['{{userID}}barDataPoints']=[];
 
-		{% for device,usage in devices_and_usage %}
-			window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}',y: ((parseInt('{{usage}}') / {{total_usage}})*100)});
-		{% endfor %}
+	{% for device,usage in devices_and_usage %}
+		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}',y: ((parseInt('{{usage}}') / {{total_usage}})*100)});
+	{% endfor %}
 
-		{% for c in devicesLoopCounter %}
-			window['{{userID}}'+'barDataPoints'] = window['{{userID}}'+'barDataPoints'].concat(
-					{
-						indexLabelPlacement: "inside",
-						type: "column",
-				        showInLegend: true,
-				        legendText: {{devicesName|safe}}[{{c}}],
-						dataPoints:[
-							{% for counter in MonthsloopCounter %}
-								{
-									y:{{devicesMonthlyUsage}}[{{counter}}][{{c}}],
-									indexLabel:{{devicesMonthlyUsage}}[{{counter}}][{{c}}]+'',
-									label:{{monthsChosenString|safe}}[{{counter}}]
-									
-								},
-							{% endfor %}
-						]
-					}
-				); 
-			
-		{% endfor %}
-		
-		window['{{userID}}Piechart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
-			theme: "theme2",//theme1
-			title:{
-				text: "Total energy usage within the dates entered"              
-			},
-			data: [              
+	{% for c in devicesLoopCounter %}
+		window['{{userID}}'+'barDataPoints'] = window['{{userID}}'+'barDataPoints'].concat(
 				{
-				type: "pie",
-				dataPoints: window['{{userID}}'+"PieChart"]
+					indexLabelPlacement: "inside",
+					type: "column",
+			        showInLegend: true,
+			        legendText: {{devicesName|safe}}[{{c}}],
+					dataPoints:[
+						{% for counter in MonthsloopCounter %}
+							{
+								y:{{devicesMonthlyUsage}}[{{counter}}][{{c}}],
+								indexLabel:{{devicesMonthlyUsage}}[{{counter}}][{{c}}]+'',
+								label:{{monthsChosenString|safe}}[{{counter}}]
+								
+							},
+						{% endfor %}
+					]
 				}
-			]
-		});
+			); 
+		
+	{% endfor %}
+	
+	window['{{userID}}Piechart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
+		theme: "theme2",//theme1
+		title:{
+			text: "Total energy usage within the dates entered"              
+		},
+		data: [              
+			{
+			type: "pie",
+			dataPoints: window['{{userID}}'+"PieChart"]
+			}
+		]
+	});
 
-		window['{{userID}}Barchart'] = new CanvasJS.Chart("{{userID}}BarCanvas", {
-			theme: "theme1",//theme1
-			title:{
-				text: "Total energy usage within the dates entered sorted monthly"             
-			},
-			data:window['{{userID}}'+'barDataPoints']
-      	});
+	window['{{userID}}Barchart'] = new CanvasJS.Chart("{{userID}}BarCanvas", {
+		theme: "theme1",//theme1
+		title:{
+			text: "Total energy usage within the dates entered sorted monthly"             
+		},
+		data:window['{{userID}}'+'barDataPoints']
+  	});
 
+  	//------------------------------------------------------------------------------------
+  	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window['{{userID}}backToProfile']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutViewCharts']);
 </script>
 <div id="{{userID}}charts" class="chartContainer">
 	<div id="{{userID}}PieCanvas" style="width:40%;height:40%"></div>

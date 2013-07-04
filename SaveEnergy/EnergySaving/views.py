@@ -22,7 +22,6 @@ from django.utils import simplejson
 from django.contrib.auth.models import User
 from EnergySaving.forms import *
 from django.contrib import messages
-import datetime
 from datetime import *
 import time
 import random
@@ -31,11 +30,15 @@ def home(request):
 	return render_to_response('home.html',{} ,RequestContext(request))
 
 def profile(request,user_id,user_number):
+	import datetime
 	curr_user = User.objects.get(id = user_id)
 	all_user_devices = Device.objects.filter(user = curr_user)
 	total_usage = 0
 	deviceUsage = 0
 	usages = []
+	userLvl = curr_user.level
+	userMoney = curr_user.money
+	userBadges = curr_user.badge.all()
 	for device in all_user_devices:
 		newUsage = Usage.objects.filter(device = device)
 		for usage in newUsage:
@@ -49,10 +52,9 @@ def profile(request,user_id,user_number):
 
 	for counter in range(len(usages)):
 		usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
-
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
-	return render_to_response('profile.html',{'user_id':user_id , 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages , 'devices_and_usage' : devices_and_usage},RequestContext(request))
+	return render_to_response('profile.html',{'user_id':user_id ,'MEDIA_URL':settings.MEDIA_URL,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages , 'devices_and_usage' : devices_and_usage},RequestContext(request))
 
 @csrf_exempt
 def authenti(request):
@@ -187,8 +189,6 @@ def getMonthName(month):
     }.get(month)
 
 def UserRegistration(request):
-	# if request.user.is_authenticated():
-	#    	return HttpResponseRedirect('/profile/')
 	if request.method == 'POST':
 		data = request.POST.copy()
 		data['date_joined'] = datetime.date.today()
@@ -360,74 +360,74 @@ def LoginRequest(request):
 			context = {'form': form}
 			return render_to_response('login.html', context, context_instance=RequestContext(request))
 
-def add_device(request):
-	if request.method == 'POST':
-		data = request.POST.copy()
-		form = AddDeviceForm(data)
-		user = User.objects.get(id = request.POST['userID'])
-		userID = str(user.id)
-		if form.is_valid():
-			device = Device.objects.create(name=form.cleaned_data['name'], user=user)
-			device.save()
-			if(request.POST['userNumber'] == "one"):
-				userNumber = "one"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+# def add_device(request):
+# 	if request.method == 'POST':
+# 		data = request.POST.copy()
+# 		form = AddDeviceForm(data)
+# 		user = User.objects.get(id = request.POST['userID'])
+# 		userID = str(user.id)
+# 		if form.is_valid():
+# 			device = Device.objects.create(name=form.cleaned_data['name'], user=user)
+# 			device.save()
+# 			if(request.POST['userNumber'] == "one"):
+# 				userNumber = "one"
+# 				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
 
-			elif(request.POST['userNumber'] == "two"):
-				userNumber = "two"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+# 			elif(request.POST['userNumber'] == "two"):
+# 				userNumber = "two"
+# 				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
 
-			elif(request.POST['userNumber'] == "three"):
-				userNumber = "three"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+# 			elif(request.POST['userNumber'] == "three"):
+# 				userNumber = "three"
+# 				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
 
-			elif(request.POST['userNumber'] == "four"):
-				userNumber = "four"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
-		else:
-			if(request.GET['userNumber'] == "one"):
-				userNumber = "one"
-				context = {'form': form ,'userID':request.POST['userID'],'userNumber' : userNumber}
-				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 			elif(request.POST['userNumber'] == "four"):
+# 				userNumber = "four"
+# 				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+# 		else:
+# 			if(request.GET['userNumber'] == "one"):
+# 				userNumber = "one"
+# 				context = {'form': form ,'userID':request.POST['userID'],'userNumber' : userNumber}
+# 				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
-			elif(request.GET['userNumber'] == "two"):
-				userNumber = "two"
-				context = {'form': form , 'userID':request.POST['userID'],'userNumber' : userNumber}
-				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 			elif(request.GET['userNumber'] == "two"):
+# 				userNumber = "two"
+# 				context = {'form': form , 'userID':request.POST['userID'],'userNumber' : userNumber}
+# 				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
-			elif(request.GET['userNumber'] == "three"):
-				userNumber = "three"
-				context = {'form': form , 'userID':request.POST['userID'],'userNumber' : userNumber}
-				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 			elif(request.GET['userNumber'] == "three"):
+# 				userNumber = "three"
+# 				context = {'form': form , 'userID':request.POST['userID'],'userNumber' : userNumber}
+# 				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
-			elif(request.GET['userNumber'] == "four"):
-				userNumber = "four"
-				context = {'form': form , 'userID':request.POST['userID'],'userNumber' : userNumber}
-				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
-	else:
-		if(request.GET['userNumber'] == "one"):
-			form = AddDeviceForm(prefix="user_one")
-			userNumber = "one"
-			context = {'form': form , 'userID':request.GET['userID'], 'userNumber' : userNumber}
-			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 			elif(request.GET['userNumber'] == "four"):
+# 				userNumber = "four"
+# 				context = {'form': form , 'userID':request.POST['userID'],'userNumber' : userNumber}
+# 				return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 	else:
+# 		if(request.GET['userNumber'] == "one"):
+# 			form = AddDeviceForm(prefix="user_one")
+# 			userNumber = "one"
+# 			context = {'form': form , 'userID':request.GET['userID'], 'userNumber' : userNumber}
+# 			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
-		elif(request.GET['userNumber'] == "two"):
-			form = AddDeviceForm(prefix="user_two")
-			userNumber = "two"
-			context = {'form': form , 'userID':request.GET['userID'],'userNumber' : userNumber}
-			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 		elif(request.GET['userNumber'] == "two"):
+# 			form = AddDeviceForm(prefix="user_two")
+# 			userNumber = "two"
+# 			context = {'form': form , 'userID':request.GET['userID'],'userNumber' : userNumber}
+# 			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
-		elif(request.GET['userNumber'] == "three"):
-			form = AddDeviceForm(prefix="user_three")
-			userNumber = "three"
-			context = {'form': form ,'userID':request.GET['userID'], 'userNumber' : userNumber}
-			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 		elif(request.GET['userNumber'] == "three"):
+# 			form = AddDeviceForm(prefix="user_three")
+# 			userNumber = "three"
+# 			context = {'form': form ,'userID':request.GET['userID'], 'userNumber' : userNumber}
+# 			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
-		elif(request.GET['userNumber'] == "four"):
-			form = AddDeviceForm(prefix="user_four")
-			userNumber = "four"
-			context = {'form': form ,'userID':request.GET['userID'], 'userNumber' : userNumber}
-			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
+# 		elif(request.GET['userNumber'] == "four"):
+# 			form = AddDeviceForm(prefix="user_four")
+# 			userNumber = "four"
+# 			context = {'form': form ,'userID':request.GET['userID'], 'userNumber' : userNumber}
+# 			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
 def LogoutRequest(request):
 	user = User.objects.get(id=request.POST['userID'])

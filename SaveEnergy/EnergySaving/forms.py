@@ -10,8 +10,10 @@ class RegistrationForm(ModelForm):
     password        = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
     password1       = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False))
 
+
     class Meta:
         model = User
+        exclude = ['badge', 'level', 'money']
 
     def clean_username(self):
         username = self.cleaned_data['username']

@@ -42,49 +42,62 @@
 	                    success: function(data){
 	                        // alert("Logged out");
 	                        $('#'+"{{userNumber}}").html("");
-	                        $('#'+"{{userNumber}}").hide(1000);
-	                        if(sessionStorage.noOfUsers == 0) {
+			            	$('#'+"{{userNumber}}").hide(1000);
+			            	if(sessionStorage.noOfUsers == 0) {
 	                            $('#welcomePage').show(1000);
 	                        }
 	                        else{
 	                            if(sessionStorage.noOfUsers == 1){
-	                                $('#'+"{{userNumber}}").removeClass();
-	                                $('#two').removeClass();
-	                                $('#two').addClass("one_one" , 1000);
+                            		for(int i=0 ; i<userArray.length ; i++){
+                            			if(userArray[i] == true){
+                            				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
+											break;
+                            			}
+                            		}
 	                            }
 	                            else{
 	                                if(sessionStorage.noOfUsers == 2){
-	                                    $('#one').removeClass();
-	                                    $('#one').addClass("one_two" , 1500);
-	                                    $('#two').removeClass();
-	                                    $('#two').addClass("two_two" , 1500);
-	                                    $('#three').removeClass();
-	                                    $('#three').addClass("three_two" , 1500);
-	                                    $('#'+"{{userNumber}}").removeClass();
+	                                	j=0;
+	                                	for(int i=0 ; i<userArray.length ; i++){
+	                            			if(userArray[i] == true){
+	                            				if(j%2 == 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
+	                            				}
+	                            				else {
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
+	                            				}
+	                            				j++;
+	                            			}
+	                            		}
 	                                }
 	                                else{
 	                                    if(sessionStorage.noOfUsers == 3){
-	                                        $('#one').removeClass();
-	                                        $('#one').addClass("one_three" , 1500);
-	                                        $('#two').removeClass();
-	                                        $('#two').addClass("two_three" , 1500);
-	                                        $('#three').removeClass();
-	                                        $('#three').addClass("three_three" , 1500);
-	                                        $('#four').removeClass();
-	                                        $('#four').addClass("four_three" , 1500);
-	                                        $('#'+"{{userNumber}}").removeClass();
+	                                    	j=0;
+	                                        for(int i=0 ; i<userArray.length ; i++){
+		                            			if(userArray[i] == true){
+		                            				if(j==2){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+			                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
+		                            				}
+		                            				else{
+		                            					if(j%2 == 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
+			                            				}
+			                            				else {
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
+			                            				}
+		                            				}
+		                            				
+		                            				j++;
+		                            			}
+		                            		}
 	                                    }
 	                                    else{
-	                                        // if(sessionStorage.noOfUsers == 4){
-	                                        //     $('#one').removeClass();
-	                                        //     $('#one').addClass("one_four" , 1500);
-	                                        //     $('#two').removeClass();
-	                                        //     $('#two').addClass("two_four" , 1500);
-	                                        //     $('#three').removeClass();
-	                                        //     $('#three').addClass("three_four" , 1500);
-	                                        //     $('#four').removeClass();
-	                                        //     $('#four').addClass("four_four" , 1500);
-	                                        // }
 	                                    }
 	                                }
 	                            }

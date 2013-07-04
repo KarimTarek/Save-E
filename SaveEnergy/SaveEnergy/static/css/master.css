@@ -24,8 +24,8 @@
 
 /* in case of 1 users */
 .one_one{
-	width: 99.7%;
-	height:99.7%;
+	width: 100%;
+	height:100%;
 	overflow: auto;
 	display: none;
 }
@@ -42,12 +42,43 @@
 	display: none;
 }
 
-.two_two{
+.two_left_two{
+	width: 49.7%;
+	height:99.7%;
+	overflow: auto;
+	float: left;
+	display: none;
+}
+
+.two_right_two{
 	width: 49.7%;
 	height: 99.7%;
 	overflow: auto;
 	float:right;
-	border: 1px solid black;
+	display: none;
+}
+
+.three_left_two{
+	width: 49.7%;
+	height: 99.7%;
+	overflow: auto;
+	float:left;
+	display: none;
+}
+
+.three_right_two{
+	width: 49.7%;
+	height: 99.7%;
+	overflow: auto;
+	float:right;
+	display: none;
+}
+
+.four_right_two{
+	width: 49.7%;
+	height: 99.7%;
+	overflow: auto;
+	float:right;
 	display: none;
 }
 
@@ -62,15 +93,56 @@
 	display: none;
 }
 
-.two_three{
+.two_left_three{
 	width: 49.7%;
 	height: 49.7%;
 	overflow: auto;
-	border: 1px solid black;
+	float: left;
 	display: none;
 }
 
-.three_three{
+.two_right_three{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	float: right;
+	display: none;
+}
+
+.three_left_three{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	float: left;
+	display: none;
+}
+
+.three_middle_three{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	margin-left: 20%;
+	display: none;
+}
+
+.three_right_three{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	margin-left: 20%;
+	border: 1px solid red;
+	display: none;
+}
+
+/*.four_right_three{
+	width: 49.7%;
+	height: 49.7%;
+	overflow: auto;
+	border: 1px solid red;
+	display: none;
+}*/
+
+.four_middle_three{
 	width: 49.7%;
 	height: 49.7%;
 	overflow: auto;

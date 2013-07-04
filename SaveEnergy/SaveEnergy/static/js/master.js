@@ -1,3 +1,6 @@
+bool[] userArray = new bool[]{ false, false, false, false };
+int[] userNumberArray = new int[]{ 1, 2, 3, 4 };
+
 if(sessionStorage.noOfUsers == null){
 	 sessionStorage.noOfUsers = 0;
 	 alert(sessionStorage.noOfUsers);
@@ -13,12 +16,20 @@ Pusher.channel_auth_transport = 'ajax';
 
 var start = function(data) {
 				if(sessionStorage.noOfUsers < 4){
-					sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) + 1;
+					// sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) + 1;
+					sessionStorage.noOfUsers = sessionStorage.noOfUsers + 1
+					for(int i=0 ; i<userArray.length ; i++){
+						if(!userArray[i]){
+							sessionStorage.userNumber = userNumberArray[i];
+							userArray[i] = true;
+						}
+					}
+					
 					// alert(sessionStorage.noOfUsers+" da5al el method");
-					var triggered = channel.trigger('client-changeChannelName', {channelName:sessionStorage.noOfUsers});
+					var triggered = channel.trigger('client-changeChannelName', {channelName:sessionStorage.userNumber+''});
 				}
 				else{
-					sessionStorage.noOfUsers = -1;
+					// sessionStorage.noOfUsers = -1;
 					alert("Screen full");
 				}
 		        
@@ -34,23 +45,85 @@ var startPage1 = function(data) {
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",
-			            data: {csrfmiddlewaretoken:csrfToken ,userNumber:sessionStorage.noOfUsers},
+			            data: {csrfmiddlewaretoken:csrfToken ,userNumber:sessionStorage.userNumber},
 			            success: function(data){
 			            	// alert("success");
 			            	$('#welcomePage').hide(1000);
-			            	$('#one').html(data);
-							$('#one').removeClass();
-							$('#one').addClass("one_one" , 1000);
-							$('#one').addClass('glowing-border-1');
-			            	$('#one').show(1000);
-			            	var triggered = window[ "channel" + "1" ].trigger('client-loadingComplete', {'color':'#1725E8'});
-			            }
+			            	
+			    			if(sessionStorage.noOfUsers == 1){
+                        		$('#one').html(data);
+								$('#one').removeClass();
+								$('#one').addClass("one_one" , 1000);
+								$('#one').addClass('glowing-border-1');
+				    			$('#one').show(1000);	
+                            }
+                            else{
+                                if(sessionStorage.noOfUsers == 2){
+                                	j=0;
+                                	for(int i=0 ; i<userArray.length ; i++){
+                            			if(userArray[i] == true){
+                            				if(userNumberArray[i] = 1){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_two" , 1500);
+                            				}
+                            				else{
+                            					if(j%2 == 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
+	                            				}
+	                            				else {
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
+	                            				}
+                            				}
+                            				j++;
+                            			}
+                            		}
+                                }
+                                else{
+                                    if(sessionStorage.noOfUsers == 3){
+                                    	j=0;
+                                        for(int i=0 ; i<userArray.length ; i++){
+	                            			if(userArray[i] == true){
+	                            				if(userNumberArray[i] = 1){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
+	                            				}
+	                            				else{
+	                            					if(j%2 == 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
+		                            				}
+		                            				else {
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
+		                            				}
+	                            				}
+	                            				j++;
+	                            			}
+	                            		}
+                                    }
+                                    else{
+                                    	if(sessionStorage.noOfUsers == 4){
+	                                        for(int i=0 ; i<userArray.length ; i++){
+		                            			if(userArray[i] == true){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
+		                            			}
+		                            		}
+                                    	}
+                                    }
+		                            $('#one').show(1000);
+					            	var triggered = window[ "channel" + "1" ].trigger('client-loadingComplete', {'color':'#1725E8'});
+					            }
+			            	}
+						}
 					});
 				};
 
 var startPage2 = function(data) {
 					if(sessionStorage.noOfUsers < 4){
-						alert(sessionStorage.noOfUsers);
+						alert(sessionStorage.userNumber);
 					}
 					else{
 						alert("Screen full");
@@ -58,26 +131,83 @@ var startPage2 = function(data) {
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",
-			            data: {csrfmiddlewaretoken:csrfToken ,userNumber:sessionStorage.noOfUsers},
+			            data: {csrfmiddlewaretoken:csrfToken ,userNumber:sessionStorage.userNumber},
 			            success: function(data){
 			            	// alert("success");
-			            	$('#welcomePage').hide(1000);
-			            	$('#one').removeClass();
-							$('#one').addClass("one_two" , 1500);
-							$('#two').removeClass();
-							$('#two').addClass("two_two" , 1500);
 			            	$('#two').html(data);
 			            	$('#two').addClass('glowing-border-2');
-			            	$('#two').show(1500);
+                            if(sessionStorage.noOfUsers == 2){
+                            	j=0;
+                            	for(int i=0 ; i<userArray.length ; i++){
+                        			if(userArray[i] == true){
+                        				if(userNumberArray[i] = 1){
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_two" , 1500);
+                        				}
+                        				else{
+                        					if(j%2 == 0){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
+                            				}
+                            				else {
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
+                            				}
+                        				}
+                        				j++;
+                        			}
+                        		}
+                            }
+                            else{
+                                if(sessionStorage.noOfUsers == 3){
+                                	j=0;
+                                    for(int i=0 ; i<userArray.length ; i++){
+                            			if(userArray[i] == true){
+                            				if(userNumberArray[i] = 1){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
+                            				}
+                            				else{
+                            					if(j==2){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
+	                            				}
+	                            				else{
+	                            					if(j%2 == 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
+		                            				}
+		                            				else {
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
+		                            				}
+	                            				}
+                            				}
+                            				j++;
+                            			}
+                            		}
+                                }
+                                else{
+                                	if(sessionStorage.noOfUsers == 4){
+                                        for(int i=0 ; i<userArray.length ; i++){
+	                            			if(userArray[i] == true){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
+	                            			}
+	                            		}
+                                	}
+                                }
+                           	}
+                           	$('#two').show(1500);
 			            	var triggered = window[ "channel" + "2" ].trigger('client-loadingComplete', {'color':'#F50A0A'});
-			            }
-					});
+			        	}
+			        });
 				};
 
 
 var startPage3 = function(data) {
 					if(sessionStorage.noOfUsers < 4){
-						alert(sessionStorage.noOfUsers);
+						alert(sessionStorage.userNumber);
 					}
 					else{
 						alert("Screen full");
@@ -85,19 +215,50 @@ var startPage3 = function(data) {
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",
-			            data: {csrfmiddlewaretoken:csrfToken,userNumber:sessionStorage.noOfUsers},
+			            data: {csrfmiddlewaretoken:csrfToken,userNumber:sessionStorage.userNumber},
 			            success: function(data){
 			            	// alert("success");
-			            	$('#welcomePage').hide(1500);
-			            	$('#one').removeClass();
-							$('#one').addClass("one_three" , 1500);
-							$('#two').removeClass();
-							$('#two').addClass("two_three" , 1500);
-							$('#three').removeClass();
-							$('#three').addClass("three_three" , 1500);
 			            	$('#three').html(data);
 			            	$('#three').addClass('glowing-border-3');
-			            	$('#three').show(1500);
+			            	if(sessionStorage.noOfUsers == 3){
+                                	j=0;
+                                    for(int i=0 ; i<userArray.length ; i++){
+                            			if(userArray[i] == true){
+                            				if(userNumberArray[i] = 1){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
+                            				}
+                            				else{
+                            					if(j==2){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
+	                            				}
+	                            				else{
+	                            					if(j%2 == 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
+		                            				}
+		                            				else {
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
+		                            				}
+	                            				}
+                            				}
+                            				j++;
+                            			}
+                            		}
+                                }
+                                else{
+                                	if(sessionStorage.noOfUsers == 4){
+                                        for(int i=0 ; i<userArray.length ; i++){
+	                            			if(userArray[i] == true){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
+	                            			}
+	                            		}
+                                	}
+                                }
+                            $('#three').show(1500);
 			            	var triggered = window[ "channel" + "3" ].trigger('client-loadingComplete', {'color':'#24AB09'});
 			            	
 			            }
@@ -106,7 +267,7 @@ var startPage3 = function(data) {
 
 var startPage4 = function(data) {
 					if(sessionStorage.noOfUsers < 4){
-						alert(sessionStorage.noOfUsers);
+						alert(sessionStorage.userNumber);
 					}
 					else{
 						alert("Screen full");
@@ -114,20 +275,19 @@ var startPage4 = function(data) {
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",
-			            data: {csrfmiddlewaretoken:csrfToken,userNumber:sessionStorage.noOfUsers},
+			            data: {csrfmiddlewaretoken:csrfToken,userNumber:sessionStorage.userNumber},
 			            success: function(data){
 			            	// alert("success");
-			            	$('#welcomePage').hide(1000);
-			            	$('#one').removeClass();
-							$('#one').addClass("one_four" , 1500);
-							$('#two').removeClass();
-							$('#two').addClass("two_four" , 1500);
-							$('#three').removeClass();
-							$('#three').addClass("three_four" , 1500);
-							$('#four').removeClass();
-							$('#four').addClass("four_four" , 1500);
 			            	$('#four').html(data);
 			            	$('#four').addClass('glowing-border-4');
+			            	if(sessionStorage.noOfUsers == 4){
+                                for(int i=0 ; i<userArray.length ; i++){
+                        			if(userArray[i] == true){
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
+                        			}
+                        		}
+                        	}
 			            	$('#four').show(1500);
 			            	var triggered = window[ "channel" + "4" ].trigger('client-loadingComplete', {'color':'#DECC07'});
 			            }

@@ -147,7 +147,7 @@
     <!-- .................. -->
 
     <!-- /page page2 Add Device -->
-        <div data-role="page" id="page2" class="PageClass" data-theme="b">
+        <!-- <div data-role="page" id="page2" class="PageClass" data-theme="b">
             <div data-role="header">
                 <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a>
                 <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
@@ -159,7 +159,7 @@
                 <input id="device_name" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="device_name" value=""/>
                 <a href="#" id="addDevice" data-role="button" onClick="AddDevice()"> Add </a>
             </div>
-        </div>
+        </div> -->
     <!-- .................. -->
 
     <!-- /page page3 charts -->
@@ -256,7 +256,7 @@
     <!-- /page page4 view charts -->
         <div data-role="page" id="page4" class="PageClass" data-theme="b">
             <div data-role="header">
-                <!-- <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a> -->
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back to profile</a>
                 <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
                 <h1>Save E</h1>
             </div>
@@ -466,7 +466,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.149.155:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.148.242:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 var migratingContent = function(data){
@@ -570,17 +570,17 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.149.155:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.148.242:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',
                     function(data) {
-                        if(data.channelName != "-1"){
+                        // if(data.channelName != "-1"){
                             channelName = channelName + data.channelName;
                             window['userNumber'] = data.channelName;
                             pusher.disconnect();
                             startPage();
-                        }
+                        // }
                     }
                 );
             //-----------------------------

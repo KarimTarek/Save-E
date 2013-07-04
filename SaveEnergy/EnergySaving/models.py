@@ -10,17 +10,20 @@ class Device(models.Model):
     user = models.ForeignKey(User)
 
     def __unicode__(self):
-        return self.name
+        return self.user.username +" "+self.name
 
 class Badge(models.Model):
     name = models.CharField(max_length=200)
     image = models.ImageField(upload_to="badges/")
 
+    def __unicode__(self):
+        return self.name
+
 
 class User(User):
     pass
     money = models.CharField(max_length=100,default='200')
-    badge = models.ManyToManyField(Badge)
+    badge = models.ManyToManyField(Badge,null=True,blank=True)
     level = models.CharField(max_length=100,default='1')
     def __unicode__(self):
         return self.username
@@ -38,18 +41,21 @@ class Usage(models.Model):
         if not self.pk:
             user = User.objects.get(device = self.device)
             print user.username
-            newMoney = int(user.money) - int(self.value)
+            newMoney = int(user.money) - (int(self.value)/2)
+            userMoney = 0
             print newMoney
             ##checking if it is a new month or the same one inorder to add to the user the new amount of money
             print self.date.month
             print self.date.year
-            monthCheck = Usages.objects.filter(date__month=self.date.month , date__year=self.date.year)
-            if monthCheck is None:
+            monthCheck = Usage.objects.filter(date__month=self.date.month , date__year=self.date.year)
+            print monthCheck
+            if monthCheck.count() == 0 and Usage.objects.all().count() != 0:
                 monthlyMoney = 200
                 user.money = str(newMoney + monthlyMoney)
                 userMoney = int(user.money)
             else:
                 user.money = newMoney
+                userMoney = int(user.money)
 
             if userMoney >= 200:
                     badge = Badge.objects.get(name='Rookie')
@@ -66,20 +72,16 @@ class Usage(models.Model):
                 if badge in user.badge.all():
                     user.badge.remove(badge)
 
-            if userMoney < 200:
-                badge = Badge.objects.get(name='Rookie')
-                if badge in user.badge.all():
-                    user.badge.remove(badge)
 
-            if userMoney < 300:
-                badge = Badge.objects.get(name='Champion')
-                if badge in user.badge.all():
-                    user.badge.remove(badge)
+            # if userMoney < 300:
+            #     badge = Badge.objects.get(name='Champion')
+            #     if badge in user.badge.all():
+            #         user.badge.remove(badge)
 
-            if userMoney < 400:
-                badge = Badge.objects.get(name='Planet Saver')
-                if badge in user.badge.all():
-                    user.badge.remove(badge)
+            # if userMoney < 400:
+            #     badge = Badge.objects.get(name='Planet Saver')
+            #     if badge in user.badge.all():
+            #         user.badge.remove(badge)
 
 
 
@@ -92,14 +94,14 @@ class Usage(models.Model):
             if user.badge.all().count() >= 3:
                 user.level = '4'
 
-            if user.badge.all().count() < 1:
-                user.level = '1'
+            # if user.badge.all().count() < 1:
+            #     user.level = '1'
             
-            if user.badge.all().count() < 2:
-                user.level = '2'
+            # if user.badge.all().count() < 2:
+            #     user.level = '2'
 
-            if user.badge.all().count() < 3:
-                user.level = '3'
+            # if user.badge.all().count() < 3:
+            #     user.level = '3'
 
             user.save()
         super(Usage, self).save(*args, **kwargs)
