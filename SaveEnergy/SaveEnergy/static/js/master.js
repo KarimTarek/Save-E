@@ -1,5 +1,5 @@
-bool[] userArray = new bool[]{ false, false, false, false };
-int[] userNumberArray = new int[]{ 1, 2, 3, 4 };
+var userArray = [ false, false, false, false ];
+var userNumberArray = [ 1, 2, 3, 4 ];
 
 if(sessionStorage.noOfUsers == null){
 	 sessionStorage.noOfUsers = 0;
@@ -14,12 +14,37 @@ var channel4 = pusher.subscribe('private-SaveE4');
 Pusher.channel_auth_endpoint = '/auth/';
 Pusher.channel_auth_transport = 'ajax';
 
+function getUserNumber(num){
+		var number;
+		switch(num)
+		{
+			case '1':
+			  	number='one';
+			  	break;
+			case '2':
+			  	number='two';
+			  	break;
+			case '3':
+				number='three';
+				break;
+			case '4':
+				number='four';
+				break;
+		}
+		return number;
+	}
+
 var start = function(data) {
+				alert(userArray);
+				alert(sessionStorage.noOfUsers);
 				if(sessionStorage.noOfUsers < 4){
 					// sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) + 1;
-					sessionStorage.noOfUsers = sessionStorage.noOfUsers + 1
-					for(int i=0 ; i<userArray.length ; i++){
-						if(!userArray[i]){
+					var found = false;
+					sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) + 1
+					for(var i=0 ; i<userArray.length ; i++){
+						if(!userArray[i] && !found){
+							found = true;
+							alert(i);
 							sessionStorage.userNumber = userNumberArray[i];
 							userArray[i] = true;
 						}
@@ -49,20 +74,18 @@ var startPage1 = function(data) {
 			            success: function(data){
 			            	// alert("success");
 			            	$('#welcomePage').hide(1000);
-			            	
+			            	$('#one').addClass('glowing-border-1');
+			            	$('#one').html(data);
 			    			if(sessionStorage.noOfUsers == 1){
-                        		$('#one').html(data);
 								$('#one').removeClass();
 								$('#one').addClass("one_one" , 1000);
-								$('#one').addClass('glowing-border-1');
-				    			$('#one').show(1000);	
                             }
                             else{
                                 if(sessionStorage.noOfUsers == 2){
                                 	j=0;
-                                	for(int i=0 ; i<userArray.length ; i++){
+                                	for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
-                            				if(userNumberArray[i] = 1){
+                            				if(userNumberArray[i] == 1){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_two" , 1500);
                             				}
@@ -83,13 +106,17 @@ var startPage1 = function(data) {
                                 else{
                                     if(sessionStorage.noOfUsers == 3){
                                     	j=0;
-                                        for(int i=0 ; i<userArray.length ; i++){
+                                        for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
-	                            				if(userNumberArray[i] = 1){
+	                            				if(userNumberArray[i] == 1){
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
 	                            				}
 	                            				else{
+	                            					if(j==2){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
+			                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
+		                            				}
 	                            					if(j%2 == 0){
 		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
 		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
@@ -105,7 +132,7 @@ var startPage1 = function(data) {
                                     }
                                     else{
                                     	if(sessionStorage.noOfUsers == 4){
-	                                        for(int i=0 ; i<userArray.length ; i++){
+	                                        for(var i=0 ; i<userArray.length ; i++){
 		                            			if(userArray[i] == true){
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
@@ -113,10 +140,11 @@ var startPage1 = function(data) {
 		                            		}
                                     	}
                                     }
-		                            $('#one').show(1000);
-					            	var triggered = window[ "channel" + "1" ].trigger('client-loadingComplete', {'color':'#1725E8'});
+		                            
 					            }
 			            	}
+			            	$('#one').show(1000);
+					        var triggered = channel1.trigger('client-loadingComplete', {'color':'#1725E8'});
 						}
 					});
 				};
@@ -138,18 +166,23 @@ var startPage2 = function(data) {
 			            	$('#two').addClass('glowing-border-2');
                             if(sessionStorage.noOfUsers == 2){
                             	j=0;
-                            	for(int i=0 ; i<userArray.length ; i++){
+                            	for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
-                        				if(userNumberArray[i] = 1){
+                        				if(userNumberArray[i] == 1){
+                        					alert("here in first if");
+                        					alert(userNumberArray[i]);
+                        					alert(getUserNumber(userNumberArray[i]+'')+"_two");
                         					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                         					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_two" , 1500);
                         				}
                         				else{
                         					if(j%2 == 0){
+                        						alert("here in second if");
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
                             				}
                             				else {
+                            					alert("here in third if");
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
                             				}
@@ -161,9 +194,9 @@ var startPage2 = function(data) {
                             else{
                                 if(sessionStorage.noOfUsers == 3){
                                 	j=0;
-                                    for(int i=0 ; i<userArray.length ; i++){
+                                    for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
-                            				if(userNumberArray[i] = 1){
+                            				if(userNumberArray[i] == 1){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
                             				}
@@ -189,7 +222,7 @@ var startPage2 = function(data) {
                                 }
                                 else{
                                 	if(sessionStorage.noOfUsers == 4){
-                                        for(int i=0 ; i<userArray.length ; i++){
+                                        for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
@@ -222,9 +255,9 @@ var startPage3 = function(data) {
 			            	$('#three').addClass('glowing-border-3');
 			            	if(sessionStorage.noOfUsers == 3){
                                 	j=0;
-                                    for(int i=0 ; i<userArray.length ; i++){
+                                    for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
-                            				if(userNumberArray[i] = 1){
+                            				if(userNumberArray[i] == 1){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
                             				}
@@ -250,7 +283,7 @@ var startPage3 = function(data) {
                                 }
                                 else{
                                 	if(sessionStorage.noOfUsers == 4){
-                                        for(int i=0 ; i<userArray.length ; i++){
+                                        for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
@@ -259,7 +292,7 @@ var startPage3 = function(data) {
                                 	}
                                 }
                             $('#three').show(1500);
-			            	var triggered = window[ "channel" + "3" ].trigger('client-loadingComplete', {'color':'#24AB09'});
+			            	var triggered = window[ "channel" + "3" ].trigger('client-loadingComplete', {'color':'#0285FF'});
 			            	
 			            }
 					});
@@ -281,7 +314,7 @@ var startPage4 = function(data) {
 			            	$('#four').html(data);
 			            	$('#four').addClass('glowing-border-4');
 			            	if(sessionStorage.noOfUsers == 4){
-                                for(int i=0 ; i<userArray.length ; i++){
+                                for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
                     					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                     					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
@@ -289,7 +322,7 @@ var startPage4 = function(data) {
                         		}
                         	}
 			            	$('#four').show(1500);
-			            	var triggered = window[ "channel" + "4" ].trigger('client-loadingComplete', {'color':'#DECC07'});
+			            	var triggered = window[ "channel" + "4" ].trigger('client-loadingComplete', {'color':'#F5D90C'});
 			            }
 					});
 				};

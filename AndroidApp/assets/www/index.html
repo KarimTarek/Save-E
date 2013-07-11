@@ -63,13 +63,13 @@
             .glowing-box-3 {
                 width: 100%;
                 height: 2%;
-                background-color: rgb(18, 179, 179);
+                background-color: rgb(2, 133, 255);
             }
 
             .glowing-box-4 {
                 width: 100%;
                 height: 2%;
-                background-color: rgb(202, 195, 27);
+                background-color: rgb(245, 217, 12);
             }
 
             .PageClass {
@@ -466,7 +466,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.148.242:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.5:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 var migratingContent = function(data){
@@ -479,6 +479,11 @@
                                                 window['channel'].unbind('client-loadingComplete', startPageLC);
                                                 $.mobile.changePage($('#login-signup'),{transition: "flow"});
                                                 $('a').removeClass('ui-disabled');
+                                                $('#LoginColorDiv').removeClass();
+                                                $('#RegisterColorDiv').removeClass();
+                                                $('#AddDeviceColorDiv').removeClass();
+                                                $('#ProfileColorDiv').removeClass();
+                                                $('#ChartsColorDiv').removeClass();
                                                 $('#LoginColorDiv').addClass('glowing-box-'+window['userNumber']);
                                                 $('#RegisterColorDiv').addClass('glowing-box-'+window['userNumber']);
                                                 $('#AddDeviceColorDiv').addClass('glowing-box-'+window['userNumber']);
@@ -570,7 +575,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.148.242:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.5:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',

@@ -7,13 +7,13 @@
 	window['{{userID}}'+"PieChart"] = [];
 
 	{% for device,usage in devices_and_usage %}
-		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}'+'{{usage}}',y: ((parseInt('{{usage}}') / {{total_usage}})*100)});
+		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}'+' '+'{{usage}}%',y: parseInt('{{usage}}')});
 	{% endfor %}
 
 	window['{{userID}}Piechart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
 			theme: "theme2",//theme1
 			title:{
-				text: "Total energy usage within the dates entered"              
+				// text: "Total energy usage within the dates entered"              
 			},
 			data: [              
 				{
@@ -48,29 +48,10 @@
 	        }
 	    }
 	}
-
-	function getUserNumber(n){
-		var number;
-		switch(n)
-		{
-			case 1:
-			  	number='one';
-			  	break;
-			case 2:
-			  	number='two';
-			  	break;
-			case 3:
-				number='three';
-				break;
-			case 4:
-				number='four';
-				break;
-		}
-	}
 	
 	//------------------ Log Out listeners -------------------
 		window['{{userIDlogOutProfile'] = function(data) {
-						sessionStorage.noOfUsers = sessionStorage.noOfUsers - 1;
+						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 						userArray[parseInt(window["{{userNumber}}"])-1] = false;
 						console.log("Session no of users :"+sessionStorage.noOfUsers);
 						$.ajax({
@@ -89,7 +70,7 @@
 		                        }
 		                        else{
 		                            if(sessionStorage.noOfUsers == 1){
-	                            		for(int i=0 ; i<userArray.length ; i++){
+	                            		for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
 	                            				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
 	                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
@@ -100,7 +81,7 @@
 		                            else{
 		                                if(sessionStorage.noOfUsers == 2){
 		                                	j=0;
-		                                	for(int i=0 ; i<userArray.length ; i++){
+		                                	for(var i=0 ; i<userArray.length ; i++){
 		                            			if(userArray[i] == true){
 		                            				if(j%2 == 0){
 		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
@@ -117,7 +98,7 @@
 		                                else{
 		                                    if(sessionStorage.noOfUsers == 3){
 		                                    	j=0;
-		                                        for(int i=0 ; i<userArray.length ; i++){
+		                                        for(var i=0 ; i<userArray.length ; i++){
 			                            			if(userArray[i] == true){
 			                            				if(j==2){
 			                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
@@ -210,15 +191,15 @@
 </script>
 
 <div id="devicesUsage{{user_id}}" class="devicesContainer">
-	<div id="{{userID}}userLevel" style="">'{{userLvl}}'</div>
-	<div id="{{userID}}userMoney" style="">'{{userMoney}}'</div>
-	<div id="{{userID}}userBadges" style="">
+	<div id="{{userID}}userLevel" class="level">Level: {{userLvl}}</div>
+	<div id="{{userID}}userMoney" class="money">Money: {{userMoney}} €</div>
+	<div id="{{userID}}userBadges" class="badges">
 		{% for badge in userBadges %}
-			<p>'{{badge.name}}'</p>
-			<img src="{{ MEDIA_URL }}images/{{ object.image.url }}" alt="image" />
+			<p>{{badge.name}}</p>
+			<!-- <img src="{{ MEDIA_URL }}images/{{ object.image.url }}" alt="image" /> -->
 		{% endfor %}
 	</div>
-	<div id="{{userID}}PieCanvas" style="width:40%;height:40%"></div>
+	<div id="{{userID}}PieCanvas" style="width: 40%;height: 45%;margin-left: 28%;"></div>
 </div>
 
 <!-- <div class="btn-group addDeviceButton">

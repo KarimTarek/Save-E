@@ -51,7 +51,7 @@ def profile(request,user_id,user_number):
 		deviceUsage = 0
 
 	for counter in range(len(usages)):
-		usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
+		usages[counter] = int(((float(usages[counter] / float(total_usage) )) * 100))
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
 	return render_to_response('profile.html',{'user_id':user_id ,'MEDIA_URL':settings.MEDIA_URL,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages , 'devices_and_usage' : devices_and_usage},RequestContext(request))
@@ -129,7 +129,8 @@ def viewCharts(request):
 		deviceUsage = 0
 
 	for counter in range(len(usages)):
-		usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
+		if total_usage != 0:
+			usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
 
 	#####Filtering the usages by Month within the period defined by the user######
 	if int(FromDate.strftime('%m')) == int(ToDate.strftime('%m')) :
@@ -144,7 +145,7 @@ def viewCharts(request):
 	for counter in range(len(monthsChosenInt)):
 		for device in all_user_devices:
 			devicesName.append(device.name)
-			MonthlyUsage = Usage.objects.filter(device = device , date__gte=FromYear+"-"+str(monthsChosenInt[counter])+"-"+"1"+" "+"00:00:00" , date__lte=ToYear+"-"+str(monthsChosenInt[counter])+"-"+"30"+" "+"23:59:59")
+			MonthlyUsage = Usage.objects.filter(device = device , date__gte=FromYear+"-"+str(monthsChosenInt[counter])+"-"+'1'+" "+"00:00:00" , date__lte=ToYear+"-"+str(monthsChosenInt[counter])+"-"+getLastDayInMonth(monthsChosenInt[counter])+" "+"23:59:59")
 			for usage in MonthlyUsage:
 				MonthlydeviceUsage = MonthlydeviceUsage + int(usage.value)
 			if MonthlydeviceUsage != 0:
@@ -172,6 +173,22 @@ def viewCharts(request):
 	# print devices_and_usage
 	return render_to_response('viewCharts.html',{'devices':all_user_devices ,'devicesLoopCounter':devicesLoopCounter,'devicesName':simplejson.dumps(devicesName),'MonthsloopCounter':MonthsloopCounter ,'devicesMonthlyUsage':devicesMonthlyUsage,'monthsChosenString':simplejson.dumps(monthsChosenString),'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':request.GET['userID'] ,'total_usage':float(total_usage)} ,RequestContext(request))
 
+def getLastDayInMonth(month):
+	return {
+		1:'31',
+        2:'28',
+        3:'31',
+        4:'30',
+        5:'May',
+        6:'30',
+        7:'31',
+        8:'31',
+        9:'30',
+        10:'31',
+        11:'30',
+        12:'31',
+	}.get(month)
+
 def getMonthName(month):
     return {
         1: 'January',
@@ -189,6 +206,7 @@ def getMonthName(month):
     }.get(month)
 
 def UserRegistration(request):
+	import datetime
 	if request.method == 'POST':
 		data = request.POST.copy()
 		data['date_joined'] = datetime.date.today()
@@ -430,6 +448,8 @@ def LoginRequest(request):
 # 			return render_to_response('add_device.html', context, context_instance=RequestContext(request))
 
 def LogoutRequest(request):
+	print 'test 1'
+	print request.POST['userID']
 	user = User.objects.get(id=request.POST['userID'])
 	[s.delete() for s in Session.objects.all() if s.get_decoded().get('_auth_user_id') == user.id]
 	context = {}

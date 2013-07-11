@@ -1,15 +1,16 @@
 <script>
 	//logout listener ------------------------------------------------
 	window['{{userID}}logOutViewCharts'] = function(data){
-		sessionStorage.noOfUsers = sessionStorage.noOfUsers - 1;
+		alert(userArray);
+		alert(sessionStorage.noOfUsers);
+		sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 		userArray[parseInt(window["{{userNumber}}"])-1] = false;
-		console.log("Session no of users :"+sessionStorage.noOfUsers);
 		$.ajax({
             url: "/logout/",
             type: "POST",
             data: {
             	'csrfmiddlewaretoken':"{{csrf_token}}",
-            	'userID':"{{user_id}}"
+            	'userID':"{{userID}}"
            	},
             success: function(data){
             	// alert("Logged out");
@@ -20,7 +21,7 @@
                 }
                 else{
                     if(sessionStorage.noOfUsers == 1){
-                		for(int i=0 ; i<userArray.length ; i++){
+                		for(var i=0 ; i<userArray.length ; i++){
                 			if(userArray[i] == true){
                 				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
                 				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
@@ -31,7 +32,7 @@
                     else{
                         if(sessionStorage.noOfUsers == 2){
                         	j=0;
-                        	for(int i=0 ; i<userArray.length ; i++){
+                        	for(var i=0 ; i<userArray.length ; i++){
                     			if(userArray[i] == true){
                     				if(j%2 == 0){
                     					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
@@ -48,7 +49,7 @@
                         else{
                             if(sessionStorage.noOfUsers == 3){
                             	j=0;
-                                for(int i=0 ; i<userArray.length ; i++){
+                                for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
                         				if(j==2){
                         					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
@@ -128,7 +129,7 @@
 	window['{{userID}}barDataPoints']=[];
 
 	{% for device,usage in devices_and_usage %}
-		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}',y: ((parseInt('{{usage}}') / {{total_usage}})*100)});
+		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}',y: (parseInt('{{usage}}'))});
 	{% endfor %}
 
 	{% for c in devicesLoopCounter %}
