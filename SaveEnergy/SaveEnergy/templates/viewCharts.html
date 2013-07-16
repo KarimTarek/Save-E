@@ -96,7 +96,47 @@
 	                                success: function(data){
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutViewCharts']);
-	                                    $('#'+"{{userNumber}}").html(data);
+	                                    if(sessionStorage.noOfUsers == 1){
+						            		var newData = data;
+						            	}
+						            	else{
+						            		if(sessionStorage.noOfUsers == 2){
+						            			var newData = $(data).filter('div.level').addClass('level2');
+						            			newData = $(newData).filter('div.level').removeClass('level');
+						            			newData = $(newData).filter('div.money').addClass('money2');
+						            			newData = $(newData).filter('div.money').removeClass('money');
+						            			newData = $(newData).filter('div.badges').addClass('badges2');
+						            			newData = $(newData).filter('div.badges').removeClass('badges');
+						            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas2');
+						            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+						            			newData = $(newData).filter('p.badgesTitle').remove();
+						            		}
+						            		else{
+						            			if(sessionStorage.noOfUsers == 3){
+						            				var newData = $(data).filter('div.level').addClass('level3');
+							            			newData = $(newData).filter('div.level').removeClass('level');
+							            			newData = $(newData).filter('div.money').addClass('money3');
+							            			newData = $(newData).filter('div.money').removeClass('money');
+							            			newData = $(newData).filter('div.badges').addClass('badges3');
+							            			newData = $(newData).filter('div.badges').removeClass('badges');
+							            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas3');
+							            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+							            			newData = $(newData).filter('p.badgesTitle').remove();
+							            		}
+						            			else{
+						            				var newData = $(data).filter('div.level').addClass('level4');
+							            			newData = $(newData).filter('div.level').removeClass('level');
+							            			newData = $(newData).filter('div.money').addClass('money4');
+							            			newData = $(newData).filter('div.money').removeClass('money');
+							            			newData = $(newData).filter('div.badges').addClass('badges4');
+							            			newData = $(newData).filter('div.badges').removeClass('badges');
+							            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas4');
+							            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+							            			newData = $(newData).filter('p.badgesTitle').remove();
+						            			}
+						            		}
+						            	}
+	                                    $('#'+"{{userNumber}}").html(newData);
 	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 	                                }
 	                            });
@@ -107,18 +147,18 @@
 
 	//charts section ---------------------------------------------------------------------------------------------------------------------
 
-	function getRandomColor() {
-		var letters = '0123456789ABCDEF'.split('');
-		var color = '#';
-		for (var i = 0; i < 6; i++ ) {
-			color += letters[Math.round(Math.random() * 15)];
-		}
-		return color;
-	}
+	// function getRandomColor() {
+	// 	var letters = '0123456789ABCDEF'.split('');
+	// 	var color = '#';
+	// 	for (var i = 0; i < 6; i++ ) {
+	// 		color += letters[Math.round(Math.random() * 15)];
+	// 	}
+	// 	return color;
+	// }
 
-	window.onload = function () {
-		chart.render();
-	}	
+	// window.onload = function () {
+	// 	chart.render();
+	// }	
 	window['{{userID}}'+"PieChart"] = [];
 	window['{{userID}}'+"BarChart"] = [];
 	window['{{userID}}'+"RadarChart"] = [];
@@ -166,6 +206,7 @@
 			}
 		]
 	});
+	window['{{userID}}Piechart'].render();
 
 	window['{{userID}}Barchart'] = new CanvasJS.Chart("{{userID}}BarCanvas", {
 		theme: "theme1",//theme1
@@ -174,13 +215,14 @@
 		},
 		data:window['{{userID}}'+'barDataPoints']
   	});
+	window['{{userID}}Barchart'].render();
 
   	//------------------------------------------------------------------------------------
   	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window['{{userID}}backToProfile']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutViewCharts']);
 </script>
 <div id="{{userID}}charts" class="chartContainer">
-	<div id="{{userID}}PieCanvas" style="width:40%;height:40%"></div>
-	<div id="{{userID}}BarCanvas" style="width:40%;height:40%"></div>
-	<div id="{{userID}}RadarCanvas" style="width:40%;height:40%"></div>
+	<div id="{{userID}}PieCanvas" class="ViewChartsPieCanvas"></div>
+	<div id="{{userID}}BarCanvas" class="ViewChartsBarCanvas"></div>
+	<!-- <div id="{{userID}}RadarCanvas" style="width:40%;height:40%"></div> -->
 </div>

@@ -1,9 +1,6 @@
 <div id="{{userNumber}}ColorDiv" class=""></div>
 <script>
 	//Charts part
-	window.onload=function(){
-		chart.render();	
-	}
 	window['{{userID}}'+"PieChart"] = [];
 
 	{% for device,usage in devices_and_usage %}
@@ -22,7 +19,8 @@
 				}
 			]
 		});
-	
+	window['{{userID}}Piechart'].render();
+
 	var chan = "channel"
 	if("{{userNumber}}" == "one"){
 	    window["{{userNumber}}"] = "1";
@@ -165,7 +163,27 @@
 					            	'userNo': window["{{userNumber}}"]
 					            },
 					            success: function(data,textStatus, jqXHR){
-					            	$('#'+"{{userNumber}}").html(data);
+					            	if(sessionStorage.noOfUsers == 1){
+					            		var newData = data;
+					            	}
+					            	else{
+					            		if(sessionStorage.noOfUsers == 2){
+					            			var newData = $(data).filter('div.preChartContainer').addClass('preChartContainer2');
+					            			newData = $(newData).filter('div.preChartContainer').removeClass('preChartContainer');
+					            		}
+					            		else{
+					            			if(sessionStorage.noOfUsers == 3){
+					            				var newData = $(data).filter('div.preChartContainer').addClass('preChartContainer3');
+					            				newData = $(newData).filter('div.preChartContainer').removeClass('preChartContainer');
+					            			}
+					            			else{
+					            				var newData = $(data).filter('div.preChartContainer').addClass('preChartContainer4');
+					            				newData = $(newData).filter('div.preChartContainer').removeClass('preChartContainer');
+					            			}
+					            		}
+					            	}
+					            	
+					            	$('#'+"{{userNumber}}").html(newData);
 					            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
 					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{userID}}goToChart']);
 					            	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userIDlogOutProfile']);
@@ -193,13 +211,13 @@
 <div id="devicesUsage{{user_id}}" class="devicesContainer">
 	<div id="{{userID}}userLevel" class="level">Level: {{userLvl}}</div>
 	<div id="{{userID}}userMoney" class="money">Money: {{userMoney}} €</div>
+	<p style="margin-left: 76%;margin-top: 7%;font-size: 25px;color:grey;" class="badgesTitle">Badges:</p>
 	<div id="{{userID}}userBadges" class="badges">
 		{% for badge in userBadges %}
-			<p>{{badge.name}}</p>
-			<!-- <img src="{{ MEDIA_URL }}images/{{ object.image.url }}" alt="image" /> -->
+			<img src="{{badge.image.url}}" alt="image" />
 		{% endfor %}
 	</div>
-	<div id="{{userID}}PieCanvas" style="width: 40%;height: 45%;margin-left: 28%;"></div>
+	<div id="{{userID}}PieCanvas" class="pieCanvas"></div>
 </div>
 
 <!-- <div class="btn-group addDeviceButton">

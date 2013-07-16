@@ -291,11 +291,16 @@
             function onDeviceReady() {
                 $( "#exitApp" ).popup();
                 document.addEventListener("backbutton", onBackKeyDown, false);
+                document.addEventListener("menubutton", onMenuKeyDown, false);
             }
 
             // Handle the back button
             function onBackKeyDown() {
                 $( "#exitApp" ).popup( "open" );
+            }
+
+            function onMenuKeyDown() {
+                alert("3ayez eh??");
             }
         // Sending Registration Form to WEB APP -------------
             function SubmitRegistrationForm() {
@@ -466,7 +471,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://192.168.1.5:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.146.219:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 var migratingContent = function(data){
@@ -575,7 +580,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://192.168.1.5:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.146.219:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',

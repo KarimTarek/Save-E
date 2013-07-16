@@ -125,7 +125,47 @@
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
-	                                    $('#'+"{{userNumber}}").html(data);
+	                                    if(sessionStorage.noOfUsers == 1){
+						            		var newData = data;
+						            	}
+						            	else{
+						            		if(sessionStorage.noOfUsers == 2){
+						            			var newData = $(data).filter('div.level').addClass('level2');
+						            			newData = $(newData).filter('div.level').removeClass('level');
+						            			newData = $(newData).filter('div.money').addClass('money2');
+						            			newData = $(newData).filter('div.money').removeClass('money');
+						            			newData = $(newData).filter('div.badges').addClass('badges2');
+						            			newData = $(newData).filter('div.badges').removeClass('badges');
+						            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas2');
+						            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+						            			newData = $(newData).filter('p.badgesTitle').remove();
+						            		}
+						            		else{
+						            			if(sessionStorage.noOfUsers == 3){
+						            				var newData = $(data).filter('div.level').addClass('level3');
+							            			newData = $(newData).filter('div.level').removeClass('level');
+							            			newData = $(newData).filter('div.money').addClass('money3');
+							            			newData = $(newData).filter('div.money').removeClass('money');
+							            			newData = $(newData).filter('div.badges').addClass('badges3');
+							            			newData = $(newData).filter('div.badges').removeClass('badges');
+							            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas3');
+							            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+							            			newData = $(newData).filter('p.badgesTitle').remove();
+							            		}
+						            			else{
+						            				var newData = $(data).filter('div.level').addClass('level4');
+							            			newData = $(newData).filter('div.level').removeClass('level');
+							            			newData = $(newData).filter('div.money').addClass('money4');
+							            			newData = $(newData).filter('div.money').removeClass('money');
+							            			newData = $(newData).filter('div.badges').addClass('badges4');
+							            			newData = $(newData).filter('div.badges').removeClass('badges');
+							            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas4');
+							            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+							            			newData = $(newData).filter('p.badgesTitle').remove();
+						            			}
+						            		}
+						            	}
+	                                    $('#'+"{{userNumber}}").html(newData);
 	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 	                                }
 	                            });
@@ -151,7 +191,33 @@
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
-							                                    $('#'+"{{userID}}preChart").html(data);
+
+							                                    if(sessionStorage.noOfUsers == 1){
+												            		var newData = data;
+												            	}
+												            	else{
+												            		if(sessionStorage.noOfUsers == 2){
+												            			var newData = $(data).filter('div.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas2');
+												            			newData = $(newData).filter('div.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+												            			newData = $(newData).filter('div.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas2');
+												            			newData = $(newData).filter('div.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												            		}
+												            		else{
+												            			if(sessionStorage.noOfUsers == 3){
+												            				var newData = $(data).filter('div.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas3');
+												            				newData = $(newData).filter('div.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+												            				newData = $(newData).filter('div.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas3');
+												            				newData = $(newData).filter('div.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												            			}
+												            			else{
+												            				var newData = $(data).filter('div.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
+												            				newData = $(newData).filter('div.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+												            				newData = $(newData).filter('div.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas4');
+												            				newData = $(newData).filter('div.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												            			}
+												            		}
+												            	}
+							                                    $('#'+"{{userID}}preChart").html(newData);
 							                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 							                                }
 							                            });
@@ -165,6 +231,5 @@
 </script>
 
 <div id="{{userID}}preChart" class="preChartContainer">
-
-
+	<p>Please choose the duration in which you would like to check your electricity consumption within on you mobile screen</p>
 </div>

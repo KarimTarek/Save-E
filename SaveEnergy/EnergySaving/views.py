@@ -56,6 +56,12 @@ def profile(request,user_id,user_number):
 	devices_and_usage = zip(all_user_devices , usages)
 	return render_to_response('profile.html',{'user_id':user_id ,'MEDIA_URL':settings.MEDIA_URL,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages , 'devices_and_usage' : devices_and_usage},RequestContext(request))
 
+
+def leaderBoard(request):
+	curr_user = User.objects.get(id = request.POST['userID'])
+	all_users = User.objects.all()
+	return render_to_response('leaderBoard.html',{'user_id':user_id,'all_users':all_users},RequestContext(request))
+
 @csrf_exempt
 def authenti(request):
 	channel_name = request.REQUEST['channel_name']
@@ -155,16 +161,7 @@ def viewCharts(request):
 				monthAndYear.append(FromYear+"-"+str(monthsChosenInt[counter]))
 				devicesMonthlyUsage[counter].append(0)
 			MonthlydeviceUsage = 0
-			# print '-------------------------------------'
-			# print MonthlyUsage
-			# print devicesMonthlyUsage
-			# print '-------------------------------------'
 
-	# devicesMonthlyUsage = serializers.serialize('json', devicesMonthlyUsage)
-	
-	# monthsChosenString = {"monthsChosenString":monthsChosenString}
-	#monthsChosenString = json.dumps(monthsChosenString)
-	# monthsChosenString = serializers.serialize('json', monthsChosenString, ensure_ascii=False)
 	MonthsloopCounter = [i for i in range(len(monthsChosenString))]
 	devicesLoopCounter = [i for i in range(len(all_user_devices))]
 	devicesMonthlyUsage = json.dumps(devicesMonthlyUsage)

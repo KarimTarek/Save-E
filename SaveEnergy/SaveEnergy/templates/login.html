@@ -48,9 +48,51 @@
 			                	'userID':'{{userID}}'
 			                },
 			                success: function(data){
-			                	// alert("success");
-			                	// console.log(window[userNO + userNumber] + "Login Page");
-			                	$('#'+"{{userNumber}}").html(data);
+								console.log(data);	
+								var newData = data;
+		                	 	if(sessionStorage.noOfUsers == 1){
+				            		newData = data;
+				            	}
+				            	else{
+				            		if(sessionStorage.noOfUsers == 2){
+				            			newData = $(data).filter('div.level').addClass('level2');
+				            			newData = $(newData).filter('div.level').removeClass('level');
+				            			newData = $(newData).filter('div.money').addClass('money2');
+				            			newData = $(newData).filter('div.money').removeClass('money');
+				            			newData = $(newData).filter('div.badges').addClass('badges2');
+				            			newData = $(newData).filter('div.badges').removeClass('badges');
+				            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas2');
+				            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+				            			newData = $(newData).filter('p.badgesTitle').remove();
+				            			console.log("eh el beye7sal hena??!!!!");
+				            		}
+				            		else{
+				            			if(sessionStorage.noOfUsers == 3){
+				            				newData = $(data).filter('div.level').addClass('level3');
+					            			newData = $(newData).filter('div.level').removeClass('level');
+					            			newData = $(newData).filter('div.money').addClass('money3');
+					            			newData = $(newData).filter('div.money').removeClass('money');
+					            			newData = $(newData).filter('div.badges').addClass('badges3');
+					            			newData = $(newData).filter('div.badges').removeClass('badges');
+					            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas3');
+					            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+					            			newData = $(newData).filter('p.badgesTitle').remove();
+					            		}
+				            			else{
+				            				newData = $(data).filter('div.level').addClass('level4');
+					            			newData = $(newData).filter('div.level').removeClass('level');
+					            			newData = $(newData).filter('div.money').addClass('money4');
+					            			newData = $(newData).filter('div.money').removeClass('money');
+					            			newData = $(newData).filter('div.badges').addClass('badges4');
+					            			newData = $(newData).filter('div.badges').removeClass('badges');
+					            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas4');
+					            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
+					            			newData = $(newData).filter('p.badgesTitle').remove();
+				            			}
+				            		}
+				            	}
+				            	console.log(newData);
+			                	$('#'+"{{userNumber}}").html(newData);
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);
 								window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',goToRegister);
@@ -101,7 +143,7 @@
 					            	'userID':'{{userID}}'
 					            },
 					            success: function(data){
-					            	console.log("{{userNumber}}" + "Login Page");
+
 					            	$('#'+"{{userNumber}}").html(data);
 					            	window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
 									window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);

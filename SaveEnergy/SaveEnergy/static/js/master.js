@@ -62,7 +62,6 @@ var start = function(data) {
 
 var startPage1 = function(data) {
 					if(sessionStorage.noOfUsers < 4){
-						// alert(sessionStorage.noOfUsers+" da5al el method");
 					}
 					else{
 						alert("Screen full");
@@ -72,7 +71,6 @@ var startPage1 = function(data) {
 			            type: "GET",
 			            data: {csrfmiddlewaretoken:csrfToken ,userNumber:sessionStorage.userNumber},
 			            success: function(data){
-			            	// alert("success");
 			            	$('#welcomePage').hide(1000);
 			            	$('#one').addClass('glowing-border-1');
 			            	$('#one').html(data);
@@ -85,6 +83,31 @@ var startPage1 = function(data) {
                                 	j=0;
                                 	for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
+                            				if($("div.devicesContainer").length > 0){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+											}
+											else{
+												if($("div.chartContainer").length > 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas2');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas2');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												}
+												else{
+													if($("div.preChartContainer").length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer2');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+													}
+												}
+											}
                             				if(userNumberArray[i] == 1){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_two" , 1500);
@@ -108,6 +131,31 @@ var startPage1 = function(data) {
                                     	j=0;
                                         for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
+	                            				if($("div.devicesContainer").length > 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+												}
+												else{
+													if($("div.chartContainer").length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+													}
+													else{
+														if($("div.preChartContainer").length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer3');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+														}
+													}
+												}
 	                            				if(userNumberArray[i] == 1){
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
@@ -134,6 +182,31 @@ var startPage1 = function(data) {
                                     	if(sessionStorage.noOfUsers == 4){
 	                                        for(var i=0 ; i<userArray.length ; i++){
 		                            			if(userArray[i] == true){
+		                            				if($("div.devicesContainer").length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+													}
+													else{
+														if($("div.chartContainer").length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+														}
+														else{
+															if($("div.preChartContainer").length > 0){
+				                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
+					                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+															}
+														}
+													}
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
 		                            			}
@@ -168,10 +241,33 @@ var startPage2 = function(data) {
                             	j=0;
                             	for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
+                        				if($("div.devicesContainer").length > 0){
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level2');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money2');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges2');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas2');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+										}
+										else{
+											if($("div.chartContainer").length > 0){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+											}
+											else{
+												if($("div.preChartContainer").length > 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer2');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+												}
+											}
+										}
                         				if(userNumberArray[i] == 1){
                         					alert("here in first if");
-                        					alert(userNumberArray[i]);
-                        					alert(getUserNumber(userNumberArray[i]+'')+"_two");
                         					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                         					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_two" , 1500);
                         				}
@@ -196,6 +292,31 @@ var startPage2 = function(data) {
                                 	j=0;
                                     for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
+	                        				if($("div.devicesContainer").length > 0){
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level3');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money3');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges3');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas3');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+											}
+											else{
+												if($("div.chartContainer").length > 0){
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												}
+												else{
+													if($("div.preChartContainer").length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+													}
+												}
+											}
                             				if(userNumberArray[i] == 1){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
@@ -224,6 +345,31 @@ var startPage2 = function(data) {
                                 	if(sessionStorage.noOfUsers == 4){
                                         for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
+	                            				if($("div.devicesContainer").length > 0){
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+												}
+												else{
+													if($("div.chartContainer").length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+													}
+													else{
+														if($("div.preChartContainer").length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+														}
+													}
+												}
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
 	                            			}
@@ -257,6 +403,31 @@ var startPage3 = function(data) {
                                 	j=0;
                                     for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
+                            				if($("div.devicesContainer").length > 0){
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+											}
+											else{
+												if($("div.chartContainer").length > 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												}
+												else{
+													if($("div.preChartContainer").length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+													}
+												}
+											}
                             				if(userNumberArray[i] == 1){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_three" , 1500);
@@ -285,6 +456,31 @@ var startPage3 = function(data) {
                                 	if(sessionStorage.noOfUsers == 4){
                                         for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
+	                            				if($("div.devicesContainer").length > 0){
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+												}
+												else{
+													if($("div.chartContainer").length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+													}
+													else{
+														if($("div.preChartContainer").length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+														}
+													}
+												}
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
 	                            			}
@@ -316,6 +512,31 @@ var startPage4 = function(data) {
 			            	if(sessionStorage.noOfUsers == 4){
                                 for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
+                        				if($("div.devicesContainer").length > 0){
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+										}
+										else{
+											if($("div.chartContainer").length > 0){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+											}
+											else{
+												if($("div.preChartContainer").length > 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+												}
+											}
+										}
                     					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                     					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_four" , 1500);
                         			}
