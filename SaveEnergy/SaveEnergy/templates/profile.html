@@ -1,13 +1,13 @@
 <div id="{{userNumber}}ColorDiv" class=""></div>
 <script>
 	//Charts part
-	window['{{userID}}'+"PieChart"] = [];
+	window['{{user_id}}'+"PieChart"] = [];
 
 	{% for device,usage in devices_and_usage %}
-		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}'+' '+'{{usage}}%',y: parseInt('{{usage}}')});
+		window['{{user_id}}'+"PieChart"] = window['{{user_id}}'+"PieChart"].concat({ label:'{{device.name}}'+' '+'{{usage}}%',y: parseInt('{{usage}}')});
 	{% endfor %}
 
-	window['{{userID}}Piechart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
+	window['{{user_id}}Piechart'] = new CanvasJS.Chart("{{user_id}}PieCanvas", {
 			theme: "theme2",//theme1
 			title:{
 				// text: "Total energy usage within the dates entered"              
@@ -15,11 +15,11 @@
 			data: [              
 				{
 				type: "pie",
-				dataPoints: window['{{userID}}'+"PieChart"]
+				dataPoints: window['{{user_id}}'+"PieChart"]
 				}
 			]
 		});
-	window['{{userID}}Piechart'].render();
+	window['{{user_id}}Piechart'].render();
 
 	var chan = "channel"
 	if("{{userNumber}}" == "one"){
@@ -48,10 +48,9 @@
 	}
 	
 	//------------------ Log Out listeners -------------------
-		window['{{userIDlogOutProfile'] = function(data) {
+		window['{{user_id}}logOutProfile'] = function(data) {
 						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 						userArray[parseInt(window["{{userNumber}}"])-1] = false;
-						console.log("Session no of users :"+sessionStorage.noOfUsers);
 						$.ajax({
 				            url: "/logout/",
 				            type: "POST",
@@ -123,8 +122,8 @@
 		                            }
 		                        }
 				            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
-			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{userID}}goToChart']);
-			                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userIDlogOutProfile']);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
 			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 				            }
 						});
@@ -152,7 +151,7 @@
 	// 				    		});
 	// 					};
 
-	window['{{userID}}goToChart'] = function(data) {
+	window['{{user_id}}goToChart'] = function(data) {
 						$.ajax({
 					            url: "/charts/",
 					            type: "GET",
@@ -162,31 +161,42 @@
 					            	'userID':"{{user_id}}",
 					            	'userNo': window["{{userNumber}}"]
 					            },
-					            success: function(data,textStatus, jqXHR){
-					            	if(sessionStorage.noOfUsers == 1){
-					            		var newData = data;
-					            	}
-					            	else{
-					            		if(sessionStorage.noOfUsers == 2){
-					            			var newData = $(data).filter('div.preChartContainer').addClass('preChartContainer2');
-					            			newData = $(newData).filter('div.preChartContainer').removeClass('preChartContainer');
-					            		}
-					            		else{
-					            			if(sessionStorage.noOfUsers == 3){
-					            				var newData = $(data).filter('div.preChartContainer').addClass('preChartContainer3');
-					            				newData = $(newData).filter('div.preChartContainer').removeClass('preChartContainer');
-					            			}
-					            			else{
-					            				var newData = $(data).filter('div.preChartContainer').addClass('preChartContainer4');
-					            				newData = $(newData).filter('div.preChartContainer').removeClass('preChartContainer');
-					            			}
-					            		}
-					            	}
-					            	
-					            	$('#'+"{{userNumber}}").html(newData);
+					            success: function(data){
+					            	$('#'+"{{userNumber}}").html(data);
+					            	if($("div.devicesContainer").length > 0){
+					            		if(sessionStorage.noOfUsers != 1){
+	                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.level').removeClass('level');
+	                    					$('#'+"{{userNumber}}").find('.money').addClass('money'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.money').removeClass('money');
+	                    					$('#'+"{{userNumber}}").find('.badges').addClass('badges'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.badges').removeClass('badges');
+	                    					$('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
+	                    					$('#'+"{{userNumber}}").find('.badgesTitle').remove();
+	                    				}
+									}
+									else{
+										if($("div.chartContainer").length > 0){
+											if(sessionStorage.noOfUsers != 1){
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+	                        				}
+										}
+										else{
+											if($("div.preChartContainer").length > 0){
+												if(sessionStorage.noOfUsers != 1){
+	                            					$('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
+		                        					$('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
+		                        				}
+											}
+										}
+									}
 					            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
-					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{userID}}goToChart']);
-					            	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userIDlogOutProfile']);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
 					            	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 					            }
 							});
@@ -202,22 +212,22 @@
 		$('#devicesUsage{{user_id}}').scrollTop(y+150);
 	}
 	// window[ chan + window["{{userNumber}}"] ].bind('client-goToAddDevice', goToAddDevice);
-	window[ chan + window["{{userNumber}}"] ].bind('client-goToChart',window['{{userID}}goToChart']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goToChart',window['{{user_id}}goToChart']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpProfile',scrollUp);
 	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownProfile',scrollDown);
-	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userIDlogOutProfile']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{user_id}}logOutProfile']);
 </script>
 
 <div id="devicesUsage{{user_id}}" class="devicesContainer">
-	<div id="{{userID}}userLevel" class="level">Level: {{userLvl}}</div>
-	<div id="{{userID}}userMoney" class="money">Money: {{userMoney}} €</div>
+	<div id="{{user_id}}userLevel" class="level">Level: {{userLvl}}</div>
+	<div id="{{user_id}}userMoney" class="money">Money: {{userMoney}} €</div>
 	<p style="margin-left: 76%;margin-top: 7%;font-size: 25px;color:grey;" class="badgesTitle">Badges:</p>
-	<div id="{{userID}}userBadges" class="badges">
+	<div id="{{user_id}}userBadges" class="badges">
 		{% for badge in userBadges %}
 			<img src="{{badge.image.url}}" alt="image" />
 		{% endfor %}
 	</div>
-	<div id="{{userID}}PieCanvas" class="pieCanvas"></div>
+	<div id="{{user_id}}PieCanvas" class="pieCanvas"></div>
 </div>
 
 <!-- <div class="btn-group addDeviceButton">

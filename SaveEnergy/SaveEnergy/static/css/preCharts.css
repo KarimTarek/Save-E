@@ -9,3 +9,42 @@
 	margin-left: 2%;
 	margin-top: 1%;
 }
+
+/*for 2 */
+.chartInfo2{
+	margin-left: 12%;
+	margin-top: 3%;
+	overflow: auto;
+
+}
+
+.chartContainer2{
+	margin-left: 2%;
+	margin-top: 1%;
+}
+/*for 3 */
+
+.chartInfo3{
+	margin-left: 12%;
+	margin-top: 3%;
+	overflow: auto;
+
+}
+
+.chartContainer3{
+	margin-left: 2%;
+	margin-top: 1%;
+}
+/*for 4 */
+
+.chartInfo4{
+	margin-left: 12%;
+	margin-top: 3%;
+	overflow: auto;
+
+}
+
+.chartContainer4{
+	margin-left: 2%;
+	margin-top: 1%;
+}

@@ -31,7 +31,7 @@
 	Pusher.channel_auth_transport = 'ajax';
 	// alert(chan + userNumber);
 
-	var login = function(data) {
+	window['{{userNumber}}login'] = function(data) {
 					var username = document.getElementById("id_user_"+"{{userNumber}}"+"-username");
 					var password = document.getElementById("id_user_"+"{{userNumber}}"+"-password");
 					username.value = data.username;
@@ -48,61 +48,53 @@
 			                	'userID':'{{userID}}'
 			                },
 			                success: function(data){
-								console.log(data);	
-								var newData = data;
-		                	 	if(sessionStorage.noOfUsers == 1){
-				            		newData = data;
-				            	}
-				            	else{
-				            		if(sessionStorage.noOfUsers == 2){
-				            			newData = $(data).filter('div.level').addClass('level2');
-				            			newData = $(newData).filter('div.level').removeClass('level');
-				            			newData = $(newData).filter('div.money').addClass('money2');
-				            			newData = $(newData).filter('div.money').removeClass('money');
-				            			newData = $(newData).filter('div.badges').addClass('badges2');
-				            			newData = $(newData).filter('div.badges').removeClass('badges');
-				            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas2');
-				            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
-				            			newData = $(newData).filter('p.badgesTitle').remove();
-				            			console.log("eh el beye7sal hena??!!!!");
-				            		}
-				            		else{
-				            			if(sessionStorage.noOfUsers == 3){
-				            				newData = $(data).filter('div.level').addClass('level3');
-					            			newData = $(newData).filter('div.level').removeClass('level');
-					            			newData = $(newData).filter('div.money').addClass('money3');
-					            			newData = $(newData).filter('div.money').removeClass('money');
-					            			newData = $(newData).filter('div.badges').addClass('badges3');
-					            			newData = $(newData).filter('div.badges').removeClass('badges');
-					            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas3');
-					            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
-					            			newData = $(newData).filter('p.badgesTitle').remove();
-					            		}
-				            			else{
-				            				newData = $(data).filter('div.level').addClass('level4');
-					            			newData = $(newData).filter('div.level').removeClass('level');
-					            			newData = $(newData).filter('div.money').addClass('money4');
-					            			newData = $(newData).filter('div.money').removeClass('money');
-					            			newData = $(newData).filter('div.badges').addClass('badges4');
-					            			newData = $(newData).filter('div.badges').removeClass('badges');
-					            			newData = $(newData).filter('div.pieCanvas').addClass('pieCanvas4');
-					            			newData = $(newData).filter('div.pieCanvas').removeClass('pieCanvas');
-					            			newData = $(newData).filter('p.badgesTitle').remove();
-				            			}
-				            		}
-				            	}
-				            	console.log(newData);
-			                	$('#'+"{{userNumber}}").html(newData);
-			                	window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
-			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);
-								window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',goToRegister);
-			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+			                	if(data == ''){
+			                		alert(tmmm kda ya brengy et7alet);
+			                	}
+			                	else{
+			                		$('#'+"{{userNumber}}").html(data);
+				                	if($("div.devicesContainer").length > 0){
+					            		if(sessionStorage.noOfUsers != 1){
+	                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.level').removeClass('level');
+	                    					$('#'+"{{userNumber}}").find('.money').addClass('money'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.money').removeClass('money');
+	                    					$('#'+"{{userNumber}}").find('.badges').addClass('badges'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.badges').removeClass('badges');
+	                    					$('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
+	                    					$('#'+"{{userNumber}}").find('.badgesTitle').remove();
+	                    				}
+									}
+									else{
+										if($("div.chartContainer").length > 0){
+											if(sessionStorage.noOfUsers != 1){
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+	                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+	                        				}
+										}
+										else{
+											if($("div.preChartContainer").length > 0){
+												if(sessionStorage.noOfUsers != 1){
+	                            					$('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
+		                        					$('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
+		                        				}
+											}
+										}
+									}
+				                	window[ chan + window["{{userNumber}}"] ].unbind('client-login',window['{{userNumber}}login']);
+				                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',window['{{userNumber}}startPage']);
+									window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',window['{{userNumber}}goToRegister']);
+				                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+			                	}
 			                }
 			    		});
 					}, 1000);
 				};
 
-	var startPage = function(data) {
+	window['{{userNumber}}startPage'] = function(data) {
 					sessionStorage.noOfUsers = sessionStorage.noOfUsers -1;
 	            	if(sessionStorage.noOfUsers == 0){
 	            		var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
@@ -116,8 +108,6 @@
 				                	'userID':'{{userID}}'
 				                },
 				                success: function(data){
-				                	// console.log(userNumber + "Login Page");
-				                	// alert("success");
 				                	$('#'+"{{userNumber}}").html(data);
 				                }
 				    		});
@@ -126,14 +116,14 @@
 	            	}
 	            	else{
 	            		$('#'+"{{userNumber}}").hide(1000);
-	            		window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
-	            		window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);
-	            		window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',goToRegister);
+	            		window[ chan + window["{{userNumber}}"] ].unbind('client-login',window['{{userNumber}}login']);
+	            		window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',window['{{userNumber}}startPage']);
+	            		window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',window['{{userNumber}}goToRegister']);
 	            		$('#'+"{{userNumber}}").html('');
 	            	}
 				};
 
-	var goToRegister = function(data) {
+	window['{{userNumber}}goToRegister'] = function(data) {
 							$.ajax({
 					            url: "/register/",
 					            type: "GET",
@@ -145,17 +135,17 @@
 					            success: function(data){
 
 					            	$('#'+"{{userNumber}}").html(data);
-					            	window[ chan + window["{{userNumber}}"] ].unbind('client-login',login);
-									window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',startPage);
-					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',goToRegister);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-login',window['{{userNumber}}login']);
+									window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',window['{{userNumber}}startPage']);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',window['{{userNumber}}goToRegister']);
 					            	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 					            }
 					    	});
 						};
 
-	window[ chan + window["{{userNumber}}"] ].bind('client-login',login);
-	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToStartPage',startPage);
-	window[ chan + window["{{userNumber}}"] ].bind('client-goToRegister',goToRegister);
+	window[ chan + window["{{userNumber}}"] ].bind('client-login',window['{{userNumber}}login']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToStartPage',window['{{userNumber}}startPage']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goToRegister',window['{{userNumber}}goToRegister']);
 </script>
 
 <div class="loginBox">

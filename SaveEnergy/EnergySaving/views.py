@@ -304,42 +304,44 @@ def LoginRequest(request):
 					userNumber = "four"
 					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
 			else:
-				if(request.GET['userNumber'] == "one"):
+				p = pusher.Pusher(app_id='42846', key='35bf6495b4677801c17e', secret='7ef9690d99684e1b6b68')
+				p['private-SaveE1'].trigger('loginStatus',{})
+				if(request.POST['userNumber'] == "one"):
 					userNumber = "one"
 					context = {'form': form , 'userNumber' : userNumber}
-					return render_to_response('login.html', context, context_instance=RequestContext(request))
+					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
-				elif(request.GET['userNumber'] == "two"):
+				elif(request.POST['userNumber'] == "two"):
 					userNumber = "two"
 					context = {'form': form , 'userNumber' : userNumber}
-					return render_to_response('login.html', context, context_instance=RequestContext(request))
+					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
-				elif(request.GET['userNumber'] == "three"):
+				elif(request.POST['userNumber'] == "three"):
 					userNumber = "three"
 					context = {'form': form , 'userNumber' : userNumber}
-					return render_to_response('login.html', context, context_instance=RequestContext(request))
+					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
-				elif(request.GET['userNumber'] == "four"):
+				elif(request.POST['userNumber'] == "four"):
 					userNumber = "four"
 					context = {'form': form , 'userNumber' : userNumber}
-					return render_to_response('login.html', context, context_instance=RequestContext(request))
+					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 		else:
-			if(request.GET['userNumber'] == "one"):
+			if(request.POST['userNumber'] == "one"):
 				userNumber = "one"
 				context = {'form': form , 'userNumber' : userNumber}
 				return render_to_response('login.html', context, context_instance=RequestContext(request))
 
-			elif(request.GET['userNumber'] == "two"):
+			elif(request.POST['userNumber'] == "two"):
 				userNumber = "two"
 				context = {'form': form , 'userNumber' : userNumber}
 				return render_to_response('login.html', context, context_instance=RequestContext(request))
 
-			elif(request.GET['userNumber'] == "three"):
+			elif(request.POST['userNumber'] == "three"):
 				userNumber = "three"
 				context = {'form': form , 'userNumber' : userNumber}
 				return render_to_response('login.html', context, context_instance=RequestContext(request))
 
-			elif(request.GET['userNumber'] == "four"):
+			elif(request.POST['userNumber'] == "four"):
 				userNumber = "four"
 				context = {'form': form , 'userNumber' : userNumber}
 				return render_to_response('login.html', context, context_instance=RequestContext(request))

@@ -28,7 +28,7 @@
     Pusher.channel_auth_endpoint = '/auth/';
     Pusher.channel_auth_transport = 'ajax';
 
-    var register = function(data) {
+    window['{{userNumber}}register'] = function(data) {
             var username = document.getElementById("id_user_"+"{{userNumber}}"+"-username");
             var email = document.getElementById("id_user_"+"{{userNumber}}"+"-email");
             var password = document.getElementById("id_user_"+"{{userNumber}}"+"-password");
@@ -52,8 +52,8 @@
                     success: function(data){
                         // alert("success");
                         // console.log(userNumber + "Register Page");
-                        window[ chan + window["{{userNumber}}"] ].unbind('client-register',register);
-                        window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',goBackToLoginPage);
+                        window[ chan + window["{{userNumber}}"] ].unbind('client-register',window['{{userNumber}}register']);
+                        window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
                         $('#'+"{{userNumber}}").html(data);
                         var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
                     }
@@ -61,7 +61,7 @@
             }, 1000);
         };
 
-    var goBackToLoginPage = function(data) {
+    window['{{userNumber}}goBackToLoginPage'] = function(data) {
                         $.ajax({
                             url: "/login/",
                             type: "GET",
@@ -72,8 +72,8 @@
                             success: function(data){
                                 // alert("success");
                                 console.log("{{userNumber}}" + "Register Page");
-                                window[ chan + window["{{userNumber}}"] ].unbind('client-register',register);
-                                window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',goBackToLoginPage);
+                                window[ chan + window["{{userNumber}}"] ].unbind('client-register',window['{{userNumber}}register']);
+                                window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
                                 $('#one').html(data);
                                 $('#one').removeClass();
                                 $('#one').addClass("one_one" , 1000);
@@ -83,8 +83,8 @@
                         });
                     };
 
-    window[ chan + window["{{userNumber}}"] ].bind('client-register',register);
-    window[ chan + window["{{userNumber}}"] ].bind('client-goBackToLoginPage',goBackToLoginPage);
+    window[ chan + window["{{userNumber}}"] ].bind('client-register',window['{{userNumber}}register']);
+    window[ chan + window["{{userNumber}}"] ].bind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
 </script>
 
 <div class="registerForm">

@@ -471,30 +471,40 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.146.219:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.146.108:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
-                var migratingContent = function(data){
-                                        $('#'+data.page).append(data.content);
-                                    }
-                window['channel'].bind('client-migratingContent',migratingContent);
+                // var migratingContent = function(data){
+                //                         $('#'+data.page).append(data.content);
+                //                     }
+                // window['channel'].bind('client-migratingContent',migratingContent);
                 var startPageLC = function(data){
-                                                $.mobile.loading( 'hide');
-                                                window['channel'].unbind('pusher:subscription_succeeded', subscriptionSucceeded);
-                                                window['channel'].unbind('client-loadingComplete', startPageLC);
-                                                $.mobile.changePage($('#login-signup'),{transition: "flow"});
-                                                $('a').removeClass('ui-disabled');
-                                                $('#LoginColorDiv').removeClass();
-                                                $('#RegisterColorDiv').removeClass();
-                                                $('#AddDeviceColorDiv').removeClass();
-                                                $('#ProfileColorDiv').removeClass();
-                                                $('#ChartsColorDiv').removeClass();
-                                                $('#LoginColorDiv').addClass('glowing-box-'+window['userNumber']);
-                                                $('#RegisterColorDiv').addClass('glowing-box-'+window['userNumber']);
-                                                $('#AddDeviceColorDiv').addClass('glowing-box-'+window['userNumber']);
-                                                $('#ProfileColorDiv').addClass('glowing-box-'+window['userNumber']);
-                                                $('#ChartsColorDiv').addClass('glowing-box-'+window['userNumber']);
-                                            };
+                                    $.mobile.loading( 'hide');
+                                    window['channel'].unbind('pusher:subscription_succeeded', subscriptionSucceeded);
+                                    window['channel'].unbind('client-loadingComplete', startPageLC);
+                                    // window['channel'].unbind('loginStatus', loginFailed);
+                                    $.mobile.changePage($('#login-signup'),{transition: "flow"});
+                                    $('a').removeClass('ui-disabled');
+                                    $('#LoginColorDiv').removeClass();
+                                    $('#RegisterColorDiv').removeClass();
+                                    $('#AddDeviceColorDiv').removeClass();
+                                    $('#ProfileColorDiv').removeClass();
+                                    $('#ChartsColorDiv').removeClass();
+                                    $('#LoginColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#RegisterColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#AddDeviceColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#ProfileColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#ChartsColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                };
+                var loginFailed = function(data) {
+                    $.mobile.loading( 'hide');
+                    $('a').removeClass('ui-disabled');
+                    window['channel'].unbind('pusher:subscription_succeeded', subscriptionSucceeded);
+                    window['channel'].unbind('client-loadingComplete', startPageLC);
+                    window['channel'].unbind('loginStatus', loginFailed);
+                    alert('Login failed please check your username and password :)');
+                }
+                window['channel'].bind('loginStatus', loginFailed);
                 window['channel'].bind('client-loadingComplete', startPageLC);
             //-----------------------------
                 function subscriptionSucceeded() {
@@ -580,7 +590,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.146.219:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.146.108:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',

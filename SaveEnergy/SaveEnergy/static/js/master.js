@@ -72,7 +72,7 @@ var startPage1 = function(data) {
 			            data: {csrfmiddlewaretoken:csrfToken ,userNumber:sessionStorage.userNumber},
 			            success: function(data){
 			            	$('#welcomePage').hide(1000);
-			            	$('#one').addClass('glowing-border-1');
+			            	$('#'+'one'+"ColorDiv").addClass('glowing-box-1');
 			            	$('#one').html(data);
 			    			if(sessionStorage.noOfUsers == 1){
 								$('#one').removeClass();
@@ -236,7 +236,7 @@ var startPage2 = function(data) {
 			            success: function(data){
 			            	// alert("success");
 			            	$('#two').html(data);
-			            	$('#two').addClass('glowing-border-2');
+			            	$('#'+'two'+"ColorDiv").addClass('glowing-box-2');
                             if(sessionStorage.noOfUsers == 2){
                             	j=0;
                             	for(var i=0 ; i<userArray.length ; i++){
@@ -398,7 +398,7 @@ var startPage3 = function(data) {
 			            success: function(data){
 			            	// alert("success");
 			            	$('#three').html(data);
-			            	$('#three').addClass('glowing-border-3');
+			            	$('#'+'three'+"ColorDiv").addClass('glowing-box-3');
 			            	if(sessionStorage.noOfUsers == 3){
                                 	j=0;
                                     for(var i=0 ; i<userArray.length ; i++){
@@ -508,7 +508,7 @@ var startPage4 = function(data) {
 			            success: function(data){
 			            	// alert("success");
 			            	$('#four').html(data);
-			            	$('#four').addClass('glowing-border-4');
+			            	$('#'+'four'+"ColorDiv").addClass('glowing-box-4');
 			            	if(sessionStorage.noOfUsers == 4){
                                 for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
