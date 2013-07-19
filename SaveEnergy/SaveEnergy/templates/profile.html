@@ -124,6 +124,9 @@
 				            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', window['{{user_id}}goToLeaderBoard']);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+								window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
 			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 				            }
 						});
@@ -150,6 +153,29 @@
 	// 				                }
 	// 				    		});
 	// 					};
+
+
+		window['{{user_id}}goToLeaderBoard'] = function(data) {
+							$.cookie('userSession', "bf94f04fdf144e66e2c07c5e8a09fda6");
+							$.ajax({
+					                url: "/leaderBoard/",
+					                type: "GET",
+					                data: {
+					                	'csrfmiddlewaretoken':"{{csrf_token}}" ,
+					                 	'userNumber':"{{userNumber}}",
+					                 	'userID':"{{user_id}}"
+					             	},
+					                success: function(data){
+					                	// alert("success went to add device page Profile page");
+					                	$('#'+"{{userNumber}}").html(data);
+					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', window['{{user_id}}goToLeaderBoard']);
+					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
+					                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
+					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
+					                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+					                }
+					    		});
+						};
 
 	window['{{user_id}}goToChart'] = function(data) {
 						$.ajax({
@@ -197,37 +223,51 @@
 					            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
 					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
 					            	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', window['{{user_id}}goToLeaderBoard']);
+					            	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+									window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
+									window[ chan + window["{{userNumber}}"] ].unbind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
 					            	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 					            }
 							});
 					};
 
-	var scrollUp = function(data) {
+	window['{{userNumber}}scrollUp'] = function(data) {
 		var y = $('#devicesUsage{{user_id}}').scrollTop();
 		$('#devicesUsage{{user_id}}').scrollTop(y-150);
 	}
 
-	var scrollDown = function(data) {
+	window['{{userNumber}}scrollDown'] = function(data) {
 		var y = $('#devicesUsage{{user_id}}').scrollTop();
 		$('#devicesUsage{{user_id}}').scrollTop(y+150);
 	}
 	// window[ chan + window["{{userNumber}}"] ].bind('client-goToAddDevice', goToAddDevice);
 	window[ chan + window["{{userNumber}}"] ].bind('client-goToChart',window['{{user_id}}goToChart']);
-	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpProfile',scrollUp);
-	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownProfile',scrollDown);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{user_id}}logOutProfile']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
+	
 </script>
 
 <div id="devicesUsage{{user_id}}" class="devicesContainer">
 	<div id="{{user_id}}userLevel" class="level">Level: {{userLvl}}</div>
 	<div id="{{user_id}}userMoney" class="money">Money: {{userMoney}} €</div>
-	<p style="margin-left: 76%;margin-top: 7%;font-size: 25px;color:grey;" class="badgesTitle">Badges:</p>
-	<div id="{{user_id}}userBadges" class="badges">
-		{% for badge in userBadges %}
-			<img src="{{badge.image.url}}" alt="image" />
-		{% endfor %}
-	</div>
-	<div id="{{user_id}}PieCanvas" class="pieCanvas"></div>
+	{% if userBadges.count > 0 %}
+		<p style="margin-left: 76%;margin-top: 7%;font-size: 25px;color:grey;" class="badgesTitle">Badges:</p>
+		<div id="{{user_id}}userBadges" class="badges">
+			{% for badge in userBadges %}
+				<img src="{{badge.image.url}}" alt="image" />
+			{% endfor %}
+		</div>
+	{% else %}
+		<p style="margin-left: 76%;margin-top: 7%;font-size: 25px;color:grey;" class="NoBadgesTitle">You don't have any Badges yet</p>
+	{% endif %}
+	{% if usagesLength > 0 %}
+		<div id="{{user_id}}PieCanvas" class="pieCanvas"></div>
+	{% else %}
+		<p class="NoChart">You don't have any data/charts yet</p>
+	{% endif %}
 </div>
 
 <!-- <div class="btn-group addDeviceButton">

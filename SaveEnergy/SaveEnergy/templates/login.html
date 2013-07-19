@@ -48,10 +48,7 @@
 			                	'userID':'{{userID}}'
 			                },
 			                success: function(data){
-			                	if(data == ''){
-			                		alert(tmmm kda ya brengy et7alet);
-			                	}
-			                	else{
+			                	if(data != ''){
 			                		$('#'+"{{userNumber}}").html(data);
 				                	if($("div.devicesContainer").length > 0){
 					            		if(sessionStorage.noOfUsers != 1){
@@ -143,12 +140,24 @@
 					    	});
 						};
 
+	window['{{userNumber}}scrollUp'] = function(data) {
+        var y = $('#{{userNumber}}loginBox').scrollTop();
+        $('#{{userNumber}}loginBox').scrollTop(y-150);
+    }
+
+    window['{{userNumber}}scrollDown'] = function(data) {
+        var y = $('#{{userNumber}}loginBox').scrollTop();
+        $('#{{userNumber}}loginBox').scrollTop(y+150);
+    }
+
 	window[ chan + window["{{userNumber}}"] ].bind('client-login',window['{{userNumber}}login']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToStartPage',window['{{userNumber}}startPage']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-goToRegister',window['{{userNumber}}goToRegister']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpLogin',window['{{userNumber}}scrollUp']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownLogin',window['{{userNumber}}scrollDown']);
 </script>
 
-<div class="loginBox">
+<div id="{{userNumber}}loginBox"class="loginBox">
 	<form action="/login/" method="post">
 		{% csrf_token %}
 		{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
@@ -164,7 +173,7 @@
 		</div>
 	</form>
 </div>
-<div class="LoginActions">
+<!-- <div class="LoginActions">
 	<div style="background-color:#F2FFE1;border-radius:15px;"></div>
 	<div style="background-color:#F2FFE1;border-radius:15px;"></div>
-</div>
+</div> -->

@@ -27,6 +27,7 @@
         <script src="http://js.pusher.com/1.12/pusher.js"></script>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/quo.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
         <script src="js/app.js"></script>
         <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
@@ -138,9 +139,10 @@
             </div>
             <div id="ProfileColorDiv" class="" data-role="none"></div>
             <div data-role="content" > 
-                <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
+                <!-- <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
                 <a href="#" data-role="button" onClick="scrollDownProfile()" > Scroll Down </a>
-                <a href="#" data-role="button" onClick="goToAddDevice()" > Add a new device </a>
+                <a href="#" data-role="button" onClick="goToAddDevice()" > Add a new device </a> -->
+                <a href="#" data-role="button" onClick="goToLeaderBoard()" > Go to leaderboard </a>
                 <a href="#" data-role="button" onClick="goToCharts()"> View your charts </a>
             </div>
         </div>
@@ -160,6 +162,20 @@
                 <a href="#" id="addDevice" data-role="button" onClick="AddDevice()"> Add </a>
             </div>
         </div> -->
+    <!-- .................. -->
+
+     <!-- /page page2 LeaderBoard -->
+        <div data-role="page" id="page2" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a>
+                <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="AddDeviceColorDiv" class="" data-role="none"></div>
+            <div data-role="content" > 
+               <p>LeaderBoard here </p>
+            </div>
+        </div>
     <!-- .................. -->
 
     <!-- /page page3 charts -->
@@ -305,6 +321,8 @@
         // Sending Registration Form to WEB APP -------------
             function SubmitRegistrationForm() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var email = document.getElementById('emaill').value
 				var username = document.getElementById('usernamee').value
@@ -324,6 +342,8 @@
         // Sending Login Form to WEB APP ------
             function SubmitLoginForm() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var username = document.getElementById('username').value
                 var pass = document.getElementById('password').value
@@ -342,6 +362,8 @@
         // Sending signal to WEB APP to go back to login page ------
             function goBackToLoginPage() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-goBackToLoginPage', {});
                 var goBackToLoginPageLC = function(data){
@@ -357,6 +379,8 @@
         // Sending signal to web app to change page to register.html ------
             function goToRegister() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-goToRegister', {});
                 var goToRegisterLC = function(data){
@@ -370,17 +394,42 @@
             }
         //---------------------------------------------
 
+        //------- Tell the app to go to the leaderboard
+            function goToLeaderBoard() {
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'Loading Leaderboard',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToLeaderBoard', {});
+                var goToLeaderBoardLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', goToLeaderBoardLC);
+                        $.mobile.changePage($('#page2'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', goToLeaderBoardLC);
+            }
+        //---------------------------------------------
 
         // Sending signal to web app to change page to chart.html ------
             function goToCharts() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'Loading...',textVisible:true});
                 var triggered = window['channel'].trigger('client-goToChart', {});
+                var showCharts = true;
                 var goToChartsDD = function(data){
                         window['channel'].unbind('months', goToChartsDD);
+                        $('#FromMonths').html();
+                        $('#ToMonths').html();
+                        $('#FromYears').html();
+                        $('#ToYears').html();
                         var months = data.months;
                         var years = data.years;
-
+                        if(months.length == 0 && years.length == 0){
+                            showCharts = false;
+                        }
                         for(var i=0; i<months.length; i++) {
                             var month = months[i];
                             var MonthNewOption = '<option value='+month+'>'+month+'</option>'
@@ -393,14 +442,19 @@
                             var YearNewOption = '<option value='+year+'>'+year+'</option>'
                             $('#FromYears').append(YearNewOption);
                             $('#ToYears').append(YearNewOption);
-                        }                        
+                        }
                     };
 
                 var goToChartsLC = function(data){
                         $.mobile.loading( 'hide');
                         window['channel'].unbind('client-loadingComplete', goToChartsLC);
                         window['channel'].unbind('months', goToChartsDD);
-                        $.mobile.changePage($('#page3'),{transition: "flip"});
+                        if(showCharts){
+                            $.mobile.changePage($('#page3'),{transition: "flip"});
+                        }
+                        else{
+                            alert('You dont have any data yet');
+                        }
                         $('a').removeClass('ui-disabled');
                     };
 
@@ -412,6 +466,8 @@
         // Sending signal to web app to view charts ------
             function viewCharts() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'Loading charts',textVisible:true});
                 var FromMonthSelect = document.getElementById("FromMonths");
                 var ToMonthSelect = document.getElementById("ToMonths");
@@ -454,6 +510,8 @@
         // Sending signal to web app to go back to page start page.html (start page) ------
             function goBackToStartPage() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-goToStartPage', {});
                 var goBackToStartPageLC = function(data){
@@ -471,7 +529,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.146.108:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.149.43:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 // var migratingContent = function(data){
@@ -516,6 +574,8 @@
         //tell the web app to go to the add device page 
             function goToAddDevice() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-goToAddDevice', {});
                 var goToAddDeviceLC = function(data){
@@ -536,6 +596,8 @@
                 }
                 else{
                     $('a').addClass('ui-disabled');
+                    $('#ExitApp').removeClass('ui-disabled');
+                    $('#CancelExit').removeClass('ui-disabled');
                     $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                     var triggered = window['channel'].trigger('client-AddDevice', {'device_name':device_name});
                     var AddDeviceLC = function(data){
@@ -552,6 +614,8 @@
         //tell the web app to go back from the profile.html page
             function goBackToProfile() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-goBackToProfile', {});
                 var goBackToProfileLC = function(data){
@@ -568,6 +632,8 @@
         //tell the web app to log out the user
             function logOut() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-logout',{});
                 var logOutLC = function(data){
@@ -585,12 +651,14 @@
         // initiallizing a connection and reserving a place on the screen ------
             function start() {
                 $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show', { theme: "a", text: "Connecting", textonly: false , textVisible:true });
             //Pusher Config --------------- 
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.146.108:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.149.43:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',
@@ -609,6 +677,83 @@
                 }
             }
         //---------------------------------------------
+        //subscribing to swiping events ---------------
+            $$('#startPage').swipeLeft(function(){
+                alert('Swipe Left');
+            });
+            $$('#startPage').swipeRight(function(){
+                alert('Swipe Right');
+            });
+            $$('#startPage').swipeUp(function(){
+                alert('Swipe Up');
+            });
+            $$('#startPage').swipeDown(function(){
+                alert('Swipe Down');
+            });
+            $$('#login-signup').swipeLeft(function(){
+                alert('Swipe Left');
+            });
+            $$('#login-signup').swipeRight(function(){
+                alert('Swipe Right');
+            });
+            $$('#login-signup').swipeUp(function(){
+                alert('Swipe Up');
+            });
+            $$('#login-signup').swipeDown(function(){
+                alert('Swipe Down');
+            });
+            $$('#register').swipeLeft(function(){
+                alert('Swipe Left');
+            });
+            $$('#register').swipeRight(function(){
+                alert('Swipe Right');
+            });
+            $$('#register').swipeUp(function(){
+                alert('Swipe Up');
+            });
+            $$('#register').swipeDown(function(){
+                alert('Swipe Down');
+            });
+            $$('#page1').swipeLeft(function(){
+                alert('Swipe Left');
+                var triggered = window['channel'].trigger('client-scrollLeftProfile', {});
+            });
+            $$('#page1').swipeRight(function(){
+                alert('Swipe Right');
+                var triggered = window['channel'].trigger('client-scrollRightProfile', {});
+            });
+            $$('#page1').swipeUp(function(){
+                alert('Swipe Up');
+                var triggered = window['channel'].trigger('client-scrollUpProfile', {});
+            });
+            $$('#page1').swipeDown(function(){
+                alert('Swipe Down');
+                var triggered = window['channel'].trigger('client-scrollDownProfile', {});
+            });
+            $$('#page3').swipeLeft(function(){
+                alert('Swipe Left');
+            });
+            $$('#page3').swipeRight(function(){
+                alert('Swipe Right');
+            });
+            $$('#page3').swipeUp(function(){
+                alert('Swipe Up');
+            });
+            $$('#page3').swipeDown(function(){
+                alert('Swipe Down');
+            });
+            $$('#page4').swipeLeft(function(){
+                alert('Swipe Left');
+            });
+            $$('#page4').swipeRight(function(){
+                alert('Swipe Right');
+            });
+            $$('#page4').swipeUp(function(){
+                alert('Swipe Up');
+            });
+            $$('#page4').swipeDown(function(){
+                alert('Swipe Down');
+            });    
         </script>
     </body>
 </html>

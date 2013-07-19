@@ -105,6 +105,8 @@
 	                        window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
 							window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
 							window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+							window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpPreChart',window['{{userNumber}}scrollUp']);
+							window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownPreChart',window['{{userNumber}}scrollDown']);
 	                        var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 	                    }
 	                });
@@ -125,6 +127,8 @@
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpPreChart',window['{{userNumber}}scrollUp']);
+										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownPreChart',window['{{userNumber}}scrollDown']);
 	                                    $('#'+"{{userNumber}}").html(data);
 	                                    if($("div.devicesContainer").length > 0){
 						            		if(sessionStorage.noOfUsers != 1){
@@ -182,6 +186,8 @@
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpPreChart',window['{{userNumber}}scrollUp']);
+																window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownPreChart',window['{{userNumber}}scrollDown']);
 
 							                                    $('#'+"{{userID}}preChart").html(data);
 							                                    
@@ -221,13 +227,23 @@
 							                            });
 													};
 
+	window['{{userNumber}}scrollUp'] = function(data) {
+		var y = $('#{{userID}}preChart').scrollTop();
+		$('#{{userID}}preChart').scrollTop(y-150);
+	}
 
-	
+	window['{{userNumber}}scrollDown'] = function(data) {
+		var y = $('#{{userID}}preChart').scrollTop();
+		$('#{{userID}}preChart').scrollTop(y+150);
+	}
+
 	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window[window["{{userNumber}}"]+'logoutPreChart']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-viewCharts',window[window["{{userNumber}}"]+'viewCharts']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpPreChart',window['{{userNumber}}scrollUp']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownPreChart',window['{{userNumber}}scrollDown']);
 </script>
 
 <div id="{{userID}}preChart" class="preChartContainer">
-	<p>Please choose the duration in which you would like to check your electricity consumption within on you mobile screen</p>
+	<p class="chooseDates">Please choose the duration in which you would like to check your electricity consumption within on you mobile screen</p>
 </div>

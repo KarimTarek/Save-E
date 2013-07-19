@@ -54,13 +54,13 @@ def profile(request,user_id,user_number):
 		usages[counter] = int(((float(usages[counter] / float(total_usage) )) * 100))
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
-	return render_to_response('profile.html',{'user_id':user_id ,'MEDIA_URL':settings.MEDIA_URL,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages , 'devices_and_usage' : devices_and_usage},RequestContext(request))
+	return render_to_response('profile.html',{'user_id':user_id ,'MEDIA_URL':settings.MEDIA_URL,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages ,'usagesLength':len(usages), 'devices_and_usage' : devices_and_usage},RequestContext(request))
 
 
 def leaderBoard(request):
-	curr_user = User.objects.get(id = request.POST['userID'])
+	curr_user = User.objects.get(id = request.GET['userID'])
 	all_users = User.objects.all()
-	return render_to_response('leaderBoard.html',{'user_id':user_id,'all_users':all_users},RequestContext(request))
+	return render_to_response('leader_board.html',{'userID':curr_user.id,'userNumber':request.GET['userNumber'],'all_users':all_users},RequestContext(request))
 
 @csrf_exempt
 def authenti(request):

@@ -54,6 +54,8 @@
                         // console.log(userNumber + "Register Page");
                         window[ chan + window["{{userNumber}}"] ].unbind('client-register',window['{{userNumber}}register']);
                         window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
+                        window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpRegister',window['{{userNumber}}scrollUp']);
+                        window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownRegister',window['{{userNumber}}scrollDown']);
                         $('#'+"{{userNumber}}").html(data);
                         var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
                     }
@@ -74,6 +76,8 @@
                                 console.log("{{userNumber}}" + "Register Page");
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-register',window['{{userNumber}}register']);
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
+                                window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpRegister',window['{{userNumber}}scrollUp']);
+                                window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownRegister',window['{{userNumber}}scrollDown']);
                                 $('#one').html(data);
                                 $('#one').removeClass();
                                 $('#one').addClass("one_one" , 1000);
@@ -83,11 +87,23 @@
                         });
                     };
 
+    window['{{userNumber}}scrollUp'] = function(data) {
+        var y = $('#{{userNumber}}registerForm').scrollTop();
+        $('#{{userNumber}}registerForm').scrollTop(y-150);
+    }
+
+    window['{{userNumber}}scrollDown'] = function(data) {
+        var y = $('#{{userNumber}}registerForm').scrollTop();
+        $('#{{userNumber}}registerForm').scrollTop(y+150);
+    }
+
     window[ chan + window["{{userNumber}}"] ].bind('client-register',window['{{userNumber}}register']);
     window[ chan + window["{{userNumber}}"] ].bind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
+    window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpRegister',window['{{userNumber}}scrollUp']);
+    window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownRegister',window['{{userNumber}}scrollDown']);
 </script>
 
-<div class="registerForm">
+<div id='{{userNumber}}registerForm'class="registerForm">
     <form action="/register/" method="post">
         {% csrf_token %}
         {{ form.errors }}

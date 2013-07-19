@@ -1,0 +1,185 @@
+<div id="{{userNumber}}ColorDiv" class=""></div>
+<script>
+	var chan = "channel";
+	if("{{userNumber}}" == "one"){
+	    window["{{userNumber}}"]= "1";
+	    $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	    $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-1');
+	}
+	else{
+	    if("{{userNumber}}" == "two") {
+	        window["{{userNumber}}"] ="2";
+	        $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	        $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-2');
+	    }
+	    else{
+	        if("{{userNumber}}" == "three") {
+	            window["{{userNumber}}"] ="3";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	            $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-3');
+	        }
+	        else{
+	            window["{{userNumber}}"] ="4";
+	            $('#'+'{{userNumber}}'+"ColorDiv").removeClass();
+	            $('#'+'{{userNumber}}'+"ColorDiv").addClass('glowing-box-4');
+	        }
+	    }
+	}
+
+
+	Pusher.channel_auth_endpoint = '/auth/';
+	Pusher.channel_auth_transport = 'ajax';
+
+	window['{{userID}}logOutLB'] = function(data) {
+						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
+						userArray[parseInt(window["{{userNumber}}"])-1] = false;
+						$.ajax({
+				            url: "/logout/",
+				            type: "POST",
+				            data: {
+				            	'csrfmiddlewaretoken':"{{csrf_token}}",
+				            	'userID':"{{userID}}"
+				           	},
+				            success: function(data){
+				            	// alert("Logged out");
+				            	$('#'+"{{userNumber}}").html("");
+				            	$('#'+"{{userNumber}}").hide(1000);
+				            	if(sessionStorage.noOfUsers == 0) {
+		                            $('#welcomePage').show(1000);
+		                        }
+		                        else{
+		                            if(sessionStorage.noOfUsers == 1){
+	                            		for(var i=0 ; i<userArray.length ; i++){
+	                            			if(userArray[i] == true){
+	                            				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+	                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
+												break;
+	                            			}
+	                            		}
+		                            }
+		                            else{
+		                                if(sessionStorage.noOfUsers == 2){
+		                                	j=0;
+		                                	for(var i=0 ; i<userArray.length ; i++){
+		                            			if(userArray[i] == true){
+		                            				if(j%2 == 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
+		                            				}
+		                            				else {
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
+		                            				}
+		                            				j++;
+		                            			}
+		                            		}
+		                                }
+		                                else{
+		                                    if(sessionStorage.noOfUsers == 3){
+		                                    	j=0;
+		                                        for(var i=0 ; i<userArray.length ; i++){
+			                            			if(userArray[i] == true){
+			                            				if(j==2){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+				                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
+			                            				}
+			                            				else{
+			                            					if(j%2 == 0){
+				                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+				                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
+				                            				}
+				                            				else {
+				                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+				                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
+				                            				}
+			                            				}
+			                            				
+			                            				j++;
+			                            			}
+			                            		}
+		                                    }
+		                                    else{
+		                                    }
+		                                }
+		                            }
+		                        }
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutLB']);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
+			                	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+								window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
+			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+				            }
+						});
+					};
+
+	window['{{userID}}backToProfile'] = function(data) {
+	                        setTimeout(function () {
+	                            $.ajax({
+	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/",
+	                                type: "GET",
+	                                data: {
+	                                    'csrfmiddlewaretoken' : "{{csrf_token}}", 
+	                                    'userID':'{{userID}}'
+	                                },
+	                                success: function(data){
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutLB']);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
+	                                    $('#'+"{{userNumber}}").html(data);
+	                                    if($("div.devicesContainer").length > 0){
+						            		if(sessionStorage.noOfUsers != 1){
+		                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
+		                    					$('#'+"{{userNumber}}").find('.level').removeClass('level');
+		                    					$('#'+"{{userNumber}}").find('.money').addClass('money'+sessionStorage.noOfUsers);
+		                    					$('#'+"{{userNumber}}").find('.money').removeClass('money');
+		                    					$('#'+"{{userNumber}}").find('.badges').addClass('badges'+sessionStorage.noOfUsers);
+		                    					$('#'+"{{userNumber}}").find('.badges').removeClass('badges');
+		                    					$('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
+		                    					$('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
+		                    					$('#'+"{{userNumber}}").find('.badgesTitle').remove();
+		                    				}
+										}
+										else{
+											if($("div.chartContainer").length > 0){
+												if(sessionStorage.noOfUsers != 1){
+		                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+		                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+		                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+		                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+		                        				}
+											}
+											else{
+												if($("div.preChartContainer").length > 0){
+													if(sessionStorage.noOfUsers != 1){
+		                            					$('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
+			                        					$('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
+			                        				}
+												}
+											}
+										}
+	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
+	                                }
+	                            });
+	                        }, 1000);
+	                    };
+	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window['{{userID}}backToProfile']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutLB']);
+</script>
+
+<div class="leaderBoard">
+	<table class="table table-striped">
+		<tr>
+			<td>User</td>
+			<td>Level</td>
+			<td>Money</td>
+		</tr>
+		{% for user in all_users %}
+			<tr>
+				<td>{{user.username}}</td>
+				<td>{{user.level}}</td>
+				<td>{{user.money}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
