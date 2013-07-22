@@ -60,6 +60,37 @@
                         	j=0;
                         	for(var i=0 ; i<userArray.length ; i++){
                     			if(userArray[i] == true){
+                    				if($("div.devicesContainer").length > 0){
+					            		if(sessionStorage.noOfUsers != 1){
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+		                				}
+									}
+									else{
+										if($("div.chartContainer").length > 0){
+											if(sessionStorage.noOfUsers != 1){
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+		                    				}
+										}
+										else{
+											if($("div.preChartContainer").length > 0){
+												if(sessionStorage.noOfUsers != 1){
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+		                        				}
+											}
+										}
+									}
                     				if(j%2 == 0){
                     					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
                     					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
@@ -77,6 +108,37 @@
                             	j=0;
                                 for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
+                        				if($("div.devicesContainer").length > 0){
+						            		if(sessionStorage.noOfUsers != 1){
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+			                				}
+										}
+										else{
+											if($("div.chartContainer").length > 0){
+												if(sessionStorage.noOfUsers != 1){
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+			                    				}
+											}
+											else{
+												if($("div.preChartContainer").length > 0){
+													if(sessionStorage.noOfUsers != 1){
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+			                        				}
+												}
+											}
+										}
                         				if(j==2){
                         					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
                             				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
@@ -103,6 +165,9 @@
                 }
             	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
             	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutViewCharts']);
+            	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
+            	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpViewCharts',window['{{userNumber}}scrollUp']);
+				window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownViewCharts',window['{{userNumber}}scrollDown']);
             	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
             }
 		});
@@ -122,6 +187,8 @@
 	                                success: function(data){
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutViewCharts']);
+	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpViewCharts',window['{{userNumber}}scrollUp']);
+										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownViewCharts',window['{{userNumber}}scrollDown']);
 	                                    $('#'+"{{userNumber}}").html(data);
 	                                    if($("div.devicesContainer").length > 0){
 						            		if(sessionStorage.noOfUsers != 1){
@@ -235,6 +302,18 @@
 	window['{{userID}}Barchart'].render();
 
   	//------------------------------------------------------------------------------------
+  	window['{{userNumber}}scrollUp'] = function(data) {
+		var y = $('#{{userNumber}}').scrollTop();
+		$('#{{userNumber}}').scrollTop(y-150);
+	}
+
+	window['{{userNumber}}scrollDown'] = function(data) {
+		var y = $('#{{userNumber}}').scrollTop();
+		$('#{{userNumber}}').scrollTop(y+150);
+	}
+
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpViewCharts',window['{{userNumber}}scrollUp']);
+	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownViewCharts',window['{{userNumber}}scrollDown']);
   	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window['{{userID}}backToProfile']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutViewCharts']);
 </script>

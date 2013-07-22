@@ -28,6 +28,7 @@
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/quo.js"></script>
+        <script type="text/javascript" src="js/canvasjs.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
         <script src="js/app.js"></script>
         <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
@@ -87,7 +88,7 @@
     <!-- /page startPage -->
         <div data-role="page" id="startPage" class="PageClass" data-theme="b">
             <div data-role="content">
-                <p><a href="#" data-role="button" id="connect" data-theme="a" onClick="start()" data-transition="flip" class=""> Connect </a></p> 
+                <p><a href="#" data-role="button" id="connect" data-theme="a" onClick="start()" data-transition="flip" class=""> Connect </a></p>
             </div>
         </div>
     <!-- .................. -->
@@ -139,6 +140,8 @@
             </div>
             <div id="ProfileColorDiv" class="" data-role="none"></div>
             <div data-role="content" > 
+                <div id="pieChartProfile" style="height: 200px; width: 100%;">
+                </div>
                 <!-- <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
                 <a href="#" data-role="button" onClick="scrollDownProfile()" > Scroll Down </a>
                 <a href="#" data-role="button" onClick="goToAddDevice()" > Add a new device </a> -->
@@ -284,12 +287,37 @@
     <!-- .................. -->
 
     <!-- /popup to ask if u want to exit the app -->
-        <div data-role="popup" id="exitApp" date-theme="b">
-                <p>Are you sure you want to exit the application?</p>
-                <a href="#" data-role="button" id="ExitApp" onClick="exitApp()">Exit</a>
-                <a href="#" data-role="button" id="CancelExit" onClick="cancelExit()">Cancel</a>
+        <div data-role="page" data-rel="dialog" id="exitApp">
+                <div data-role="header">
+                    <h1>Exit</h1>
+                </div>
+                <div data-role="content">
+                    <h3>Are you sure you want to exit the application ?</h3>
+                    <a href="#" id="ExitApp" data-role="button" onClick="exitApp()">Exit</a>
+                    <a href="#" id="CancelExit" data-role="button" onClick="cancelExit()">Cancel</a>
+                </div>
         </div>
     <!-- .................. -->
+
+    <!-- Pop up to choose the privacy -->
+        <div data-role="page" data-rel="dialog" id="privacyMenu">
+            <div data-role="header">
+                <h1>Exit</h1>
+            </div>
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <legend>Choose the privacy setting that suits you the most :</legend>
+                        <input type="radio" onClick="setHighPrivacy()" name="radio-choice-1" id="radio-choice-1" value="choice-1" />
+                        <label for="radio-choice-1">High privacy</label>
+                        <input type="radio" onClick="setLowPrivacy()" name="radio-choice-1" id="radio-choice-2" value="choice-2" />
+                        <label for="radio-choice-2">Low privacy</label>
+                    </fieldset>
+                    </br>
+                </div>
+            </div>
+        </div>
+    <!--  -->
         	
         
         <script type="text/javascript">
@@ -301,22 +329,32 @@
             }
 
             function cancelExit(){
-                $('#exitApp').popup("close");
+                $('#exitApp').dialog('close');
+            }
+
+            function setHighPrivacy(){
+                $('#privacyMenu').dialog('close');
+                var triggered = window['channel'].trigger('client-setHighPrivacy', {});
+            }
+
+            function setLowPrivacy(){
+                $('#privacyMenu').dialog('close');
+                var triggered = window['channel'].trigger('client-setLowPrivacy', {});
             }
 
             function onDeviceReady() {
-                $( "#exitApp" ).popup();
                 document.addEventListener("backbutton", onBackKeyDown, false);
                 document.addEventListener("menubutton", onMenuKeyDown, false);
             }
 
             // Handle the back button
             function onBackKeyDown() {
-                $( "#exitApp" ).popup( "open" );
+                // $( "#exitApp" ).popup( "open","pop" );
+                $.mobile.changePage( "#exitApp", { role: "dialog" } );
             }
 
             function onMenuKeyDown() {
-                alert("3ayez eh??");
+                $.mobile.changePage( "#privacyMenu", { role: "dialog" } );
             }
         // Sending Registration Form to WEB APP -------------
             function SubmitRegistrationForm() {
@@ -354,6 +392,24 @@
                         $.mobile.changePage($('#page1'),{transition: "flip"});
                         $('a').removeClass('ui-disabled');
                     };
+                var displayProfileCharts = function(data){
+                        var pieChartData = data.profileChartData;
+                        var pieChart = new CanvasJS.Chart("pieChartProfile", {
+                                theme: "theme2",//theme1
+                                title:{
+                                    // text: "Total energy usage within the dates entered"              
+                                },
+                                data: [              
+                                    {
+                                    type: "pie",
+                                    dataPoints: pieChartData
+                                    }
+                                ]
+                            });
+                        pieChart.render();
+                        window['channel'].unbind('client-profile_chart', displayProfileCharts);
+                    };
+                window['channel'].bind('client-profile_chart', displayProfileCharts);
                 window['channel'].bind('client-loadingComplete', SubmitLoginFormLC);
             }
         // ------------------------------------
@@ -529,7 +585,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.149.43:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.150.146:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 // var migratingContent = function(data){
@@ -658,7 +714,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.149.43:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.150.146:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',
@@ -679,80 +735,56 @@
         //---------------------------------------------
         //subscribing to swiping events ---------------
             $$('#startPage').swipeLeft(function(){
-                alert('Swipe Left');
             });
             $$('#startPage').swipeRight(function(){
-                alert('Swipe Right');
             });
             $$('#startPage').swipeUp(function(){
-                alert('Swipe Up');
             });
             $$('#startPage').swipeDown(function(){
-                alert('Swipe Down');
             });
             $$('#login-signup').swipeLeft(function(){
-                alert('Swipe Left');
             });
             $$('#login-signup').swipeRight(function(){
-                alert('Swipe Right');
             });
             $$('#login-signup').swipeUp(function(){
-                alert('Swipe Up');
             });
             $$('#login-signup').swipeDown(function(){
-                alert('Swipe Down');
             });
             $$('#register').swipeLeft(function(){
-                alert('Swipe Left');
             });
             $$('#register').swipeRight(function(){
-                alert('Swipe Right');
             });
             $$('#register').swipeUp(function(){
-                alert('Swipe Up');
             });
             $$('#register').swipeDown(function(){
-                alert('Swipe Down');
             });
             $$('#page1').swipeLeft(function(){
-                alert('Swipe Left');
                 var triggered = window['channel'].trigger('client-scrollLeftProfile', {});
             });
             $$('#page1').swipeRight(function(){
-                alert('Swipe Right');
                 var triggered = window['channel'].trigger('client-scrollRightProfile', {});
             });
             $$('#page1').swipeUp(function(){
-                alert('Swipe Up');
                 var triggered = window['channel'].trigger('client-scrollUpProfile', {});
             });
             $$('#page1').swipeDown(function(){
-                alert('Swipe Down');
                 var triggered = window['channel'].trigger('client-scrollDownProfile', {});
             });
             $$('#page3').swipeLeft(function(){
-                alert('Swipe Left');
             });
             $$('#page3').swipeRight(function(){
-                alert('Swipe Right');
             });
             $$('#page3').swipeUp(function(){
-                alert('Swipe Up');
             });
             $$('#page3').swipeDown(function(){
-                alert('Swipe Down');
             });
             $$('#page4').swipeLeft(function(){
-                alert('Swipe Left');
             });
             $$('#page4').swipeRight(function(){
-                alert('Swipe Right');
             });
             $$('#page4').swipeUp(function(){
-                alert('Swipe Up');
             });
             $$('#page4').swipeDown(function(){
-                alert('Swipe Down');
             });    
         </script>
     </body>

@@ -45,11 +45,11 @@
 			                	'username' : username.value , 
 			                	'password' : password.value , 
 			                	'userNumber' : "{{userNumber}}" ,
-			                	'userID':'{{userID}}'
+			                	'privacyStatus' : window["{{userNumber}}Privacy"]
 			                },
 			                success: function(data){
 			                	if(data != ''){
-			                		$('#'+"{{userNumber}}").html(data);
+		                			$('#'+"{{userNumber}}").html(data);
 				                	if($("div.devicesContainer").length > 0){
 					            		if(sessionStorage.noOfUsers != 1){
 	                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
@@ -141,13 +141,13 @@
 						};
 
 	window['{{userNumber}}scrollUp'] = function(data) {
-        var y = $('#{{userNumber}}loginBox').scrollTop();
-        $('#{{userNumber}}loginBox').scrollTop(y-150);
+        var y = $('#{{userNumber}}').scrollTop();
+        $('#{{userNumber}}').scrollTop(y-150);
     }
 
     window['{{userNumber}}scrollDown'] = function(data) {
-        var y = $('#{{userNumber}}loginBox').scrollTop();
-        $('#{{userNumber}}loginBox').scrollTop(y+150);
+        var y = $('#{{userNumber}}').scrollTop();
+        $('#{{userNumber}}').scrollTop(y+150);
     }
 
 	window[ chan + window["{{userNumber}}"] ].bind('client-login',window['{{userNumber}}login']);

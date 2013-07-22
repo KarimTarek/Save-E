@@ -47,7 +47,8 @@
                         'email' : email.value ,
                         'password' : password.value ,
                         'password1' : password1.value ,
-                        'userNumber' : "{{userNumber}}"
+                        'userNumber' : "{{userNumber}}",
+                        'privacyStatus':window["{{userNumber}}Privacy"]
                     },
                     success: function(data){
                         // alert("success");
@@ -57,6 +58,37 @@
                         window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpRegister',window['{{userNumber}}scrollUp']);
                         window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownRegister',window['{{userNumber}}scrollDown']);
                         $('#'+"{{userNumber}}").html(data);
+                        if($("div.devicesContainer").length > 0){
+                            if(sessionStorage.noOfUsers != 1){
+                                $('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
+                                $('#'+"{{userNumber}}").find('.level').removeClass('level');
+                                $('#'+"{{userNumber}}").find('.money').addClass('money'+sessionStorage.noOfUsers);
+                                $('#'+"{{userNumber}}").find('.money').removeClass('money');
+                                $('#'+"{{userNumber}}").find('.badges').addClass('badges'+sessionStorage.noOfUsers);
+                                $('#'+"{{userNumber}}").find('.badges').removeClass('badges');
+                                $('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
+                                $('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
+                                $('#'+"{{userNumber}}").find('.badgesTitle').remove();
+                            }
+                        }
+                        else{
+                            if($("div.chartContainer").length > 0){
+                                if(sessionStorage.noOfUsers != 1){
+                                    $('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+                                    $('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+                                    $('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+                                    $('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+                                }
+                            }
+                            else{
+                                if($("div.preChartContainer").length > 0){
+                                    if(sessionStorage.noOfUsers != 1){
+                                        $('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
+                                        $('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
+                                    }
+                                }
+                            }
+                        }
                         var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
                     }
                 });
@@ -72,29 +104,55 @@
                                 'userNumber':sessionStorage.noOfUsers
                             },
                             success: function(data){
-                                // alert("success");
-                                console.log("{{userNumber}}" + "Register Page");
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-register',window['{{userNumber}}register']);
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpRegister',window['{{userNumber}}scrollUp']);
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownRegister',window['{{userNumber}}scrollDown']);
-                                $('#one').html(data);
-                                $('#one').removeClass();
-                                $('#one').addClass("one_one" , 1000);
-                                $('#one').show(1000);
+                                $('#'+"{{userNumber}}").html(data);
+                                if($("div.devicesContainer").length > 0){
+                                    if(sessionStorage.noOfUsers != 1){
+                                        $('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
+                                        $('#'+"{{userNumber}}").find('.level').removeClass('level');
+                                        $('#'+"{{userNumber}}").find('.money').addClass('money'+sessionStorage.noOfUsers);
+                                        $('#'+"{{userNumber}}").find('.money').removeClass('money');
+                                        $('#'+"{{userNumber}}").find('.badges').addClass('badges'+sessionStorage.noOfUsers);
+                                        $('#'+"{{userNumber}}").find('.badges').removeClass('badges');
+                                        $('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
+                                        $('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
+                                        $('#'+"{{userNumber}}").find('.badgesTitle').remove();
+                                    }
+                                }
+                                else{
+                                    if($("div.chartContainer").length > 0){
+                                        if(sessionStorage.noOfUsers != 1){
+                                            $('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+                                            $('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
+                                            $('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+                                            $('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+                                        }
+                                    }
+                                    else{
+                                        if($("div.preChartContainer").length > 0){
+                                            if(sessionStorage.noOfUsers != 1){
+                                                $('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
+                                                $('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
+                                            }
+                                        }
+                                    }
+                                }
                                 var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
                             }
                         });
                     };
 
     window['{{userNumber}}scrollUp'] = function(data) {
-        var y = $('#{{userNumber}}registerForm').scrollTop();
-        $('#{{userNumber}}registerForm').scrollTop(y-150);
+        var y = $('#{{userNumber}}').scrollTop();
+        $('#{{userNumber}}').scrollTop(y-150);
     }
 
     window['{{userNumber}}scrollDown'] = function(data) {
-        var y = $('#{{userNumber}}registerForm').scrollTop();
-        $('#{{userNumber}}registerForm').scrollTop(y+150);
+        var y = $('#{{userNumber}}').scrollTop();
+        $('#{{userNumber}}').scrollTop(y+150);
     }
 
     window[ chan + window["{{userNumber}}"] ].bind('client-register',window['{{userNumber}}register']);

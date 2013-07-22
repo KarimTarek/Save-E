@@ -19,7 +19,7 @@ urlpatterns = patterns('',
 	# url(r'^add_device/', 'EnergySaving.views.add_device'),
 	url(r'^leaderBoard/', 'EnergySaving.views.leaderBoard'),
 	url(r'^logout/', 'EnergySaving.views.LogoutRequest'),
-	url(r'^profile/(?P<user_id>\d+)/(?P<user_number>[\w\-]+)/', 'EnergySaving.views.profile'),
+	url(r'^profile/(?P<user_id>\d+)/(?P<user_number>[\w\-]+)/(?P<privacy>[\w\-]+)', 'EnergySaving.views.profile'),
 	# url(r'^SaveEnergy/', include('SaveEnergy.foo.urls')),
 
 	# Uncomment the admin/doc line below to enable admin documentation:

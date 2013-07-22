@@ -25,11 +25,12 @@ from django.contrib import messages
 from datetime import *
 import time
 import random
+p = pusher.Pusher(app_id='42846', key='35bf6495b4677801c17e', secret='7ef9690d99684e1b6b68')
 
 def home(request):
 	return render_to_response('home.html',{} ,RequestContext(request))
 
-def profile(request,user_id,user_number):
+def profile(request,user_id,user_number,privacy):
 	import datetime
 	curr_user = User.objects.get(id = user_id)
 	all_user_devices = Device.objects.filter(user = curr_user)
@@ -54,7 +55,10 @@ def profile(request,user_id,user_number):
 		usages[counter] = int(((float(usages[counter] / float(total_usage) )) * 100))
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
-	return render_to_response('profile.html',{'user_id':user_id ,'MEDIA_URL':settings.MEDIA_URL,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages ,'usagesLength':len(usages), 'devices_and_usage' : devices_and_usage},RequestContext(request))
+	# if(request.GET['privacy'] == 'high' and len(usages) > 0 ):
+	# 	p['private-SaveE'+user_number].trigger('profile_chart',{'devices_and_usage':devices_and_usage,'usagesLength':len(usages)})		
+	return render_to_response('profile.html',{'user_id':user_id,'privacyStatus':privacy,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages ,'usagesLength':len(usages), 'devices_and_usage' : devices_and_usage},RequestContext(request))
+		
 
 
 def leaderBoard(request):
@@ -96,7 +100,6 @@ def charts(request):
 
 	for counter in range(len(usages)):
 		usages[counter] = ((float(usages[counter] / float(total_usage) )) * 100)
-	p = pusher.Pusher(app_id='42846', key='35bf6495b4677801c17e', secret='7ef9690d99684e1b6b68')
 	p['private-SaveE'+request.GET['userNo']].trigger('dates',{'months':months,'years':years})
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
@@ -205,6 +208,7 @@ def getMonthName(month):
 def UserRegistration(request):
 	import datetime
 	if request.method == 'POST':
+		privacy = request.POST['privacyStatus']
 		data = request.POST.copy()
 		data['date_joined'] = datetime.date.today()
 		data['last_login'] = datetime.datetime.now()
@@ -218,19 +222,19 @@ def UserRegistration(request):
 			userID = str(request.user.id)
 			if(request.POST['userNumber'] == "one"):
 				userNumber = "one"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 
 			elif(request.POST['userNumber'] == "two"):
 				userNumber = "two"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 
 			elif(request.POST['userNumber'] == "three"):
 				userNumber = "three"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 
 			elif(request.POST['userNumber'] == "four"):
 				userNumber = "four"
-				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+				return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 		else:
 			if(request.POST['userNumber'] == "one"):
 				userNumber = "one"
@@ -280,6 +284,9 @@ def LoginRequest(request):
 	# if request.user.is_authenticated():
 	# 	return HttpResponseRedirect('/profile/')
 	if request.method == 'POST':
+		privacy = request.POST['privacyStatus']
+		print '--------------------'
+		print privacy
 		form = LoginForm(request.POST)
 		if form.is_valid():
 			username = form.cleaned_data['username']
@@ -290,21 +297,21 @@ def LoginRequest(request):
 				userID = str(request.user.id)
 				if(request.POST['userNumber'] == "one"):
 					userNumber = "one"
-					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 
 				elif(request.POST['userNumber'] == "two"):
 					userNumber = "two"
-					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 
 				elif(request.POST['userNumber'] == "three"):
 					userNumber = "three"
-					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 
 				elif(request.POST['userNumber'] == "four"):
 					userNumber = "four"
-					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/')
+					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 			else:
-				p = pusher.Pusher(app_id='42846', key='35bf6495b4677801c17e', secret='7ef9690d99684e1b6b68')
+				# p = pusher.Pusher(app_id='42846', key='35bf6495b4677801c17e', secret='7ef9690d99684e1b6b68')
 				p['private-SaveE1'].trigger('loginStatus',{})
 				if(request.POST['userNumber'] == "one"):
 					userNumber = "one"

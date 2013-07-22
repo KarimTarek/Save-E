@@ -1,5 +1,9 @@
 var userArray = [ false, false, false, false ];
 var userNumberArray = [ 1, 2, 3, 4 ];
+window["onePrivacy"] = 'low'
+window["twoPrivacy"] = 'low'
+window["threePrivacy"] = 'low'
+window["fourPrivacy"] = 'low'
 
 if(sessionStorage.noOfUsers == null){
 	 sessionStorage.noOfUsers = 0;
@@ -548,33 +552,49 @@ var startPage4 = function(data) {
 					});
 				};
 
-var migrateContent1 = function(data) {
-						var content = $('#one').html();
-						var triggered = window[ "channel" + "1" ].trigger('client-migratingContent', {'content':content , 'page':page1});
+var setHighPrivacy1 = function(data) {
+						window["onePrivacy"] = 'high'
 					};
 
-var migrateContent2 = function(data) {
-						var content = $('#two').html();
-						var triggered = window[ "channel" + "2" ].trigger('client-migratingContent', {});
+var setHighPrivacy2 = function(data) {
+						window["twoPrivacy"] = 'high'
 					};
 
-var migrateContent3 = function(data) {
-						var content = $('#three').html();
-						var triggered = window[ "channel" + "3" ].trigger('client-migratingContent', {});
+var setHighPrivacy3 = function(data) {
+						window["threePrivacy"] = 'high'
 					};
 
-var migrateContent4 = function(data) {
-						var content = $('#four').html();
-						var triggered = window[ "channel" + "4" ].trigger('client-migratingContent', {});
+var setHighPrivacy4 = function(data) {
+						window["fourPrivacy"] = 'high'
+					};
+
+var setLowPrivacy1 = function(data) {
+						window["onePrivacy"] = 'low'
+					};
+
+var setLowPrivacy2 = function(data) {
+						window["twoPrivacy"] = 'low'
+					};
+
+var setLowPrivacy3 = function(data) {
+						window["threePrivacy"] = 'low'
+					};
+
+var setLowPrivacy4 = function(data) {
+						window["fourPrivacy"] = 'low'
 					};
 
 
 channel.bind('client-start',start);
 channel1.bind('client-startPage',startPage1);
-channel1.bind('client-readyToMigrateContent',migrateContent1);
+channel1.bind('client-setHighPrivacy',setHighPrivacy1);
+channel1.bind('client-setLowPrivacy',setLowPrivacy1);
 channel2.bind('client-startPage',startPage2);
-channel2.bind('client-readyToMigrateContent',migrateContent2);
+channel2.bind('client-setHighPrivacy',setHighPrivacy2);
+channel2.bind('client-setLowPrivacy',setLowPrivacy2);
 channel3.bind('client-startPage',startPage3);
-channel3.bind('client-readyToMigrateContent',migrateContent3);
+channel3.bind('client-setHighPrivacy',setHighPrivacy3);
+channel3.bind('client-setLowPrivacy',setLowPrivacy3);
 channel4.bind('client-startPage',startPage4);
-channel4.bind('client-readyToMigrateContent',migrateContent4);
+channel4.bind('client-setHighPrivacy',setHighPrivacy4)
+channel4.bind('client-setLowPrivacy',setLowPrivacy4);
