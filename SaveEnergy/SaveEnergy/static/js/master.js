@@ -553,35 +553,50 @@ var startPage4 = function(data) {
 				};
 
 var setHighPrivacy1 = function(data) {
-						window["onePrivacy"] = 'high'
+						if(window["onePrivacy"] == 'low'){
+							window["onePrivacy"] = 'high';
+							var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
+							alert(iuserd);
+							if($('#'+"one").find($("div.devicesContainer")).length > 0){
+								var triggered = window[ chan + window["one"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
+							}
+							else{
+								if($("div.chartContainer").length > 0){
+									alert("hena sa7 kda");
+								}
+								else{
+									
+								}
+							}	
+						}
 					};
 
 var setHighPrivacy2 = function(data) {
-						window["twoPrivacy"] = 'high'
+						window["twoPrivacy"] = 'high';
 					};
 
 var setHighPrivacy3 = function(data) {
-						window["threePrivacy"] = 'high'
+						window["threePrivacy"] = 'high';
 					};
 
 var setHighPrivacy4 = function(data) {
-						window["fourPrivacy"] = 'high'
+						window["fourPrivacy"] = 'high';
 					};
 
 var setLowPrivacy1 = function(data) {
-						window["onePrivacy"] = 'low'
+						window["onePrivacy"] = 'low';
 					};
 
 var setLowPrivacy2 = function(data) {
-						window["twoPrivacy"] = 'low'
+						window["twoPrivacy"] = 'low';
 					};
 
 var setLowPrivacy3 = function(data) {
-						window["threePrivacy"] = 'low'
+						window["threePrivacy"] = 'low';
 					};
 
 var setLowPrivacy4 = function(data) {
-						window["fourPrivacy"] = 'low'
+						window["fourPrivacy"] = 'low';
 					};
 
 

@@ -179,7 +179,7 @@
 	window[window["{{userNumber}}"]+'backToProfile'] = function(data) {
 	                        setTimeout(function () {
 	                            $.ajax({
-	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/",
+	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/"+window["{{userNumber}}Privacy"]+"/",
 	                                type: "GET",
 	                                data: {
 	                                    'csrfmiddlewaretoken' : '{{csrfToken}}', 
@@ -242,7 +242,8 @@
 							                                    'FromYear':data.FromYear,
 							                                    'ToYear':data.ToYear,
 							                                    'FromDay':data.FromDay,
-							                                    'ToDay':data.ToDay
+							                                    'ToDay':data.ToDay,
+							                                    'privacyStatus' : window["{{userNumber}}Privacy"]
 							                                },
 							                                success: function(data){
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window[window["{{userNumber}}"]+'backToProfile']);
@@ -251,7 +252,7 @@
 							                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpPreChart',window['{{userNumber}}scrollUp']);
 																window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownPreChart',window['{{userNumber}}scrollDown']);
 
-							                                    $('#'+"{{userID}}preChart").html(data);
+							                                    $('#'+"{{userNumber}}").html(data);
 							                                    
 							                                    if($("div.devicesContainer").length > 0){
 												            		if(sessionStorage.noOfUsers != 1){

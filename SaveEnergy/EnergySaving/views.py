@@ -106,6 +106,7 @@ def charts(request):
 	return render_to_response('preCharts.html',{'devices':all_user_devices ,'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':curr_user.id ,'total_usage':float(total_usage)} ,RequestContext(request))
 
 def viewCharts(request):
+	privacy = request.GET['privacyStatus']
 	FromMonth = request.GET['FromMonth']
 	ToMonth = request.GET['ToMonth']
 	FromYear = request.GET['FromYear']
@@ -158,10 +159,8 @@ def viewCharts(request):
 			for usage in MonthlyUsage:
 				MonthlydeviceUsage = MonthlydeviceUsage + int(usage.value)
 			if MonthlydeviceUsage != 0:
-				monthAndYear.append(FromYear+"-"+str(monthsChosenInt[counter]))
 				devicesMonthlyUsage[counter].append(int(MonthlydeviceUsage))
 			else:
-				monthAndYear.append(FromYear+"-"+str(monthsChosenInt[counter]))
 				devicesMonthlyUsage[counter].append(0)
 			MonthlydeviceUsage = 0
 
@@ -171,7 +170,7 @@ def viewCharts(request):
 	devices_and_usage = {}
 	devices_and_usage = zip(all_user_devices , usages)
 	# print devices_and_usage
-	return render_to_response('viewCharts.html',{'devices':all_user_devices ,'devicesLoopCounter':devicesLoopCounter,'devicesName':simplejson.dumps(devicesName),'MonthsloopCounter':MonthsloopCounter ,'devicesMonthlyUsage':devicesMonthlyUsage,'monthsChosenString':simplejson.dumps(monthsChosenString),'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':request.GET['userID'] ,'total_usage':float(total_usage)} ,RequestContext(request))
+	return render_to_response('viewCharts.html',{'devices':all_user_devices ,'privacyStatus':privacy,'usagesLength':len(usages),'devicesLoopCounter':devicesLoopCounter,'devicesName':simplejson.dumps(devicesName),'MonthsloopCounter':MonthsloopCounter ,'devicesMonthlyUsage':devicesMonthlyUsage,'monthsChosenString':simplejson.dumps(monthsChosenString),'devices_and_usage' : devices_and_usage ,'userNumber':request.GET['userNumber'] ,'userID':request.GET['userID'] ,'total_usage':float(total_usage)} ,RequestContext(request))
 
 def getLastDayInMonth(month):
 	return {
@@ -285,8 +284,6 @@ def LoginRequest(request):
 	# 	return HttpResponseRedirect('/profile/')
 	if request.method == 'POST':
 		privacy = request.POST['privacyStatus']
-		print '--------------------'
-		print privacy
 		form = LoginForm(request.POST)
 		if form.is_valid():
 			username = form.cleaned_data['username']

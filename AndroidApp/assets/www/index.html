@@ -142,6 +142,7 @@
             <div data-role="content" > 
                 <div id="pieChartProfile" style="height: 200px; width: 100%;">
                 </div>
+                </br>
                 <!-- <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
                 <a href="#" data-role="button" onClick="scrollDownProfile()" > Scroll Down </a>
                 <a href="#" data-role="button" onClick="goToAddDevice()" > Add a new device </a> -->
@@ -585,7 +586,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.150.146:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.149.62:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 // var migratingContent = function(data){
@@ -714,7 +715,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.150.146:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.149.62:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',

@@ -25,6 +25,7 @@
 	    }
 	}
 
+
 	//logout listener ------------------------------------------------
 	window['{{userID}}logOutViewCharts'] = function(data){
 		alert(userArray);
@@ -178,7 +179,7 @@
 	window['{{userID}}backToProfile'] = function(data) {
 	                        setTimeout(function () {
 	                            $.ajax({
-	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/",
+	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/"+window["{{userNumber}}Privacy"]+"/",
 	                                type: "GET",
 	                                data: {
 	                                    'csrfmiddlewaretoken' : "{{csrf_token}}", 
@@ -275,31 +276,41 @@
 					]
 				}
 			); 
-		
 	{% endfor %}
 	
-	window['{{userID}}Piechart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
-		theme: "theme2",//theme1
-		title:{
-			text: "Total energy usage within the dates entered"              
-		},
-		data: [              
-			{
-			type: "pie",
-			dataPoints: window['{{userID}}'+"PieChart"]
-			}
-		]
-	});
-	window['{{userID}}Piechart'].render();
+	{% ifequal privacyStatus 'high' %}
+		alert("hena");
+		var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-view_charts', {'viewChartPieData': window['{{user_id}}'+"PieChart"] , 'viewChartBarData':window['{{userID}}'+'barDataPoints']});
+	{% endifequal %}
 
-	window['{{userID}}Barchart'] = new CanvasJS.Chart("{{userID}}BarCanvas", {
-		theme: "theme1",//theme1
-		title:{
-			text: "Total energy usage within the dates entered sorted monthly"             
-		},
-		data:window['{{userID}}'+'barDataPoints']
-  	});
-	window['{{userID}}Barchart'].render();
+	{% if usagesLength > 0 %}
+		{% ifequal privacyStatus 'low' %}
+			window['{{userID}}Piechart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
+				theme: "theme2",//theme1
+				title:{
+					text: "Total energy usage within the dates entered"              
+				},
+				data: [              
+					{
+					type: "pie",
+					dataPoints: window['{{userID}}'+"PieChart"]
+					}
+				]
+			});
+			window['{{userID}}Piechart'].render();
+
+			window['{{userID}}Barchart'] = new CanvasJS.Chart("{{userID}}BarCanvas", {
+				theme: "theme1",//theme1
+				title:{
+					text: "Total energy usage within the dates entered sorted monthly"             
+				},
+				data:window['{{userID}}'+'barDataPoints']
+		  	});
+			window['{{userID}}Barchart'].render();
+		{% endifequal %}
+	{% else %}
+
+	{% endif %}
 
   	//------------------------------------------------------------------------------------
   	window['{{userNumber}}scrollUp'] = function(data) {
@@ -318,7 +329,17 @@
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutViewCharts']);
 </script>
 <div id="{{userID}}charts" class="chartContainer">
-	<div id="{{userID}}PieCanvas" class="ViewChartsPieCanvas"></div>
-	<div id="{{userID}}BarCanvas" class="ViewChartsBarCanvas"></div>
+	{% if usagesLength > 0 %}
+		{% ifequal privacyStatus 'low' %}
+			<div id="{{userID}}PieCanvas" class="ViewChartsPieCanvas"></div>
+			<div id="{{userID}}BarCanvas" class="ViewChartsBarCanvas"></div>
+		{% else %}
+			<div id="{{user_id}}privacyProtected" class="privacyProtectedViewChart">
+				<h1>PRIVACY PROTECTED!</h1>
+			</div>
+		{% endifequal %}
+	{% else %}
+		<p class="NoChartViewChart">You don't have any data/charts yet</p>
+	{% endif %}
 	<!-- <div id="{{userID}}RadarCanvas" style="width:40%;height:40%"></div> -->
 </div>

@@ -327,6 +327,7 @@
 </script>
 
 <div id="devicesUsage{{user_id}}" class="devicesContainer">
+	<div id="{{user_id}}" class="iuserdProfile" style="display:none;"></div>
 	<div id="{{user_id}}userLevel" class="level">Level: {{userLvl}}</div>
 	<div id="{{user_id}}userMoney" class="money">Money: {{userMoney}} €</div>
 	{% if userBadges.count > 0 %}
@@ -343,12 +344,12 @@
 		{% if privacyStatus == 'low' %}
 			<div id="{{user_id}}PieCanvas" class="pieCanvas"></div>
 		{% else %}
-			<div id="{{user_id}}privacyProtected" class="privacyProtected">
+			<div id="{{user_id}}privacyProtected" class="privacyProtectedProfile">
 				<h1>PRIVACY PROTECTED!</h1>
 			</div>
 		{% endif %}
 	{% else %}
-		<p class="NoChart">You don't have any data/charts yet</p>
+		<p class="NoChartProfile">You don't have any data/charts yet</p>
 	{% endif %}
 </div>
 

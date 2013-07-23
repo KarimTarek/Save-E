@@ -177,7 +177,7 @@
 	window['{{userID}}backToProfile'] = function(data) {
 	                        setTimeout(function () {
 	                            $.ajax({
-	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/",
+	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/"+window["{{userNumber}}Privacy"]+"/",
 	                                type: "GET",
 	                                data: {
 	                                    'csrfmiddlewaretoken' : "{{csrf_token}}", 
