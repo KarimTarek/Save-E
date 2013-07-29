@@ -5,6 +5,11 @@ from time import *
 
 # Create your models here.
 
+class Tip(models.Model):
+    text = models.CharField(max_length=500)
+    def __unicode__(self):
+        return self.text
+        
 class Device(models.Model):
     name = models.CharField(max_length=200)
     user = models.ForeignKey(User)

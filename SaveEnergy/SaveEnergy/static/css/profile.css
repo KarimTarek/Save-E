@@ -12,24 +12,35 @@
 	margin-top: 5%;
 }*/
 
+
+.privacyProtectedProfile{
+	margin-left: 35%;
+	margin-top: -5%;
+}
+
 .level {
 	font-size: 25;
-	color: green;
+	background-color: green;
 	margin-left: 25%;
 	display: inline;
 	float: left;
+	padding: 1%;
+	color: white;
 }
 
 .money {
-	margin-left: 65%;
+	margin-left: 30%;
 	font-size: 25;
-	color: red;
+	color: white;
+	padding: 1%;
+	display: inline-table;
+	background-color: red;
 }
 
 .badges {
 	margin-left: 76%;
-	margin-top: 7%;
-	width: 27%;
+	margin-top: 3%;
+	width: 24%;
 }
 
 .pieCanvas {
@@ -39,37 +50,62 @@
 	margin-top: -11%;
 }
 
-.NoBadgesTitle{
-	
-
+.badgesTitle{
+	margin-left: 76%;
+	font-size: 25px;
+	color: grey;
 }
 
+.NoBadgesTitle{
+	margin-left: 29%;
+	margin-top: 7%;
+	font-size: 25px;
+	color: grey;
+}
+
+.tipContainer{
+	display: inline-block;
+	margin-top: 2%;
+	word-wrap: break-word;
+	width: 35%;
+	margin-left: 31%;
+}
+
+.NoChartProfile{
+	margin-left: 29%;
+	font-size: 25px;
+	color: grey;
+}
 
 /*for the 2 users */
 
 .pieCanvas2 {
-	width: 100%;
+	width: 95%;
 	height: 100%;
 }
 
 .level2 {
 	font-size: 25;
-	color: green;
+	background-color: green;
 	margin-left: 25%;
 	display: inline;
 	float: left;
+	padding: 1%;
+	color: white;
 }
 
 .money2 {
-	margin-left: 65%;
+	margin-left: 30%;
 	font-size: 25;
-	color: red;
+	color: white;
+	padding: 1%;
+	display: inline-table;
+	background-color: red;
 }
 
 .badges2 {
-	margin-left: 25%;
-	margin-top: 8%;
-	width: 75%;
+	margin-left: 33%;
+	width: 67%;
 }
 
 .NoBadgesTitle2{
@@ -79,66 +115,120 @@
 	color: gray;
 }
 
+.tipContainer2{
+	display: inline-block;
+	margin-top: 2%;
+	word-wrap: break-word;
+	width: 35%;
+	margin-left: 31%;
+}
+
+.NoChartProfile2{
+	margin-left: 29%;
+	font-size: 25px;
+	color: grey;
+}
+
 /*for the 3 users */
 
 .pieCanvas3 {
-	width: 100%;
+	width: 95%;
 	height: 100%;
 }
 
 .level3 {
 	font-size: 25;
-	color: green;
+	background-color: green;
 	margin-left: 25%;
 	display: inline;
 	float: left;
+	padding: 1%;
+	color: white;
 }
 
 .money3 {
-	margin-left: 65%;
+	margin-left: 30%;
 	font-size: 25;
-	color: red;
+	color: white;
+	padding: 1%;
+	display: inline-table;
+	background-color: red;
 }
 
 .badges3 {
-	margin-left: 25%;
-	margin-top: 8%;
-	width: 75%;
+	margin-left: 33%;
+	width: 67%;
 }
 
 .NoBadgesTitle3{
-	
+	margin-left: 29%;
+	margin-top: 7%;
+	font-size: 25px;
+	color: grey;
+}
 
+.tipContainer3{
+	display: inline-block;
+	margin-top: 2%;
+	word-wrap: break-word;
+	width: 35%;
+	margin-left: 31%;
+}
+
+.NoChartProfile3{
+	margin-left: 29%;
+	font-size: 25px;
+	color: grey;
 }
 
 /*for the 4 users */
 
 .pieCanvas4 {
-	width: 100%;
+	width: 95%;
 	height: 100%;
 }
 
 .level4 {
 	font-size: 25;
-	color: green;
+	background-color: green;
 	margin-left: 25%;
 	display: inline;
 	float: left;
+	padding: 1%;
+	color: white;
 }
 
 .money4 {
-	margin-left: 65%;
+	margin-left: 30%;
 	font-size: 25;
-	color: red;
+	color: white;
+	padding: 1%;
+	display: inline-table;
+	background-color: red;
 }
 
 .badges4 {
-	margin-left: 25%;
-	margin-top: 8%;
-	width: 75%;
+	margin-left: 33%;
+	width: 67%;
 }
 
 .NoBadgesTitle4{
+	margin-left: 29%;
+	margin-top: 7%;
+	font-size: 25px;
+	color: grey;
+}
 
+.tipContainer4{
+	display: inline-block;
+	margin-top: 2%;
+	word-wrap: break-word;
+	width: 35%;
+	margin-left: 31%;
+}
 
+.NoChartProfile4{
+	margin-left: 29%;
+	font-size: 25px;
+	color: grey;
 }

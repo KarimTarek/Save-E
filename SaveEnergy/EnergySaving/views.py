@@ -34,6 +34,9 @@ def profile(request,user_id,user_number,privacy):
 	import datetime
 	curr_user = User.objects.get(id = user_id)
 	all_user_devices = Device.objects.filter(user = curr_user)
+	TipIndex = Tip.objects.count() - 1
+	randomRecord = random.randint(0, TipIndex)
+	tipOfTheDay = Tip.objects.all()[int(randomRecord)]
 	total_usage = 0
 	deviceUsage = 0
 	usages = []
@@ -57,7 +60,7 @@ def profile(request,user_id,user_number,privacy):
 	devices_and_usage = zip(all_user_devices , usages)
 	# if(request.GET['privacy'] == 'high' and len(usages) > 0 ):
 	# 	p['private-SaveE'+user_number].trigger('profile_chart',{'devices_and_usage':devices_and_usage,'usagesLength':len(usages)})		
-	return render_to_response('profile.html',{'user_id':user_id,'privacyStatus':privacy,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages ,'usagesLength':len(usages), 'devices_and_usage' : devices_and_usage},RequestContext(request))
+	return render_to_response('profile.html',{'user_id':user_id,'tipOfTheDay':tipOfTheDay ,'privacyStatus':privacy,'userLvl':userLvl,'userMoney':userMoney ,'userBadges':userBadges, 'userNumber':user_number , 'devices':all_user_devices , 'total_usage':total_usage , 'usages':usages ,'usagesLength':len(usages), 'devices_and_usage' : devices_and_usage},RequestContext(request))
 		
 
 
@@ -309,46 +312,54 @@ def LoginRequest(request):
 					return HttpResponseRedirect('/profile/'+userID+'/'+userNumber+'/'+privacy+'/')
 			else:
 				# p = pusher.Pusher(app_id='42846', key='35bf6495b4677801c17e', secret='7ef9690d99684e1b6b68')
-				p['private-SaveE1'].trigger('loginStatus',{})
+				
 				if(request.POST['userNumber'] == "one"):
+					p['private-SaveE1'].trigger('loginStatus',{})
 					userNumber = "one"
 					context = {'form': form , 'userNumber' : userNumber}
 					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
 				elif(request.POST['userNumber'] == "two"):
+					p['private-SaveE2'].trigger('loginStatus',{})
 					userNumber = "two"
 					context = {'form': form , 'userNumber' : userNumber}
 					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
 				elif(request.POST['userNumber'] == "three"):
+					p['private-SaveE3'].trigger('loginStatus',{})
 					userNumber = "three"
 					context = {'form': form , 'userNumber' : userNumber}
 					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
 				elif(request.POST['userNumber'] == "four"):
+					p['private-SaveE4'].trigger('loginStatus',{})
 					userNumber = "four"
 					context = {'form': form , 'userNumber' : userNumber}
 					return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 		else:
 			if(request.POST['userNumber'] == "one"):
+				p['private-SaveE1'].trigger('loginStatus',{})
 				userNumber = "one"
 				context = {'form': form , 'userNumber' : userNumber}
-				return render_to_response('login.html', context, context_instance=RequestContext(request))
+				return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
 			elif(request.POST['userNumber'] == "two"):
+				p['private-SaveE2'].trigger('loginStatus',{})
 				userNumber = "two"
 				context = {'form': form , 'userNumber' : userNumber}
-				return render_to_response('login.html', context, context_instance=RequestContext(request))
+				return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
 			elif(request.POST['userNumber'] == "three"):
+				p['private-SaveE3'].trigger('loginStatus',{})
 				userNumber = "three"
 				context = {'form': form , 'userNumber' : userNumber}
-				return render_to_response('login.html', context, context_instance=RequestContext(request))
+				return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 
 			elif(request.POST['userNumber'] == "four"):
+				p['private-SaveE4'].trigger('loginStatus',{})
 				userNumber = "four"
 				context = {'form': form , 'userNumber' : userNumber}
-				return render_to_response('login.html', context, context_instance=RequestContext(request))
+				return render_to_response('loginFailed.html', context, context_instance=RequestContext(request))
 	else:
 		try:
 			#handling which user take which template

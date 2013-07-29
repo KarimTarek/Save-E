@@ -84,6 +84,14 @@
 	                            			if(userArray[i] == true){
 	                            				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
 	                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
+	                            				$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').addClass('level');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').removeClass('level2');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').addClass('money');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').removeClass('money2');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').addClass('badges');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
 												break;
 	                            			}
 	                            		}
@@ -265,7 +273,9 @@
 					            	'userNo': window["{{userNumber}}"]
 					            },
 					            success: function(data){
-					            	$('#'+"{{userNumber}}").html(data);
+					            	if({{total_usage}} != 0){
+					            		$('#'+"{{userNumber}}").html(data);
+					            	}
 					            	if($("div.devicesContainer").length > 0){
 					            		if(sessionStorage.noOfUsers != 1){
 	                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
@@ -298,25 +308,32 @@
 										}
 									}
 					            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
-					            	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
-					            	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
-					            	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
-									window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
-									window[ chan + window["{{userNumber}}"] ].unbind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
+					            	if({{total_usage}} != 0){
+					            		window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
+					            		window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
+						            	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
+										window[ chan + window["{{userNumber}}"] ].unbind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
+					            	}
+					            	
 					            	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 					            }
 							});
 					};
 
 	window['{{userNumber}}scrollUp'] = function(data) {
-		var y = $('#{{userNumber}}').scrollTop();
-		$('#{{userNumber}}').scrollTop(y-150);
+		var y = $('#devicesUsage{{user_id}}').scrollTop();
+		$('#devicesUsage{{user_id}}').scrollTop(y-150);
 	}
 
 	window['{{userNumber}}scrollDown'] = function(data) {
-		var y = $('#{{userNumber}}').scrollTop();
-		$('#{{userNumber}}').scrollTop(y+150);
+		var y = $('#devicesUsage{{user_id}}').scrollTop();
+		$('#devicesUsage{{user_id}}').scrollTop(y+150);
 	}
+
+	$(".alert-success").alert();
+	// window.setTimeout(function() { $(".alert").alert('close'); }, 10000);
+
 	// window[ chan + window["{{userNumber}}"] ].bind('client-goToAddDevice', goToAddDevice);
 	window[ chan + window["{{userNumber}}"] ].bind('client-goToChart',window['{{user_id}}goToChart']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
@@ -330,15 +347,19 @@
 	<div id="{{user_id}}" class="iuserdProfile" style="display:none;"></div>
 	<div id="{{user_id}}userLevel" class="level">Level: {{userLvl}}</div>
 	<div id="{{user_id}}userMoney" class="money">Money: {{userMoney}} €</div>
+	<div class="alert alert-success tipContainer">
+		<p style="text-align:center;">Tip of the day</p>
+		<p style="text-align:center;">{{tipOfTheDay}}</p>
+	</div>
 	{% if userBadges.count > 0 %}
-		<p style="margin-left: 76%;margin-top: 7%;font-size: 25px;color:grey;" class="badgesTitle">Badges:</p>
+		<p class="badgesTitle">Badges:</p>
 		<div id="{{user_id}}userBadges" class="badges">
 			{% for badge in userBadges %}
 				<img src="{{badge.image.url}}" alt="image" />
 			{% endfor %}
 		</div>
 	{% else %}
-		<p style="margin-left: 76%;margin-top: 7%;font-size: 25px;color:grey;" class="NoBadgesTitle">You don't have any Badges yet</p>
+		<p class="NoBadgesTitle">You don't have any Badges yet</p>
 	{% endif %}
 	{% if usagesLength > 0 %}
 		{% if privacyStatus == 'low' %}

@@ -24,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
         <script type="text/javascript" src="cordova-2.6.0.js"></script>
         <script src="js/libs/websocket.js"></script>
-        <script src="http://js.pusher.com/1.12/pusher.js"></script>
+        <script type="text/javascript" src="js/pusher.js"></script>
         <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/quo.js"></script>
@@ -40,6 +40,12 @@
                 height:99.7%;
                 display: block;
         	}
+
+            .viewCharts{
+                overflow: auto !important;
+                width: 100%;
+                height: 100%;
+            }
 
             .logo{
                 margin-left: 50%;
@@ -75,19 +81,24 @@
             }
 
             .PageClass {
-                height:100%;
-                width:100%;
+                height:100% !important;
+                /*width:100% !important;*/
+                overflow: auto !important;
             }
 
             .dateSelect{
-                width:35%;
+                width:45%;
             }
         </style>
     </head>
     <body>
     <!-- /page startPage -->
         <div data-role="page" id="startPage" class="PageClass" data-theme="b">
-            <div data-role="content">
+            <div data-role="content" class="PageClass">
+                <!-- <div id="chartContainer" data-role="none" style="height: 55%; width: 100%; margin-bottom:15%;">
+                </div>
+                <div id="chartContainer2" data-role="none" style="height: 55%; width: 100%; margin-bottom:15%;">
+                </div> -->
                 <p><a href="#" data-role="button" id="connect" data-theme="a" onClick="start()" data-transition="flip" class=""> Connect </a></p>
             </div>
         </div>
@@ -139,15 +150,16 @@
                 <h1>Save E</h1>
             </div>
             <div id="ProfileColorDiv" class="" data-role="none"></div>
-            <div data-role="content" > 
-                <div id="pieChartProfile" style="height: 200px; width: 100%;">
-                </div>
-                </br>
+            <div data-role="none" class='PageClass'>
+                <div id="pieChartProfile" data-role="none" style="height:55%;margin-bottom:15%;"></div>
+                
                 <!-- <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
                 <a href="#" data-role="button" onClick="scrollDownProfile()" > Scroll Down </a>
                 <a href="#" data-role="button" onClick="goToAddDevice()" > Add a new device </a> -->
-                <a href="#" data-role="button" onClick="goToLeaderBoard()" > Go to leaderboard </a>
-                <a href="#" data-role="button" onClick="goToCharts()"> View your charts </a>
+                <div data-role="none" style="margin-top:10%;width:100%;height:20%;">
+                    <a href="#" data-role="button" onClick="goToLeaderBoard()" > Go to leaderboard </a>
+                    <a href="#" data-role="button" onClick="goToCharts()"> View your charts </a>
+                </div>
             </div>
         </div>
     <!-- .................. -->
@@ -189,87 +201,89 @@
                 <a href="#" data-transition="flip" id="logoutCharts" data-icon="delete" onClick="logOut()">Log out</a>
                 <h1>Save E</h1>
             </div> 
-            <div id="ChartsColorDiv" class="" data-role="none"></div>
-            <p>Please choose a date to view your electricity consumption within: </p>
-            <div class="dateSelect">
-                <label for="" class="select">From:</label>
-                <select name="days" id="FromDays">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                </select>
-                <select name="FromMonths" id="FromMonths">
-                </select>
-                <select name="FromYears" id="FromYears">
-                </select>
-                <label for="" class="select">To:</label>
-                <select name="days" id="ToDays">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                </select>
-                <select name="ToMonths" id="ToMonths">
-                </select>
-                <select name="ToYears" id="ToYears">
-                </select>
+            <!-- <div id="ChartsColorDiv" class="" data-role="none"></div> -->
+            <div data-role="none" class="">
+                <p>Please choose a date to view your electricity consumption within: </p>
+                <div class="dateSelect">
+                    <label for="" class="select">From:</label>
+                    <select name="days" id="FromDays">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select name="FromMonths" id="FromMonths">
+                    </select>
+                    <select name="FromYears" id="FromYears">
+                    </select>
+                    <label for="" class="select">To:</label>
+                    <select name="days" id="ToDays">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select name="ToMonths" id="ToMonths">
+                    </select>
+                    <select name="ToYears" id="ToYears">
+                    </select>
+                </div>
+                <a href="#" id="viewCharts" data-role="button" onClick="viewCharts()"> View Charts </a>
             </div>
-            <a href="#" id="viewCharts" data-role="button" onClick="viewCharts()"> View Charts </a>
         </div>
     <!-- .................. -->
 
@@ -280,9 +294,9 @@
                 <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
                 <h1>Save E</h1>
             </div>
-            <div id="viewCharts" class="" data-role="none"></div>
-            <div data-role="content" > 
-
+            <div data-role="none" style="margin-bottom:15%;"class="PageClass">
+                <div data-role="none" id="ViewChartPieCanvas" style="height:60%;width:100%;"></div>
+                <!-- <div data-role="none" id="ViewChartBarCanvas" style="height:60%;width:100%;margin-top:20%;"></div> -->
             </div>
         </div>
     <!-- .................. -->
@@ -322,10 +336,69 @@
         	
         
         <script type="text/javascript">
+            // window.onload = function () {
+
+            //   var chart = new CanvasJS.Chart("chartContainer", {
+            //       theme: "theme2",//theme1
+            //       title:{
+            //           text: "Basic Column Chart - CanvasJS"              
+            //      },
+            //       data: [              
+            //       {
+            // // Change type to "bar", "splineArea", "area", "spline", "pie",etc.
+            //           type: "pie",
+            //           dataPoints: [
+            //                 {
+            //                   label: "Display 20%",
+            //                   y: 20
+            //                 },
+            //                 {
+            //                   label: "CPU 25%",
+            //                   y: 25
+            //                 },
+            //                 {
+            //                   label: "Mobile 22%",
+            //                   y: 22
+            //                 },
+            //                 {
+            //                   label: "Lights 31%",
+            //                   y: 31
+            //                 }
+            //               ]
+            //       }
+            //       ]
+            //   });
+
+            //   chart.render();
+
+            //   var chart2 = new CanvasJS.Chart("chartContainer2", {
+            //       theme: "theme2",//theme1
+            //       title:{
+            //           text: "Basic Column Chart - CanvasJS"              
+            //      },
+            //       data: [              
+            //       {
+            // // Change type to "bar", "splineArea", "area", "spline", "pie",etc.
+            //           type: "column",
+            //           dataPoints: [
+            //           { label: "apple", y: 10 },
+            //           { label: "orange", y: 15 },
+            //           { label: "banana", y: 25 },
+            //           { label: "mango", y: 30 },
+            //           { label: "grape", y: 28 }
+            //           ]
+            //       }
+            //       ]
+            //   });
+
+            //   chart2.render();
+            // }
+            var loginFailed = "";
             var channelName = "private-SaveE";
             document.addEventListener("deviceready", onDeviceReady, false);
 
             function exitApp(){
+                // logOut();
                 navigator.app.exitApp();
             }
 
@@ -346,6 +419,13 @@
             function onDeviceReady() {
                 document.addEventListener("backbutton", onBackKeyDown, false);
                 document.addEventListener("menubutton", onMenuKeyDown, false);
+                document.addEventListener("offline", onOffline, false);
+            }
+
+            function onOffline() {
+                $.mobile.loading( 'hide');
+                $('a').removeClass('ui-disabled');
+                alert('No internet connection found please check your internet connection');
             }
 
             // Handle the back button
@@ -384,37 +464,42 @@
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
-                var username = document.getElementById('username').value
-                var pass = document.getElementById('password').value
+                var username = document.getElementById('username').value;
+                var pass = document.getElementById('password').value;
                 var triggered = window['channel'].trigger('client-login', { 'username': username ,'pass': pass });
                 var SubmitLoginFormLC = function(data){
                         $.mobile.loading( 'hide');
                         window['channel'].unbind('client-loadingComplete', SubmitLoginFormLC);
+                        window['channel'].unbind('loginStatus', loginFailed);
                         $.mobile.changePage($('#page1'),{transition: "flip"});
                         $('a').removeClass('ui-disabled');
                     };
                 var displayProfileCharts = function(data){
                         var pieChartData = data.profileChartData;
+                        // $('#pieChartProfile').show();
                         var pieChart = new CanvasJS.Chart("pieChartProfile", {
-                                theme: "theme2",//theme1
+                                theme: "theme1",//theme1
                                 title:{
-                                    // text: "Total energy usage within the dates entered"              
+                                    text: "Your total energy usage",
+                                    // fontSize: 30             
                                 },
                                 data: [              
-                                    {
-                                    type: "pie",
-                                    dataPoints: pieChartData
+                                    {   
+                                        // indexLabelFontSize: 15,
+                                        type: "pie",
+                                        dataPoints: pieChartData
                                     }
                                 ]
                             });
-                        pieChart.render();
+                            pieChart.render();
+                        // $.mobile.changePage($('#page1'),{allowSamePageTransition:true});
                         window['channel'].unbind('client-profile_chart', displayProfileCharts);
                     };
                 window['channel'].bind('client-profile_chart', displayProfileCharts);
                 window['channel'].bind('client-loadingComplete', SubmitLoginFormLC);
             }
         // ------------------------------------
-
+        
 
         // Sending signal to WEB APP to go back to login page ------
             function goBackToLoginPage() {
@@ -478,10 +563,10 @@
                 var showCharts = true;
                 var goToChartsDD = function(data){
                         window['channel'].unbind('months', goToChartsDD);
-                        $('#FromMonths').html();
-                        $('#ToMonths').html();
-                        $('#FromYears').html();
-                        $('#ToYears').html();
+                        $('#FromMonths').empty();
+                        $('#ToMonths').empty();
+                        $('#FromYears').empty();
+                        $('#ToYears').empty();
                         var months = data.months;
                         var years = data.years;
                         if(months.length == 0 && years.length == 0){
@@ -504,8 +589,8 @@
 
                 var goToChartsLC = function(data){
                         $.mobile.loading( 'hide');
-                        window['channel'].unbind('client-loadingComplete', goToChartsLC);
-                        window['channel'].unbind('months', goToChartsDD);
+                            window['channel'].unbind('client-loadingComplete', goToChartsLC);
+                            window['channel'].unbind('months', goToChartsDD);
                         if(showCharts){
                             $.mobile.changePage($('#page3'),{transition: "flip"});
                         }
@@ -547,6 +632,36 @@
                         $('a').removeClass('ui-disabled');
                     };
 
+                var displayChartsViewCharts = function(data){
+                        var ViewChartspieChartData = data.viewChartPieData;
+                        var ViewChartsbarChartData = data.viewChartBarData;
+                        var ViewChartPieCanvas = new CanvasJS.Chart("ViewChartPieCanvas", {
+                            theme: "theme2",//theme1
+                            title:{
+                                // text: "Total energy usage within the dates entered"              
+                                text: "Test"
+                            },
+                            data: [              
+                                {
+                                type: "pie",
+                                dataPoints: ViewChartspieChartData
+                                }
+                            ]
+                        });
+                        ViewChartPieCanvas.render();
+
+                        var ViewChartBarCanvas = new CanvasJS.Chart("ViewChartBarCanvas", {
+                            theme: "theme1",//theme1
+                            title:{
+                                text: "Total energy usage within the dates entered sorted monthly"             
+                            },
+                            data: ViewChartsbarChartData
+                        });
+                        ViewChartBarCanvas.render();
+                        window['channel'].unbind('client-view_charts', displayChartsViewCharts);
+                    };
+
+                window['channel'].bind('client-view_charts', displayChartsViewCharts);
                 window['channel'].bind('client-loadingComplete', viewChartsLC);
             }
         //---------------------------------------------
@@ -586,7 +701,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.149.62:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 // var migratingContent = function(data){
@@ -611,12 +726,11 @@
                                     $('#ProfileColorDiv').addClass('glowing-box-'+window['userNumber']);
                                     $('#ChartsColorDiv').addClass('glowing-box-'+window['userNumber']);
                                 };
-                var loginFailed = function(data) {
+                    loginFailed = function(data) {
                     $.mobile.loading( 'hide');
                     $('a').removeClass('ui-disabled');
                     window['channel'].unbind('pusher:subscription_succeeded', subscriptionSucceeded);
                     window['channel'].unbind('client-loadingComplete', startPageLC);
-                    window['channel'].unbind('loginStatus', loginFailed);
                     alert('Login failed please check your username and password :)');
                 }
                 window['channel'].bind('loginStatus', loginFailed);
@@ -690,7 +804,7 @@
             function logOut() {
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
-                $('#CancelExit').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');;
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-logout',{});
                 var logOutLC = function(data){
@@ -715,7 +829,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.149.62:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
                 channel.bind('client-changeChannelName',
@@ -766,9 +880,13 @@
                 var triggered = window['channel'].trigger('client-scrollRightProfile', {});
             });
             $$('#page1').swipeUp(function(){
+                var y = $('#page1').scrollTop();
+                $('#page1 .viewCharts').scrollTop(y-150);
                 var triggered = window['channel'].trigger('client-scrollUpProfile', {});
             });
             $$('#page1').swipeDown(function(){
+                var y = $('#page1').scrollTop();
+                $('#page1 .viewCharts').scrollTop(y+150);
                 var triggered = window['channel'].trigger('client-scrollDownProfile', {});
             });
             $$('#page3').swipeLeft(function(){
@@ -779,13 +897,20 @@
             });
             $$('#page3').swipeDown(function(){
             });
-            $$('#page4').swipeLeft(function(){
+            $$('#page4 .viewCharts').swipeLeft(function(){
+                // $("#page4").animate(
+                //     {scrollLeft: "-="-200}, 1000
+                // );
             });
-            $$('#page4').swipeRight(function(){
+            $$('#page4 .viewCharts').swipeRight(function(){
             });
-            $$('#page4').swipeUp(function(){
+            $$('#page4 .viewCharts').swipeUp(function(){
+                var y = $('#page4').scrollTop();
+                $('#page4').scrollTop(y-150);
             });
-            $$('#page4').swipeDown(function(){
+            $$('#page4 .viewCharts').swipeDown(function(){
+                var y = $('#page4').scrollTop();
+                $('#page4').scrollTop(y+150);
             });    
         </script>
     </body>

@@ -1,9 +1,9 @@
 var userArray = [ false, false, false, false ];
 var userNumberArray = [ 1, 2, 3, 4 ];
-window["onePrivacy"] = 'low'
-window["twoPrivacy"] = 'low'
-window["threePrivacy"] = 'low'
-window["fourPrivacy"] = 'low'
+window["onePrivacy"] = 'low';
+window["twoPrivacy"] = 'low';
+window["threePrivacy"] = 'low';
+window["fourPrivacy"] = 'low';
 
 if(sessionStorage.noOfUsers == null){
 	 sessionStorage.noOfUsers = 0;
@@ -15,6 +15,7 @@ var channel1 = pusher.subscribe('private-SaveE1');
 var channel2 = pusher.subscribe('private-SaveE2');
 var channel3 = pusher.subscribe('private-SaveE3');
 var channel4 = pusher.subscribe('private-SaveE4');
+
 Pusher.channel_auth_endpoint = '/auth/';
 Pusher.channel_auth_transport = 'ajax';
 
@@ -555,32 +556,93 @@ var startPage4 = function(data) {
 var setHighPrivacy1 = function(data) {
 						if(window["onePrivacy"] == 'low'){
 							window["onePrivacy"] = 'high';
-							var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
-							alert(iuserd);
 							if($('#'+"one").find($("div.devicesContainer")).length > 0){
+								var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
+								var tempName = iuserd+'privacyProtected';
+								$('#'+"one").find("div.pieCanvas").replaceWith('<div id='+ tempName +'class="privacyProtectedProfile"><h1>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["one"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
-								if($("div.chartContainer").length > 0){
-									alert("hena sa7 kda");
+								if($('#'+"one").find($("div.chartContainer")).length > 0){
+									var iuserd = $('#'+"one").find("div.iuserdViewCharts").attr('id');
+									var tempName = iuserd+'privacyProtected';
+									$('#'+"one").find("div.chartContainer").replaceWith('<div id='+ tempName +' class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									var triggered = window[ chan + window["one"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
 								}
 								else{
 									
 								}
-							}	
+							}
 						}
 					};
 
 var setHighPrivacy2 = function(data) {
-						window["twoPrivacy"] = 'high';
+						if(window["onePrivacy"] == 'low'){
+							window["onePrivacy"] = 'high';
+							if($('#'+"two").find($("div.devicesContainer")).length > 0){
+								var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
+								var tempName = iuserd+'privacyProtected';
+								$('#'+"two").find("div.pieCanvas").replaceWith('<div id='+ tempName +'class="privacyProtectedProfile"><h1>PRIVACY PROTECTED!</h1></div>');
+								var triggered = window[ chan + window["two"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
+							}
+							else{
+								if($('#'+"two").find($("div.chartContainer")).length > 0){
+									var iuserd = $('#'+"two").find("div.iuserdViewCharts").attr('id');
+									var tempName = iuserd+'privacyProtected';
+									$('#'+"two").find("div.chartContainer").replaceWith('<div id='+ tempName +'class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									var triggered = window[ chan + window["two"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
+								}
+								else{
+									
+								}
+							}
+						}
 					};
 
 var setHighPrivacy3 = function(data) {
-						window["threePrivacy"] = 'high';
+						if(window["onePrivacy"] == 'low'){
+							window["onePrivacy"] = 'high';
+							if($('#'+"three").find($("div.devicesContainer")).length > 0){
+								var iuserd = $('#'+"three").find("div.iuserdProfile").attr('id');
+								var tempName = iuserd+'privacyProtected';
+								$('#'+"three").find("div.pieCanvas").replaceWith('<div id='+ tempName +'class="privacyProtectedProfile"><h1>PRIVACY PROTECTED!</h1></div>');
+								var triggered = window[ chan + window["three"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
+							}
+							else{
+								if($('#'+"three").find($("div.chartContainer")).length > 0){
+									var iuserd = $('#'+"three").find("div.iuserdViewCharts").attr('id');
+									var tempName = iuserd+'privacyProtected';
+									$('#'+"three").find("div.chartContainer").replaceWith('<div id='+ tempName +'class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									var triggered = window[ chan + window["three"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
+								}
+								else{
+									
+								}
+							}
+						}
 					};
 
 var setHighPrivacy4 = function(data) {
-						window["fourPrivacy"] = 'high';
+						if(window["onePrivacy"] == 'low'){
+							window["onePrivacy"] = 'high';
+							if($('#'+"four").find($("div.devicesContainer")).length > 0){
+								var iuserd = $('#'+"four").find("div.iuserdProfile").attr('id');
+								var tempName = iuserd+'privacyProtected';
+								$('#'+"four").find("div.pieCanvas").replaceWith('<div id='+tempName+'" class="privacyProtectedProfile"><h1>PRIVACY PROTECTED!</h1></div>');
+								var triggered = window[ chan + window["four"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
+							}
+							else{
+								if($('#'+"four").find($("div.chartContainer")).length > 0){
+									var iuserd = $('#'+"four").find("div.iuserdViewCharts").attr('id');
+									var tempName = iuserd+'privacyProtected';
+									$('#'+"four").find("div.chartContainer").replaceWith('<div id='+ tempName +'class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									var triggered = window[ chan + window["four"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
+								}
+								else{
+									
+								}
+							}
+						}
 					};
 
 var setLowPrivacy1 = function(data) {

@@ -254,7 +254,7 @@
 	window['{{userID}}barDataPoints']=[];
 
 	{% for device,usage in devices_and_usage %}
-		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}}',y: (parseInt('{{usage}}'))});
+		window['{{userID}}'+"PieChart"] = window['{{userID}}'+"PieChart"].concat({ label:'{{device.name}} '+parseInt('{{usage}}')+'%',y: (parseInt('{{usage}}'))});
 	{% endfor %}
 
 	{% for c in devicesLoopCounter %}
@@ -279,8 +279,7 @@
 	{% endfor %}
 	
 	{% ifequal privacyStatus 'high' %}
-		alert("hena");
-		var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-view_charts', {'viewChartPieData': window['{{user_id}}'+"PieChart"] , 'viewChartBarData':window['{{userID}}'+'barDataPoints']});
+		var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-view_charts', {'viewChartPieData': window['{{userID}}'+"PieChart"] ,'viewChartBarData':window['{{userID}}'+'barDataPoints']});
 	{% endifequal %}
 
 	{% if usagesLength > 0 %}
@@ -329,6 +328,7 @@
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutViewCharts']);
 </script>
 <div id="{{userID}}charts" class="chartContainer">
+	<div id="{{userId}}" class="iuserdViewCharts" style="display:none;"></div>
 	{% if usagesLength > 0 %}
 		{% ifequal privacyStatus 'low' %}
 			<div id="{{userID}}PieCanvas" class="ViewChartsPieCanvas"></div>
