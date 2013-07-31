@@ -7,7 +7,7 @@ window["fourPrivacy"] = 'low';
 
 if(sessionStorage.noOfUsers == null){
 	 sessionStorage.noOfUsers = 0;
-	 alert(sessionStorage.noOfUsers);
+	 // alert(sessionStorage.noOfUsers);
 }
 var pusher = new Pusher('35bf6495b4677801c17e');
 var channel = pusher.subscribe('private-SaveE');
@@ -18,6 +18,71 @@ var channel4 = pusher.subscribe('private-SaveE4');
 
 Pusher.channel_auth_endpoint = '/auth/';
 Pusher.channel_auth_transport = 'ajax';
+
+var timeoutId1 = null;
+var timeoutId2 = null;
+var timeoutId3 = null;
+var timeoutId4 = null;
+
+function startInactivityCheck1() {
+    timeoutId1 = window.setTimeout(function(){
+        window[ chan + 1 ].trigger('client-logoutMobile',{});
+    }, 2 * 60 * 1000); // called after 2 minutes
+};
+
+// called by something that detects user activity
+function userActivityDetected1(){
+    if(timeoutId1 !== null) {
+        window.clearTimeout(timeoutId1);
+    }
+
+    startInactivityCheck1();
+};
+
+function startInactivityCheck2() {
+    timeoutId2 = window.setTimeout(function(){
+        var triggered = channel2.trigger('client-logoutMobile',{});
+    }, 2 * 60 * 1000); // called after 2 minutes
+};
+
+// called by something that detects user activity
+function userActivityDetected2(){
+    if(timeoutId2 !== null) {
+        window.clearTimeout(timeoutId2);
+    }
+
+    startInactivityCheck2();
+};
+
+function startInactivityCheck3() {
+    timeoutId3 = window.setTimeout(function(){
+        var triggered = channel3.trigger('client-logoutMobile',{});
+    }, 2 * 60 * 1000); // called after 2 minutes
+};
+
+// called by something that detects user activity
+function userActivityDetected3(){
+    if(timeoutId3 !== null) {
+        window.clearTimeout(timeoutId3);
+    }
+
+    startInactivityCheck3();
+};
+
+function startInactivityCheck4() {
+    timeoutId4 = window.setTimeout(function(){
+        var triggered = channel4.trigger('client-logoutMobile',{});
+    }, 2 * 60 * 1000); // called after 2 minutes
+};
+
+// called by something that detects user activity
+function userActivityDetected4(){
+    if(timeoutId4 !== null) {
+        window.clearTimeout(timeoutId4);
+    }
+
+    startInactivityCheck4();
+};
 
 function getUserNumber(num){
 		var number;
@@ -40,8 +105,8 @@ function getUserNumber(num){
 	}
 
 var start = function(data) {
-				alert(userArray);
-				alert(sessionStorage.noOfUsers);
+				// alert(userArray);
+				// alert(sessionStorage.noOfUsers);
 				if(sessionStorage.noOfUsers < 4){
 					// sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) + 1;
 					var found = false;
@@ -49,7 +114,7 @@ var start = function(data) {
 					for(var i=0 ; i<userArray.length ; i++){
 						if(!userArray[i] && !found){
 							found = true;
-							alert(i);
+							// alert(i);
 							sessionStorage.userNumber = userNumberArray[i];
 							userArray[i] = true;
 						}
@@ -60,17 +125,17 @@ var start = function(data) {
 				}
 				else{
 					// sessionStorage.noOfUsers = -1;
-					alert("Screen full");
+					var triggered = channel.trigger('client-screenFull', {});
 				}
 		        
 			};
 
 var startPage1 = function(data) {
-					if(sessionStorage.noOfUsers < 4){
-					}
-					else{
-						alert("Screen full");
-					}
+					// if(sessionStorage.noOfUsers < 4){
+					// }
+					// else{
+					// 	alert("Screen full");
+					// }
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",
@@ -223,17 +288,18 @@ var startPage1 = function(data) {
 			            	}
 			            	$('#one').show(1000);
 					        var triggered = channel1.trigger('client-loadingComplete', {'color':'#1725E8'});
+					        startInactivityCheck1();
 						}
 					});
 				};
 
 var startPage2 = function(data) {
-					if(sessionStorage.noOfUsers < 4){
-						alert(sessionStorage.userNumber);
-					}
-					else{
-						alert("Screen full");
-					}
+					// if(sessionStorage.noOfUsers < 4){
+					// 	alert(sessionStorage.userNumber);
+					// }
+					// else{
+					// 	alert("Screen full");
+					// }
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",
@@ -272,18 +338,18 @@ var startPage2 = function(data) {
 											}
 										}
                         				if(userNumberArray[i] == 1){
-                        					alert("here in first if");
+                        					// alert("here in first if");
                         					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                         					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_two" , 1500);
                         				}
                         				else{
                         					if(j%2 == 0){
-                        						alert("here in second if");
+                        						// alert("here in second if");
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
                             				}
                             				else {
-                            					alert("here in third if");
+                            					// alert("here in third if");
                             					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass();
                             					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
                             				}
@@ -390,12 +456,12 @@ var startPage2 = function(data) {
 
 
 var startPage3 = function(data) {
-					if(sessionStorage.noOfUsers < 4){
-						alert(sessionStorage.userNumber);
-					}
-					else{
-						alert("Screen full");
-					}
+					// if(sessionStorage.noOfUsers < 4){
+					// 	alert(sessionStorage.userNumber);
+					// }
+					// else{
+					// 	alert("Screen full");
+					// }
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",
@@ -500,12 +566,12 @@ var startPage3 = function(data) {
 				};
 
 var startPage4 = function(data) {
-					if(sessionStorage.noOfUsers < 4){
-						alert(sessionStorage.userNumber);
-					}
-					else{
-						alert("Screen full");
-					}
+					// if(sessionStorage.noOfUsers < 4){
+					// 	alert(sessionStorage.userNumber);
+					// }
+					// else{
+					// 	alert("Screen full");
+					// }
 					$.ajax({
 			            url: "/login/",
 			            type: "GET",

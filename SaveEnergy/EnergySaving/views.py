@@ -66,7 +66,15 @@ def profile(request,user_id,user_number,privacy):
 
 def leaderBoard(request):
 	curr_user = User.objects.get(id = request.GET['userID'])
-	all_users = User.objects.all()
+	all_users = User.objects.all().order_by('-level')
+	rank=0
+	for user in all_users:
+		if user.id != curr_user.id:
+			rank = rank + 1
+		else:
+			rank = rank + 1
+			break
+	p['private-SaveE'+request.GET['userNumberInt']].trigger('yourRank',{'rank':rank})
 	return render_to_response('leader_board.html',{'userID':curr_user.id,'userNumber':request.GET['userNumber'],'all_users':all_users},RequestContext(request))
 
 @csrf_exempt

@@ -28,8 +28,8 @@
 
 	//logout listener ------------------------------------------------
 	window['{{userID}}logOutViewCharts'] = function(data){
-		alert(userArray);
-		alert(sessionStorage.noOfUsers);
+		// alert(userArray);
+		// alert(sessionStorage.noOfUsers);
 		sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 		userArray[parseInt(window["{{userNumber}}"])-1] = false;
 		$.ajax({
@@ -40,6 +40,22 @@
             	'userID':"{{userID}}"
            	},
             success: function(data){
+            	if(window["{{userNumber}}"] == 1){
+			        userActivityDetected1();
+			    }
+			    else{
+			        if(window["{{userNumber}}"] == 2){
+			            userActivityDetected2();
+			        }
+			        else{
+			            if(window["{{userNumber}}"] == 3){
+			                userActivityDetected3();
+			            }
+			            else{
+			                userActivityDetected4();
+			            }
+			        }
+			    }
             	// alert("Logged out");
             	$('#'+"{{userNumber}}").html("");
             	$('#'+"{{userNumber}}").hide(1000);
@@ -52,6 +68,30 @@
                 			if(userArray[i] == true){
                 				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
                 				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
+								if($("div.devicesContainer").length > 0){
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').addClass('level');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').removeClass('level2');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').addClass('money');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').removeClass('money2');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').addClass('badges');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
+								}
+								else{
+									if($("div.chartContainer").length > 0){
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').addClass('ViewChartsPieCanvas');
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').removeClass('ViewChartsPieCanvas2');
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').addClass('ViewChartsBarCanvas');
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').removeClass('ViewChartsBarCanvas2');
+									}
+									else{
+										if($("div.preChartContainer").length > 0){
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').addClass('preChartContainer');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').removeClass('preChartContainer2');
+										}
+									}
+								}
 								break;
                 			}
                 		}
@@ -63,31 +103,31 @@
                     			if(userArray[i] == true){
                     				if($("div.devicesContainer").length > 0){
 					            		if(sessionStorage.noOfUsers != 1){
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level'+sessionStorage.noOfUsers);
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money'+sessionStorage.noOfUsers);
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges'+sessionStorage.noOfUsers);
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').addClass('level'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').removeClass('level3');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money3').addClass('money'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money3').removeClass('money3');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').addClass('badges'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').removeClass('badges3');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').addClass('pieCanvas'+sessionStorage.noOfUsers);
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').removeClass('pieCanvas3');
 		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 		                				}
 									}
 									else{
 										if($("div.chartContainer").length > 0){
 											if(sessionStorage.noOfUsers != 1){
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').removeClass('ViewChartsPieCanvas3');
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas3').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas3').removeClass('ViewChartsBarCanvas3');
 		                    				}
 										}
 										else{
 											if($("div.preChartContainer").length > 0){
 												if(sessionStorage.noOfUsers != 1){
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').addClass('preChartContainer'+sessionStorage.noOfUsers);
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').removeClass('preChartContainer3');
 		                        				}
 											}
 										}
@@ -111,31 +151,31 @@
                         			if(userArray[i] == true){
                         				if($("div.devicesContainer").length > 0){
 						            		if(sessionStorage.noOfUsers != 1){
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level'+sessionStorage.noOfUsers);
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money'+sessionStorage.noOfUsers);
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges'+sessionStorage.noOfUsers);
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
-			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').addClass('level'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').removeClass('level4');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money4').addClass('money'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money4').removeClass('money4');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').addClass('badges'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').removeClass('badges4');
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').addClass('pieCanvas'+sessionStorage.noOfUsers);
+			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').removeClass('pieCanvas4');
 			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 			                				}
 										}
 										else{
 											if($("div.chartContainer").length > 0){
 												if(sessionStorage.noOfUsers != 1){
-			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
-			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
-			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').removeClass('ViewChartsPieCanvas4');
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas4').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas4').removeClass('ViewChartsBarCanvas4');
 			                    				}
 											}
 											else{
 												if($("div.preChartContainer").length > 0){
 													if(sessionStorage.noOfUsers != 1){
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').addClass('preChartContainer'+sessionStorage.noOfUsers);
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').removeClass('preChartContainer4');
 			                        				}
 												}
 											}
@@ -186,6 +226,22 @@
 	                                    'userID':'{{userID}}'
 	                                },
 	                                success: function(data){
+	                                	if(window["{{userNumber}}"] == 1){
+									        userActivityDetected1();
+									    }
+									    else{
+									        if(window["{{userNumber}}"] == 2){
+									            userActivityDetected2();
+									        }
+									        else{
+									            if(window["{{userNumber}}"] == 3){
+									                userActivityDetected3();
+									            }
+									            else{
+									                userActivityDetected4();
+									            }
+									        }
+									    }
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutViewCharts']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpViewCharts',window['{{userNumber}}scrollUp']);
@@ -313,11 +369,43 @@
 
   	//------------------------------------------------------------------------------------
   	window['{{userNumber}}scrollUp'] = function(data) {
+  		if(window["{{userNumber}}"] == 1){
+            userActivityDetected1();
+        }
+        else{
+            if(window["{{userNumber}}"] == 2){
+                userActivityDetected2();
+            }
+            else{
+                if(window["{{userNumber}}"] == 3){
+                    userActivityDetected3();
+                }
+                else{
+                    userActivityDetected4();
+                }
+            }
+        }
 		var y = $('#{{userNumber}}').scrollTop();
 		$('#{{userNumber}}').scrollTop(y-150);
 	}
 
 	window['{{userNumber}}scrollDown'] = function(data) {
+		if(window["{{userNumber}}"] == 1){
+            userActivityDetected1();
+        }
+        else{
+            if(window["{{userNumber}}"] == 2){
+                userActivityDetected2();
+            }
+            else{
+                if(window["{{userNumber}}"] == 3){
+                    userActivityDetected3();
+                }
+                else{
+                    userActivityDetected4();
+                }
+            }
+        }
 		var y = $('#{{userNumber}}').scrollTop();
 		$('#{{userNumber}}').scrollTop(y+150);
 	}

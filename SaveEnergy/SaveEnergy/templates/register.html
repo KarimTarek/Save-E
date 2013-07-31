@@ -53,6 +53,22 @@
                     success: function(data){
                         // alert("success");
                         // console.log(userNumber + "Register Page");
+                        if(window["{{userNumber}}"] == 1){
+                            userActivityDetected1();
+                        }
+                        else{
+                            if(window["{{userNumber}}"] == 2){
+                                userActivityDetected2();
+                            }
+                            else{
+                                if(window["{{userNumber}}"] == 3){
+                                    userActivityDetected3();
+                                }
+                                else{
+                                    userActivityDetected4();
+                                }
+                            }
+                        }
                         window[ chan + window["{{userNumber}}"] ].unbind('client-register',window['{{userNumber}}register']);
                         window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
                         window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpRegister',window['{{userNumber}}scrollUp']);
@@ -104,6 +120,22 @@
                                 'userNumber':sessionStorage.noOfUsers
                             },
                             success: function(data){
+                                if(window["{{userNumber}}"] == 1){
+                                    userActivityDetected1();
+                                }
+                                else{
+                                    if(window["{{userNumber}}"] == 2){
+                                        userActivityDetected2();
+                                    }
+                                    else{
+                                        if(window["{{userNumber}}"] == 3){
+                                            userActivityDetected3();
+                                        }
+                                        else{
+                                            userActivityDetected4();
+                                        }
+                                    }
+                                }
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-register',window['{{userNumber}}register']);
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToLoginPage',window['{{userNumber}}goBackToLoginPage']);
                                 window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpRegister',window['{{userNumber}}scrollUp']);
@@ -146,11 +178,43 @@
                     };
 
     window['{{userNumber}}scrollUp'] = function(data) {
+        if(window["{{userNumber}}"] == 1){
+            userActivityDetected1();
+        }
+        else{
+            if(window["{{userNumber}}"] == 2){
+                userActivityDetected2();
+            }
+            else{
+                if(window["{{userNumber}}"] == 3){
+                    userActivityDetected3();
+                }
+                else{
+                    userActivityDetected4();
+                }
+            }
+        }
         var y = $('#{{userNumber}}').scrollTop();
         $('#{{userNumber}}').scrollTop(y-150);
     }
 
     window['{{userNumber}}scrollDown'] = function(data) {
+        if(window["{{userNumber}}"] == 1){
+            userActivityDetected1();
+        }
+        else{
+            if(window["{{userNumber}}"] == 2){
+                userActivityDetected2();
+            }
+            else{
+                if(window["{{userNumber}}"] == 3){
+                    userActivityDetected3();
+                }
+                else{
+                    userActivityDetected4();
+                }
+            }
+        }
         var y = $('#{{userNumber}}').scrollTop();
         $('#{{userNumber}}').scrollTop(y+150);
     }

@@ -31,7 +31,23 @@
 	Pusher.channel_auth_transport = 'ajax';
 	// alert(chan + userNumber);
 
-	window['{{userNumber}}login'] = function(data) {
+	window['{{userNumber}}login'] = function(data) {		
+					if(window["{{userNumber}}"] == 1){
+						userActivityDetected1();
+					}
+					else{
+						if(window["{{userNumber}}"] == 2){
+							userActivityDetected2();
+						}
+						else{
+							if(window["{{userNumber}}"] == 3){
+								userActivityDetected3();
+							}
+							else{
+								userActivityDetected4();
+							}
+						}
+					}
 					var username = document.getElementById("id_user_"+"{{userNumber}}"+"-username");
 					var password = document.getElementById("id_user_"+"{{userNumber}}"+"-password");
 					username.value = data.username;
@@ -92,6 +108,22 @@
 				};
 
 	window['{{userNumber}}startPage'] = function(data) {
+					if(window["{{userNumber}}"] == 1){
+						userActivityDetected1();
+					}
+					else{
+						if(window["{{userNumber}}"] == 2){
+							userActivityDetected2();
+						}
+						else{
+							if(window["{{userNumber}}"] == 3){
+								userActivityDetected3();
+							}
+							else{
+								userActivityDetected4();
+							}
+						}
+					}
 					sessionStorage.noOfUsers = sessionStorage.noOfUsers -1;
 	            	if(sessionStorage.noOfUsers == 0){
 	            		var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
@@ -130,7 +162,22 @@
 					            	'userID':'{{userID}}'
 					            },
 					            success: function(data){
-
+					            	if(window["{{userNumber}}"] == 1){
+										userActivityDetected1();
+									}
+									else{
+										if(window["{{userNumber}}"] == 2){
+											userActivityDetected2();
+										}
+										else{
+											if(window["{{userNumber}}"] == 3){
+												userActivityDetected3();
+											}
+											else{
+												userActivityDetected4();
+											}
+										}
+									}
 					            	$('#'+"{{userNumber}}").html(data);
 					            	window[ chan + window["{{userNumber}}"] ].unbind('client-login',window['{{userNumber}}login']);
 									window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',window['{{userNumber}}startPage']);
