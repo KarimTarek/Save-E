@@ -151,7 +151,7 @@
             </div>
             <div id="ProfileColorDiv" class="" data-role="none"></div>
             <div data-role="none" class='PageClass'>
-                <div id="pieChartProfile" data-role="none" style="height:55%;margin-bottom:15%;"></div>
+                <div id="pieChartProfile" data-role="none" style="display:none;height:55%;margin-bottom:15%;"></div>
                 
                 <!-- <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
                 <a href="#" data-role="button" onClick="scrollDownProfile()" > Scroll Down </a>
@@ -352,11 +352,17 @@
 
             function setHighPrivacy(){
                 $('#privacyMenu').dialog('close');
+                $('#pieChartProfile').show();
                 var triggered = window['channel'].trigger('client-setHighPrivacy', {});
             }
 
             function setLowPrivacy(){
                 $('#privacyMenu').dialog('close');
+                $('#ViewChartPieCanvas').empty();
+                $('#ViewChartBarCanvas').empty();
+                $('#pieChartProfile').empty();
+                $('#pieChartProfile').show();
+                $('#').empty()
                 var triggered = window['channel'].trigger('client-setLowPrivacy', {});
             }
 
@@ -528,6 +534,9 @@
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
+                $('#ToMonths').empty();
+                $('#ToDays').empty();
+                $('#ToYears').empty();
                 $.mobile.loading( 'show' , {theme:'a',text:'Loading...',textVisible:true});
                 var triggered = window['channel'].trigger('client-goToChart', {});
                 var showCharts = true;
@@ -673,7 +682,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.148.58:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.150.30:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 // var migratingContent = function(data){
@@ -759,6 +768,9 @@
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
+                $('#ToMonths').empty();
+                $('#ToDays').empty();
+                $('#ToYears').empty();
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-goBackToProfile', {});
                 var goBackToProfileLC = function(data){
@@ -777,6 +789,19 @@
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');;
+                $('#ViewChartPieCanvas').empty();
+                $('#ViewChartBarCanvas').empty();
+                $('#pieChartProfile').empty();
+                $('#rankDiv').empty();
+                $('#username').empty();
+                $('#usernamee').empty();
+                $('#password').empty();
+                $('#passwordd').empty();
+                $('#emaill').empty();
+                $('#verifyPasswordd').empty();
+                $('#ToMonths').empty();
+                $('#ToDays').empty();
+                $('#ToYears').empty();
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-logout',{});
                 var logOutLC = function(data){
@@ -802,7 +827,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.148.58:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.150.30:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 var screenFull = function(data){
                     $.mobile.loading( 'hide');

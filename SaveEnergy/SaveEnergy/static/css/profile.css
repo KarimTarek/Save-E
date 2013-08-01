@@ -140,6 +140,11 @@
 	color: grey;
 }
 
+.privacyProtectedProfile2{
+	margin-left: 35%;
+	margin-top: -5%;
+}
+
 /*for the 3 users */
 
 .pieCanvas3 {
@@ -192,6 +197,11 @@
 	color: grey;
 }
 
+.privacyProtectedProfile3{
+	margin-left: 35%;
+	margin-top: -5%;
+}
+
 /*for the 4 users */
 
 .pieCanvas4 {
@@ -242,4 +252,9 @@
 	margin-left: 29%;
 	font-size: 25px;
 	color: grey;
+}
+
+.privacyProtectedProfile4{
+	margin-left: 35%;
+	margin-top: -5%;
 }

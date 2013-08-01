@@ -26,6 +26,19 @@ var timeoutId4 = null;
 
 function startInactivityCheck1() {
     timeoutId1 = window.setTimeout(function(){
+    	if($('#one').find($("div.devicesContainer")).length > 0){
+    		window['{{user_id}}logOutProfile']("");
+    	}
+    	else{
+    		if($('#one').find($("div.chartContainer")).length > 0){
+
+    		}
+    		else{
+    			if($('#one').find($("div.preChartContainer")).length > 0){
+
+    			}
+    		}
+    	}
         window[ chan + 1 ].trigger('client-logoutMobile',{});
     }, 2 * 60 * 1000); // called after 2 minutes
 };
@@ -153,7 +166,7 @@ var startPage1 = function(data) {
                                 	j=0;
                                 	for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
-                            				if($("div.devicesContainer").length > 0){
+                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level2');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money2');
@@ -165,14 +178,16 @@ var startPage1 = function(data) {
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 											}
 											else{
-												if($("div.chartContainer").length > 0){
+												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas2');
 		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
 		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas2');
 		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart').addClass('privacyProtectedViewChart2');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart').removeClass('privacyProtectedViewChart');
 												}
 												else{
-													if($("div.preChartContainer").length > 0){
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
 		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer2');
 			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
 													}
@@ -201,28 +216,30 @@ var startPage1 = function(data) {
                                     	j=0;
                                         for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
-	                            				if($("div.devicesContainer").length > 0){
-	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+	                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==1) ? "" : "2").addClass('level3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==1) ? "" : "2").removeClass('level'+(userNumberArray[i]==1) ? "" : "2");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==1) ? "" : "2").addClass('money3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==1) ? "" : "2").removeClass('money'+(userNumberArray[i]==1) ? "" : "2");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==1) ? "" : "2").addClass('badges3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==1) ? "" : "2").removeClass('badges'+(userNumberArray[i]==1) ? "" : "2");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==1) ? "" : "2").addClass('pieCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==1) ? "" : "2").removeClass('pieCanvas'+(userNumberArray[i]==1) ? "" : "2");
 		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 												}
 												else{
-													if($("div.chartContainer").length > 0){
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas3');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas3');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==1) ? "" : "2").addClass('ViewChartsPieCanvas3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==1) ? "" : "2").removeClass('ViewChartsPieCanvas'+(userNumberArray[i]==1) ? "" : "2");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==1) ? "" : "2").addClass('ViewChartsBarCanvas3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==1) ? "" : "2").removeClass('ViewChartsBarCanvas'+(userNumberArray[i]==1) ? "" : "2");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==1) ? "" : "2").addClass('privacyProtectedViewChart3');
+		                        						$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==1) ? "" : "2").removeClass('privacyProtectedViewChart'+(userNumberArray[i]==1) ? "" : "2");
 													}
 													else{
-														if($("div.preChartContainer").length > 0){
-			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer3');
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+														if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==1) ? "" : "2").addClass('preChartContainer3');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==1) ? "" : "2").removeClass('preChartContainer'+(userNumberArray[i]==1) ? "" : "2");
 														}
 													}
 												}
@@ -252,28 +269,30 @@ var startPage1 = function(data) {
                                     	if(sessionStorage.noOfUsers == 4){
 	                                        for(var i=0 ; i<userArray.length ; i++){
 		                            			if(userArray[i] == true){
-		                            				if($("div.devicesContainer").length > 0){
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+		                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==1) ? "" : "3").addClass('level4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==1) ? "" : "3").removeClass('level'+(userNumberArray[i]==1) ? "" : "3");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==1) ? "" : "3").addClass('money4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==1) ? "" : "3").removeClass('money'+(userNumberArray[i]==1) ? "" : "3");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==1) ? "" : "3").addClass('badges4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==1) ? "" : "3").removeClass('badges'+(userNumberArray[i]==1) ? "" : "3");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==1) ? "" : "3").addClass('pieCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==1) ? "" : "3").removeClass('pieCanvas'+(userNumberArray[i]==1) ? "" : "3");
 			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 													}
 													else{
-														if($("div.chartContainer").length > 0){
-			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+														if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==1) ? "" : "3").addClass('ViewChartsPieCanvas4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==1) ? "" : "3").removeClass('ViewChartsPieCanvas'+(userNumberArray[i]==1) ? "" : "3");
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==1) ? "" : "3").addClass('ViewChartsBarCanvas4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==1) ? "" : "3").removeClass('ViewChartsBarCanvas'+(userNumberArray[i]==1) ? "" : "3");
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==1) ? "" : "3").addClass('privacyProtectedViewChart4');
+		                        							$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==1) ? "" : "3").removeClass('privacyProtectedViewChart'+(userNumberArray[i]==1) ? "" : "3");
 														}
 														else{
-															if($("div.preChartContainer").length > 0){
-				                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
-					                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+															if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+				                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==1) ? "" : "3").addClass('preChartContainer4');
+					                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==1) ? "" : "3").removeClass('preChartContainer'+(userNumberArray[i]==1) ? "" : "3");
 															}
 														}
 													}
@@ -287,6 +306,18 @@ var startPage1 = function(data) {
 					            }
 			            	}
 			            	$('#one').show(1000);
+			            	window['onePiechart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['twoPiechart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['threePiechart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['fourPiechart'].render();
+			            	window['fourPiechartViewChart'].render();
+			            	window['fourPiechartViewChart'].render();
 					        var triggered = channel1.trigger('client-loadingComplete', {'color':'#1725E8'});
 					        startInactivityCheck1();
 						}
@@ -312,7 +343,7 @@ var startPage2 = function(data) {
                             	j=0;
                             	for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
-                        				if($("div.devicesContainer").length > 0){
+                        				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level2');
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money2');
@@ -324,14 +355,16 @@ var startPage2 = function(data) {
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 										}
 										else{
-											if($("div.chartContainer").length > 0){
+											if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
                             					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas2');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas2');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart').addClass('privacyProtectedViewChart2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart').removeClass('privacyProtectedViewChart');
 											}
 											else{
-												if($("div.preChartContainer").length > 0){
+												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
 	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer2');
 		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
 												}
@@ -363,28 +396,30 @@ var startPage2 = function(data) {
                                 	j=0;
                                     for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
-	                        				if($("div.devicesContainer").length > 0){
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level3');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money3');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges3');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas3');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+	                        				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==2) ? "" : "2").addClass('level3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==2) ? "" : "2").removeClass('level'+(userNumberArray[i]==2) ? "" : "2");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==2) ? "" : "2").addClass('money3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==2) ? "" : "2").removeClass('money'+(userNumberArray[i]==2) ? "" : "2");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==2) ? "" : "2").addClass('badges3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==2) ? "" : "2").removeClass('badges'+(userNumberArray[i]==2) ? "" : "2");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==2) ? "" : "2").addClass('pieCanvas3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==2) ? "" : "2").removeClass('pieCanvas'+(userNumberArray[i]==2) ? "" : "2");
 		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 											}
 											else{
-												if($("div.chartContainer").length > 0){
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==2) ? "" : "2").addClass('ViewChartsPieCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==2) ? "" : "2").removeClass('ViewChartsPieCanvas'+(userNumberArray[i]==2) ? "" : "2");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==2) ? "" : "2").addClass('ViewChartsBarCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==2) ? "" : "2").removeClass('ViewChartsBarCanvas'+(userNumberArray[i]==2) ? "" : "2");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==2) ? "" : "2").addClass('privacyProtectedViewChart3');
+	                        						$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==2) ? "" : "2").removeClass('privacyProtectedViewChart'+(userNumberArray[i]==2) ? "" : "2");
 												}
 												else{
-													if($("div.preChartContainer").length > 0){
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer3');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==2) ? "" : "2").addClass('preChartContainer3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==2) ? "" : "2").removeClass('preChartContainer'+(userNumberArray[i]==2) ? "" : "2");
 													}
 												}
 											}
@@ -416,28 +451,30 @@ var startPage2 = function(data) {
                                 	if(sessionStorage.noOfUsers == 4){
                                         for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
-	                            				if($("div.devicesContainer").length > 0){
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+	                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==2) ? "" : "3").addClass('level4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==2) ? "" : "3").removeClass('level'+(userNumberArray[i]==2) ? "" : "3");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==2) ? "" : "3").addClass('money4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==2) ? "" : "3").removeClass('money'+(userNumberArray[i]==2) ? "" : "3");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==2) ? "" : "3").addClass('badges4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==2) ? "" : "3").removeClass('badges'+(userNumberArray[i]==2) ? "" : "3");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==2) ? "" : "3").addClass('pieCanvas4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==2) ? "" : "3").removeClass('pieCanvas'+(userNumberArray[i]==2) ? "" : "3");
 		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 												}
 												else{
-													if($("div.chartContainer").length > 0){
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==2) ? "" : "3").addClass('ViewChartsPieCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==2) ? "" : "3").removeClass('ViewChartsPieCanvas'+(userNumberArray[i]==2) ? "" : "3");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==2) ? "" : "3").addClass('ViewChartsBarCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==2) ? "" : "3").removeClass('ViewChartsBarCanvas'+(userNumberArray[i]==2) ? "" : "3");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==2) ? "" : "3").addClass('privacyProtectedViewChart4');
+	                        							$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==2) ? "" : "3").removeClass('privacyProtectedViewChart'+(userNumberArray[i]==2) ? "" : "3");
 													}
 													else{
-														if($("div.preChartContainer").length > 0){
-			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+														if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==2) ? "" : "3").addClass('preChartContainer4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==2) ? "" : "3").removeClass('preChartContainer'+(userNumberArray[i]==2) ? "" : "3");
 														}
 													}
 												}
@@ -449,6 +486,18 @@ var startPage2 = function(data) {
                                 }
                            	}
                            	$('#two').show(1500);
+                           	window['onePiechart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['twoPiechart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['threePiechart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['fourPiechart'].render();
+			            	window['fourPiechartViewChart'].render();
+			            	window['fourPiechartViewChart'].render();
 			            	var triggered = window[ "channel" + "2" ].trigger('client-loadingComplete', {'color':'#F50A0A'});
 			        	}
 			        });
@@ -474,28 +523,30 @@ var startPage3 = function(data) {
                                 	j=0;
                                     for(var i=0 ; i<userArray.length ; i++){
                             			if(userArray[i] == true){
-                            				if($("div.devicesContainer").length > 0){
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level3');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money3');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges3');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas3');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==3) ? "" : "2").addClass('level3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==3) ? "" : "2").removeClass('level'+(userNumberArray[i]==3) ? "" : "2");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==3) ? "" : "2").addClass('money3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==3) ? "" : "2").removeClass('money'+(userNumberArray[i]==3) ? "" : "2");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==3) ? "" : "2").addClass('badges3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==3) ? "" : "2").removeClass('badges'+(userNumberArray[i]==3) ? "" : "2");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==3) ? "" : "2").addClass('pieCanvas3');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==3) ? "" : "2").removeClass('pieCanvas'+(userNumberArray[i]==3) ? "" : "2");
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 											}
 											else{
-												if($("div.chartContainer").length > 0){
-	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas3');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==3) ? "" : "2").addClass('ViewChartsPieCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==3) ? "" : "2").removeClass('ViewChartsPieCanvas'+(userNumberArray[i]==3) ? "" : "2");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==3) ? "" : "2").addClass('ViewChartsBarCanvas3');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==3) ? "" : "2").removeClass('ViewChartsBarCanvas'+(userNumberArray[i]==3) ? "" : "2");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==3) ? "" : "2").addClass('privacyProtectedViewChart3');
+	                        						$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==3) ? "" : "2").removeClass('privacyProtectedViewChart'+(userNumberArray[i]==3) ? "" : "2");
 												}
 												else{
-													if($("div.preChartContainer").length > 0){
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer3');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==3) ? "" : "2").addClass('preChartContainer3');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==3) ? "" : "2").removeClass('preChartContainer'+(userNumberArray[i]==3) ? "" : "2");
 													}
 												}
 											}
@@ -527,28 +578,30 @@ var startPage3 = function(data) {
                                 	if(sessionStorage.noOfUsers == 4){
                                         for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
-	                            				if($("div.devicesContainer").length > 0){
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+	                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==3) ? "" : "3").addClass('level4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==3) ? "" : "3").removeClass('level'+(userNumberArray[i]==3) ? "" : "3");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==3) ? "" : "3").addClass('money4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==3) ? "" : "3").removeClass('money'+(userNumberArray[i]==3) ? "" : "3");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==3) ? "" : "3").addClass('badges4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==3) ? "" : "3").removeClass('badges'+(userNumberArray[i]==3) ? "" : "3");
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==3) ? "" : "3").addClass('pieCanvas4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==3) ? "" : "3").removeClass('pieCanvas'+(userNumberArray[i]==3) ? "" : "3");
 		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 												}
 												else{
-													if($("div.chartContainer").length > 0){
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
-			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+		                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==3) ? "" : "3").addClass('ViewChartsPieCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==3) ? "" : "3").removeClass('ViewChartsPieCanvas'+(userNumberArray[i]==3) ? "" : "3");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==3) ? "" : "3").addClass('ViewChartsBarCanvas4');
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==3) ? "" : "3").removeClass('ViewChartsBarCanvas'+(userNumberArray[i]==3) ? "" : "3");
+			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==3) ? "" : "3").addClass('privacyProtectedViewChart4');
+	                        							$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==3) ? "" : "3").removeClass('privacyProtectedViewChart'+(userNumberArray[i]==3) ? "" : "3");
 													}
 													else{
-														if($("div.preChartContainer").length > 0){
-			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+														if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+			                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==3) ? "" : "3").addClass('preChartContainer4');
+				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==3) ? "" : "3").removeClass('preChartContainer'+(userNumberArray[i]==3) ? "" : "3");
 														}
 													}
 												}
@@ -559,6 +612,18 @@ var startPage3 = function(data) {
                                 	}
                                 }
                             $('#three').show(1500);
+                            window['onePiechart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['twoPiechart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['threePiechart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['fourPiechart'].render();
+			            	window['fourPiechartViewChart'].render();
+			            	window['fourPiechartViewChart'].render();
 			            	var triggered = window[ "channel" + "3" ].trigger('client-loadingComplete', {'color':'#0285FF'});
 			            	
 			            }
@@ -583,28 +648,30 @@ var startPage4 = function(data) {
 			            	if(sessionStorage.noOfUsers == 4){
                                 for(var i=0 ; i<userArray.length ; i++){
                         			if(userArray[i] == true){
-                        				if($("div.devicesContainer").length > 0){
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').addClass('level4');
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level').removeClass('level');
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').addClass('money4');
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money').removeClass('money');
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').addClass('badges4');
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas4');
-                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+                        				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==4) ? "" : "3").addClass('level4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level'+(userNumberArray[i]==4) ? "" : "3").removeClass('level'+(userNumberArray[i]==4) ? "" : "3");
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==4) ? "" : "3").addClass('money4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money'+(userNumberArray[i]==4) ? "" : "3").removeClass('money'+(userNumberArray[i]==4) ? "" : "3");
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==4) ? "" : "3").addClass('badges4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges'+(userNumberArray[i]==4) ? "" : "3").removeClass('badges'+(userNumberArray[i]==4) ? "" : "3");
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==4) ? "" : "3").addClass('pieCanvas4');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas'+(userNumberArray[i]==4) ? "" : "3").removeClass('pieCanvas'+(userNumberArray[i]==4) ? "" : "3");
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
 										}
 										else{
-											if($("div.chartContainer").length > 0){
-                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas4');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas4');
-	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+											if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==4) ? "" : "3").addClass('ViewChartsPieCanvas4');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas'+(userNumberArray[i]==4) ? "" : "3").removeClass('ViewChartsPieCanvas'+(userNumberArray[i]==4) ? "" : "3");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==4) ? "" : "3").addClass('ViewChartsBarCanvas4');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas'+(userNumberArray[i]==4) ? "" : "3").removeClass('ViewChartsBarCanvas'+(userNumberArray[i]==4) ? "" : "3");
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==4) ? "" : "3").addClass('privacyProtectedViewChart4');
+                    							$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedViewChart'+(userNumberArray[i]==4) ? "" : "3").removeClass('privacyProtectedViewChart'+(userNumberArray[i]==4) ? "" : "3");
 											}
 											else{
-												if($("div.preChartContainer").length > 0){
-	                            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').addClass('preChartContainer4');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer').removeClass('preChartContainer');
+												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+                            						$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==4) ? "" : "3").addClass('preChartContainer4');
+		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer'+(userNumberArray[i]==4) ? "" : "3").removeClass('preChartContainer'+(userNumberArray[i]==4) ? "" : "3");
 												}
 											}
 										}
@@ -614,6 +681,18 @@ var startPage4 = function(data) {
                         		}
                         	}
 			            	$('#four').show(1500);
+			            	window['onePiechart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['onePiechartViewChart'].render();
+			            	window['twoPiechart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['twoPiechartViewChart'].render();
+			            	window['threePiechart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['threePiechartViewChart'].render();
+			            	window['fourPiechart'].render();
+			            	window['fourPiechartViewChart'].render();
+			            	window['fourPiechartViewChart'].render();
 			            	var triggered = window[ "channel" + "4" ].trigger('client-loadingComplete', {'color':'#F5D90C'});
 			            }
 					});

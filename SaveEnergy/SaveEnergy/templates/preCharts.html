@@ -68,7 +68,7 @@
                             			if(userArray[i] == true){
                             				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
                             				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
-                            				if($("div.devicesContainer").length > 0){
+                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
 			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').addClass('level');
 			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').removeClass('level2');
 			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').addClass('money');
@@ -79,14 +79,14 @@
 			                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
 											}
 											else{
-												if($("div.chartContainer").length > 0){
+												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
 			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').addClass('ViewChartsPieCanvas');
 			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').removeClass('ViewChartsPieCanvas2');
 			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').addClass('ViewChartsBarCanvas');
 			                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').removeClass('ViewChartsBarCanvas2');
 												}
 												else{
-													if($("div.preChartContainer").length > 0){
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
 			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').addClass('preChartContainer');
 			                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').removeClass('preChartContainer2');
 													}
@@ -101,7 +101,7 @@
 	                                	j=0;
 	                                	for(var i=0 ; i<userArray.length ; i++){
 	                            			if(userArray[i] == true){
-	                            				if($("div.devicesContainer").length > 0){
+	                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
 								            		if(sessionStorage.noOfUsers != 1){
 					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').addClass('level'+sessionStorage.noOfUsers);
 					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').removeClass('level3');
@@ -115,7 +115,7 @@
 					                				}
 												}
 												else{
-													if($("div.chartContainer").length > 0){
+													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
 														if(sessionStorage.noOfUsers != 1){
 					                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
 					                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').removeClass('ViewChartsPieCanvas3');
@@ -124,7 +124,7 @@
 					                    				}
 													}
 													else{
-														if($("div.preChartContainer").length > 0){
+														if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
 															if(sessionStorage.noOfUsers != 1){
 					                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').addClass('preChartContainer'+sessionStorage.noOfUsers);
 					                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').removeClass('preChartContainer3');
@@ -149,7 +149,7 @@
 	                                    	j=0;
 	                                        for(var i=0 ; i<userArray.length ; i++){
 		                            			if(userArray[i] == true){
-		                            				if($("div.devicesContainer").length > 0){
+		                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
 									            		if(sessionStorage.noOfUsers != 1){
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').addClass('level'+sessionStorage.noOfUsers);
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').removeClass('level4');
@@ -163,7 +163,7 @@
 						                				}
 													}
 													else{
-														if($("div.chartContainer").length > 0){
+														if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
 															if(sessionStorage.noOfUsers != 1){
 						                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
 						                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').removeClass('ViewChartsPieCanvas4');
@@ -172,7 +172,7 @@
 						                    				}
 														}
 														else{
-															if($("div.preChartContainer").length > 0){
+															if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
 																if(sessionStorage.noOfUsers != 1){
 						                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').addClass('preChartContainer'+sessionStorage.noOfUsers);
 						                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').removeClass('preChartContainer4');
@@ -248,7 +248,7 @@
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpPreChart',window['{{userNumber}}scrollUp']);
 										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownPreChart',window['{{userNumber}}scrollDown']);
 	                                    $('#'+"{{userNumber}}").html(data);
-	                                    if($("div.devicesContainer").length > 0){
+	                                    if($('#'+"{{userNumber}}").find($("div.devicesContainer")).length > 0){
 						            		if(sessionStorage.noOfUsers != 1){
 		                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
 		                    					$('#'+"{{userNumber}}").find('.level').removeClass('level');
@@ -262,7 +262,7 @@
 		                    				}
 										}
 										else{
-											if($("div.chartContainer").length > 0){
+											if($('#'+"{{userNumber}}").find($("div.chartContainer")).length > 0){
 												if(sessionStorage.noOfUsers != 1){
 		                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
 		                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
@@ -271,7 +271,7 @@
 		                        				}
 											}
 											else{
-												if($("div.preChartContainer").length > 0){
+												if($('#'+"{{userNumber}}").find($("div.preChartContainer")).length > 0){
 													if(sessionStorage.noOfUsers != 1){
 		                            					$('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
 			                        					$('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
@@ -326,7 +326,7 @@
 
 							                                    $('#'+"{{userNumber}}").html(data);
 							                                    
-							                                    if($("div.devicesContainer").length > 0){
+							                                    if($('#'+"{{userNumber}}").find($("div.devicesContainer")).length > 0){
 												            		if(sessionStorage.noOfUsers != 1){
 								                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
 								                    					$('#'+"{{userNumber}}").find('.level').removeClass('level');
@@ -340,16 +340,19 @@
 								                    				}
 																}
 																else{
-																	if($("div.chartContainer").length > 0){
+																	if($('#'+"{{userNumber}}").find($("div.chartContainer")).length > 0){
 																		if(sessionStorage.noOfUsers != 1){
 								                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
 								                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
 								                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
 								                        					$('#'+"{{userNumber}}").find('.ViewChartsBarCanvas').removeClass('ViewChartsBarCanvas');
+								                        					$('#'+"{{userNumber}}").find('.privacyProtectedViewChart').addClass('privacyProtectedViewChart'+sessionStorage.noOfUsers);
+								                        					$('#'+"{{userNumber}}").find('.privacyProtectedViewChart').removeClass('privacyProtectedViewChart');
+								                        					
 								                        				}
 																	}
 																	else{
-																		if($("div.preChartContainer").length > 0){
+																		if($('#'+"{{userNumber}}").find($("div.preChartContainer")).length > 0){
 																			if(sessionStorage.noOfUsers != 1){
 								                            					$('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
 									                        					$('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
