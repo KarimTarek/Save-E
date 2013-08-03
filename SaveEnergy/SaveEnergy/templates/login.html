@@ -66,7 +66,7 @@
 			                success: function(data){
 			                	if(data != ''){
 		                			$('#'+"{{userNumber}}").html(data);
-				                	if($("div.devicesContainer").length > 0){
+				                	if($('#'+"{{userNumber}}").find($("div.devicesContainer")).length > 0){
 					            		if(sessionStorage.noOfUsers != 1){
 	                    					$('#'+"{{userNumber}}").find('.level').addClass('level'+sessionStorage.noOfUsers);
 	                    					$('#'+"{{userNumber}}").find('.level').removeClass('level');
@@ -76,11 +76,11 @@
 	                    					$('#'+"{{userNumber}}").find('.badges').removeClass('badges');
 	                    					$('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
 	                    					$('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
-	                    					$('#'+"{{userNumber}}").find('.badgesTitle').remove();
+	                    					$('#'+"{{userNumber}}").find('.badgesTitle').hide();
 	                    				}
 									}
 									else{
-										if($("div.chartContainer").length > 0){
+										if($('#'+"{{userNumber}}").find($("div.chartContainer")).length > 0){
 											if(sessionStorage.noOfUsers != 1){
 	                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
 	                        					$('#'+"{{userNumber}}").find('.ViewChartsPieCanvas').removeClass('ViewChartsPieCanvas');
@@ -89,7 +89,7 @@
 	                        				}
 										}
 										else{
-											if($("div.preChartContainer").length > 0){
+											if($('#'+"{{userNumber}}").find($("div.preChartContainer")).length > 0){
 												if(sessionStorage.noOfUsers != 1){
 	                            					$('#'+"{{userNumber}}").find('.preChartContainer').addClass('preChartContainer'+sessionStorage.noOfUsers);
 		                        					$('#'+"{{userNumber}}").find('.preChartContainer').removeClass('preChartContainer');
@@ -100,6 +100,7 @@
 				                	window[ chan + window["{{userNumber}}"] ].unbind('client-login',window['{{userNumber}}login']);
 				                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToStartPage',window['{{userNumber}}startPage']);
 									window[ chan + window["{{userNumber}}"] ].unbind('client-goToRegister',window['{{userNumber}}goToRegister']);
+									renderCharts();
 				                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 			                	}
 			                }

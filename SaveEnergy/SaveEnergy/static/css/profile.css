@@ -13,21 +13,32 @@
 }*/
 
 .oneBadge{
-
+	margin-left: 41%;
 }
 
 .twoBadge{
-
+	margin-left: 33%;
 }
 
 .threeBadge{
-
+	margin-left: 24%;
 }
 
 .privacyProtectedProfile{
-	margin-left: 35%;
+	/*margin-left: 35%;
+	margin-top: -5%;*/
+	width: 38%;
+	height: 50%;
+	margin-left: 32%;
 	margin-top: -5%;
+	padding-top: 1%;
+	background-color: rgb(232, 235, 235);
 }
+
+.privacyProtectedTitleProfile{
+	margin-left: 10%;	
+}
+
 
 .level {
 	font-size: 25;
@@ -95,6 +106,10 @@
 	height: 100%;
 }
 
+.privacyProtectedTitleProfile2{
+	margin-left: 6%;	
+}
+
 .level2 {
 	font-size: 25;
 	background-color: green;
@@ -115,7 +130,7 @@
 }
 
 .badges2 {
-	margin-left: 33%;
+	/*margin-left: 33%;*/
 	width: 67%;
 }
 
@@ -141,8 +156,12 @@
 }
 
 .privacyProtectedProfile2{
-	margin-left: 35%;
-	margin-top: -5%;
+	width: 67%;
+	height: 50%;
+	margin-left: 17%;
+	margin-top: 0%;
+	padding-top: 1%;
+	background-color: rgb(232, 235, 235);
 }
 
 /*for the 3 users */
@@ -151,6 +170,12 @@
 	width: 95%;
 	height: 100%;
 }
+
+
+.privacyProtectedTitleProfile3{
+	margin-left: 6%;	
+}
+
 
 .level3 {
 	font-size: 25;
@@ -172,7 +197,7 @@
 }
 
 .badges3 {
-	margin-left: 33%;
+	/*margin-left: 33%;*/
 	width: 67%;
 }
 
@@ -198,8 +223,12 @@
 }
 
 .privacyProtectedProfile3{
-	margin-left: 35%;
-	margin-top: -5%;
+	width: 67%;
+	height: 50%;
+	margin-left: 17%;
+	margin-top: 0%;
+	padding-top: 1%;
+	background-color: rgb(232, 235, 235);
 }
 
 /*for the 4 users */
@@ -207,6 +236,10 @@
 .pieCanvas4 {
 	width: 95%;
 	height: 100%;
+}
+
+.privacyProtectedTitleProfile4{
+	margin-left: 6%;	
 }
 
 .level4 {
@@ -229,7 +262,7 @@
 }
 
 .badges4 {
-	margin-left: 33%;
+	/*margin-left: 33%;*/
 	width: 67%;
 }
 
@@ -255,6 +288,10 @@
 }
 
 .privacyProtectedProfile4{
-	margin-left: 35%;
-	margin-top: -5%;
+	width: 67%;
+	height: 50%;
+	margin-left: 17%;
+	margin-top: 0%;
+	padding-top: 1%;
+	background-color: rgb(232, 235, 235);
 }

@@ -341,6 +341,19 @@
             var channelName = "private-SaveE";
             document.addEventListener("deviceready", onDeviceReady, false);
 
+            function startInactivityCheck() {
+                timeoutId1 = window.setTimeout(function(){
+                    navigator.app.exitApp();
+                }, 2 * 60 * 1000); // called after 2 minutes
+            };
+            // called by something that detects user activity
+            function userActivityDetected(){
+                if(timeoutId1 !== null) {
+                    window.clearTimeout(timeoutId1);
+                }
+                startInactivityCheck();
+            };
+
             function exitApp(){
                 // logOut();
                 navigator.app.exitApp();
@@ -351,18 +364,20 @@
             }
 
             function setHighPrivacy(){
+                userActivityDetected();
                 $('#privacyMenu').dialog('close');
                 $('#pieChartProfile').show();
                 var triggered = window['channel'].trigger('client-setHighPrivacy', {});
             }
 
             function setLowPrivacy(){
+                userActivityDetected();
                 $('#privacyMenu').dialog('close');
                 $('#ViewChartPieCanvas').empty();
                 $('#ViewChartBarCanvas').empty();
                 $('#pieChartProfile').empty();
-                $('#pieChartProfile').show();
-                $('#').empty()
+                $('#pieChartProfile').hide();
+                // $('#').empty()
                 var triggered = window['channel'].trigger('client-setLowPrivacy', {});
             }
 
@@ -379,17 +394,19 @@
             }
 
             // Handle the back button
-            function onBackKeyDown() {
+            function onBackKeyDown(){
                 // $( "#exitApp" ).popup( "open","pop" );
                 $.mobile.changePage( "#exitApp", { role: "dialog" } );
             }
 
-            function onMenuKeyDown() {
+            function onMenuKeyDown(){
+                userActivityDetected();
                 $.mobile.changePage( "#privacyMenu", { role: "dialog" } );
             }
 
         // Sending Registration Form to WEB APP -------------
             function SubmitRegistrationForm() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -411,6 +428,7 @@
 
         // Sending Login Form to WEB APP ------
             function SubmitLoginForm() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -449,7 +467,7 @@
                         window['channel'].unbind('client-profile_chart', displayProfileCharts);
                     }
                     logoutMobile = function(data){
-                        logOut();
+                        // logOut();
                         navigator.app.exitApp();
                     };
                 window['channel'].bind('client-logoutMobile', logoutMobile);
@@ -461,6 +479,7 @@
 
         // Sending signal to WEB APP to go back to login page ------
             function goBackToLoginPage() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -478,6 +497,7 @@
 
         // Sending signal to web app to change page to register.html ------
             function goToRegister() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -496,6 +516,7 @@
 
         //------- Tell the app to go to the leaderboard
             function goToLeaderBoard() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -531,11 +552,13 @@
 
         // Sending signal to web app to change page to chart.html ------
             function goToCharts() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
+                $('#FromMonths').empty();
+                $('#FromYears').empty();
                 $('#ToMonths').empty();
-                $('#ToDays').empty();
                 $('#ToYears').empty();
                 $.mobile.loading( 'show' , {theme:'a',text:'Loading...',textVisible:true});
                 var triggered = window['channel'].trigger('client-goToChart', {});
@@ -586,6 +609,7 @@
 
         // Sending signal to web app to view charts ------
             function viewCharts() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -618,8 +642,7 @@
                         var ViewChartPieCanvas = new CanvasJS.Chart("ViewChartPieCanvas", {
                             theme: "theme2",//theme1
                             title:{
-                                // text: "Total energy usage within the dates entered"              
-                                text: "Test"
+                                text: "Total energy usage within the dates entered"
                             },
                             data: [              
                                 {
@@ -662,6 +685,7 @@
 
         // Sending signal to web app to go back to page start page.html (start page) ------
             function goBackToStartPage() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -682,9 +706,10 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.150.30:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
+                startInactivityCheck();
                 // var migratingContent = function(data){
                 //                         $('#'+data.page).append(data.content);
                 //                     }
@@ -765,11 +790,13 @@
 
         //tell the web app to go back from the profile.html page
             function goBackToProfile() {
+                userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
+                $('#FromMonths').empty();
+                $('#FromYears').empty();
                 $('#ToMonths').empty();
-                $('#ToDays').empty();
                 $('#ToYears').empty();
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-goBackToProfile', {});
@@ -788,20 +815,26 @@
             function logOut() {
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
-                $('#CancelExit').removeClass('ui-disabled');;
+                $('#CancelExit').removeClass('ui-disabled');
                 $('#ViewChartPieCanvas').empty();
                 $('#ViewChartBarCanvas').empty();
                 $('#pieChartProfile').empty();
                 $('#rankDiv').empty();
-                $('#username').empty();
-                $('#usernamee').empty();
-                $('#password').empty();
-                $('#passwordd').empty();
-                $('#emaill').empty();
-                $('#verifyPasswordd').empty();
+                $('#username').val('');
+                $('#usernamee').val('');
+                $('#password').val('');
+                $('#passwordd').val('');
+                $('#emaill').val('');
+                $('#verifyPasswordd').val('');
+                $('#FromMonths').empty();
+                $('#FromYears').empty();
                 $('#ToMonths').empty();
-                $('#ToDays').empty();
                 $('#ToYears').empty();
+                try{
+                    $('#radio-choice-1').attr("checked",false).checkboxradio("refresh");
+                    $('#radio-choice-2').attr("checked",false).checkboxradio("refresh");    
+                }
+                catch(err){}
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
                 var triggered = window['channel'].trigger('client-logout',{});
                 var logOutLC = function(data){
@@ -827,7 +860,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.150.30:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 var screenFull = function(data){
                     $.mobile.loading( 'hide');

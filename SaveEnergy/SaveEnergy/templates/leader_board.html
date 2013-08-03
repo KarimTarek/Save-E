@@ -33,6 +33,7 @@
 	window['{{userID}}logOutLB'] = function(data) {
 						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 						userArray[parseInt(window["{{userNumber}}"])-1] = false;
+						window["{{userNumber}}Privacy"] = 'low';
 						$.ajax({
 				            url: "/logout/",
 				            type: "POST",
@@ -62,6 +63,7 @@
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
+				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').show();
 												}
 												else{
 													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
@@ -96,7 +98,7 @@
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').removeClass('badges3');
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').addClass('pieCanvas'+sessionStorage.noOfUsers);
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').removeClass('pieCanvas3');
-						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
 						                				}
 													}
 													else{
@@ -144,7 +146,7 @@
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').removeClass('badges4');
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').addClass('pieCanvas'+sessionStorage.noOfUsers);
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').removeClass('pieCanvas4');
-							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').remove();
+							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
 							                				}
 														}
 														else{
@@ -193,6 +195,7 @@
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
 								window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
+								renderCharts();
 			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 				            }
 						});
@@ -239,7 +242,7 @@
 		                    					$('#'+"{{userNumber}}").find('.badges').removeClass('badges');
 		                    					$('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
 		                    					$('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
-		                    					$('#'+"{{userNumber}}").find('.badgesTitle').remove();
+		                    					$('#'+"{{userNumber}}").find('.badgesTitle').hide();
 		                    				}
 										}
 										else{
@@ -263,6 +266,7 @@
 												}
 											}
 										}
+										renderCharts();
 	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 	                                }
 	                            });
