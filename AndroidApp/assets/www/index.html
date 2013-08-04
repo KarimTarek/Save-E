@@ -296,7 +296,7 @@
             </div>
             <div data-role="none" style="margin-bottom:15%;"class="PageClass">
                 <div data-role="none" id="ViewChartPieCanvas" style="height:60%;width:100%;"></div>
-                <div data-role="none" id="ViewChartBarCanvas" style="height:60%;width:100%;margin-top:20%;"></div>
+                <div data-role="none" id="ViewChartBarCanvas" style="height:60%;width:100%;margin-top:20%;margin-bottom:15%;"></div>
             </div>
         </div>
     <!-- .................. -->
@@ -913,19 +913,23 @@
             $$('#register').swipeDown(function(){
             });
             $$('#page1').swipeLeft(function(){
+                userActivityDetected();
                 var triggered = window['channel'].trigger('client-scrollLeftProfile', {});
             });
             $$('#page1').swipeRight(function(){
+                // userActivityDetected();
                 var triggered = window['channel'].trigger('client-scrollRightProfile', {});
             });
             $$('#page1').swipeUp(function(){
-                var y = $('#page1').scrollTop();
-                $('#page1 .viewCharts').scrollTop(y-150);
+                // userActivityDetected();
+                // var y = $('#page1').scrollTop();
+                // $('#page1 .viewCharts').scrollTop(y-150);
                 var triggered = window['channel'].trigger('client-scrollUpProfile', {});
             });
             $$('#page1').swipeDown(function(){
-                var y = $('#page1').scrollTop();
-                $('#page1 .viewCharts').scrollTop(y+150);
+                userActivityDetected();
+                // var y = $('#page1').scrollTop();
+                // $('#page1 .viewCharts').scrollTop(y+150);
                 var triggered = window['channel'].trigger('client-scrollDownProfile', {});
             });
             $$('#page3').swipeLeft(function(){
@@ -941,15 +945,19 @@
                 //     {scrollLeft: "-="-200}, 1000
                 // );
             });
-            $$('#page4 .viewCharts').swipeRight(function(){
+            $$('#page4').swipeRight(function(){
             });
-            $$('#page4 .viewCharts').swipeUp(function(){
-                var y = $('#page4').scrollTop();
-                $('#page4').scrollTop(y-150);
-            });
-            $$('#page4 .viewCharts').swipeDown(function(){
+            $$('#page4').swipeUp(function(){
+                userActivityDetected();
                 var y = $('#page4').scrollTop();
                 $('#page4').scrollTop(y+150);
+                var triggered = window['channel'].trigger('client-scrollUpViewCharts', {});
+            });
+            $$('#page4').swipeDown(function(){
+                userActivityDetected();
+                var y = $('#page4').scrollTop();
+                $('#page4').scrollTop(y-150);
+                var triggered = window['channel'].trigger('client-scrollDownViewCharts', {});
             });    
         </script>
     </body>

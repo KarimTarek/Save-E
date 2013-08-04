@@ -42,9 +42,24 @@
 				            	'userID':"{{userID}}"
 				           	},
 				            success: function(data){
-				            	// alert("Logged out");	
-				            	$('#'+"{{userNumber}}").html("");
+				            	$('#'+"{{userNumber}}").empty();
 				            	$('#'+"{{userNumber}}").hide(1000);
+				            	if(window["{{userNumber}}"] == 1){
+							        userActivityDetected1();
+							    }
+							    else{
+							        if(window["{{userNumber}}"] == 2){
+							            userActivityDetected2();
+							        }
+							        else{
+							            if(window["{{userNumber}}"] == 3){
+							                userActivityDetected3();
+							            }
+							            else{
+							                userActivityDetected4();
+							            }
+							        }
+							    }
 				            	if(sessionStorage.noOfUsers == 0) {
 		                            $('#welcomePage').show(1000);
 		                        }
@@ -63,6 +78,8 @@
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
+				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').addClass('NoBadgesTitle');
+				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').removeClass('NoBadgesTitle2');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').show();
 												}
 												else{
@@ -98,6 +115,8 @@
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').removeClass('badges3');
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').addClass('pieCanvas'+sessionStorage.noOfUsers);
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').removeClass('pieCanvas3');
+						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').removeClass('NoBadgesTitle3');
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
 						                				}
 													}
@@ -146,6 +165,8 @@
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').removeClass('badges4');
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').addClass('pieCanvas'+sessionStorage.noOfUsers);
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').removeClass('pieCanvas4');
+							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').removeClass('NoBadgesTitle4');
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
 							                				}
 														}
@@ -193,8 +214,8 @@
 		                        }
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutLB']);
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
-			                	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
-								window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
+			     //            	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+								// window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
 								renderCharts();
 			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 				            }
@@ -229,8 +250,8 @@
 									    }
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutLB']);
-	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
-										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
+	         //                            window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
+										// window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
 	                                    $('#'+"{{userNumber}}").html(data);
 	                                    if($('#'+"{{userNumber}}").find($("div.devicesContainer")).length > 0){
 						            		if(sessionStorage.noOfUsers != 1){
@@ -242,6 +263,8 @@
 		                    					$('#'+"{{userNumber}}").find('.badges').removeClass('badges');
 		                    					$('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
 		                    					$('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
+		                    					$('#'+"{{userNumber}}").find('.NoBadgesTitle').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+		                    					$('#'+"{{userNumber}}").find('.NoBadgesTitle').removeClass('NoBadgesTitle');
 		                    					$('#'+"{{userNumber}}").find('.badgesTitle').hide();
 		                    				}
 										}
@@ -273,52 +296,52 @@
 	                        }, 1000);
 	                    };
 	
-	window['{{userNumber}}scrollUp'] = function(data) {
-		if(window["{{userNumber}}"] == 1){
-	        userActivityDetected1();
-	    }
-	    else{
-	        if(window["{{userNumber}}"] == 2){
-	            userActivityDetected2();
-	        }
-	        else{
-	            if(window["{{userNumber}}"] == 3){
-	                userActivityDetected3();
-	            }
-	            else{
-	                userActivityDetected4();
-	            }
-	        }
-	    }
-		var y = $('#{{userNumber}}').scrollTop();
-		$('#{{userNumber}}').scrollTop(y-150);
-	}
+	// window['{{userNumber}}scrollUp'] = function(data) {
+	// 	if(window["{{userNumber}}"] == 1){
+	//         userActivityDetected1();
+	//     }
+	//     else{
+	//         if(window["{{userNumber}}"] == 2){
+	//             userActivityDetected2();
+	//         }
+	//         else{
+	//             if(window["{{userNumber}}"] == 3){
+	//                 userActivityDetected3();
+	//             }
+	//             else{
+	//                 userActivityDetected4();
+	//             }
+	//         }
+	//     }
+	// 	var y = $('#{{userNumber}}').scrollTop();
+	// 	$('#{{userNumber}}').scrollTop(y-150);
+	// }
 
-	window['{{userNumber}}scrollDown'] = function(data) {
-		if(window["{{userNumber}}"] == 1){
-	        userActivityDetected1();
-	    }
-	    else{
-	        if(window["{{userNumber}}"] == 2){
-	            userActivityDetected2();
-	        }
-	        else{
-	            if(window["{{userNumber}}"] == 3){
-	                userActivityDetected3();
-	            }
-	            else{
-	                userActivityDetected4();
-	            }
-	        }
-	    }
-		var y = $('#{{userNumber}}').scrollTop();
-		$('#{{userNumber}}').scrollTop(y+150);
-	}
+	// window['{{userNumber}}scrollDown'] = function(data) {
+	// 	if(window["{{userNumber}}"] == 1){
+	//         userActivityDetected1();
+	//     }
+	//     else{
+	//         if(window["{{userNumber}}"] == 2){
+	//             userActivityDetected2();
+	//         }
+	//         else{
+	//             if(window["{{userNumber}}"] == 3){
+	//                 userActivityDetected3();
+	//             }
+	//             else{
+	//                 userActivityDetected4();
+	//             }
+	//         }
+	//     }
+	// 	var y = $('#{{userNumber}}').scrollTop();
+	// 	$('#{{userNumber}}').scrollTop(y+150);
+	// }
 
 	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window['{{userID}}backToProfile']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutLB']);
-	window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpLB',window['{{userNumber}}scrollUp']);
-	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownLB',window['{{userNumber}}scrollDown']);
+	// window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpLB',window['{{userNumber}}scrollUp']);
+	// window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownLB',window['{{userNumber}}scrollDown']);
 </script>
 
 <div class="leaderBoard">

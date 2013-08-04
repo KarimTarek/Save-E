@@ -93,6 +93,22 @@
 	
 	//------------------ Log Out listeners -------------------
 		window['{{user_id}}logOutProfile'] = function(data) {
+						if(window["{{userNumber}}"] == 1){
+					        userActivityDetected1();
+					    }
+					    else{
+					        if(window["{{userNumber}}"] == 2){
+					            userActivityDetected2();
+					        }
+					        else{
+					            if(window["{{userNumber}}"] == 3){
+					                userActivityDetected3();
+					            }
+					            else{
+					                userActivityDetected4();
+					            }
+					        }
+					    }
 						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 						userArray[parseInt(window["{{userNumber}}"])-1] = false;
 						window["{{userNumber}}Privacy"] = 'low';
@@ -105,7 +121,7 @@
 				           	},
 				            success: function(data){
 				            	// alert("Logged out");
-				            	$('#'+"{{userNumber}}").html("");
+				            	$('#'+"{{userNumber}}").empty();
 				            	$('#'+"{{userNumber}}").hide(1000);
 				            	if(sessionStorage.noOfUsers == 0) {
 		                            $('#welcomePage').show(1000);
@@ -125,6 +141,8 @@
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
+				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').addClass('NoBadgesTitle');
+				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').removeClass('NoBadgesTitle2');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').show();
 												}
 												else{
@@ -160,6 +178,8 @@
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').removeClass('badges3');
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').addClass('pieCanvas'+sessionStorage.noOfUsers);
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').removeClass('pieCanvas3');
+						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').removeClass('NoBadgesTitle3');
 						                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
 						                				}
 													}
@@ -208,6 +228,8 @@
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').removeClass('badges4');
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').addClass('pieCanvas'+sessionStorage.noOfUsers);
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').removeClass('pieCanvas4');
+							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').removeClass('NoBadgesTitle4');
 							                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
 							                				}
 														}
@@ -368,6 +390,8 @@
 	                    					$('#'+"{{userNumber}}").find('.badges').removeClass('badges');
 	                    					$('#'+"{{userNumber}}").find('.pieCanvas').addClass('pieCanvas'+sessionStorage.noOfUsers);
 	                    					$('#'+"{{userNumber}}").find('.pieCanvas').removeClass('pieCanvas');
+	                    					$('#'+"{{userNumber}}").find('.NoBadgesTitle').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+	                    					$('#'+"{{userNumber}}").find('.NoBadgesTitle').removeClass('NoBadgesTitle');
 	                    					$('#'+"{{userNumber}}").find('.badgesTitle').hide();
 	                    				}
 									}
@@ -423,7 +447,7 @@
 	        }
 	    }
 		var y = $('#devicesUsage{{user_id}}').scrollTop();
-		$('#devicesUsage{{user_id}}').scrollTop(y-150);
+		$('#devicesUsage{{user_id}}').scrollTop(y+150);
 	}
 
 	window['{{userNumber}}scrollDown'] = function(data) {
@@ -444,7 +468,7 @@
 	        }
 	    }
 		var y = $('#devicesUsage{{user_id}}').scrollTop();
-		$('#devicesUsage{{user_id}}').scrollTop(y+150);
+		$('#devicesUsage{{user_id}}').scrollTop(y-150);	
 	}
 
 	$(".alert-success").alert();

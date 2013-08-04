@@ -275,7 +275,7 @@ window['otherLogOut'] = function(userNumber) {
 						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 						userArray[parseInt(window[userNumber])-1] = false;
 						window[userNumber+"Privacy"] = 'low';
-		            	$('#'+userNumber).html("");
+		            	$('#'+userNumber).empty();
 		            	$('#'+userNumber).hide(1000);
 		            	if(sessionStorage.noOfUsers == 0) {
                             $('#welcomePage').show(1000);
@@ -295,6 +295,8 @@ window['otherLogOut'] = function(userNumber) {
 		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
 		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
 		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').addClass('NoBadgesTitle');
+		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').removeClass('NoBadgesTitle2');
 		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile2').addClass('privacyProtectedTitleProfile');
 		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile2').removeClass('privacyProtectedTitleProfile2');
 		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').show();
@@ -332,6 +334,8 @@ window['otherLogOut'] = function(userNumber) {
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').removeClass('badges3');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').addClass('pieCanvas'+sessionStorage.noOfUsers);
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').removeClass('pieCanvas3');
+				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').removeClass('NoBadgesTitle3');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile3').addClass('privacyProtectedTitleProfile'+sessionStorage.noOfUsers);
 		                							$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile3').removeClass('privacyProtectedTitleProfile3');
 				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
@@ -382,6 +386,8 @@ window['otherLogOut'] = function(userNumber) {
 					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').removeClass('badges4');
 					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').addClass('pieCanvas'+sessionStorage.noOfUsers);
 					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').removeClass('pieCanvas4');
+					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').removeClass('NoBadgesTitle4');
 					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile4').addClass('privacyProtectedTitleProfile'+sessionStorage.noOfUsers);
 		                								$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile4').removeClass('privacyProtectedTitleProfile4');
 					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
@@ -469,6 +475,8 @@ var startPage1 = function(data) {
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas2');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle').addClass('NoBadgesTitle2');
+	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle').removeClass('NoBadgesTitle');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile').addClass('privacyProtectedTitleProfile2');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile').removeClass('privacyProtectedTitleProfile');
 	                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
@@ -653,6 +661,8 @@ var startPage2 = function(data) {
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges').removeClass('badges');
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').addClass('pieCanvas2');
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas').removeClass('pieCanvas');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle').addClass('NoBadgesTitle2');
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle').removeClass('NoBadgesTitle');
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile').addClass('privacyProtectedTitleProfile2');
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile').removeClass('privacyProtectedTitleProfile');
                         					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
@@ -1004,7 +1014,7 @@ var setHighPrivacy1 = function(data) {
 							if($('#'+"one").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"one").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 style="margin-left: 10%;">PRIVACY PROTECTED!</h1></div>');
+								$('#'+"one").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["one"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
@@ -1027,7 +1037,7 @@ var setHighPrivacy2 = function(data) {
 							if($('#'+"two").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"two").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"two").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["two"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
@@ -1050,7 +1060,7 @@ var setHighPrivacy3 = function(data) {
 							if($('#'+"three").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"three").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"three").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"three").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["three"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
@@ -1073,7 +1083,7 @@ var setHighPrivacy4 = function(data) {
 							if($('#'+"four").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"four").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"four").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"four").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["four"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
