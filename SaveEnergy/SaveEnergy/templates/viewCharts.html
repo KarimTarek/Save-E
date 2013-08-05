@@ -431,18 +431,20 @@
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutViewCharts']);
 </script>
 <div id="{{userID}}charts" class="chartContainer">
-	<div id="{{userId}}" class="iuserdViewCharts" style="display:none;"></div>
-	{% if usagesLength > 0 %}
-		{% ifequal privacyStatus 'low' %}
-			<div id="{{userID}}PieCanvas" class="ViewChartsPieCanvas"></div>
-			<div id="{{userID}}BarCanvas" class="ViewChartsBarCanvas"></div>
+	<div id="{{userID}}" class="iuserdViewCharts" style="display:none;"></div>
+	<div id="{{userID}}viewCharts">
+		{% if usagesLength > 0 %}
+			{% ifequal privacyStatus 'low' %}
+				<div id="{{userID}}PieCanvas" class="ViewChartsPieCanvas"></div>
+				<div id="{{userID}}BarCanvas" class="ViewChartsBarCanvas"></div>
+			{% else %}
+				<div id="{{user_id}}privacyProtected" class="privacyProtectedViewChart">
+					<h1>PRIVACY PROTECTED!</h1>
+				</div>
+			{% endifequal %}
 		{% else %}
-			<div id="{{user_id}}privacyProtected" class="privacyProtectedViewChart">
-				<h1>PRIVACY PROTECTED!</h1>
-			</div>
-		{% endifequal %}
-	{% else %}
-		<p class="NoChartViewChart">You don't have any data/charts yet</p>
-	{% endif %}
+			<p class="NoChartViewChart">You don't have any data/charts yet</p>
+		{% endif %}
+	</div>
 	<!-- <div id="{{userID}}RadarCanvas" style="width:40%;height:40%"></div> -->
 </div>

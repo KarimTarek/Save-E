@@ -706,7 +706,7 @@
             function startPage() {
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.145.188:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 startInactivityCheck();
@@ -826,13 +826,15 @@
                 $('#passwordd').val('');
                 $('#emaill').val('');
                 $('#verifyPasswordd').val('');
-                $('#FromMonths').empty();
-                $('#FromYears').empty();
-                $('#ToMonths').empty();
-                $('#ToYears').empty();
                 try{
                     $('#radio-choice-1').attr("checked",false).checkboxradio("refresh");
-                    $('#radio-choice-2').attr("checked",false).checkboxradio("refresh");    
+                    $('#radio-choice-2').attr("checked",false).checkboxradio("refresh");
+                    $("#FromDays").selectmenu('refresh', true);
+                    $("#ToDays").selectmenu('refresh', true);
+                    $('#FromMonths').empty().selectmenu('refresh', true);;
+                    $('#FromYears').empty().selectmenu('refresh', true);;
+                    $('#ToMonths').empty().selectmenu('refresh', true);;
+                    $('#ToYears').empty().selectmenu('refresh', true);;  
                 }
                 catch(err){}
                 $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
@@ -860,7 +862,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://137.250.145.188:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 var screenFull = function(data){
                     $.mobile.loading( 'hide');
@@ -950,13 +952,13 @@
             $$('#page4').swipeUp(function(){
                 userActivityDetected();
                 var y = $('#page4').scrollTop();
-                $('#page4').scrollTop(y+150);
+                $('#page4').scrollTop(y+120);
                 var triggered = window['channel'].trigger('client-scrollUpViewCharts', {});
             });
             $$('#page4').swipeDown(function(){
                 userActivityDetected();
                 var y = $('#page4').scrollTop();
-                $('#page4').scrollTop(y-150);
+                $('#page4').scrollTop(y-120);
                 var triggered = window['channel'].trigger('client-scrollDownViewCharts', {});
             });    
         </script>

@@ -18,6 +18,8 @@
 					}
 				}
 				else{
+					$('#{{user_id}}privacyProtected').removeClass('privacyProtectedProfile3Badge');
+					$('#{{user_id}}PieCanvas').removeClass('pieCanvasProfile3Badge');
 					if(!$('#{{user_id}}userBadges').hasClass('threeBadge')){
 						$('#{{user_id}}userBadges').addClass('threeBadge');
 					}
@@ -28,6 +30,16 @@
 			}
 		}
 	};
+
+	if($('#{{user_id}}userBadges').children().length > 2 && sessionStorage.noOfUsers == '1'){
+		if(!$('#{{user_id}}privacyProtected').hasClass('privacyProtectedProfile3Badge')){
+			$('#{{user_id}}privacyProtected').addClass('privacyProtectedProfile3Badge');
+		}
+
+		if(!$('#{{user_id}}PieCanvas').hasClass('pieCanvasProfile3Badge')){
+			$('#{{user_id}}PieCanvas').addClass('pieCanvasProfile3Badge');
+		}
+	}
 
 	window['{{userNumber}}badgesStyles']();
 

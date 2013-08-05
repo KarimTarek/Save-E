@@ -7,6 +7,14 @@
 	margin-top: 3%;
 }
 
+.privacyProtectedProfile3Badge{
+	margin-top: -13% !important;
+}
+
+.pieCanvasProfile3Badge{
+	margin-top: -15% !important;
+}
+
 /*.addDeviceButton {
 	margin-left: 35%;
 	margin-top: 5%;
@@ -102,8 +110,9 @@
 /*for the 2 users */
 
 .pieCanvas2 {
-	width: 95%;
-	height: 100%;
+	width: 70%;
+	height: 70%;
+	margin-left: 15%;
 }
 
 .privacyProtectedTitleProfile2{
@@ -166,8 +175,9 @@
 /*for the 3 users */
 
 .pieCanvas3 {
-	width: 95%;
-	height: 100%;
+	width: 70%;
+	height: 70%;
+	margin-left: 15%;
 }
 
 
@@ -232,8 +242,9 @@
 /*for the 4 users */
 
 .pieCanvas4 {
-	width: 95%;
-	height: 100%;
+	width: 70%;
+	height: 70%;
+	margin-left: 15%;
 }
 
 .privacyProtectedTitleProfile4{

@@ -25,43 +25,236 @@ var timeoutId3 = null;
 var timeoutId4 = null;
 
 //this function make sure that all the charts are rendered again if any change in the user interface happened
+// var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
+		// $('#'+iuserd+'PieCanvas').empty();
 function renderCharts(){
-	if(window['onePiechart'] != null){
-		window['onePiechart'].render();	
+	try{
+		window['onePiechartProfile'].render();
 	}
-	if(window['onePiechartViewChart'] != null){
+	catch(err){}
+
+	try{
 		window['onePiechartViewChart'].render();
 	}
-	if(window['oneBarchartViewChart'] != null){
+	catch(err){}
+
+	try{
 		window['oneBarchartViewChart'].render();
 	}
-	if(window['twoPiechart'] != null){
-		window['twoPiechart'].render();
+	catch(err){}
+
+	try{
+		window['twoPiechartProfile'].render();
 	}
-	if(window['twoPiechartViewChart'] != null){
+	catch(err){}
+
+	try{
 		window['twoPiechartViewChart'].render();
 	}
-	if(window['twoBarchartViewChart'] != null){
+	catch(err){}
+
+	try{
 		window['twoBarchartViewChart'].render();
 	}
-	if(window['threePiechart'] != null){
-		window['threePiechart'].render();
+	catch(err){}
+
+	try{
+		window['threePiechartProfile'].render();
 	}
-	if(window['threeBarchartViewChart'] != null){
-		window['threeBarchartViewChart'].render();
-	}
-	if(window['threePiechartViewChart'] != null){
+	catch(err){}
+
+	try{
 		window['threePiechartViewChart'].render();
 	}
-	if(window['fourPiechart'] != null){
-		window['fourPiechart'].render();
+	catch(err){}
+
+	try{
+		window['threeBarchartViewChart'].render();
 	}
-	if(window['fourPiechartViewChart'] != null){
+	catch(err){}
+
+	try{
+		window['fourPiechartProfile'].render();
+	}
+	catch(err){}
+
+	try{
 		window['fourPiechartViewChart'].render();
 	}
-	if(window['fourBarchartViewChart'] != null){	
+	catch(err){}
+
+	try{
 		window['fourBarchartViewChart'].render();
 	}
+	catch(err){}
+};
+
+function otherLogout(otherLogoutUserNumber){
+	sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
+	userArray[parseInt(window[otherLogoutUserNumber])-1] = false;
+	window[otherLogoutUserNumber+"Privacy"] = 'low';
+	$('#'+otherLogoutUserNumber).empty();
+	$('#'+otherLogoutUserNumber).hide(1000);
+	if(sessionStorage.noOfUsers == 0) {
+        $('#welcomePage').show(1000);
+    }
+    else{
+        if(sessionStorage.noOfUsers == 1){
+    		for(var i=0 ; i<userArray.length ; i++){
+    			if(userArray[i] == true){
+    				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+    				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
+    				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').addClass('level');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').removeClass('level2');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').addClass('money');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').removeClass('money2');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').addClass('badges');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').addClass('NoBadgesTitle');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').removeClass('NoBadgesTitle2');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile2').addClass('privacyProtectedTitleProfile');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile2').removeClass('privacyProtectedTitleProfile2');
+    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').show();
+					}
+					else{
+						if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').addClass('ViewChartsPieCanvas');
+        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').removeClass('ViewChartsPieCanvas2');
+        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').addClass('ViewChartsBarCanvas');
+        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').removeClass('ViewChartsBarCanvas2');
+						}
+						else{
+							if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').addClass('preChartContainer');
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').removeClass('preChartContainer2');
+							}
+						}
+					}
+					break;
+    			}
+    		}
+        }
+        else{
+            if(sessionStorage.noOfUsers == 2){
+            	j=0;
+            	for(var i=0 ; i<userArray.length ; i++){
+        			if(userArray[i] == true){
+        				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+		            		if(sessionStorage.noOfUsers != 1){
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').addClass('level'+sessionStorage.noOfUsers);
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').removeClass('level3');
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money3').addClass('money'+sessionStorage.noOfUsers);
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money3').removeClass('money3');
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').addClass('badges'+sessionStorage.noOfUsers);
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').removeClass('badges3');
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').addClass('pieCanvas'+sessionStorage.noOfUsers);
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').removeClass('pieCanvas3');
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').removeClass('NoBadgesTitle3');
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile3').addClass('privacyProtectedTitleProfile'+sessionStorage.noOfUsers);
+    							$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile3').removeClass('privacyProtectedTitleProfile3');
+            					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
+            				}
+						}
+						else{
+							if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+								if(sessionStorage.noOfUsers != 1){
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').removeClass('ViewChartsPieCanvas3');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas3').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas3').removeClass('ViewChartsBarCanvas3');
+                				}
+							}
+							else{
+								if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+									if(sessionStorage.noOfUsers != 1){
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').addClass('preChartContainer'+sessionStorage.noOfUsers);
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').removeClass('preChartContainer3');
+                    				}
+								}
+							}
+						}
+        				if(j%2 == 0){
+        					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+        					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
+        				}
+        				else {
+        					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+        					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
+        				}
+        				j++;
+        			}
+        		}
+            }
+            else{
+                if(sessionStorage.noOfUsers == 3){
+                	j=0;
+                    for(var i=0 ; i<userArray.length ; i++){
+            			if(userArray[i] == true){
+            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
+			            		if(sessionStorage.noOfUsers != 1){
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').addClass('level'+sessionStorage.noOfUsers);
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').removeClass('level4');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money4').addClass('money'+sessionStorage.noOfUsers);
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money4').removeClass('money4');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').addClass('badges'+sessionStorage.noOfUsers);
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').removeClass('badges4');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').addClass('pieCanvas'+sessionStorage.noOfUsers);
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').removeClass('pieCanvas4');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').removeClass('NoBadgesTitle4');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile4').addClass('privacyProtectedTitleProfile'+sessionStorage.noOfUsers);
+    								$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile4').removeClass('privacyProtectedTitleProfile4');
+                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
+                				}
+							}
+							else{
+								if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
+									if(sessionStorage.noOfUsers != 1){
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').removeClass('ViewChartsPieCanvas4');
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas4').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
+                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas4').removeClass('ViewChartsBarCanvas4');
+                    				}
+								}
+								else{
+									if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
+										if(sessionStorage.noOfUsers != 1){
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').addClass('preChartContainer'+sessionStorage.noOfUsers);
+                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').removeClass('preChartContainer4');
+                        				}
+									}
+								}
+							}
+            				if(j==2){
+            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
+            				}
+            				else{
+            					if(j%2 == 0){
+                					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
+                				}
+                				else {
+                					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
+                					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
+                				}
+            				}
+            				
+            				j++;
+            			}
+            		}
+                }
+                else{
+                }
+            }
+        }
+    }
+	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
+	renderCharts();
 };
 
 function startInactivityCheck1() {
@@ -86,7 +279,7 @@ function startInactivityCheck1() {
     					window[iuserd+'logOutLB']("");
     				}
     				else{
-    					window['otherLogOut']("one");
+    					otherLogout("one");
     				}
     			}
     		}
@@ -102,7 +295,7 @@ function userActivityDetected1(){
         window.clearTimeout(timeoutId1);
     }
 
-    startInactivityCheck1();
+    // startInactivityCheck1();
 };
 
 function startInactivityCheck2() {
@@ -127,7 +320,7 @@ function startInactivityCheck2() {
     					window[iuserd+'logOutLB']();
     				}
     				else{
-    					window['otherLogOut']("two");
+    					otherLogout("two");
     				}
     			}
     		}
@@ -142,7 +335,7 @@ function userActivityDetected2(){
         window.clearTimeout(timeoutId2);
     }
 
-    startInactivityCheck2();
+    // startInactivityCheck2();
 };
 
 function startInactivityCheck3() {
@@ -167,7 +360,7 @@ function startInactivityCheck3() {
     					window[iuserd+'logOutLB']();
     				}
     				else{
-    					window['otherLogOut']("three");
+    					otherLogout("three");
     				}
     			}
     		}
@@ -207,7 +400,7 @@ function startInactivityCheck4() {
     					window[iuserd+'logOutLB']();
     				}
     				else{
-    					window['otherLogOut']("four");
+    					otherLogout("four");
     				}
     			}
     		}
@@ -270,174 +463,6 @@ var start = function(data) {
 				}
 		        
 			};
-
-window['otherLogOut'] = function(userNumber) {
-						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
-						userArray[parseInt(window[userNumber])-1] = false;
-						window[userNumber+"Privacy"] = 'low';
-		            	$('#'+userNumber).empty();
-		            	$('#'+userNumber).hide(1000);
-		            	if(sessionStorage.noOfUsers == 0) {
-                            $('#welcomePage').show(1000);
-                        }
-                        else{
-                            if(sessionStorage.noOfUsers == 1){
-                        		for(var i=0 ; i<userArray.length ; i++){
-                        			if(userArray[i] == true){
-                        				$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
-                        				$('#'+getUserNumber(userNumberArray[i]+'')).addClass("one_one" , 1500);
-                        				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').addClass('level');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level2').removeClass('level2');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').addClass('money');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money2').removeClass('money2');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').addClass('badges');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges2').removeClass('badges2');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').addClass('pieCanvas');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas2').removeClass('pieCanvas2');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').addClass('NoBadgesTitle');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle2').removeClass('NoBadgesTitle2');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile2').addClass('privacyProtectedTitleProfile');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile2').removeClass('privacyProtectedTitleProfile2');
-		                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').show();
-										}
-										else{
-											if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').addClass('ViewChartsPieCanvas');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas2').removeClass('ViewChartsPieCanvas2');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').addClass('ViewChartsBarCanvas');
-		                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas2').removeClass('ViewChartsBarCanvas2');
-											}
-											else{
-												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').addClass('preChartContainer');
-		                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer2').removeClass('preChartContainer2');
-												}
-											}
-										}
-										break;
-                        			}
-                        		}
-                            }
-                            else{
-                                if(sessionStorage.noOfUsers == 2){
-                                	j=0;
-                                	for(var i=0 ; i<userArray.length ; i++){
-                            			if(userArray[i] == true){
-                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
-							            		if(sessionStorage.noOfUsers != 1){
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').addClass('level'+sessionStorage.noOfUsers);
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level3').removeClass('level3');
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money3').addClass('money'+sessionStorage.noOfUsers);
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money3').removeClass('money3');
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').addClass('badges'+sessionStorage.noOfUsers);
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges3').removeClass('badges3');
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').addClass('pieCanvas'+sessionStorage.noOfUsers);
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas3').removeClass('pieCanvas3');
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle3').removeClass('NoBadgesTitle3');
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile3').addClass('privacyProtectedTitleProfile'+sessionStorage.noOfUsers);
-		                							$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile3').removeClass('privacyProtectedTitleProfile3');
-				                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
-				                				}
-											}
-											else{
-												if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
-													if(sessionStorage.noOfUsers != 1){
-				                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
-				                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas3').removeClass('ViewChartsPieCanvas3');
-				                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas3').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
-				                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas3').removeClass('ViewChartsBarCanvas3');
-				                    				}
-												}
-												else{
-													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
-														if(sessionStorage.noOfUsers != 1){
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').addClass('preChartContainer'+sessionStorage.noOfUsers);
-				                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer3').removeClass('preChartContainer3');
-				                        				}
-													}
-												}
-											}
-                            				if(j%2 == 0){
-                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
-                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_two" , 1500);
-                            				}
-                            				else {
-                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
-                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_two" , 1500);
-                            				}
-                            				j++;
-                            			}
-                            		}
-                                }
-                                else{
-                                    if(sessionStorage.noOfUsers == 3){
-                                    	j=0;
-                                        for(var i=0 ; i<userArray.length ; i++){
-	                            			if(userArray[i] == true){
-	                            				if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.devicesContainer")).length > 0){
-								            		if(sessionStorage.noOfUsers != 1){
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').addClass('level'+sessionStorage.noOfUsers);
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.level4').removeClass('level4');
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money4').addClass('money'+sessionStorage.noOfUsers);
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.money4').removeClass('money4');
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').addClass('badges'+sessionStorage.noOfUsers);
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badges4').removeClass('badges4');
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').addClass('pieCanvas'+sessionStorage.noOfUsers);
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.pieCanvas4').removeClass('pieCanvas4');
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').addClass('NoBadgesTitle'+sessionStorage.noOfUsers);
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.NoBadgesTitle4').removeClass('NoBadgesTitle4');
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile4').addClass('privacyProtectedTitleProfile'+sessionStorage.noOfUsers);
-		                								$('#'+getUserNumber(userNumberArray[i]+'')).find('.privacyProtectedTitleProfile4').removeClass('privacyProtectedTitleProfile4');
-					                					$('#'+getUserNumber(userNumberArray[i]+'')).find('.badgesTitle').hide();
-					                				}
-												}
-												else{
-													if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.chartContainer")).length > 0){
-														if(sessionStorage.noOfUsers != 1){
-					                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').addClass('ViewChartsPieCanvas'+sessionStorage.noOfUsers);
-					                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsPieCanvas4').removeClass('ViewChartsPieCanvas4');
-					                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas4').addClass('ViewChartsBarCanvas'+sessionStorage.noOfUsers);
-					                    					$('#'+getUserNumber(userNumberArray[i]+'')).find('.ViewChartsBarCanvas4').removeClass('ViewChartsBarCanvas4');
-					                    				}
-													}
-													else{
-														if($('#'+getUserNumber(userNumberArray[i]+'')).find($("div.preChartContainer")).length > 0){
-															if(sessionStorage.noOfUsers != 1){
-					                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').addClass('preChartContainer'+sessionStorage.noOfUsers);
-					                        					$('#'+getUserNumber(userNumberArray[i]+'')).find('.preChartContainer4').removeClass('preChartContainer4');
-					                        				}
-														}
-													}
-												}
-	                            				if(j==2){
-	                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
-		                            				$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_middle_three" , 1500);
-	                            				}
-	                            				else{
-	                            					if(j%2 == 0){
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_left_three" , 1500);
-		                            				}
-		                            				else {
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).removeClass()
-		                            					$('#'+getUserNumber(userNumberArray[i]+'')).addClass(getUserNumber(userNumberArray[i]+'')+"_right_three" , 1500);
-		                            				}
-	                            				}
-	                            				
-	                            				j++;
-	                            			}
-	                            		}
-                                    }
-                                    else{
-                                    }
-                                }
-                            }
-                        }
-		            	// window[ chan + window["{{userNumber}}"] ].unbind('client-goToAddDevice', goToAddDevice);
-						renderCharts();
-					};
 
 var startPage1 = function(data) {
 					// if(sessionStorage.noOfUsers < 4){
@@ -622,6 +647,10 @@ var startPage1 = function(data) {
 					            }
 			            	}
 			            	$('#one').show(1000);
+			            	try{
+			            		window['onebadgesStyles']();
+			            	}
+			            	catch(err){}	
 			            	renderCharts();
 					        var triggered = channel1.trigger('client-loadingComplete', {'color':'#1725E8'});
 					        startInactivityCheck1();
@@ -811,8 +840,13 @@ var startPage2 = function(data) {
                                 }
                            	}
                            	$('#two').show(1500);
+                           	try{
+			            		window['twobadgesStyles']();
+			            	}
+			            	catch(err){}
                            	renderCharts();
 			            	var triggered = window[ "channel" + "2" ].trigger('client-loadingComplete', {'color':'#F50A0A'});
+			            	startInactivityCheck2();
 			        	}
 			        });
 				};
@@ -938,9 +972,13 @@ var startPage3 = function(data) {
                                 	}
                                 }
                             $('#three').show(1500);
+                            try{
+			            		window['threebadgesStyles']();
+			            	}
+			            	catch(err){}
                             renderCharts();
 			            	var triggered = window[ "channel" + "3" ].trigger('client-loadingComplete', {'color':'#0285FF'});
-			            	
+			            	startInactivityCheck3();
 			            }
 					});
 				};
@@ -1002,8 +1040,13 @@ var startPage4 = function(data) {
                         		}
                         	}
 			            	$('#four').show(1500);
+			            	try{
+			            		window['fourbadgesStyles']();
+			            	}
+			            	catch(err){}
 			            	renderCharts();
 			            	var triggered = window[ "channel" + "4" ].trigger('client-loadingComplete', {'color':'#F5D90C'});
+			            	startInactivityCheck4();
 			            }
 					});
 				};
@@ -1014,14 +1057,14 @@ var setHighPrivacy1 = function(data) {
 							if($('#'+"one").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"one").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"one").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["one"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
 								if($('#'+"one").find($("div.chartContainer")).length > 0){
 									var iuserd = $('#'+"one").find("div.iuserdViewCharts").attr('id');
 									var tempName = iuserd+'privacyProtected';
-									$('#'+"one").find("div.chartContainer").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									$('#'+"one").find("#"+iuserd+"viewCharts").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
 									var triggered = window[ chan + window["one"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
 								}
 								else{
@@ -1037,14 +1080,14 @@ var setHighPrivacy2 = function(data) {
 							if($('#'+"two").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"two").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"two").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["two"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
 								if($('#'+"two").find($("div.chartContainer")).length > 0){
 									var iuserd = $('#'+"two").find("div.iuserdViewCharts").attr('id');
 									var tempName = iuserd+'privacyProtected';
-									$('#'+"two").find("div.chartContainer").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									$('#'+"two").find("#"+iuserd+"viewCharts").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
 									var triggered = window[ chan + window["two"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
 								}
 								else{
@@ -1060,14 +1103,14 @@ var setHighPrivacy3 = function(data) {
 							if($('#'+"three").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"three").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"three").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"three").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["three"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
 								if($('#'+"three").find($("div.chartContainer")).length > 0){
 									var iuserd = $('#'+"three").find("div.iuserdViewCharts").attr('id');
 									var tempName = iuserd+'privacyProtected';
-									$('#'+"three").find("div.chartContainer").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									$('#'+"three").find("#"+iuserd+"viewCharts").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
 									var triggered = window[ chan + window["three"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
 								}
 								else{
@@ -1083,14 +1126,14 @@ var setHighPrivacy4 = function(data) {
 							if($('#'+"four").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"four").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"four").find("div.pieCanvas"+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : "").replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+(sessionStorage.noOfUsers!=1)? sessionStorage.noOfUsers : ""+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"four").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["four"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
 								if($('#'+"four").find($("div.chartContainer")).length > 0){
 									var iuserd = $('#'+"four").find("div.iuserdViewCharts").attr('id');
 									var tempName = iuserd+'privacyProtected';
-									$('#'+"four").find("div.chartContainer").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
+									$('#'+"four").find("#"+iuserd+"viewCharts").replaceWith('<div id="'+tempName+'" class="privacyProtectedViewChart"><h1>PRIVACY PROTECTED!</h1></div>');
 									var triggered = window[ chan + window["four"] ].trigger('client-view_charts', {'viewChartPieData': window[iuserd+"PieChart"] , 'viewChartBarData':window[iuserd+'barDataPoints']});
 								}
 								else{
