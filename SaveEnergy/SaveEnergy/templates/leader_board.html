@@ -44,22 +44,6 @@
 				            success: function(data){
 				            	$('#'+"{{userNumber}}").empty();
 				            	$('#'+"{{userNumber}}").hide(1000);
-				            	if(window["{{userNumber}}"] == 1){
-							        userActivityDetected1();
-							    }
-							    else{
-							        if(window["{{userNumber}}"] == 2){
-							            userActivityDetected2();
-							        }
-							        else{
-							            if(window["{{userNumber}}"] == 3){
-							                userActivityDetected3();
-							            }
-							            else{
-							                userActivityDetected4();
-							            }
-							        }
-							    }
 				            	if(sessionStorage.noOfUsers == 0) {
 		                            $('#welcomePage').show(1000);
 		                        }
@@ -345,6 +329,7 @@
 </script>
 
 <div class="leaderBoard">
+	<div id="{{userID}}" class="iuserdLb" style="display:none;"></div>
 	<table class="table table-striped">
 		<tr>
 			<td>User</td>
@@ -359,7 +344,7 @@
 				<td>{{user.money}}</td>
 				<td>
 					{% for badge in user.badge.all %}
-						<img src="{{badge.image.url}}" style="height:35%;width:5%;" alt="image" />
+						<img src="{{badge.image.url}}" style="height: auto;width: 10%;" alt="image" />
 						<!-- <div style='background:url({{badge.image.url}});height:35%;width:5%;'></div> -->
 					{% endfor %}
 				</td>

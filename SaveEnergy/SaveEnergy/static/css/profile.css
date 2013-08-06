@@ -33,18 +33,18 @@
 }
 
 .privacyProtectedProfile{
-	/*margin-left: 35%;
-	margin-top: -5%;*/
-	width: 38%;
+	margin-left: 35%;
+	margin-top: -5%;
+	/*width: 38%;
 	height: 50%;
 	margin-left: 32%;
 	margin-top: -5%;
 	padding-top: 1%;
-	background-color: rgb(232, 235, 235);
+	background-color: rgb(232, 235, 235);*/
 }
 
 .privacyProtectedTitleProfile{
-	margin-left: 10%;	
+	margin-left: 5%;
 }
 
 
@@ -116,7 +116,9 @@
 }
 
 .privacyProtectedTitleProfile2{
-	margin-left: 6%;	
+	margin-left: -15%;
+	margin-top: 10%;
+	margin-bottom: 10%;
 }
 
 .level2 {
@@ -182,7 +184,9 @@
 
 
 .privacyProtectedTitleProfile3{
-	margin-left: 6%;	
+	margin-left: -15%;
+	margin-top: 10%;
+	margin-bottom: 10%;
 }
 
 
@@ -248,7 +252,9 @@
 }
 
 .privacyProtectedTitleProfile4{
-	margin-left: 6%;	
+	margin-left: -15%;
+	margin-top: 10%;
+	margin-bottom: 10%;
 }
 
 .level4 {

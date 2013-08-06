@@ -18,8 +18,6 @@
 					}
 				}
 				else{
-					$('#{{user_id}}privacyProtected').removeClass('privacyProtectedProfile3Badge');
-					$('#{{user_id}}PieCanvas').removeClass('pieCanvasProfile3Badge');
 					if(!$('#{{user_id}}userBadges').hasClass('threeBadge')){
 						$('#{{user_id}}userBadges').addClass('threeBadge');
 					}
@@ -31,15 +29,6 @@
 		}
 	};
 
-	if($('#{{user_id}}userBadges').children().length > 2 && sessionStorage.noOfUsers == '1'){
-		if(!$('#{{user_id}}privacyProtected').hasClass('privacyProtectedProfile3Badge')){
-			$('#{{user_id}}privacyProtected').addClass('privacyProtectedProfile3Badge');
-		}
-
-		if(!$('#{{user_id}}PieCanvas').hasClass('pieCanvasProfile3Badge')){
-			$('#{{user_id}}PieCanvas').addClass('pieCanvasProfile3Badge');
-		}
-	}
 
 	window['{{userNumber}}badgesStyles']();
 
@@ -59,7 +48,7 @@
 
 	{% if usagesLength > 0 %}
 		{% ifequal privacyStatus 'low' %}
-			window['{{userNumber}}PiechartProfile'] = new CanvasJS.Chart("{{user_id}}PieCanvas", {
+			window['{{userNumber}}PiechartProfile'] = new CanvasJS.Chart("{{user_id}}PieCanvasProfile", {
 					theme: "theme2",//theme1
 					title:{
 						text: "Total energy usage"
@@ -105,22 +94,6 @@
 	
 	//------------------ Log Out listeners -------------------
 		window['{{user_id}}logOutProfile'] = function(data) {
-						if(window["{{userNumber}}"] == 1){
-					        userActivityDetected1();
-					    }
-					    else{
-					        if(window["{{userNumber}}"] == 2){
-					            userActivityDetected2();
-					        }
-					        else{
-					            if(window["{{userNumber}}"] == 3){
-					                userActivityDetected3();
-					            }
-					            else{
-					                userActivityDetected4();
-					            }
-					        }
-					    }
 						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 						userArray[parseInt(window["{{userNumber}}"])-1] = false;
 						window["{{userNumber}}Privacy"] = 'low';
@@ -356,7 +329,7 @@
 					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
 					                	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
 										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
-										renderCharts();
+										// renderCharts();
 					                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 					                }
 					    		});
@@ -507,7 +480,7 @@
 		<p class="badgesTitle">Badges:</p>
 		<div id="{{user_id}}userBadges" class="badges">
 			{% for badge in userBadges %}
-				<img src="{{badge.image.url}}" alt="image" />
+				<img src="{{badge.image.url}}" style="width:30%;" alt="image" />
 			{% endfor %}
 		</div>
 	{% else %}
@@ -515,7 +488,7 @@
 	{% endif %}
 	{% if usagesLength > 0 %}
 		{% if privacyStatus == 'low' %}
-			<div id="{{user_id}}PieCanvas" class="pieCanvas"></div>
+			<div id="{{user_id}}PieCanvasProfile" class="pieCanvas"></div>
 		{% else %}
 			<div id="{{user_id}}privacyProtected" class="privacyProtectedProfile">
 				<h1 class="privacyProtectedTitleProfile">PRIVACY PROTECTED!</h1>

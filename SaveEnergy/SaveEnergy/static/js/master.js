@@ -29,61 +29,209 @@ var timeoutId4 = null;
 		// $('#'+iuserd+'PieCanvas').empty();
 function renderCharts(){
 	try{
-		window['onePiechartProfile'].render();
+        var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
+        $('#'+iuserd+"PieCanvasProfile").empty();
+		window['onePiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
+                theme: "theme2",//theme1
+                title:{
+                    text: "Total energy usage"
+                },
+                data: [              
+                    {
+                    type: "pie",
+                    dataPoints: window[iuserd+"PieChart"]
+                    }
+                ]
+            });
+        window['onePiechartProfile'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"one").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"PieCanvas").empty();
+        window['onePiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
+            theme: "theme2",//theme1
+            title:{
+                text: "Total energy usage within the dates entered"              
+            },
+            data: [              
+                {
+                type: "pie",
+                dataPoints: window[iuserd+"PieChart"]
+                }
+            ]
+        });
 		window['onePiechartViewChart'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"one").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"BarCanvas").empty();
+        window['oneBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
+            theme: "theme1",//theme1
+            title:{
+                text: "Total energy usage within the dates entered sorted monthly"             
+            },
+            data:window[iuserd+'barDataPoints']
+        });
 		window['oneBarchartViewChart'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
+        $('#'+iuserd+"PieCanvasProfile").empty();
+        window['twoPiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
+                theme: "theme2",//theme1
+                title:{
+                    text: "Total energy usage"
+                },
+                data: [              
+                    {
+                    type: "pie",
+                    dataPoints: window[iuserd+"PieChart"]
+                    }
+                ]
+            });
 		window['twoPiechartProfile'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"two").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"PieCanvas").empty();
+        window['twoPiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
+            theme: "theme2",//theme1
+            title:{
+                text: "Total energy usage within the dates entered"              
+            },
+            data: [              
+                {
+                type: "pie",
+                dataPoints: window[iuserd+"PieChart"]
+                }
+            ]
+        });
 		window['twoPiechartViewChart'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"two").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"BarCanvas").empty();
+        window['twoBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
+            theme: "theme1",//theme1
+            title:{
+                text: "Total energy usage within the dates entered sorted monthly"             
+            },
+            data:window[iuserd+'barDataPoints']
+        });
 		window['twoBarchartViewChart'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"three").find("div.iuserdProfile").attr('id');
+        $('#'+iuserd+"PieCanvasProfile").empty();
+        window['threePiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
+                theme: "theme2",//theme1
+                title:{
+                    text: "Total energy usage"
+                },
+                data: [              
+                    {
+                    type: "pie",
+                    dataPoints: window[iuserd+"PieChart"]
+                    }
+                ]
+            });
 		window['threePiechartProfile'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"three").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"PieCanvas").empty();
+        window['threePiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
+            theme: "theme2",//theme1
+            title:{
+                text: "Total energy usage within the dates entered"              
+            },
+            data: [              
+                {
+                type: "pie",
+                dataPoints: window[iuserd+"PieChart"]
+                }
+            ]
+        });
 		window['threePiechartViewChart'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"three").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"BarCanvas").empty();
+        window['threeBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
+            theme: "theme1",//theme1
+            title:{
+                text: "Total energy usage within the dates entered sorted monthly"             
+            },
+            data:window[iuserd+'barDataPoints']
+        });
 		window['threeBarchartViewChart'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"four").find("div.iuserdProfile").attr('id');
+        $('#'+iuserd+"PieCanvasProfile").empty();
+        window['fourPiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
+                theme: "theme2",//theme1
+                title:{
+                    text: "Total energy usage"
+                },
+                data: [              
+                    {
+                    type: "pie",
+                    dataPoints: window[iuserd+"PieChart"]
+                    }
+                ]
+            });
 		window['fourPiechartProfile'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"four").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"PieCanvas").empty();
+        window['fourPiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
+            theme: "theme2",//theme1
+            title:{
+                text: "Total energy usage within the dates entered"              
+            },
+            data: [              
+                {
+                type: "pie",
+                dataPoints: window[iuserd+"PieChart"]
+                }
+            ]
+        });
 		window['fourPiechartViewChart'].render();
 	}
 	catch(err){}
 
 	try{
+        var iuserd = $('#'+"four").find("div.iuserdViewCharts").attr('id');
+        $('#'+iuserd+"BarCanvas").empty();
+        window['fourBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
+            theme: "theme1",//theme1
+            title:{
+                text: "Total energy usage within the dates entered sorted monthly"             
+            },
+            data:window[iuserd+'barDataPoints']
+        });
 		window['fourBarchartViewChart'].render();
 	}
 	catch(err){}
@@ -259,26 +407,33 @@ function otherLogout(otherLogoutUserNumber){
 
 function startInactivityCheck1() {
     timeoutId1 = window.setTimeout(function(){
+        alert("hereee");
     	if($('#one').find($("div.devicesContainer")).length > 0){
+            alert("hena fil logout profile");
+            console.log("D5al fil logout beta3et 1 fil profile");
     		var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
     		window[iuserd+'logOutProfile']("");
     	}
     	else{
     		if($('#one').find($("div.chartContainer")).length > 0){
+                console.log("D5al fil logout beta3et 1 fil viewcharts");
     			var iuserd = $('#'+"one").find("div.iuserdViewCharts").attr('id');
     			window[iuserd+'logOutViewCharts']("");
     		}
     		else{
     			if($('#one').find($("div.preChartContainer")).length > 0){
+                    console.log("D5al fil logout beta3et 1 fil precharts");
     				var iuserd = $('#'+"one").find("div.iuserdPreCharts").attr('id');
     				window[iuserd+'logoutPreChart']("");
     			}
     			else{
     				if($('#one').find($("div.leaderBoard")).length > 0){
-    					var iuserd = $('#'+"one").find("div.iuserdPreCharts").attr('id');
+                        console.log("D5al fil logout beta3et 1 fil leaderboard");
+    					var iuserd = $('#'+"one").find("div.iuserdLb").attr('id');
     					window[iuserd+'logOutLB']("");
     				}
     				else{
+                        console.log("D5al fil logout beta3et 1 fil other");
     					otherLogout("one");
     				}
     			}
@@ -295,27 +450,31 @@ function userActivityDetected1(){
         window.clearTimeout(timeoutId1);
     }
 
-    // startInactivityCheck1();
+    startInactivityCheck1();
 };
 
 function startInactivityCheck2() {
     timeoutId2 = window.setTimeout(function(){
     	if($('#two').find($("div.devicesContainer")).length > 0){
+            console.log("D5al fil logout beta3et 2 fil profile");
     		var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
     		window[iuserd+'logOutProfile']("");
     	}
     	else{
     		if($('#two').find($("div.chartContainer")).length > 0){
+                console.log("D5al fil logout beta3et 2 fil viewcharts");
     			var iuserd = $('#'+"two").find("div.iuserdViewCharts").attr('id');
     			window[iuserd+'logOutViewCharts']("");
     		}
     		else{
     			if($('#two').find($("div.preChartContainer")).length > 0){
+                    console.log("D5al fil logout beta3et 2 fil precharts");
     				var iuserd = $('#'+"two").find("div.iuserdPreCharts").attr('id');
     				window[iuserd+'logoutPreChart']("");
     			}
     			else{
     				if($('#two').find($("div.leaderBoard")).length > 0){
+                        console.log("D5al fil logout beta3et 2 fil leaderboard");
     					var iuserd = $('#'+"two").find("div.iuserdPreCharts").attr('id');
     					window[iuserd+'logOutLB']();
     				}
@@ -335,7 +494,7 @@ function userActivityDetected2(){
         window.clearTimeout(timeoutId2);
     }
 
-    // startInactivityCheck2();
+    startInactivityCheck2();
 };
 
 function startInactivityCheck3() {
@@ -650,7 +809,7 @@ var startPage1 = function(data) {
 			            	try{
 			            		window['onebadgesStyles']();
 			            	}
-			            	catch(err){}	
+			            	catch(err){}
 			            	renderCharts();
 					        var triggered = channel1.trigger('client-loadingComplete', {'color':'#1725E8'});
 					        startInactivityCheck1();

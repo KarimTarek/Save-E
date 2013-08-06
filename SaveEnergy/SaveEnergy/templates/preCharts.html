@@ -41,23 +41,6 @@
 	                        'userID':"{{userID}}",
 	                    },
 	                    success: function(data){
-	                        // alert("Logged out");
-	                        if(window["{{userNumber}}"] == 1){
-					            userActivityDetected1();
-					        }
-					        else{
-					            if(window["{{userNumber}}"] == 2){
-					                userActivityDetected2();
-					            }
-					            else{
-					                if(window["{{userNumber}}"] == 3){
-					                    userActivityDetected3();
-					                }
-					                else{
-					                    userActivityDetected4();
-					                }
-					            }
-					        }
 	                        $('#'+"{{userNumber}}").empty();
 			            	$('#'+"{{userNumber}}").hide(1000);
 			            	if(sessionStorage.noOfUsers == 0) {
