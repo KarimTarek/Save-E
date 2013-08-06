@@ -32,6 +32,21 @@
 		// alert(sessionStorage.noOfUsers);
 		sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 		userArray[parseInt(window["{{userNumber}}"])-1] = false;
+		if(window[otherLogoutUserNumber] == 1){
+		    window.clearTimeout(timeoutId1);
+		}
+		else{
+		    if(window[otherLogoutUserNumber] == 2){
+		        window.clearTimeout(timeoutId2);
+		    }else{
+		        if(window[otherLogoutUserNumber] == 3){
+		            window.clearTimeout(timeoutId3);
+		        }
+		        else{
+		            window.clearTimeout(timeoutId4);
+		        }
+		    }
+		}
 		window["{{userNumber}}Privacy"] = 'low';
 		$.ajax({
             url: "/logout/",

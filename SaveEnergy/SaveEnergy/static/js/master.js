@@ -240,6 +240,21 @@ function renderCharts(){
 function otherLogout(otherLogoutUserNumber){
 	sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 	userArray[parseInt(window[otherLogoutUserNumber])-1] = false;
+    if(window[otherLogoutUserNumber] == 1){
+        window.clearTimeout(timeoutId1);
+    }
+    else{
+        if(window[otherLogoutUserNumber] == 2){
+            window.clearTimeout(timeoutId2);
+        }else{
+            if(window[otherLogoutUserNumber] == 3){
+                window.clearTimeout(timeoutId3);
+            }
+            else{
+                window.clearTimeout(timeoutId4);
+            }
+        }
+    }
 	window[otherLogoutUserNumber+"Privacy"] = 'low';
 	$('#'+otherLogoutUserNumber).empty();
 	$('#'+otherLogoutUserNumber).hide(1000);
@@ -407,33 +422,26 @@ function otherLogout(otherLogoutUserNumber){
 
 function startInactivityCheck1() {
     timeoutId1 = window.setTimeout(function(){
-        alert("hereee");
     	if($('#one').find($("div.devicesContainer")).length > 0){
-            alert("hena fil logout profile");
-            console.log("D5al fil logout beta3et 1 fil profile");
     		var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
     		window[iuserd+'logOutProfile']("");
     	}
     	else{
     		if($('#one').find($("div.chartContainer")).length > 0){
-                console.log("D5al fil logout beta3et 1 fil viewcharts");
     			var iuserd = $('#'+"one").find("div.iuserdViewCharts").attr('id');
     			window[iuserd+'logOutViewCharts']("");
     		}
     		else{
     			if($('#one').find($("div.preChartContainer")).length > 0){
-                    console.log("D5al fil logout beta3et 1 fil precharts");
     				var iuserd = $('#'+"one").find("div.iuserdPreCharts").attr('id');
     				window[iuserd+'logoutPreChart']("");
     			}
     			else{
     				if($('#one').find($("div.leaderBoard")).length > 0){
-                        console.log("D5al fil logout beta3et 1 fil leaderboard");
     					var iuserd = $('#'+"one").find("div.iuserdLb").attr('id');
     					window[iuserd+'logOutLB']("");
     				}
     				else{
-                        console.log("D5al fil logout beta3et 1 fil other");
     					otherLogout("one");
     				}
     			}
@@ -456,25 +464,21 @@ function userActivityDetected1(){
 function startInactivityCheck2() {
     timeoutId2 = window.setTimeout(function(){
     	if($('#two').find($("div.devicesContainer")).length > 0){
-            console.log("D5al fil logout beta3et 2 fil profile");
     		var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
     		window[iuserd+'logOutProfile']("");
     	}
     	else{
     		if($('#two').find($("div.chartContainer")).length > 0){
-                console.log("D5al fil logout beta3et 2 fil viewcharts");
     			var iuserd = $('#'+"two").find("div.iuserdViewCharts").attr('id');
     			window[iuserd+'logOutViewCharts']("");
     		}
     		else{
     			if($('#two').find($("div.preChartContainer")).length > 0){
-                    console.log("D5al fil logout beta3et 2 fil precharts");
     				var iuserd = $('#'+"two").find("div.iuserdPreCharts").attr('id');
     				window[iuserd+'logoutPreChart']("");
     			}
     			else{
     				if($('#two').find($("div.leaderBoard")).length > 0){
-                        console.log("D5al fil logout beta3et 2 fil leaderboard");
     					var iuserd = $('#'+"two").find("div.iuserdPreCharts").attr('id');
     					window[iuserd+'logOutLB']();
     				}
