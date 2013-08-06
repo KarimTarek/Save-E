@@ -238,6 +238,7 @@ function renderCharts(){
 };
 
 function otherLogout(otherLogoutUserNumber){
+    alert(otherLogoutUserNumber);
 	sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 	userArray[parseInt(window[otherLogoutUserNumber])-1] = false;
     if(window[otherLogoutUserNumber] == 1){
@@ -479,7 +480,7 @@ function startInactivityCheck2() {
     			}
     			else{
     				if($('#two').find($("div.leaderBoard")).length > 0){
-    					var iuserd = $('#'+"two").find("div.iuserdPreCharts").attr('id');
+    					var iuserd = $('#'+"two").find("div.iuserdLb").attr('id');
     					window[iuserd+'logOutLB']();
     				}
     				else{
@@ -519,7 +520,7 @@ function startInactivityCheck3() {
     			}
     			else{
     				if($('#three').find($("div.leaderBoard")).length > 0){
-    					var iuserd = $('#'+"three").find("div.iuserdPreCharts").attr('id');
+    					var iuserd = $('#'+"three").find("div.iuserdLb").attr('id');
     					window[iuserd+'logOutLB']();
     				}
     				else{
@@ -559,7 +560,7 @@ function startInactivityCheck4() {
     			}
     			else{
     				if($('#four').find($("div.leaderBoard")).length > 0){
-    					var iuserd = $('#'+"four").find("div.iuserdPreCharts").attr('id');
+    					var iuserd = $('#'+"four").find("div.iuserdLb").attr('id');
     					window[iuserd+'logOutLB']();
     				}
     				else{
@@ -1220,7 +1221,7 @@ var setHighPrivacy1 = function(data) {
 							if($('#'+"one").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"one").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"one").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"one").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'"'+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["one"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
@@ -1243,7 +1244,7 @@ var setHighPrivacy2 = function(data) {
 							if($('#'+"two").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"two").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"two").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"two").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'"'+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["two"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
@@ -1266,7 +1267,7 @@ var setHighPrivacy3 = function(data) {
 							if($('#'+"three").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"three").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"three").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"three").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'"'+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["three"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
@@ -1289,7 +1290,7 @@ var setHighPrivacy4 = function(data) {
 							if($('#'+"four").find($("div.devicesContainer")).length > 0){
 								var iuserd = $('#'+"four").find("div.iuserdProfile").attr('id');
 								var tempName = iuserd+'privacyProtected';
-								$('#'+"four").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+''+'>PRIVACY PROTECTED!</h1></div>');
+								$('#'+"four").find("div.pieCanvas"+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'').replaceWith('<div id="'+tempName+'" class="privacyProtectedProfile"><h1 class="privacyProtectedTitleProfile"'+((sessionStorage.noOfUsers == '1')? "" : sessionStorage.noOfUsers)+'"'+'>PRIVACY PROTECTED!</h1></div>');
 								var triggered = window[ chan + window["four"] ].trigger('client-profile_chart', {'profileChartData': window[iuserd+"PieChart"]});
 							}
 							else{
