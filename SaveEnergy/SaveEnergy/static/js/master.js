@@ -33,6 +33,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvasProfile").empty();
 		window['onePiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
                 theme: "theme2",//theme1
+                animationEnabled: false,
                 title:{
                     text: "Total energy usage"
                 },
@@ -52,6 +53,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvas").empty();
         window['onePiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
             theme: "theme2",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered"              
             },
@@ -71,6 +73,7 @@ function renderCharts(){
         $('#'+iuserd+"BarCanvas").empty();
         window['oneBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
             theme: "theme1",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered sorted monthly"             
             },
@@ -85,6 +88,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvasProfile").empty();
         window['twoPiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
                 theme: "theme2",//theme1
+                animationEnabled: false,
                 title:{
                     text: "Total energy usage"
                 },
@@ -104,6 +108,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvas").empty();
         window['twoPiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
             theme: "theme2",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered"              
             },
@@ -123,6 +128,7 @@ function renderCharts(){
         $('#'+iuserd+"BarCanvas").empty();
         window['twoBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
             theme: "theme1",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered sorted monthly"             
             },
@@ -137,6 +143,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvasProfile").empty();
         window['threePiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
                 theme: "theme2",//theme1
+                animationEnabled: false,
                 title:{
                     text: "Total energy usage"
                 },
@@ -156,6 +163,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvas").empty();
         window['threePiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
             theme: "theme2",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered"              
             },
@@ -175,6 +183,7 @@ function renderCharts(){
         $('#'+iuserd+"BarCanvas").empty();
         window['threeBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
             theme: "theme1",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered sorted monthly"             
             },
@@ -189,6 +198,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvasProfile").empty();
         window['fourPiechartProfile'] = new CanvasJS.Chart(iuserd+"PieCanvasProfile", {
                 theme: "theme2",//theme1
+                animationEnabled: false,
                 title:{
                     text: "Total energy usage"
                 },
@@ -208,6 +218,7 @@ function renderCharts(){
         $('#'+iuserd+"PieCanvas").empty();
         window['fourPiechartViewChart'] = new CanvasJS.Chart(iuserd+"PieCanvas", {
             theme: "theme2",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered"              
             },
@@ -227,6 +238,7 @@ function renderCharts(){
         $('#'+iuserd+"BarCanvas").empty();
         window['fourBarchartViewChart'] = new CanvasJS.Chart(iuserd+"BarCanvas", {
             theme: "theme1",//theme1
+            animationEnabled: false,
             title:{
                 text: "Total energy usage within the dates entered sorted monthly"             
             },
@@ -238,7 +250,6 @@ function renderCharts(){
 };
 
 function otherLogout(otherLogoutUserNumber){
-    alert(otherLogoutUserNumber);
 	sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 	userArray[parseInt(window[otherLogoutUserNumber])-1] = false;
     if(window[otherLogoutUserNumber] == 1){

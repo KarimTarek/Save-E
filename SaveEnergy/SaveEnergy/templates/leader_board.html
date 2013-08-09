@@ -31,6 +31,7 @@
 	Pusher.channel_auth_transport = 'ajax';
 
 	window['{{userID}}logOutLB'] = function(data) {
+		console.log("In logout LB");
 						sessionStorage.noOfUsers = parseInt(sessionStorage.noOfUsers) - 1;
 						userArray[parseInt(window["{{userNumber}}"])-1] = false;
 						if(window["{{userNumber}}"] == '1'){
@@ -212,16 +213,20 @@
 		                            }
 		                        }
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutLB']);
+			                	console.log("In logoutLB unbinded le client-logout");
 			                	window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
+			                	console.log("In logoutLB unbinded le client-goBackToProfile");
 			     //            	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
 								// window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
 								renderCharts();
+								console.log("In logout LB abl el trigger");
 			                	var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 				            }
 						});
 					};
 
 	window['{{userID}}backToProfile'] = function(data) {
+		console.log("In back to profile");
 	                        setTimeout(function () {
 	                            $.ajax({
 	                                url: "/profile/"+"{{userID}}"+"/"+"{{userNumber}}"+"/"+window["{{userNumber}}Privacy"]+"/",
@@ -248,7 +253,9 @@
 									        }
 									    }
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-goBackToProfile',window['{{userID}}backToProfile']);
+	                                    console.log("In back to profile unbinded le client-goBackToProfile");
 	                                    window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{userID}}logOutLB']);
+	                                    console.log("In back to profile unbinded le client-logout");
 	         //                            window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
 										// window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
 	                                    $('#'+"{{userNumber}}").html(data);
@@ -291,6 +298,7 @@
 											}
 										}
 										renderCharts();
+										console.log("In back to profile abl el trigger");
 	                                    var triggered = window[ chan + window["{{userNumber}}"] ].trigger('client-loadingComplete', {});
 	                                }
 	                            });
@@ -339,8 +347,11 @@
 	// 	$('#{{userNumber}}').scrollTop(y+150);
 	// }
 
+
 	window[ chan + window["{{userNumber}}"] ].bind('client-goBackToProfile',window['{{userID}}backToProfile']);
+	console.log("binded le client-goBackToProfile");
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{userID}}logOutLB']);
+	console.log("binded le client-logout");
 	// window[ chan + window["{{userNumber}}"] ].bind('client-scrollUpLB',window['{{userNumber}}scrollUp']);
 	// window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownLB',window['{{userNumber}}scrollDown']);
 </script>

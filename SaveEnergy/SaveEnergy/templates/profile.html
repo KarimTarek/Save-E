@@ -50,6 +50,7 @@
 		{% ifequal privacyStatus 'low' %}
 			window['{{userNumber}}PiechartProfile'] = new CanvasJS.Chart("{{user_id}}PieCanvasProfile", {
 					theme: "theme2",//theme1
+					animationEnabled: false,
 					title:{
 						text: "Total energy usage"
 					},
@@ -312,6 +313,7 @@
 
 		window['{{user_id}}goToLeaderBoard'] = function(data) {
 							// $.cookie('userSession', "bf94f04fdf144e66e2c07c5e8a09fda6");
+							console.log('in goToLeaderBoard');
 							$.ajax({
 					                url: "/leaderBoard/",
 					                type: "GET",
@@ -341,6 +343,7 @@
 					                	$('#'+"{{userNumber}}").html(data);
 					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToChart', window['{{user_id}}goToChart']);
 					                	window[ chan + window["{{userNumber}}"] ].unbind('client-logout',window['{{user_id}}logOutProfile']);
+					                	console.log('in goToLeaderBoard unbinded goToLeaderBoard');
 					                	window[ chan + window["{{userNumber}}"] ].unbind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
 					                	window[ chan + window["{{userNumber}}"] ].unbind('client-scrollUpProfile',window['{{userNumber}}scrollUp']);
 										window[ chan + window["{{userNumber}}"] ].unbind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
@@ -480,6 +483,7 @@
 	window[ chan + window["{{userNumber}}"] ].bind('client-scrollDownProfile',window['{{userNumber}}scrollDown']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-logout',window['{{user_id}}logOutProfile']);
 	window[ chan + window["{{userNumber}}"] ].bind('client-goToLeaderBoard',window['{{user_id}}goToLeaderBoard']);
+	console.log('binded client-goToLeaderBoard ');
 	
 </script>
 

@@ -388,7 +388,6 @@ def LoginRequest(request):
 				userNumber = "three"
 				context = {'form': form , 'userNumber' : userNumber}
 				return render_to_response('login.html', context, context_instance=RequestContext(request))
-
 			elif(request.GET['userNumber'] == "4"):
 				form = LoginForm(prefix="user_four")
 				userNumber = "four"

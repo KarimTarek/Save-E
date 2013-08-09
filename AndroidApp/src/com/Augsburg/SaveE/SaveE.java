@@ -36,6 +36,7 @@ public class SaveE extends DroidGap
         //Set by <content src="index.html" /> in config.xml
         //super.loadUrl(Config.getStartUrl());
         //super.loadUrl("http://localhost:8000/home/");
+        super.setIntegerProperty("loadUrlTimeoutValue", 60000);
         super.loadUrl("file:///android_asset/www/index.html");
         
         this.appView.addJavascriptInterface(new WebSocketFactory(this), "WebSocketFactory");        

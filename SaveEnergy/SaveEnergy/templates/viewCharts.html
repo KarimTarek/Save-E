@@ -357,6 +357,7 @@
 		{% ifequal privacyStatus 'low' %}
 			window['{{userNumber}}PiechartViewChart'] = new CanvasJS.Chart("{{userID}}PieCanvas", {
 				theme: "theme2",//theme1
+				animationEnabled: false,
 				title:{
 					text: "Total energy usage within the dates entered"              
 				},

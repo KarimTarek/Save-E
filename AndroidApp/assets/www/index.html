@@ -124,7 +124,7 @@
     <!-- /page register -->
         <div data-role="page" id="register" class="PageClass" data-theme="b">
             <div data-role="header">
-                <a href="#" data-transition="flip" onClick="goBackToLoginPage()" data-icon="delete">Back</a>
+                <a href="#" data-transition="flip" onClick="goBackToLoginPage()" data-icon="arrow-l">Back</a>
                 <h1>Save E</h1>
             </div>
             <div id="RegisterColorDiv" class="" data-role="none"></div>
@@ -183,7 +183,7 @@
      <!-- /page page2 LeaderBoard -->
         <div data-role="page" id="page2" class="PageClass" data-theme="b">
             <div data-role="header">
-                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a>
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="arrow-l">Back</a>
                 <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
                 <h1>Save E</h1>
             </div>
@@ -197,7 +197,7 @@
     <!-- /page page3 charts -->
         <div data-role="page" id="page3" class="PageClass" data-theme="b">
             <div data-role="header">
-                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a>
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="arrow-l">Back</a>
                 <a href="#" data-transition="flip" id="logoutCharts" data-icon="delete" onClick="logOut()">Log out</a>
                 <h1>Save E</h1>
             </div> 
@@ -290,7 +290,7 @@
     <!-- /page page4 view charts -->
         <div data-role="page" id="page4" class="PageClass" data-theme="b">
             <div data-role="header">
-                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back to profile</a>
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="arrow-l">Back to profile</a>
                 <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
                 <h1>Save E</h1>
             </div>
@@ -339,6 +339,7 @@
             var loginFailed = "";
             var logoutMobile = "";
             var channelName = "private-SaveE";
+            var timeoutId1 = null;
             document.addEventListener("deviceready", onDeviceReady, false);
 
             function startInactivityCheck() {
@@ -516,6 +517,7 @@
 
         //------- Tell the app to go to the leaderboard
             function goToLeaderBoard() {
+                console.log('in goToLeaderBoard');
                 userActivityDetected();
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
@@ -524,6 +526,7 @@
                 var triggered = window['channel'].trigger('client-goToLeaderBoard', {});
                 var goToLeaderBoardLC = function(data){
                         $.mobile.loading( 'hide');
+                        console.log('in goToLeaderBoard unbinded client-loadingComplete');
                         window['channel'].unbind('client-loadingComplete', goToLeaderBoardLC);
                         $.mobile.changePage($('#page2'),{transition: "flip"});
                         $('a').removeClass('ui-disabled');
@@ -544,9 +547,12 @@
                         
                     }
                     window['channel'].unbind('yourRank', yourRank);
+                    console.log('in goToLeaderBoard unbinded yourRank');
                 }
                 window['channel'].bind('yourRank', yourRank);
+                console.log('in goToLeaderBoard binded yourRank');
                 window['channel'].bind('client-loadingComplete', goToLeaderBoardLC);
+                console.log('in goToLeaderBoard binded client-loadingComplete');
             }
         //---------------------------------------------
 
@@ -704,9 +710,10 @@
 
         //starting the app with the launching of the login screen
             function startPage() {
+                userActivityDetected()
                 window['pusher'] = new Pusher('35bf6495b4677801c17e');
                 window['channel'] = pusher.subscribe(channelName);
-                Pusher.channel_auth_endpoint = 'http://137.250.171.211:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
                 startInactivityCheck();
@@ -813,6 +820,7 @@
 
         //tell the web app to log out the user
             function logOut() {
+                userActivityDetected()
                 $('a').addClass('ui-disabled');
                 $('#ExitApp').removeClass('ui-disabled');
                 $('#CancelExit').removeClass('ui-disabled');
@@ -862,7 +870,7 @@
                 channelName = "private-SaveE";
                 var pusher = new Pusher('35bf6495b4677801c17e');
                 var channel = pusher.subscribe('private-SaveE');
-                Pusher.channel_auth_endpoint = 'http://137.250.171.211:8000/auth/';
+                Pusher.channel_auth_endpoint = 'http://192.168.1.3:8000/auth/';
                 Pusher.channel_auth_transport = 'ajax';
                 var screenFull = function(data){
                     $.mobile.loading( 'hide');
