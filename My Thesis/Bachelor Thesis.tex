@@ -1,0 +1,313 @@
+\documentclass[12pt, a4paper, fleqn]{memoir}%makeidx
+
+%******************************************************************************
+% STYLE
+%******************************************************************************
+\input{style.tex}
+
+%******************************************************************************
+% BEGIN DOCUMENT
+%******************************************************************************
+\begin{document}
+
+%******************************************************************************
+% FRONT MATTER
+%******************************************************************************
+\frontmatter
+
+%******************************************************************************
+% EMPTY PAGE
+%******************************************************************************
+\pagestyle{empty}
+This is actually the first page of the thesis and will be discarded after the print out. This is done because 
+the title page has to be an even page. The memoir style package used by this template makes different indentations 
+for odd and even pages which is usally done for better readability.  
+\clearpage
+%******************************************************************************
+% TITLE PAGE
+%******************************************************************************
+\pagestyle{empty}
+\rmfamily
+\noindent
+\begin{center}
+University of Augsburg\\
+Faculty of Applied Computer Science\\
+Department of Computer Science\\
+Bachelor Program in Computer Science\\
+\end{center}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.25\textwidth]{logo.png}
+\end{figure}
+\vfill\vfill
+\begin{center}
+\Large
+Bachelor Thesis\\
+\end{center}
+\vspace{2.0em}
+\begin{center}
+\Large
+\LARGE Brief Title\\ \vspace{10pt} 
+\Large Development of a Multi-User, Multi-Display application to increase Energy Awareness
+\end{center}
+\vspace{2.0em}
+\begin{center}
+    \normalsize
+    submitted by\\
+    \large
+    Karim Aly\\
+    \normalsize
+    on 25.08.2013
+\end{center}
+\vspace{2.0em}
+\begin{center}
+    \normalsize
+    Supervisor:\\ 
+    Prof. Dr. Elisabeth Andr\'{e}
+\end{center}
+\begin{center}
+    \normalsize
+    Adviser:\\
+    Dipl.-Inf. Michael Wi§ner
+\end{center}
+\begin{center}
+    \normalsize
+    Reviewers:\\
+    Prof. Dr. Elisabeth Andr\'{e}\\
+    Prof. Dr. Elisabeth Andr\'{e}\\
+\end{center}
+\cleardoublepage
+
+%******************************************************************************
+% DEDICATION
+%******************************************************************************
+\vspace*{\fill}
+{\hfill\sffamily\itshape} You can write a dedication here, but never more than a single line. 
+\cleardoublepage
+
+%******************************************************************************
+% ABSTRACT
+%******************************************************************************
+\chapter*{Abstract}
+This is the place where the \textit{abstract} of your thesis is supposed to be. The abstract is an essential part of a thesis, providing a brief summary of the thesis. Students often do not recognise the importance of the abstract and thus do not spend the required time in order to produce a well defined abstract. You should realize that the abstract is the walking advertisement for your thesis. Any reader's interest in your work stands or falls with the motivation provided by your abstract. A student should know that usually the reviewer of his or her thesis start reading with the abstract and the summary while often just making quick scans over some parts of the main chapters. An abstract is what will and has to be remembered.
+
+%******************************************************************************
+% ACKNOWLEDGMENTS
+%******************************************************************************
+\chapter*{Acknowledgments}
+I would like to thank Ahmed Mohamed for helping me in understanding some concepts in the pusher service and Gasser Akila for his support.
+
+%******************************************************************************
+% STATEMENT & DECLARATION
+%******************************************************************************
+\chapter*{Statement and Declaration of Consent}
+\vfill
+\subsubsection*{\LARGE Statement}
+Hereby I confirm that this thesis is my own work and that I have documented all sources used.
+\vfill
+\begin{flushleft}
+Karim Aly
+\end{flushleft}  
+\begin{flushright}
+Augsburg, 25.08.2013 
+\end{flushright}
+\vfill
+\vfill
+\subsubsection*{\LARGE Declaration of Consent}
+Herewith I agree that my thesis will be made available through the library of the Computer Science Department.
+\vfill
+\begin{flushleft}
+Karim Aly
+\end{flushleft}  
+\begin{flushright}
+Augsburg, 25.08.2013
+\end{flushright}
+\vfill
+
+%******************************************************************************
+% TABLE OF CONTENTS
+%******************************************************************************
+\cleardoublepage
+\rmfamily
+\normalfont
+\pagenumbering{roman}
+\pagestyle{headings}
+\tableofcontents
+
+
+%******************************************************************************
+% MAIN MATTER
+%******************************************************************************
+\mainmatter
+
+%##########################################################
+\chapter{Introduction}
+\label{chap:Introduction}
+
+\section{Motivation}
+\label{sec:Motivation}
+
+\section{Objectives}
+\label{sec:Objectives}
+
+%\section{Outline}
+%\label{sec:Outline}
+
+%##########################################################
+\chapter{Related Work}
+\label{chap:RelatedWork}
+
+\section{Theoretical Background}
+\label{sec:TheoreticalBackground}
+%Figure \ref{fig:intro} shows an image while you can cite a paper with \cite{AmirPnueli1985} or several papers with \cite{ThomasRist2004, Rist2002}.
+
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=0.8\textwidth]{enten.jpg}
+%\caption{The map of Entenhausen}
+%\label{fig:intro}
+%\end{figure}
+
+%\section{Section}
+%\label{sec:Section}
+
+%\subsection{PseudoCode}
+%\label{sec:PseudoCode}
+%If you want to show the implementation of some algorithm that is essential to the solution found in your thesis then do not write plain prgoram code. Use an abstract pseudocode representation instead. No one wants to see \texttt{C++\texttrademark} code or \texttt{Java\texttrademark} code in your thesis because it is presumed that you are able so write such a program as a computer scientist. Generally, writing program code is bad style and just blows up your thesis but will never be read by anyone but you. It is nothing scientific but your handwork while your thesis should show that you are able to do research as a scientist. A pseudocode example could look like the following:
+%\begin{algorithm}[h]
+%\caption{The Dekker Algorithm}
+%\label{algo:dekker}
+%\begin{algorithmic}
+%\Require $n \in \mathbb{N}$
+%\Require $0 \leq i,turn \leq n$
+%\Require $\forall 0 \leq j \leq n : (interrested[j] = false)$
+%\Procedure{DekkerAlgorithm}{$n,i$}
+%  \State $interrested[i] \leftarrow true$
+%  \While {$\exists 0 \leq j \leq n : (j \neq i \wedge interrested[j] = true)$}
+%  \If {$turn \neq i$}
+%    \State $interrested[i] \leftarrow false$
+%    \While {$turn \neq i$}
+%    \EndWhile
+%    \State $interrested[i] \leftarrow true$
+%  \EndIf 
+%  \EndWhile
+%  \State $ $
+%  \State $\text{\textbf{\color{red}CRITICAL SECTION}}$
+%  \State $ $
+%  \State $turn \leftarrow Random(n)$
+%  \State $interrested[i] \leftarrow false$
+%\EndProcedure
+%\end{algorithmic}
+	%\end{algorithm}
+
+%Be sure that each pseudocode listing is listed in the list of algorithms at the end of your thesis.
+
+%******************************************************************************
+% CONCEPT AND IMPLEMENTATION
+%******************************************************************************
+
+\chapter{Concept And Implementation}
+\label{chap:ConceptAndImplementation}
+
+\section{Technologies Used}
+\label{sec:TechnologiesUsed}
+The technologies used in the project were Django framework which was used to handle the backend code which was represented in writing the server code and creating the models or the tables of the database in order to be able to store the information needed to run the application as for the connection between the display and the mobile, we faced a major problem at the beginning because since web sockets technology was agreed to be used and it wasn't supported by the android native mobile browsers another solution was needed to be found and that what led us to pusher. Pusher is a tool which helps the developers to create applications which involves realtime in it, also phone gap was used to help in writing HTML5 code and javascript to make native applications for multiple platforms so it helped in developing the backend of the mobile code which was simply javascript. For the front end code or the user interface which is represented in the design and the looks of the app HTML5 and CSS3 were used to design the app user interface and twitter bootstrap was used for the public display user interface with jquery to reach a more powerful design also Jquery mobile was used on the mobile side for both handling the user interface and the server side functionalities on the mobile, moreover charts were needed in the application so canvasjs chart engine was used in rendering the charts with the given data using HTML5 canvas to draw the required charts. 
+
+\section{Concept}
+\label{sec:Concept}
+So the concept was to create an application to help people to increase their energy awareness and help them to save more energy. Since the technology used was agreed to be HTML5 and Web sockets, the idea was to create a multi-user application in which each user can do actions in their specified space or slot on the screen and by using web sockets the connection were established between each user(mobile) and the display and the django framework was used as mentioned in the previous section to handle the backend code and to manage and create the models in the database in order to achieve such an application also canvasjs the javascript chart engine and pusher were used to draw user charts to illustrate their energy usage.
+
+\section{Multi-user setup}
+\label{sec:Multi-userSetup}
+
+%******************************************************************************
+% CONCLUSION
+%******************************************************************************
+
+\chapter{Conclusion}
+\label{chap:Conclusion}
+
+%******************************************************************************
+% RESULTS AND FUTURE WORK
+%******************************************************************************
+
+\chapter{Results And Future Work}
+\label{chap:ResultsAndFutureWork}
+
+
+%******************************************************************************
+% BIBLIOGRAPHY
+%******************************************************************************
+
+
+
+%******************************************************************************
+% BIBLIOGRAPHY
+%******************************************************************************
+\bibliographystyle{plain}
+{\small\bibliography{master}}
+
+%******************************************************************************
+% APPENDIX
+%******************************************************************************
+\appendix
+\appendixpage*
+\chapter{First Appendix}
+\label{app:FirstAppendix}
+This is the place where the appendices are supposed to be. Appendices are everything that would just blow up your thesis but are still of some interrest for a reader that wants to get a deeper grasp on the details of your work.
+
+%******************************************************************************
+% BACK MATTER
+%******************************************************************************
+\backmatter
+
+%******************************************************************************
+% LIST OF SYMBOLS
+%******************************************************************************
+%\normalfont
+%\clearpage
+%\chapter[List of Symbols and Abbreviations]{List of Symbols and Abbreviations}
+%\begin{center}
+%\small
+%\begin{longtable}{lp{3.0in}c}
+%\toprule
+%\multicolumn{1}{c}{Abbreviation} & \multicolumn{1}{c}{Description}\\ \midrule\addlinespace[2pt] \endhead
+%\bottomrule\endfoot
+%XML & E\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage \\
+%XSD & \textbf{X}ML-\textbf{S}chema-\textbf{D}efinition \\
+%SFXML & \textbf{S}cene\textbf{F}low E\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage \\
+%SFTXL & \textbf{S}cene\textbf{F}low \textbf{T}extual E\textbf{X}pression \textbf{L}anguage \\
+%SCXML & \textbf{S}tate\textbf{C}hart E\textbf{X}tensible \textbf{M}arkup \textbf{L}anguage \\
+%DOM & \textbf{D}ocument \textbf{O}bject \textbf{M}odel \\
+%LR & \textbf{L}eft to \textbf{R}ightmost derivation \\
+%LALR & \textbf{L}ook\textbf{A}head LR\\
+%NPC & \textbf{N}on-\textbf{P}erson-\textbf{C}haracter\\
+%ABL & \textbf{A} \textbf{B}ehavior \textbf{L}anguage\\
+%\end{longtable}
+%\end{center}
+
+%******************************************************************************
+% LIST OF FIGURES
+%******************************************************************************
+\normalfont
+\clearpage
+\listoffigures
+
+%******************************************************************************
+% LIST OF TABLES
+%******************************************************************************
+\normalfont
+\clearpage
+\listoftables
+
+%******************************************************************************
+% LIST OF ALGORITHMS
+%******************************************************************************
+%\normalfont
+\clearpage
+\listofalgorithms
+
+%******************************************************************************
+% END DOCUMENT
+%******************************************************************************
+\end{document}
