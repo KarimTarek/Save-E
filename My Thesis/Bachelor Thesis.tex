@@ -222,13 +222,19 @@ So the concept was to create an application to help people to increase their ene
 
 \section{Connection}
 \label{sec:Connection}
+\begin{figure}[h]
+\centring
+\includegraphics[width=1\textwidth]{Connection_figure.png}
+\caption{This figure showing the connections made between the mobile,server and the display}
+\label{fig:Connection_figure}
+\end{figure}
 The connections in the project was mainly done using pusher first the user approaches the screen to find an introduction to the application and that the user has to click connect in order to start using the application.
-Once the user press connect on his mobile device 
+Once the user press connect on his mobile device a request is sent to the server which start executing the multi-user algorithm explained below in section \ref{sec:Multi-userSetup} after finding the specified free slot on the screen it saves that slot number and send a signal to the public display to display the login page in the specified slot which the user can login and start navigating the application as you can see in Figure~\ref{fig:Connection_figure}.
 
 \section{Multi-user setup}
 \label{sec:Multi-userSetup}
-The multi-user setup was one of the challenging part in the project because normally a web applicatin is opened in a window it will have a session for the user opening that window but to have a number of users doing some actions in the same window here the problem occurs because each user is supposed to have one session but when multiple-users start to navigate in one window the sessions replace each other as a result the requests origin or the user who made that request is unknown.
-The problem was handled by passing the user id which is a unique key which identify a user to every page he visits once the user is logged in and neglecting the session id so doing this for all the user on the screen solves the problem of the sessions replacing each other and making sure to know what does this request comes from or from which user to be specific 
+The multi-user setup was one of the challenging part in the project because normally when a web application is opened in a window it will have a session for the user opening that window but to have a number of users doing some actions in the same window here the problem occurs because each user is supposed to have one session but when multiple-users start to navigate in one window the sessions replace each other as a result the requests origin or the user who made that request is unknown.
+The problem was handled by passing the user id which is a unique key which identify a user to every page he visits once the user is logged in and neglecting the session id so doing this for all the user on the screen solves the problem of the sessions replacing each other and making sure to know what does this request comes from or from which user to be specific.
 
 
 %******************************************************************************
