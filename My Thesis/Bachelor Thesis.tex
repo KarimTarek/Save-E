@@ -81,7 +81,7 @@ Bachelor Thesis\\
 % DEDICATION
 %******************************************************************************
 \vspace*{\fill}
-{\hfill\sffamily\itshape} I want to dedicate this work for my brothers who died in rabaa massacre.
+{\hfill\sffamily\itshape}This work is dedicated for my brothers who died in rabaa massacre.
 \cleardoublepage
 
 %******************************************************************************
@@ -146,10 +146,19 @@ Augsburg, 25.08.2013
 
 \section{Motivation}
 \label{sec:Motivation}
+Energy is now one of the main concerns the world is worried about , energy resources are running out and people energy consumption is increasing dramatically it was expected that from 2008 to 2030 world energy consumption is expected to increase more than 55\% (Refer here).
+\\
+\newline \noindent One of the comments that was online about this topic stated "It's weird how unaware we are as to how much energy we're really using" and this is very true people in their daily lives doesn't seem to know anything about their energy consumption , while cooking in the kitchen or even taking a shower or while working. So people needed anything which tells them their energy usage in a daily basis also they can view and compare their usage to hope for a better energy consumption.
+\\
+\newline \noindent Concerning public displays and multi-user applications many cities around the world now began to install public displays in many places like shops,train stations, and many other since it was proven that public displays motivate the user more to interact with it and also help him in finding what he needs in a fun and innovative way. For example the public display in LOCATION1 (e7ky kesetha) also another one was placed at LOCATION2 (e7ky keset-ha).
 
 \section{Objectives}
 \label{sec:Objectives}
-
+The aim of the project was first letting the people know how much energy they use on daily basis because the first step to solve the problem is knowing where the problem is. Also modern ways like public displays and smart phones had to be used in order to allow users to compete with each other and compare their usages in a fun and interactive way on public displays. 
+\\
+\newline \noindent Moreover, helping the user in saving energy in their daily lives by giving them tips about the things they usually do every day on how to do the same things but more efficiently by using less energy and of coarse this helps if not by decreasing the energy the user consume , it helps by letting the user know ways about how the energy can be waisted so instead of doing the task in lets say a k amount of energy it ends up using double this amount.
+\\
+\newline \noindent Finally the system had to be robust and user friendly so in order to try to achieve that, privacy profiles were implemented in order to give the user an option to hide his data if he doesn't want anyone to check his consumption also to increase user trust in the application.
 %\section{Outline}
 %\label{sec:Outline}
 
@@ -160,6 +169,7 @@ Augsburg, 25.08.2013
 \section{Theoretical Background}
 \label{sec:TheoreticalBackground}
 %Figure \ref{fig:intro} shows an image while you can cite a paper with \cite{AmirPnueli1985} or several papers with \cite{ThomasRist2004, Rist2002}.
+Many projects were done under this topic which is increasing the energy awareness and helping people to save more energy.
 
 %\begin{figure}[h]
 %\centering
@@ -221,18 +231,21 @@ So the concept was to create an application to help people to increase their ene
 
 \section{Connection}
 \label{sec:Connection}
-\begin{figure}[h]
+\begin{figure}[H]
 \centring
 \includegraphics[width=1\textwidth]{Connection_figure.png}
-\caption{This figure showing the connections made between the mobile,server and the display}
+\caption{This figure showing the connections made between the mobile,server and the display.}
 \label{fig:Connection_figure}
 \end{figure}
-The connections in the project was mainly done using pusher first the user approaches the screen to find an introduction to the application and that the user has to click connect in order to start using the application.
-Once the user presses connect on his mobile device a request is sent to the server which start executing the multi-user algorithm explained below in section \ref{sec:Multi-userSetup} after finding the specified free slot on the screen it saves the slot number and send a signal to the public display to display the login page in the specified slot using a 4 channel connection system which consists of a channel for each slot of the screen , when the multi-user algorithm finds the free slot it connects to the channel that corresponds to this slot avoiding clashing of the requests between users since each user on the display will have his own channel to send and receive requests and will also help in identifying each user actions and interactions with the system as you can see in Figure~\ref{fig:Connection_figure} the channels and the connections can be seen in the following Figure~\ref{fig:ChannelsAndConnections}
-\begin{figure}[h]
+The connections in the project was mainly done using pusher first the user approaches the screen to find an introduction to the application and then the user has to click connect in order to start using the application.
+Once the user presses connect on his mobile device a request is sent to the server which start executing the multi-user algorithm explained below in section \ref{sec:Multi-userSetup} after finding the specified free slot on the screen it saves the slot number and sends a signal to the public display to display the login page in the specified slot using a 4 channel connection system which consists of a channel for each slot of the screen , when the multi-user algorithm finds the free slot it connects to the channel that corresponds to this slot (will be explained briefly in section \ref{sec:Multi-userSetup}) avoiding clashing between users requests since each user on the display will have his own channel to send and receive requests and will also help in identifying each user actions and interactions with the system as you can see in Figure~\ref{fig:Connection_figure}.
+\\
+\newline \noindent As for the channels and the connections it can be seen in the following Figure~\ref{fig:ChannelsAndConnections}:
+
+\begin{figure}[H]
 \centring
 \includegraphics[width=1\textwidth]{ChannelsAndConnections.png}
-\caption{This figure showing the connections and the channels and how every user connects via his own channel}
+\caption{This figure showing the connections and the channels and how every user connects via his own channel.}
 \label{fig:ChannelsAndConnections}
 \end{figure}
 
@@ -249,7 +262,7 @@ The problem was handled by passing the user id which is a unique key which ident
 \begin{figure}[H]
 \centring
 \includegraphics[width=1\textwidth]{SlotNumbersAndStatus.png}
-\caption{The figure shows the array of slot numbers on the display}
+\caption{The figure shows the array of slot numbers on the display.}
 \label{fig:SlotNumbersAndStatus}
 \end{figure}
 
@@ -267,8 +280,8 @@ currently the public display has 3 users logged-in and another user wants to con
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{Example1.png}
-\caption{The figure shows an example of users available in slot 1,2 and 3 initially }
+\includegraphics[width=0.75\textwidth]{Example1.png}
+\caption{The figure shows an example of users available in slot 1,2 and 3 initially.}
 \label{fig:Example1}
 \end{figure}
 
@@ -276,8 +289,8 @@ currently the public display has 3 users logged-in and another user wants to con
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{Example2.png}
-\caption{The system in the figure iterates on the array to find an empty slot or a false value in this case }
+\includegraphics[width=0.75\textwidth]{Example2.png}
+\caption{The system in the figure iterates on the array to find an empty slot or a false value in this case.}
 \label{fig:Example2}
 \end{figure}
 
@@ -285,8 +298,8 @@ currently the public display has 3 users logged-in and another user wants to con
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{Example3.png}
-\caption{The figure shows that the system found an empty slot (false value) and will replace it with a true value to indicate that it is busy }
+\includegraphics[width=0.75\textwidth]{Example3.png}
+\caption{The figure shows that the system found an empty slot (false value) and will replace it with a true value to indicate that it is busy.}
 \label{fig:Example3}
 \end{figure}
 
@@ -294,8 +307,8 @@ currently the public display has 3 users logged-in and another user wants to con
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{Example4.png}
-\caption{The figure shows when the number of slot is sent to the mobile then the mobile concatenate that number with the default channel name to connect to the corresponding channel}
+\includegraphics[width=0.75\textwidth]{Example4.png}
+\caption{The figure shows when the number of slot is sent to the mobile then the mobile concatenate that number with the default channel name to connect to the corresponding channel.}
 \label{fig:Example4}
 \end{figure}
 
@@ -306,7 +319,7 @@ Synchronisation of the displays was done by also using the connections as mentio
 \begin{figure}[H]
 \centring
 \includegraphics[width=1\textwidth]{Example7.png}
-\caption{This figure illustrates the synchronisation process}
+\caption{This figure illustrates the synchronisation process.}
 \label{fig:Example7}
 \end{figure}
 
@@ -316,17 +329,17 @@ One of the important milestones in the project were the responsiveness and the i
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{Example5.png}
-\caption{The figure shows a user navigating the display}
+\includegraphics[width=0.85\textwidth]{Example5.png}
+\caption{The figure shows only 1 user navigating the display.}
 \label{fig:Example5}
 \end{figure}
 
-\newline \noindent Then if another user wants to log-in and navigates, the user interface of both users change according to the number of users which is stored by the browser in the local storage as mentioned in the connection section\ref{sec:Connection} and here is a figure to illustrate more:
+\newline \noindent Then if another user wants to log-in and navigates, the user interface of both users change according to the number of users which is stored by the browser in the local storage as mentioned in the connection section \ref{sec:Connection} and here is a figure to illustrate more:
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{Example6.png}
-\caption{The figure shows the screen when another user connected}
+\includegraphics[width=0.85\textwidth]{Example6.png}
+\caption{The figure shows the screen when another user connected.}
 \label{fig:Example6}
 \end{figure}
 
@@ -345,10 +358,11 @@ Privacy was one of the important aspects of the project since the project was no
 \\
 \newline \noindent But while trying to implement privacy there were certain constraints:
 \newline \noindent first the size limit of pusher service used for the connection between the public display and the mobile was only 10KB so sending the whole page to the mobile from the screen was not an option.
-\newline \noindent second the css and user interface of the page on the screen was displayed using twitter bootstrap as mentioned in section\ref{sec:TechnologiesUsed} and on the mobile Jquery mobile was used , so 2 different technologies used as the interface for each the display and the mobile, as a result the data couldn't be sent directly to the mobile since the styles will replace each other.
+\newline \noindent second the css and user interface of the page on the screen was displayed using twitter bootstrap as mentioned in section \ref{sec:TechnologiesUsed} and on the mobile Jquery mobile was used , so 2 different technologies used as the interface for each the display and the mobile, as a result the data couldn't be sent directly to the mobile since the styles will replace each other.
 \\
 \newline \noindent The 2 problems were solved by just sending the crucial information which was the user data in this case because there is no point in hiding the level or the money you have because it already appears on the leader board and they are made to let people compete with each other not hide it from each other so the charts engine used were put on the mobile and the data of the charts was the only part sent so by that the first problem which was the size was solved also the second one was solved because nothing is required to be sent with the data and then the mobile gives the data to the charts engine on the mobile to render it and generate the charts on the mobile once the user chooses the high privacy option.
 
+%PUT THE FIGURE HERE DON'T FORGET
 %\begin{figure}[H]
 %\centring
 %\includegraphics[width=1\textwidth]{Example6.png}

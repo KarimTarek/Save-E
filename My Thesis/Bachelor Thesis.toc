@@ -3,7 +3,7 @@
 \contentsline {chapter}{Contents}{i}{section*.6}
 \contentsline {chapter}{\chapternumberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Objectives}{1}{section.1.2}
+\contentsline {section}{\numberline {1.2}Objectives}{2}{section.1.2}
 \contentsline {chapter}{\chapternumberline {2}Related Work}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Theoretical Background}{3}{section.2.1}
 \contentsline {chapter}{\chapternumberline {3}Concept And Implementation}{5}{chapter.3}
@@ -11,13 +11,13 @@
 \contentsline {section}{\numberline {3.2}Concept}{6}{section.3.2}
 \contentsline {section}{\numberline {3.3}Connection}{6}{section.3.3}
 \contentsline {section}{\numberline {3.4}Multi-user setup}{7}{section.3.4}
-\contentsline {section}{\numberline {3.5}Synchronization}{12}{section.3.5}
-\contentsline {section}{\numberline {3.6}Responsiveness And Interaction}{13}{section.3.6}
-\contentsline {section}{\numberline {3.7}User Data}{15}{section.3.7}
-\contentsline {section}{\numberline {3.8}User Privacy}{16}{section.3.8}
-\contentsline {section}{\numberline {3.9}Game Mechanics}{17}{section.3.9}
-\contentsline {chapter}{\chapternumberline {4}Conclusion}{19}{chapter.4}
-\contentsline {chapter}{\chapternumberline {5}Results And Future Work}{21}{chapter.5}
-\contentsline {appendix}{\chapternumberline {A}FirstAppendix}{25}{appendix.A}
-\contentsline {chapter}{List of Figures}{27}{section*.7}
-\contentsline {chapter}{List of Tables}{28}{section*.8}
+\contentsline {section}{\numberline {3.5}Synchronization}{11}{section.3.5}
+\contentsline {section}{\numberline {3.6}Responsiveness And Interaction}{12}{section.3.6}
+\contentsline {section}{\numberline {3.7}User Data}{14}{section.3.7}
+\contentsline {section}{\numberline {3.8}User Privacy}{14}{section.3.8}
+\contentsline {section}{\numberline {3.9}Game Mechanics}{15}{section.3.9}
+\contentsline {chapter}{\chapternumberline {4}Conclusion}{17}{chapter.4}
+\contentsline {chapter}{\chapternumberline {5}Results And Future Work}{19}{chapter.5}
+\contentsline {appendix}{\chapternumberline {A}FirstAppendix}{23}{appendix.A}
+\contentsline {chapter}{List of Figures}{25}{section*.7}
+\contentsline {chapter}{List of Tables}{26}{section*.8}
