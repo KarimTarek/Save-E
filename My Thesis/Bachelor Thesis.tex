@@ -63,17 +63,16 @@ Bachelor Thesis\\
 \begin{center}
     \normalsize
     Supervisor:\\ 
-    Prof. Dr. Elisabeth Andr\'{e}
-\end{center}
-\begin{center}
-    \normalsize
-    Adviser:\\
     Dipl.-Inf. Michael Wi§ner
 \end{center}
+%\begin{center}
+%    \normalsize
+%    Adviser:\\
+%    Dipl.-Inf. Michael Wi§ner
+%\end{center}
 \begin{center}
     \normalsize
     Reviewers:\\
-    Prof. Dr. Elisabeth Andr\'{e}\\
     Prof. Dr. Elisabeth Andr\'{e}\\
 \end{center}
 \cleardoublepage
@@ -82,7 +81,7 @@ Bachelor Thesis\\
 % DEDICATION
 %******************************************************************************
 \vspace*{\fill}
-{\hfill\sffamily\itshape} I want to dedicate this work for my parents who helped and supported me along the way
+{\hfill\sffamily\itshape} I want to dedicate this work for my brothers who died in rabaa massacre.
 \cleardoublepage
 
 %******************************************************************************
@@ -229,13 +228,146 @@ So the concept was to create an application to help people to increase their ene
 \label{fig:Connection_figure}
 \end{figure}
 The connections in the project was mainly done using pusher first the user approaches the screen to find an introduction to the application and that the user has to click connect in order to start using the application.
-Once the user press connect on his mobile device a request is sent to the server which start executing the multi-user algorithm explained below in section \ref{sec:Multi-userSetup} after finding the specified free slot on the screen it saves that slot number and send a signal to the public display to display the login page in the specified slot which the user can login and start navigating the application as you can see in Figure~\ref{fig:Connection_figure}.
+Once the user presses connect on his mobile device a request is sent to the server which start executing the multi-user algorithm explained below in section \ref{sec:Multi-userSetup} after finding the specified free slot on the screen it saves the slot number and send a signal to the public display to display the login page in the specified slot using a 4 channel connection system which consists of a channel for each slot of the screen , when the multi-user algorithm finds the free slot it connects to the channel that corresponds to this slot avoiding clashing of the requests between users since each user on the display will have his own channel to send and receive requests and will also help in identifying each user actions and interactions with the system as you can see in Figure~\ref{fig:Connection_figure} the channels and the connections can be seen in the following Figure~\ref{fig:ChannelsAndConnections}
+\begin{figure}[h]
+\centring
+\includegraphics[width=1\textwidth]{ChannelsAndConnections.png}
+\caption{This figure showing the connections and the channels and how every user connects via his own channel}
+\label{fig:ChannelsAndConnections}
+\end{figure}
+
 
 \section{Multi-user setup}
 \label{sec:Multi-userSetup}
-The multi-user setup was one of the challenging part in the project because normally when a web application is opened in a window it will have a session for the user opening that window but to have a number of users doing some actions in the same window here the problem occurs because each user is supposed to have one session but when multiple-users start to navigate in one window the sessions replace each other as a result the requests origin or the user who made that request is unknown.
-The problem was handled by passing the user id which is a unique key which identify a user to every page he visits once the user is logged in and neglecting the session id so doing this for all the user on the screen solves the problem of the sessions replacing each other and making sure to know what does this request comes from or from which user to be specific.
+The multi-user setup was one of the challenging part in the project because normally when a web application is opened in a window it will have a session for the user opening that window but to have a number of users doing some actions in the same window here the problem occurs because each user is supposed to have one session id which is stored by the browser window but when multiple-users start to navigate in one window the sessions replace each other, as a result the requests origin or the user who made that request will not be known.
+The problem was handled by passing the user id which is a unique key which identify a user to every page he visits once the user is logged in and neglecting the session id so doing this for all the users on the screen solves the problem of the sessions replacing each other and making sure to know where does this request comes from or from which user to avoid colliding of requests.
 
+\newline \noindent The organising of the users on the display and the process of registering a user on the display in order to start interacting with it was done by implementing a simple algorithm it's goal is to organise the order of the users and their slots on the screen and to let the users interact on their specified slots and by saving the number of users currently on the display in a local storage variable by the browser.
+
+\newline \noindent As you can see the following figure~\ref{fig:SlotNumbers} 
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{SlotNumbersAndStatus.png}
+\caption{The figure shows the array of slot numbers on the display}
+\label{fig:SlotNumbersAndStatus}
+\end{figure}
+
+\newline \noindent represents the array of screen slots numbers from 1 to 4 when a user press the connect button the mobile sends a signal via a general channel to the server which then loops on the slot status array in figure~\ref{fig:SlotNumbers}.
+
+%\begin{figure}[H]
+%\centring
+%\includegraphics[width=1\textwidth]{BooleanStatusArray.png}
+%\caption{The figure shows an array of the status of each slot on the screen}
+%\label{fig:BooleanStatusArray}
+%\end{figure}
+
+\newline \noindent And when it finds a free slot which means false it overrides the false value with a true one and take it's index to get the corresponding index in the slot numbers array in figure~\ref{fig:SlotNumbers} then it sends the slot number which will be assigned to this user to the mobile device and connect to the channel of this number and display the content on the specified slot then it increment a local storage variable stored by the browser which keep track of the number of users on the display. For example imagine this situation :
+currently the public display has 3 users logged-in and another user wants to connect so as you can see in figure~\ref{fig:Example1} the Boolean array which represents the current busy slots of the screen indicates that slot 1,2 and 3 are taken.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example1.png}
+\caption{The figure shows an example of users available in slot 1,2 and 3 initially }
+\label{fig:Example1}
+\end{figure}
+
+\newline \noindent So once the user press connect what the system does is the following :
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example2.png}
+\caption{The system in the figure iterates on the array to find an empty slot or a false value in this case }
+\label{fig:Example2}
+\end{figure}
+
+\newline \noindent The system begin to loop on the array that contains the status of each slot on the screen until it find a cell in the array in which the cell is "false" which means at this index in the Slot number array the slot is free then the system stops and replace the status with true instead of false then sends this number to the mobile in order to connect on the channel of that slot to be able to interact so here is a figure when the algorithm executed.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example3.png}
+\caption{The figure shows that the system found an empty slot (false value) and will replace it with a true value to indicate that it is busy }
+\label{fig:Example3}
+\end{figure}
+
+\newline \noindent Then it sends the corresponding number in the slot numbers array which is 4 in this case to the mobile to be able to connect to slot 4 via its channel so as it appears in figure~\ref{fig:Example4} the number is then sent to the mobile and concatenated to the default channel name which is "Private-SaveE" as mentioned in the previous section. And by that it prevents any conflicts between users and let the system distinguish between user requests.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example4.png}
+\caption{The figure shows when the number of slot is sent to the mobile then the mobile concatenate that number with the default channel name to connect to the corresponding channel}
+\label{fig:Example4}
+\end{figure}
+
+\section{Synchronization}
+\label{sec:Synchronization}
+Synchronisation of the displays was done by also using the connections as mentioned in the Connections section \ref{sec:Connection} so the system once the user pressed any button on his mobile to navigate the system on the display the mobile pops-up the loading widget which tells the user what is the server trying to do in that moment so while the request reach the server, the server sends to the display what to show then an event is triggered on the channel which the user is connected to with a loading complete header which indicates that the request has successfully executed and the loading widget is removed from the user mobile screen and the page is changed to match the display contents. And here is an example to illustrate more :
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example7.png}
+\caption{This figure illustrates the synchronisation process}
+\label{fig:Example7}
+\end{figure}
+
+\section{Responsiveness And Interaction}
+\label{sec:ResponsivenessAndInteraction}
+One of the important milestones in the project were the responsiveness and the interactions since the application is a multi-user application so multiple user interface profiles had to be made in order to cover all the possible situations and combinations that might happen between users so for example when a user is on the display alone the user takes the whole screen alone to display his data but when 2 users are on the display the display in  splitter between them and both user interfaces for each user have to be changed in order to match the new dimensions and space that each user have on the display. So for more understanding please refer to this figure~\ref{fig:Example5} this is a situation when 1 user is navigating the display alone:
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example5.png}
+\caption{The figure shows a user navigating the display}
+\label{fig:Example5}
+\end{figure}
+
+\newline \noindent Then if another user wants to log-in and navigates, the user interface of both users change according to the number of users which is stored by the browser in the local storage as mentioned in the connection section\ref{sec:Connection} and here is a figure to illustrate more:
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example6.png}
+\caption{The figure shows the screen when another user connected}
+\label{fig:Example6}
+\end{figure}
+
+\newline \noindent This was made by implementing css classes for each element on the screen for each possible scenario for example when a user navigates on the display alone he is taking the whole screen alone and all the elements are given the css for that situation but then when another user signs in he trigger a function which then knows the page that each user is currently at and begin to change the css of each of the elements to the new situation so the css is all checked and changed when a user connects to the display and already there are other users. Also when a user navigates from one page to another, the same function is called but to only correct the css of any change happened and to maintain the correct user interface for all the users.
+
+
+\section{User Data}
+\label{sec:UserData}
+User data which is simply represented as charts in the project and letting the user know their energy consumption was one of the objectives to increase energy awareness and to help users save energy so user data had to be made in order to illustrate to the user his consumption also helps in 2 points:
+\newline the first point: user data helps the user to know their detailed energy consumption and as a result the user can know where does the problem come from or from which device he consumes energy the most.
+\newline the second point: users may take advantage of the multi-user setup and use the system to compare each other's data in order to motivate both of them to save energy as that can give them rewards as we will see in the game mechanics section\ref{sec:GameMechanics}.
+
+\section{User Privacy}
+\label{sec:UserPrivacy}
+Privacy was one of the important aspects of the project since the project was not about creating an application to motivate people to save energy and increase their energy awareness only , but also a robust and trusted system, so privacy had to be implemented in the project in order to let the user feel safe at any time he doesn't want anyone to check his detailed energy consumption he just can hide his data from people and view it on his mobile screen instantaneously. So 2 privacy modes were created the high privacy mode which tells the system to hide the data from the public display and send the data to the mobile so the user only see his data on his mobile once he choose that option and the low privacy mode which is the normal mode , the data is kept at the display available for all users to see normally.
+\\
+\newline \noindent But while trying to implement privacy there were certain constraints:
+\newline \noindent first the size limit of pusher service used for the connection between the public display and the mobile was only 10KB so sending the whole page to the mobile from the screen was not an option.
+\newline \noindent second the css and user interface of the page on the screen was displayed using twitter bootstrap as mentioned in section\ref{sec:TechnologiesUsed} and on the mobile Jquery mobile was used , so 2 different technologies used as the interface for each the display and the mobile, as a result the data couldn't be sent directly to the mobile since the styles will replace each other.
+\\
+\newline \noindent The 2 problems were solved by just sending the crucial information which was the user data in this case because there is no point in hiding the level or the money you have because it already appears on the leader board and they are made to let people compete with each other not hide it from each other so the charts engine used were put on the mobile and the data of the charts was the only part sent so by that the first problem which was the size was solved also the second one was solved because nothing is required to be sent with the data and then the mobile gives the data to the charts engine on the mobile to render it and generate the charts on the mobile once the user chooses the high privacy option.
+
+%\begin{figure}[H]
+%\centring
+%\includegraphics[width=1\textwidth]{Example6.png}
+%\caption{The figure shows the screen when another user connected}
+%\label{fig:Example6}
+%\end{figure}
+
+\section{Game Mechanics}
+\label{sec:GameMechanics}
+Gamification or applying game mechanics is now widely used in many applications because it enhance the user experience with the application and involves more fun but in the same time it motivates users to challenge and compete against each other in order to be from the top 3 or the top 10 players so this concept was used in the project to bring more interaction between the users and increase their motivation to compete against each other to save energy and gain badges and virtual money to be able to make their way up the leader board as it will be explained later in this section.
+
+\newline \noindent So simply the game mechanics of the system consists of:
+\\
+\newline \noindent 1- Levels: level is an indication about your total consumption also used by the leader board as the sorting key.
+\newline \noindent 2- Badges: a badge is gained when you cross a certain amount of money and as long as you are saving more money you gain more badges.
+\newline \noindent 3- Virtual Money: initially users have money then when the costs of their usages is calculated and deducted they loose them.
+\newline \noindent 4- Leader board: the leader board is the place where you can see all the users and their levels,badges,money and ranks.
+\\
+\newline \noindent So simply users at first have a certain amount of money by default then when they start measuring their energy consumption day by day the cost is calculated and deducted from the money they have so the more you consume energy the less the money you have and vice versa. Also when the system detects that the data is for a new month the system adds new money to the users so when the users save more energy and pay less, their money increase and when they reach a certain amount of money which is decided by the system, they gain badges which leads to a level up and improving their ranks on the leader board.
 
 %******************************************************************************
 % CONCLUSION
@@ -269,9 +401,10 @@ The problem was handled by passing the user id which is a unique key which ident
 %******************************************************************************
 \appendix
 \appendixpage*
-\chapter{First Appendix}
+\chapter{FirstAppendix}
 \label{app:FirstAppendix}
-This is the place where the appendices are supposed to be. Appendices are everything that would just blow up your thesis but are still of some interrest for a reader that wants to get a deeper grasp on the details of your work.
+%This is the place where the appendices are supposed to be. Appendices are everything that would just blow up your thesis but are still of some interest for a reader that wants to get a deeper grasp on the details of your work.
+
 
 %******************************************************************************
 % BACK MATTER
