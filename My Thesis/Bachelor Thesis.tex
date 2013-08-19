@@ -146,11 +146,15 @@ Augsburg, 25.08.2013
 
 \section{Motivation}
 \label{sec:Motivation}
-Energy is now one of the main concerns the world is worried about , energy resources are running out and people energy consumption is increasing dramatically it was expected that from 2008 to 2030 world energy consumption is expected to increase more than 55\% (Refer here).
+Energy is now one of the main concerns the world is worried about , energy resources are running out and people's energy consumption is increasing dramatically it was expected that from 2008 to 2030 world energy consumption is expected to increase more than 55\% (Refer here). Also energy consumption increase the rate of Carbon dioxide (CO2) in our environment which then leads to global warming and other environmental problems.
 \\
-\newline \noindent One of the comments that was online about this topic stated "It's weird how unaware we are as to how much energy we're really using" and this is very true people in their daily lives doesn't seem to know anything about their energy consumption , while cooking in the kitchen or even taking a shower or while working. So people needed anything which tells them their energy usage in a daily basis also they can view and compare their usage to hope for a better energy consumption.
+\newline \noindent One of the comments that was online about this topic stated "It's weird how unaware we are as to how much energy we're really using" and this is very true people in their daily lives doesn't seem to know anything about their energy consumption , while cooking in the kitchen or even taking a shower or while working. So people needed anything which tells them their energy usage in a daily basis and also allow them to view and compare their energy usages to hope for a better energy usages.
 \\
-\newline \noindent Concerning public displays and multi-user applications many cities around the world now began to install public displays in many places like shops,train stations, and many other since it was proven that public displays motivate the user more to interact with it and also help him in finding what he needs in a fun and innovative way. For example the public display in LOCATION1 (e7ky kesetha) also another one was placed at LOCATION2 (e7ky keset-ha).
+\newline \noindent Concerning public displays and multi-user applications many cities around the world now began to install public displays in many places like airports, stations, streets and many other locations since public displays have proven to motivate the users to interact with it and also help them in finding what they need in a fun and innovative way. For example the installation of interactive video wall in Copenhagen , the museum of Copenhagen decided to install a 12 meter mobile interactive video wall in the street which attracts 4000 visitors per day that talks about cultural geography and history of Copenhagen. Also the wall has a timeline toolbar which you can explore the city in different historical periods. Moreover visitors can add comments and photos and saving in on the screen and this content that the user generates can be browsed by other people as well, the wall also has a website in which users can input images from home or anyplace. In addition users can add their own photos using their mobile phones or USB.
+\\
+\newline \noindent Another example was in Singapore as part of Changi Millionaire campaign to further engage Singaporeans and visitors by an interactive augmented reality multimedia game at the Media Hub Wall at Orchard MRT Station. The users just stand in the specified place in front of the screen and see their images on the screen with flying virtual money in which they try to grab as much money as they could.
+\\
+\newline \noindent The reaction of users on both examples gave a very good impression about how users interact with public displays and how public displays applications could be the future generation of applications used in every place you go so that motivated 
 
 \section{Objectives}
 \label{sec:Objectives}
@@ -269,7 +273,7 @@ The problem was handled by passing the user id which is a unique key which ident
 
 \newline \noindent The organising of the users on the display and the process of registering a user on the display in order to start interacting with it was done by implementing a simple algorithm it's goal is to organise the order of the users and their slots on the screen and to let the users interact on their specified slots and by saving the number of users currently on the display in a local storage variable by the browser.
 
-\newline \noindent As you can see the following figure~\ref{fig:SlotNumbers} 
+\newline \noindent As you can see the following figure~\ref{fig:SlotNumbersAndStatus} 
 
 \begin{figure}[H]
 \centring
@@ -278,7 +282,7 @@ The problem was handled by passing the user id which is a unique key which ident
 \label{fig:SlotNumbersAndStatus}
 \end{figure}
 
-\newline \noindent represents the array of screen slots numbers from 1 to 4 when a user press the connect button the mobile sends a signal via a general channel to the server which then loops on the slot status array in figure~\ref{fig:SlotNumbers}.
+\newline \noindent represents the array of screen slots numbers from 1 to 4 when a user press the connect button the mobile sends a signal via a general channel to the server which then loops on the slot status array in figure~\ref{fig:SlotNumbersAndStatus}.
 
 %\begin{figure}[H]
 %\centring
@@ -287,7 +291,7 @@ The problem was handled by passing the user id which is a unique key which ident
 %\label{fig:BooleanStatusArray}
 %\end{figure}
 
-\newline \noindent And when it finds a free slot which means false it overrides the false value with a true one and take it's index to get the corresponding index in the slot numbers array in figure~\ref{fig:SlotNumbers} then it sends the slot number which will be assigned to this user to the mobile device and connect to the channel of this number and display the content on the specified slot then it increment a local storage variable stored by the browser which keep track of the number of users on the display. For example imagine this situation :
+\newline \noindent And when it finds a free slot which means false it overrides the false value with a true one and take it's index to get the corresponding index in the slot numbers array in figure~\ref{fig:SlotNumbersAndStatus} then it sends the slot number which will be assigned to this user to the mobile device and connect to the channel of this number and display the content on the specified slot then it increment a local storage variable stored by the browser which keep track of the number of users on the display. For example imagine this situation :
 currently the public display has 3 users logged-in and another user wants to connect so as you can see in figure~\ref{fig:Example1} the Boolean array which represents the current busy slots of the screen indicates that slot 1,2 and 3 are taken.
 
 \begin{figure}[H]
@@ -333,6 +337,17 @@ Synchronization of the displays was done by also using the connections as mentio
 \includegraphics[width=1\textwidth]{Example7.png}
 \caption{This figure illustrates the synchronization process.}
 \label{fig:Example7}
+\end{figure}
+
+\section{Tip Generator}
+\label{sec:TipGenerator}
+The tip generator was implemented to help people change their daily lives action slightly a bit in order to save much more energy so for example when cooking if the pot is not covered then definitely there is a large amount of energy lost and you need to consume more energy in order to compensate for the energy you lost when removing the pot's cover and letting heat escape. So from here came the motivation to implement the tip generator to help people to change these very small actions or attitudes towards certain situations but saves loads of energy. As you can see in figure~\ref{fig:Example10} the tip generator generates tips organised according to its topic.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example10.png}
+\caption{This figure the kind of tips generated by the tip generator.}
+\label{fig:Example10}
 \end{figure}
 
 \section{Responsiveness And Interaction}
@@ -414,6 +429,7 @@ Gamification or applying game mechanics is now widely used in many applications 
 
 \chapter{Results And Future Work}
 \label{chap:ResultsAndFutureWork}
+
 
 
 %******************************************************************************
