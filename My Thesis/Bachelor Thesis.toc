@@ -19,8 +19,9 @@
 \contentsline {section}{\numberline {3.10}Game Mechanics}{20}{section.3.10}
 \contentsline {chapter}{\chapternumberline {4}Conclusion}{23}{chapter.4}
 \contentsline {chapter}{\chapternumberline {5}Results And Future Work}{25}{chapter.5}
-\contentsline {section}{\numberline {5.1}Experiment}{25}{section.5.1}
-\contentsline {section}{\numberline {5.2}Results}{25}{section.5.2}
-\contentsline {appendix}{\chapternumberline {A}FirstAppendix}{29}{appendix.A}
-\contentsline {chapter}{List of Figures}{31}{section*.7}
-\contentsline {chapter}{List of Tables}{32}{section*.8}
+\contentsline {section}{\numberline {5.1}Participants}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Experiment}{25}{section.5.2}
+\contentsline {section}{\numberline {5.3}Results}{25}{section.5.3}
+\contentsline {appendix}{\chapternumberline {A}FirstAppendix}{31}{appendix.A}
+\contentsline {chapter}{List of Figures}{33}{section*.7}
+\contentsline {chapter}{List of Tables}{34}{section*.8}
