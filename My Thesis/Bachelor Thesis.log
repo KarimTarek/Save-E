@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  19 AUG 2013 17:07
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  19 AUG 2013 19:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1048,7 +1048,7 @@ LaTeX Info: Redefining \nameref on input line 11.
 
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<logo.png, id=102, 602.25pt x 591.20876pt>
+<logo.png, id=106, 602.25pt x 591.20876pt>
 File: logo.png Graphic file (type png)
  <use logo.png>
 Package pdftex.def Info: logo.png used on input line 40.
@@ -1086,13 +1086,13 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 LaTeX Font Info:    Try loading font information for U+stmry on input line 3.
 
 (/usr/local/texlive/2012/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-Underfull \vbox (badness 1253) has occurred while \output is active []
+Underfull \vbox (badness 1048) has occurred while \output is active []
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.25 ... {chapter}{List of Tables}{34}{section*.8}
+l.26 ... {chapter}{List of Tables}{32}{section*.8}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -1181,12 +1181,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 l.252 \centring
                
 ? 
-<Connection_figure.png, id=219, 1382.16376pt x 585.18625pt>
+<Connection_figure.png, id=224, 1001.7425pt x 480.79625pt>
 File: Connection_figure.png Graphic file (type png)
 
 <use Connection_figure.png>
 Package pdftex.def Info: Connection_figure.png used on input line 253.
-(pdftex.def)             Requested size: 383.0pt x 162.15448pt.
+(pdftex.def)             Requested size: 383.0pt x 183.82692pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 257--261
 
@@ -1197,7 +1197,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 257--261
 l.263 \centring
                
 ? 
-<ChannelsAndConnections.png, id=229, 791.95876pt x 536.0025pt>
+<ChannelsAndConnections.png, id=234, 791.95876pt x 536.0025pt>
 File: ChannelsAndConnections.png Graphic file (type png)
 
 <use ChannelsAndConnections.png>
@@ -1230,7 +1230,7 @@ l.277 \newline
 l.280 \centring
                
 ? 
-<SlotNumbersAndStatus.png, id=236, 558.085pt x 457.71pt>
+<SlotNumbersAndStatus.png, id=241, 558.085pt x 457.71pt>
 File: SlotNumbersAndStatus.png Graphic file (type png)
 
 <use SlotNumbersAndStatus.png>
@@ -1264,7 +1264,7 @@ l.295 \newline
 l.299 \centring
                
 ? 
-<Example1.png, id=245, 508.90125pt x 258.9675pt>
+<Example1.png, id=250, 508.90125pt x 258.9675pt>
 File: Example1.png Graphic file (type png)
  <use Example1.png>
 Package pdftex.def Info: Example1.png used on input line 300.
@@ -1285,7 +1285,7 @@ l.305 \newline
 l.308 \centring
                
 ? 
-<Example2.png, id=246, 573.14125pt x 354.32375pt>
+<Example2.png, id=251, 573.14125pt x 354.32375pt>
 File: Example2.png Graphic file (type png)
  <use Example2.png>
 Package pdftex.def Info: Example2.png used on input line 309.
@@ -1309,7 +1309,7 @@ l.314 \newline
 l.317 \centring
                
 ? 
-<Example3.png, id=253, 568.1225pt x 327.2225pt>
+<Example3.png, id=258, 568.1225pt x 327.2225pt>
 File: Example3.png Graphic file (type png)
  <use Example3.png>
 Package pdftex.def Info: Example3.png used on input line 318.
@@ -1331,7 +1331,7 @@ l.323 \newline
 l.326 \centring
                
 ? 
-<Example4.png, id=261, 870.25125pt x 501.875pt>
+<Example4.png, id=266, 870.25125pt x 501.875pt>
 File: Example4.png Graphic file (type png)
  <use Example4.png>
 Package pdftex.def Info: Example4.png used on input line 327.
@@ -1341,7 +1341,7 @@ Package pdftex.def Info: Example4.png used on input line 327.
 l.337 \centring
                
 ? 
-<Example7.png, id=263, 995.72pt x 540.0175pt>
+<Example7.png, id=268, 995.72pt x 540.0175pt>
 File: Example7.png Graphic file (type png)
  <use Example7.png>
 Package pdftex.def Info: Example7.png used on input line 338.
@@ -1354,7 +1354,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 l.348 \centring
                
 ? 
-<Example10.png, id=270, 519.9425pt x 112.42pt>
+<Example10.png, id=275, 519.9425pt x 112.42pt>
 File: Example10.png Graphic file (type png)
  <use Example10.png>
 Package pdftex.def Info: Example10.png used on input line 349.
@@ -1367,7 +1367,7 @@ Underfull \vbox (badness 4217) has occurred while \output is active []
 l.359 \centring
                
 ? 
-<Example5.png, id=278, 772.8875pt x 512.91624pt>
+<Example5.png, id=283, 772.8875pt x 512.91624pt>
 File: Example5.png Graphic file (type png)
  <use Example5.png>
 Package pdftex.def Info: Example5.png used on input line 360.
@@ -1388,7 +1388,7 @@ l.365 \newline
 l.368 \centring
                
 ? 
-<Example6.png, id=280, 787.94376pt x 515.9275pt>
+<Example6.png, id=285, 787.94376pt x 515.9275pt>
 File: Example6.png Graphic file (type png)
  <use Example6.png>
 Package pdftex.def Info: Example6.png used on input line 369.
@@ -1422,7 +1422,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 385--392
 l.394 \centring
                
 ? 
-<Example8.png, id=294, 738.76pt x 362.35374pt>
+<Example8.png, id=299, 738.76pt x 362.35374pt>
 File: Example8.png Graphic file (type png)
  <use Example8.png>
 Package pdftex.def Info: Example8.png used on input line 395.
@@ -1435,7 +1435,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 l.401 \centring
                
 ? 
-<Example9.png, id=300, 731.73375pt x 347.2975pt>
+<Example9.png, id=305, 731.73375pt x 347.2975pt>
 File: Example9.png Graphic file (type png)
  <use Example9.png>
 Package pdftex.def Info: Example9.png used on input line 402.
@@ -1467,10 +1467,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 411--419
 ] [23] [24
 
 ]
-No file "Bachelor Thesis".bbl.
-[25] [26
+./Bachelor Thesis.tex:443: Undefined control sequence.
+l.443 \centring
+               
+? 
+<Example11.png, id=329, 1110.1475pt x 458.71375pt>
+File: Example11.png Graphic file (type png)
+ <use Example11.png>
+Package pdftex.def Info: Example11.png used on input line 444.
+(pdftex.def)             Requested size: 383.0pt x 158.25641pt.
 
-] [27] [28] [29
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [25]
+No file "Bachelor Thesis".bbl.
+[26 <./Example11.png>] [27
+
+] [28] [29
 
 ] [30
 
@@ -1500,48 +1513,35 @@ en the mo-bile,server
 \tf@loa=\write11
 \openout11 = `"Bachelor Thesis.loa"'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 516.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 516.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 528.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 528.
 
 (./Bachelor Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 516.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 516.
-
-
-Package rerunfilecheck Warning: File `"Bachelor Thesis".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Bachelor Thesis".out':
-(rerunfilecheck)             Before: EC88E01A7331535F8052E851BC39811B;3243
-(rerunfilecheck)             After:  7B87ECCD8F6EC75827ECF73CC7F1F823;3264.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 516.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 528.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 528.
+Package rerunfilecheck Info: File `"Bachelor Thesis".out' has not changed.
+(rerunfilecheck)             Checksum: B5A6CC50584EC01762BD29AD6317FBC0;3377.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 528.
  ) 
 Here is how much of TeX's memory you used:
- 15505 strings out of 493488
- 214036 string characters out of 3141326
- 316948 words of memory out of 3000000
- 18485 multiletter control sequences out of 15000+200000
+ 15513 strings out of 493488
+ 214158 string characters out of 3141326
+ 316131 words of memory out of 3000000
+ 18491 multiletter control sequences out of 15000+200000
  19265 words of font info for 67 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,12n,32p,1492b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{chapter.6} has been referenced but does not exist
-, replaced by a fixed one
-
-{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
-usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/l
-ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on "Bachelor Thesis.pdf" (45 pages, 1580025 bytes).
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+}</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr
+/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on "Bachelor Thesis.pdf" (45 pages, 1020618 bytes).
 PDF statistics:
- 432 PDF objects out of 1000 (max. 8388607)
- 360 compressed objects within 4 object streams
- 87 named destinations out of 1000 (max. 500000)
- 255 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 440 PDF objects out of 1000 (max. 8388607)
+ 367 compressed objects within 4 object streams
+ 88 named destinations out of 1000 (max. 500000)
+ 268 words of extra memory for PDF output out of 10000 (max. 10000000)
 

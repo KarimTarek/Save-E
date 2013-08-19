@@ -272,7 +272,7 @@ Once the user presses connect on his mobile device a request is sent to the serv
 The multi-user setup was one of the challenging part in the project because normally when a web application is opened in a window it will have a session for the user opening that window but to have a number of users doing some actions in the same window here the problem occurs because each user is supposed to have one session id which is stored by the browser window but when multiple-users start to navigate in one window the sessions replace each other, as a result the requests origin or the user who made that request will not be known.
 The problem was handled by passing the user id which is a unique key which identify a user to every page he visits once the user is logged in and neglecting the session id so doing this for all the users on the screen solves the problem of the sessions replacing each other and making sure to know where does this request comes from or from which user to avoid colliding of requests.
 
-\newline \noindent The organising of the users on the display and the process of registering a user on the display in order to start interacting with it was done by implementing a simple algorithm it's goal is to organise the order of the users and their slots on the screen and to let the users interact on their specified slots and by saving the number of users currently on the display in a local storage variable by the browser.
+\newline \noindent The organising of the users on the display and the process of registering a user on the display in order to start interacting with it was done by implementing a simple algorithm it's goal is to organise the order of the users and their slots on the screen to let the users interact on their specified slots by saving the number of users currently on the display in a local storage variable by the browser.
 
 \newline \noindent As you can see the following figure~\ref{fig:SlotNumbersAndStatus} 
 
@@ -302,7 +302,7 @@ currently the public display has 3 users logged-in and another user wants to con
 \label{fig:Example1}
 \end{figure}
 
-\newline \noindent So once the user press connect what the system does is the following :
+\newline \noindent So once the user press connect what the system does is the following:
 
 \begin{figure}[H]
 \centring
@@ -433,7 +433,19 @@ Gamification or applying game mechanics is now widely used in many applications 
 
 \section{Experiment}
 \label{sec:Experiment}
-A study had to be made in order to test the system in many aspects some of them were usability,trust,complexity and motivation to save energy so the study was performed with 10 participants the nationalities were Germans, Indians, Egyptians. 3 of the Users were females while the other 7 where males. The study was done by giving the users an introduction about the application and then leaving them with a list of tasks to try to accomplish them, the study focused more on the usability,easiness and interaction of the system more than of the motivation the users got after using the system to save energy.
+A study had to be made in order to test the system in many aspects some of them were usability,trust,complexity and motivation to save energy so the study was performed with 10 participants the nationalities were Germans, Indians, Egyptians. 3 of the Users were females while the other 7 where males with age ranging from 20 years to 43 years old with an average of 27 years also their occupations were students, scientists, secretary, Phd student  and a faculty member. The study was done by giving the users an introduction about the application and then leaving them with a list of tasks to try to accomplish them then asking them to answer questions. The questions focused more on the usability,easiness and interaction of the system more than of the motivation the users got after using the system to save energy. The scale was from 1 to 5  where 1 represents strongly disagree and 5 represents strongly agree.
+
+\section{Results}
+\label{sec:Results}
+The results as you can see in figure~\ref{fig:Example11}
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Example11.png}
+\caption{This figure shows users impressions to the system.}
+\label{fig:Example11}
+\end{figure}
+
 
 
 
