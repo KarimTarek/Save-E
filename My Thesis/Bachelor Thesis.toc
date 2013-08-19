@@ -15,9 +15,9 @@
 \contentsline {section}{\numberline {3.6}Responsiveness And Interaction}{14}{section.3.6}
 \contentsline {section}{\numberline {3.7}User Data}{16}{section.3.7}
 \contentsline {section}{\numberline {3.8}User Privacy}{16}{section.3.8}
-\contentsline {section}{\numberline {3.9}Game Mechanics}{17}{section.3.9}
-\contentsline {chapter}{\chapternumberline {4}Conclusion}{19}{chapter.4}
-\contentsline {chapter}{\chapternumberline {5}Results And Future Work}{21}{chapter.5}
-\contentsline {appendix}{\chapternumberline {A}FirstAppendix}{25}{appendix.A}
-\contentsline {chapter}{List of Figures}{27}{section*.7}
-\contentsline {chapter}{List of Tables}{28}{section*.8}
+\contentsline {section}{\numberline {3.9}Game Mechanics}{18}{section.3.9}
+\contentsline {chapter}{\chapternumberline {4}Conclusion}{21}{chapter.4}
+\contentsline {chapter}{\chapternumberline {5}Results And Future Work}{23}{chapter.5}
+\contentsline {appendix}{\chapternumberline {A}FirstAppendix}{27}{appendix.A}
+\contentsline {chapter}{List of Figures}{29}{section*.7}
+\contentsline {chapter}{List of Tables}{30}{section*.8}
