@@ -1,0 +1,34 @@
+//DATABASE ---------------
+        	function populateDB(tx) {
+                tx.executeSql('DROP TABLE IF EXISTS USER');
+                tx.executeSql('CREATE TABLE USER (email, password)');
+            }
+
+            function signupUser(tx){
+                var email = document.getElementById("email").value;
+                var pass = document.getElementById("password").value;
+                tx.executeSql('INSERT INTO USER VALUES ('+ email +', '+ pass +')' , [] , querySuccess , errorCB);
+            }
+
+            function queryDB(tx) {
+                tx.executeSql('SELECT * FROM USER', [], querySuccess, errorCB);
+            }
+
+            function querySuccess(tx, results) {
+		        var len = results.rows.length;
+                alert(len);
+		        console.log("USER table: " + len + " rows found.");
+		        for (var i=0; i<len; i++){
+		            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " First Name =  " + results.rows.item(i).FirstName + " Email = " + results.rows.item(i).email);
+		        }
+		    } 
+
+		    function errorCB(tx, err) {
+		        alert("Error processing SQL: "+err);
+		    }
+
+		    function successCB() {
+		        //alert("heiiih!");
+		    }
+
+        // ----------------------

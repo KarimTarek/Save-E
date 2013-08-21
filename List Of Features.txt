@@ -1,0 +1,6 @@
+1) Tooltip (Bootstrap)
+2) Monitoring Energy Usage
+3) Leaderboards 
+4) Points
+5) Posting Rank on FB *EXTRA*
+6) Simulating the user usage (eg: Philips ios app)

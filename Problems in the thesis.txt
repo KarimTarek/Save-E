@@ -1,0 +1,18 @@
+1) websockets initiallization and finding a suitable platform to use on android
+2) splitting the screen problem and how to diffrenetiate between user actions
+3) the application layout and responsivness
+4) syncronizing the mobile phones with the applicatin'
+5) syncronizing the users with each other and syncronizing requests in order not to add multiple devices per request
+6) syncronizing the sessions with each other (session PROBLEM)
+7) the passing of arrays to django and needing serializers also clasifying the dates to months and all usages and how i solved them
+
+
+
+
+
+PROBLEMS TO BE SOLVED :
+
+1) The css when user logs out
+2) the changing of the class part of goingBacktoprofile from register.html
+3) sending the html data from screen to mobile 2 problems : first one the size must be < 10kb and the second one the css
+4) Application Error The connection to the server was unsuccessful (file:///android_asset/www/index.html)

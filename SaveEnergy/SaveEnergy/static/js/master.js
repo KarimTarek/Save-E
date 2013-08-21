@@ -460,7 +460,7 @@ function startInactivityCheck1() {
     		}
     	}
         window[ chan + 1 ].trigger('client-logoutMobile',{});
-    }, 2 * 60 * 1000); // called after 2 minutes
+    }, 5 * 60 * 1000); // called after 2 minutes
 };
 
 
@@ -501,7 +501,7 @@ function startInactivityCheck2() {
     		}
     	}
         var triggered = channel2.trigger('client-logoutMobile',{});
-    }, 2 * 60 * 1000); // called after 2 minutes
+    }, 5 * 60 * 1000); // called after 2 minutes
 };
 
 // called by something that detects user activity
@@ -541,7 +541,7 @@ function startInactivityCheck3() {
     		}
     	}
         var triggered = channel3.trigger('client-logoutMobile',{});
-    }, 2 * 60 * 1000); // called after 2 minutes
+    }, 5 * 60 * 1000); // called after 2 minutes
 };
 
 // called by something that detects user activity
@@ -581,7 +581,7 @@ function startInactivityCheck4() {
     		}
     	}
         var triggered = channel4.trigger('client-logoutMobile',{});
-    }, 2 * 60 * 1000); // called after 2 minutes
+    }, 5 * 60 * 1000); // called after 2 minutes
 };
 
 // called by something that detects user activity

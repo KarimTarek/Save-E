@@ -1,0 +1,20 @@
+Notes:
+
+1-Screen full toMobile event (check)
+2-remove alerts (check)
+3-add el new elements 3la profile css (check)
+5-Timeout event (TEST IT!!)
+6-lama te3mel low privacy el charts te5tefy we 7awel te5aliha hidden (check)
+
+
+
+----------- 04/08/2013 -----
+
+fadel bs lama te3mel high privacy el if conidito fiha 7aga 3'alat
+we fadel el logoutOther function el enta 3amleha et2aked enaha sha3'ala 3ashan 3'aleban fiha moshkela
+
+
+-----05/08/2013 -------
+el logout fiha moshkela wel select beta3et el yom fiha moshkela brdo 5aliah  30 yom bs we fokak we shoof el 4 users kda ma3 ba3d fil beit 3ashan law fih 7aga tanya
+wel box beta3 el privacy lama user tany beyed5ol beybooz sala7o we tb3an el rendering beta3 el charts hwa hwa
+

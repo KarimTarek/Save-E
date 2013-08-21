@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <script type="text/javascript" src="cordova-2.6.0.js"></script>
+        <script src="js/libs/websocket.js"></script>
+        <script src="http://js.pusher.com/1.12/pusher.js"></script>
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
+        <script src="js/app.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.1.min.css" />
+        <style>
+        	.begin{
+        		background-color:rgb(236, 236, 236);
+                width:99.7%;
+                height:99.7%;
+                display: block;
+        	}
+
+            .logo{
+                margin-left: 50%;
+            }
+            
+            .textBox {
+            	width:50%;
+                margin-top: 5%;
+            }
+
+            .glowing-box-1 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(179, 17, 17);
+            }
+
+            .glowing-box-2 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(57, 179, 18);   
+            }
+
+            .glowing-box-3 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(18, 179, 179);
+            }
+
+            .glowing-box-4 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(202, 195, 27);
+            }
+
+            .PageClass {
+                height:100%;
+                width:100%;
+            }
+
+            .dateSelect{
+                width:10%;
+            }
+        </style>
+    </head>
+    <body>
+    <!-- /page startPage -->
+        <div data-role="page" id="startPage" class="PageClass" data-theme="b">
+            <div data-role="content">
+                <p><a href="#" data-role="button" id="connect" data-theme="a" onClick="start()" data-transition="flip" class=""> Connect </a></p> 
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page login/signup -->
+        <div data-role="page" id="login-signup" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <h1>Save E</h1>
+            </div>
+            <div id="LoginColorDiv" class="glowing-box-1" data-role="none"></div>
+            <div data-role="content" >
+                <label for="username">Username: </label>
+                <input id="username" type="text" name="username" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" value=""/>
+                <label for="password">Password: </label>
+                <input id="password" type="password" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="password" value=""/>
+                <p><a href="#" data-role="button" onClick="SubmitLoginForm()"> Login </a></p>
+                <p><a href="#" data-role="button" data-theme="a" onClick="goToRegister()" data-transition="flip" class=""> or Register here </a></p> 
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page register -->
+        <div data-role="page" id="register" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToLoginPage()" data-icon="delete">Back</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="RegisterColorDiv" class="" data-role="none"></div>
+            <div data-role="content" > 
+                <p>Please enter your : </p> 
+                <label for="usernamee">Username </label>
+                <input id="usernamee" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="usernamee" value=""/>
+                <label for="emaill">E-mail: </label>
+                <input id="emaill" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="emaill" value=""/>
+                <label for="passwordd">Password: </label>
+                <input id="passwordd" type="password" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="passwordd" value=""/>
+                <label for="verifyPasswordd">Verify Password: </label>
+                <input id="verifyPasswordd" type="password" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="verifyPasswordd" value=""/>
+                <p><a href="#" data-role="button" onClick="SubmitRegistrationForm()"> Sign up </a></p>        
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page1 profile -->
+        <div data-role="page" id="page1" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" id="logoutProfile" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="ProfileColorDiv" class="" data-role="none"></div>
+            <div data-role="content" > 
+                <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
+                <a href="#" data-role="button" onClick="scrollDownProfile()" > Scroll Down </a>
+                <a href="#" data-role="button" onClick="goToAddDevice()" > Add a new device </a>
+                <a href="#" data-role="button" onClick="goToCharts()"> View your charts </a>
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page2 Add Device -->
+        <div data-role="page" id="page2" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a>
+                <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="AddDeviceColorDiv" class="" data-role="none"></div>
+            <div data-role="content" > 
+                <label for="device_name">Device Name: </label>
+                <input id="device_name" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="device_name" value=""/>
+                <a href="#" id="addDevice" data-role="button" onClick="AddDevice()"> Add </a>
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page3 charts -->
+        <div data-role="page" id="page3" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a>
+                <a href="#" data-transition="flip" id="logoutCharts" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div> 
+            <div id="ChartsColorDiv" class="" data-role="none"></div>
+            <p>Please choose a date to view your electricity consumption within: </p>
+            <div class="dateSelect">
+                <label for="" class="select">From:</label>
+                <select name="days" id="FromDays">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select name="FromMonths" id="FromMonths">
+                </select>
+                <select name="FromYears" id="FromYears">
+                </select>
+                <label for="" class="select">To:</label>
+                <select name="days" id="ToDays">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                <select name="ToMonths" id="ToMonths">
+                </select>
+                <select name="ToYears" id="ToYears">
+                </select>
+            </div>
+            <a href="#" id="viewCharts" data-role="button" onClick="viewCharts()"> View Charts </a>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page4 view charts -->
+        <div data-role="page" id="page4" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <!-- <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a> -->
+                <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="viewCharts" class="" data-role="none"></div>
+            <div data-role="content" > 
+
+            </div>
+        </div>
+    <!-- .................. -->
+        	
+        
+        <script type="text/javascript">
+            var channelName = "private-SaveE";
+
+        // Sending Registration Form to WEB APP -------------
+            function SubmitRegistrationForm() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var email = document.getElementById('emaill').value
+				var username = document.getElementById('usernamee').value
+				var pass = document.getElementById('passwordd').value
+                var confirmedPass = document.getElementById('verifyPasswordd').value
+                var triggered = channel.trigger('client-register', {'username': username,'email':email,'pass':pass,'confirmedPass':confirmedPass });
+                var SubmitRegistrationFormLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', SubmitRegistrationFormLC);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', SubmitRegistrationFormLC);
+            }
+        //---------------------------
+
+        // Sending Login Form to WEB APP ------
+            function SubmitLoginForm() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var username = document.getElementById('username').value
+                var pass = document.getElementById('password').value
+                var triggered = window['channel'].trigger('client-login', { 'username': username ,'pass': pass });
+                var SubmitLoginFormLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', SubmitLoginFormLC);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', SubmitLoginFormLC);
+            }
+        // ------------------------------------
+
+
+        // Sending signal to WEB APP to go back to login page ------
+            function goBackToLoginPage() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goBackToLoginPage', {});
+                var goBackToLoginPageLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete',goBackToLoginPageLC );
+                        $.mobile.changePage($('#login-signup'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete',goBackToLoginPageLC );
+            }
+        // ------------------------------------
+
+        // Sending signal to web app to change page to register.html ------
+            function goToRegister() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToRegister', {});
+                var goToRegisterLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', goToRegisterLC);
+                        $.mobile.changePage($('#register'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                        // pusher.disconnect();
+                    }; 
+                window['channel'].bind('client-loadingComplete', goToRegisterLC);
+            }
+        //---------------------------------------------
+
+
+        // Sending signal to web app to change page to chart.html ------
+            function goToCharts() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'Loading...',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToChart', {});
+                var goToChartsDD = function(data){
+                        window['channel'].unbind('months', goToChartsDD);
+                        var months = data.months;
+                        var years = data.years;
+
+                        for(var i=0; i<months.length; i++) {
+                            var month = months[i];
+                            var MonthNewOption = '<option value='+month+'>'+month+'</option>'
+                            $('#FromMonths').append(MonthNewOption);
+                            $('#ToMonths').append(MonthNewOption);
+                        }
+
+                        for(var j=0; j<years.length; j++) {
+                            var year = years[j];
+                            var YearNewOption = '<option value='+year+'>'+year+'</option>'
+                            $('#FromYears').append(YearNewOption);
+                            $('#ToYears').append(YearNewOption);
+                        }                        
+                    };
+
+                var goToChartsLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', goToChartsLC);
+                        window['channel'].unbind('months', goToChartsDD);
+                        $.mobile.changePage($('#page3'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+
+                window['channel'].bind('client-loadingComplete', goToChartsLC);
+                window['channel'].bind('dates', goToChartsDD);
+            }
+        //---------------------------------------------
+
+        // Sending signal to web app to view charts ------
+            function viewCharts() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'Loading charts',textVisible:true});
+                var FromMonthSelect = document.getElementById("FromMonths");
+                var ToMonthSelect = document.getElementById("ToMonths");
+                var FromYearSelect = document.getElementById("FromYears");
+                var ToYearSelect = document.getElementById("ToYears");
+                var FromDays = document.getElementById("FromDays");
+                var ToDays = document.getElementById("ToDays");
+                var FromMonth = FromMonthSelect.options[FromMonthSelect.selectedIndex].text;
+                var ToMonth = ToMonthSelect.options[ToMonthSelect.selectedIndex].text;
+                var FromYear = FromYearSelect.options[FromYearSelect.selectedIndex].text;
+                var ToYear = ToYearSelect.options[ToYearSelect.selectedIndex].text;
+                var FromDay = FromDays.options[FromDays.selectedIndex].text;
+                var ToDay = ToDays.options[ToDays.selectedIndex].text;
+                var triggered = window['channel'].trigger('client-viewCharts', {'FromMonth':FromMonth,'ToMonth':ToMonth, 'FromYear':FromYear , 'ToYear':ToYear, 'FromDay':FromDay, 'ToDay':ToDay});
+                
+                var viewChartsLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', viewChartsLC);
+                        $.mobile.changePage($('#page4'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+
+                window['channel'].bind('client-loadingComplete', viewChartsLC);
+            }
+        //---------------------------------------------
+
+
+        // Sending signal to web app to sroll up the profile page ------
+            function scrollUpProfile() {
+                var triggered = window['channel'].trigger('client-scrollUpProfile', {});
+            }
+        //---------------------------------------------
+
+        // Sending signal to web app to sroll down the profile page ------
+            function scrollDownProfile() {
+                var triggered = window['channel'].trigger('client-scrollDownProfile', {});
+            }
+        //---------------------------------------------
+
+        // Sending signal to web app to go back to page start page.html (start page) ------
+            function goBackToStartPage() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToStartPage', {});
+                var goBackToStartPageLC = function(data){
+                        $.mobile.loading('hide');
+                        window['channel'].unbind('client-loadingComplete', goBackToStartPageLC);
+                        $.mobile.changePage($('#startPage'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', goBackToStartPageLC);
+            }
+        //---------------------------------------------
+
+
+        //starting the app with the launching of the login screen
+            function startPage() {
+                window['pusher'] = new Pusher('35bf6495b4677801c17e');
+                window['channel'] = pusher.subscribe(channelName);
+                Pusher.channel_auth_endpoint = 'http://137.250.151.226:8000/auth/';
+                Pusher.channel_auth_transport = 'ajax';
+                window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
+                var migratingContent = function(data){
+                                        $('#'+data.page).append(data.content);
+                                    }
+                window['channel'].bind('client-migratingContent',migratingContent);
+                var startPageLC = function(data){
+                                                $.mobile.loading( 'hide');
+                                                window['channel'].unbind('pusher:subscription_succeeded', subscriptionSucceeded);
+                                                window['channel'].unbind('client-loadingComplete', startPageLC);
+                                                $.mobile.changePage($('#login-signup'),{transition: "flow"});
+                                                $('a').removeClass('ui-disabled');
+                                                $('#LoginColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                                $('#RegisterColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                                $('#AddDeviceColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                                $('#ProfileColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                                $('#ChartsColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                            };
+                window['channel'].bind('client-loadingComplete', startPageLC);
+            //-----------------------------
+                function subscriptionSucceeded() {
+                    var triggered = window['channel'].trigger('client-startPage', {});
+                }
+            }   
+        // --------------------------------------------
+
+        //tell the web app to go to the add device page 
+            function goToAddDevice() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToAddDevice', {});
+                var goToAddDeviceLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', goToAddDeviceLC);
+                        $.mobile.changePage($('#page2'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', goToAddDeviceLC);
+            }   
+        // --------------------------------------------
+
+        //tell the web app to ADD the device 
+            function AddDevice() {
+                var device_name = document.getElementById('device_name').value
+                if(device_name == ""){
+                    alert("Please enter a device name.");
+                }
+                else{
+                    $('a').addClass('ui-disabled');
+                    $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                    var triggered = window['channel'].trigger('client-AddDevice', {'device_name':device_name});
+                    var AddDeviceLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', AddDeviceLC);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                    window['channel'].bind('client-loadingComplete', AddDeviceLC);
+                }
+            }   
+        // --------------------------------------------
+
+        //tell the web app to go back from the profile.html page
+            function goBackToProfile() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goBackToProfile', {});
+                var goBackToProfileLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete',goBackToProfileLC);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete',goBackToProfileLC);
+            }   
+        // --------------------------------------------
+
+
+        //tell the web app to log out the user
+            function logOut() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-logout',{});
+                var logOutLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', logOutLC);
+                        $.mobile.changePage($('#startPage'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', logOutLC);
+            }   
+        // --------------------------------------------
+
+
+
+        // initiallizing a connection and reserving a place on the screen ------
+            function start() {
+                $('a').addClass('ui-disabled');
+                $.mobile.loading( 'show', { theme: "a", text: "Connecting", textonly: false , textVisible:true });
+            //Pusher Config --------------- 
+                channelName = "private-SaveE";
+                var pusher = new Pusher('35bf6495b4677801c17e');
+                var channel = pusher.subscribe('private-SaveE');
+                Pusher.channel_auth_endpoint = 'http://137.250.151.226:8000/auth/';
+                Pusher.channel_auth_transport = 'ajax';
+                channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);        
+                channel.bind('client-changeChannelName',
+                    function(data) {
+                        if(data.channelName != "-1"){
+                            channelName = channelName + data.channelName;
+                            window['userNumber'] = data.channelName;
+                            pusher.disconnect();
+                            startPage();
+                        }
+                    }
+                );
+            //-----------------------------
+                function subscriptionSucceeded() {
+                    var triggered = channel.trigger('client-start', {});
+                }
+            }
+        //---------------------------------------------
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+a5er 7aga weseltelha eni 3amalt channel le kol user we bey3'ayar fil hTMl beta3to bas zabat bas limit el 4 law fih moshkela 3ashan kont 3amlo 2 we zabat b2a ba2y el 7agat el login wel register we kda we zabat ba2y el functionalities :D GJ (Y)
+
+
+a5er 7aga weseltelha eni 3amalt el logout bas mesh sha3'ala 3ashan fih moshkela fil bind we kaman el chart fih moshkela fil page beta3et-ha we na2esly el layout azabato we abbot el design we abbot el back buttons wel synchronisation el shasha ma3 el mobile we azabat el screen windows we sheel el header 
+
+we azabat 7war el connections ma3 pusher a7awel a5alih connections a7da fi index.html beta3et el mobile :)
+
+GJ (Y)
+
+
+21/05/2013 :
+
+a5er 7aga 3amaltaha eni zabat el interaction between users 3al display 
+
+wel logout zabat brdo fadel tegarab telogout be user we telogin tany man3'eir mate2fel el app :)
+
+we tezabat b2a el animations shwaya we tebtedy te3mel el app profile design
+
+
+22/05/2013 :
+
+3amalt el syncronization shwaya bs mesh sha3'al lsa awii fi add_device fa zabatha heya wel back bkra we 5alas 7war el sync dah bel back bel logout bkra isa
+
+09/07/2013 :
+
+zabat 7war el logout we kda wel classes bs shoof 7war el lon beta3 el mobile law 3amalt logout then da5alt tany we zabat el UI shwaya fi shwaya tests kda we fadel el Privacy ba3d el s7oor b2a isa :)
+
+
+16/7/2013 :
+zabat 7war el UI el mafrood just implement the classes we shoof when moving from page to page mesh sha3'ala leh we implement el leaderboard
+wel privacy and ur done ;D!!
+
+19/7/2013: 
+a5eeeran 3amalt el leaderboard we tmm shaklaha 7elw we kolo zy el fol we 3'aleban mesh hate7tag tazbeet css la2enaha beta5od el width kolo 7aga alesta bsra7a fadel kda tekteb el CSS for the 4 scenarios then te3mel el privacy and i guess ta5od yom wa7ed ya3ni isa te5alas 3la yom el 7ad be2ezn Allah we zabat el classes beta3et You have no badges yet we kda ma3 el css saba7 el fol ya basha rabena yekremak :)!!!
+
+30/07/2013:
+Fadel bs el logout function tezabat el css el heya bete3melo wel mafrood el CSS kda tmm mazboot kolo et2aked bs 3alih we add el badges lel leaderBoard we zabat el badges css.
+
+1/08/2013: el mafrood zabat kol el css we kol 7aga bs zawed 7war el rendering beta3 el graphs dah bs fi kol el files we test kol 7aga law sha3'al tmm we 5las le presentation el naharda isa :)

@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <script type="text/javascript" src="cordova-2.6.0.js"></script>
+        <script src="js/libs/websocket.js"></script>
+        <script type="text/javascript" src="js/pusher.js"></script>
+        <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/quo.js"></script>
+        <script type="text/javascript" src="js/canvasjs.min.js"></script>
+        <script type="text/javascript" src="js/jquery.mobile-1.3.1.min.js"></script>
+        <script src="js/app.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css" /> -->
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.2.1.min.css" />
+        <style>
+        	.begin{
+        		background-color:rgb(236, 236, 236);
+                width:99.7%;
+                height:99.7%;
+                display: block;
+        	}
+
+            .viewCharts{
+                overflow: auto !important;
+                width: 100%;
+                height: 100%;
+            }
+
+            .logo{
+                margin-left: 50%;
+            }
+            
+            .textBox {
+            	width:50%;
+                margin-top: 5%;
+            }
+
+            .glowing-box-1 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(179, 17, 17);
+            }
+
+            .glowing-box-2 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(57, 179, 18);   
+            }
+
+            .glowing-box-3 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(2, 133, 255);
+            }
+
+            .glowing-box-4 {
+                width: 100%;
+                height: 2%;
+                background-color: rgb(245, 217, 12);
+            }
+
+            .PageClass {
+                height:100% !important;
+                /*width:100% !important;*/
+                overflow: auto !important;
+            }
+
+            .dateSelect{
+                width:45%;
+            }
+        </style>
+    </head>
+    <body>
+    <!-- /page startPage -->
+        <div data-role="page" id="startPage" class="PageClass" data-theme="b">
+            <div data-role="content" class="PageClass">
+                <!-- <div id="chartContainer" data-role="none" style="height: 55%; width: 100%; margin-bottom:15%;">
+                </div>
+                <div id="chartContainer2" data-role="none" style="height: 55%; width: 100%; margin-bottom:15%;">
+                </div> -->
+                <p><a href="#" data-role="button" id="connect" data-theme="a" onClick="start()" data-transition="flip" class=""> Connect </a></p>
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page login/signup -->
+        <div data-role="page" id="login-signup" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <h1>Save E</h1>
+            </div>
+            <div id="LoginColorDiv" class="glowing-box-1" data-role="none"></div>
+            <div data-role="content" >
+                <label for="username">Username: </label>
+                <input id="username" type="text" name="username" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" value=""/>
+                <label for="password">Password: </label>
+                <input id="password" type="password" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="password" value=""/>
+                <p><a href="#" data-role="button" onClick="SubmitLoginForm()"> Login </a></p>
+                <p><a href="#" data-role="button" data-theme="a" onClick="goToRegister()" data-transition="flip" class=""> or Register here </a></p> 
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page register -->
+        <div data-role="page" id="register" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToLoginPage()" data-icon="arrow-l">Back</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="RegisterColorDiv" class="" data-role="none"></div>
+            <div data-role="content" > 
+                <p>Please enter your : </p> 
+                <label for="usernamee">Username </label>
+                <input id="usernamee" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="usernamee" value=""/>
+                <label for="emaill">E-mail: </label>
+                <input id="emaill" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="emaill" value=""/>
+                <label for="passwordd">Password: </label>
+                <input id="passwordd" type="password" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="passwordd" value=""/>
+                <label for="verifyPasswordd">Verify Password: </label>
+                <input id="verifyPasswordd" type="password" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="verifyPasswordd" value=""/>
+                <p><a href="#" data-role="button" onClick="SubmitRegistrationForm()"> Sign up </a></p>        
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page1 profile -->
+        <div data-role="page" id="page1" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" id="logoutProfile" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="ProfileColorDiv" class="" data-role="none"></div>
+            <div data-role="none" class='PageClass'>
+                <div id="pieChartProfile" data-role="none" style="display:none;height:55%;margin-bottom:15%;"></div>
+                
+                <!-- <a href="#" data-role="button" onClick="scrollUpProfile()" > Scroll Up </a>
+                <a href="#" data-role="button" onClick="scrollDownProfile()" > Scroll Down </a>
+                <a href="#" data-role="button" onClick="goToAddDevice()" > Add a new device </a> -->
+                <div data-role="none" style="margin-top:10%;width:100%;height:20%;">
+                    <a href="#" data-role="button" onClick="goToLeaderBoard()" > Go to leaderboard </a>
+                    <a href="#" data-role="button" onClick="goToCharts()"> View your charts </a>
+                </div>
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page2 Add Device -->
+        <!-- <div data-role="page" id="page2" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="delete">Back</a>
+                <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="AddDeviceColorDiv" class="" data-role="none"></div>
+            <div data-role="content" > 
+                <label for="device_name">Device Name: </label>
+                <input id="device_name" type="text" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset" name="device_name" value=""/>
+                <a href="#" id="addDevice" data-role="button" onClick="AddDevice()"> Add </a>
+            </div>
+        </div> -->
+    <!-- .................. -->
+
+     <!-- /page page2 LeaderBoard -->
+        <div data-role="page" id="page2" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="arrow-l">Back</a>
+                <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div id="AddDeviceColorDiv" class="" data-role="none"></div>
+            <div id="rankDiv" data-role="content" > 
+               
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page3 charts -->
+        <div data-role="page" id="page3" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="arrow-l">Back</a>
+                <a href="#" data-transition="flip" id="logoutCharts" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div> 
+            <!-- <div id="ChartsColorDiv" class="" data-role="none"></div> -->
+            <div data-role="none" class="">
+                <p>Please choose a date to view your electricity consumption within: </p>
+                <div class="dateSelect">
+                    <label for="" class="select">From:</label>
+                    <select name="days" id="FromDays">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select name="FromMonths" id="FromMonths">
+                    </select>
+                    <select name="FromYears" id="FromYears">
+                    </select>
+                    <label for="" class="select">To:</label>
+                    <select name="days" id="ToDays">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select name="ToMonths" id="ToMonths">
+                    </select>
+                    <select name="ToYears" id="ToYears">
+                    </select>
+                </div>
+                <a href="#" id="viewCharts" data-role="button" onClick="viewCharts()"> View Charts </a>
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /page page4 view charts -->
+        <div data-role="page" id="page4" class="PageClass" data-theme="b">
+            <div data-role="header">
+                <a href="#" data-transition="flip" onClick="goBackToProfile()" data-icon="arrow-l">Back to profile</a>
+                <a href="#" data-transition="flip" id="logoutAddDevice" data-icon="delete" onClick="logOut()">Log out</a>
+                <h1>Save E</h1>
+            </div>
+            <div data-role="none" style="margin-bottom:15%;"class="PageClass">
+                <div data-role="none" id="ViewChartPieCanvas" style="height:60%;width:100%;"></div>
+                <div data-role="none" id="ViewChartBarCanvas" style="height:60%;width:100%;margin-top:20%;margin-bottom:15%;"></div>
+            </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- /popup to ask if u want to exit the app -->
+        <div data-role="page" data-rel="dialog" id="exitApp">
+                <div data-role="header">
+                    <h1>Exit</h1>
+                </div>
+                <div data-role="content">
+                    <h3>Are you sure you want to exit the application ?</h3>
+                    <a href="#" id="ExitApp" data-role="button" onClick="exitApp()">Exit</a>
+                    <a href="#" id="CancelExit" data-role="button" onClick="cancelExit()">Cancel</a>
+                </div>
+        </div>
+    <!-- .................. -->
+
+    <!-- Pop up to choose the privacy -->
+        <div data-role="page" data-rel="dialog" id="privacyMenu">
+            <div data-role="header">
+                <h1>Exit</h1>
+            </div>
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <legend>Choose the privacy setting that suits you the most :</legend>
+                        <input type="radio" onClick="setHighPrivacy()" name="radio-choice-1" id="radio-choice-1" value="choice-1" />
+                        <label for="radio-choice-1">High privacy</label>
+                        <input type="radio" onClick="setLowPrivacy()" name="radio-choice-1" id="radio-choice-2" value="choice-2" />
+                        <label for="radio-choice-2">Low privacy</label>
+                    </fieldset>
+                    </br>
+                </div>
+            </div>
+        </div>
+    <!--  -->
+        	
+        
+        <script type="text/javascript">
+            var loginFailed = "";
+            var logoutMobile = "";
+            var channelName = "private-SaveE";
+            var timeoutId1 = null;
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            function startInactivityCheck() {
+                timeoutId1 = window.setTimeout(function(){
+                    // navigator.app.exitApp();
+                }, 2 * 60 * 1000); // called after 2 minutes
+            };
+            // called by something that detects user activity
+            function userActivityDetected(){
+                if(timeoutId1 !== null) {
+                    window.clearTimeout(timeoutId1);
+                }
+                startInactivityCheck();
+            };
+
+            function exitApp(){
+                // logOut();
+                navigator.app.exitApp();
+            }
+
+            function cancelExit(){
+                $('#exitApp').dialog('close');
+            }
+
+            function setHighPrivacy(){
+                userActivityDetected();
+                $('#privacyMenu').dialog('close');
+                $('#pieChartProfile').show();
+                var triggered = window['channel'].trigger('client-setHighPrivacy', {});
+            }
+
+            function setLowPrivacy(){
+                userActivityDetected();
+                $('#privacyMenu').dialog('close');
+                $('#ViewChartPieCanvas').empty();
+                $('#ViewChartBarCanvas').empty();
+                $('#pieChartProfile').empty();
+                $('#pieChartProfile').hide();
+                // $('#').empty()
+                var triggered = window['channel'].trigger('client-setLowPrivacy', {});
+            }
+
+            function onDeviceReady() {
+                document.addEventListener("backbutton", onBackKeyDown, false);
+                document.addEventListener("menubutton", onMenuKeyDown, false);
+                document.addEventListener("offline", onOffline, false);
+            }
+
+            function onOffline() {
+                $.mobile.loading( 'hide');
+                $('a').removeClass('ui-disabled');
+                alert('No internet connection found please check your internet connection');
+            }
+
+            // Handle the back button
+            function onBackKeyDown(){
+                // $( "#exitApp" ).popup( "open","pop" );
+                $.mobile.changePage( "#exitApp", { role: "dialog" } );
+            }
+
+            function onMenuKeyDown(){
+                userActivityDetected();
+                $.mobile.changePage( "#privacyMenu", { role: "dialog" } );
+            }
+
+        // Sending Registration Form to WEB APP -------------
+            function SubmitRegistrationForm() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var email = document.getElementById('emaill').value
+				var username = document.getElementById('usernamee').value
+				var pass = document.getElementById('passwordd').value
+                var confirmedPass = document.getElementById('verifyPasswordd').value
+                var triggered = channel.trigger('client-register', {'username': username,'email':email,'pass':pass,'confirmedPass':confirmedPass });
+                var SubmitRegistrationFormLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', SubmitRegistrationFormLC);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', SubmitRegistrationFormLC);
+            }
+        //---------------------------
+
+        // Sending Login Form to WEB APP ------
+            function SubmitLoginForm() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var username = document.getElementById('username').value;
+                var pass = document.getElementById('password').value;
+                var triggered = window['channel'].trigger('client-login', { 'username': username ,'pass': pass });
+                var SubmitLoginFormLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', SubmitLoginFormLC);
+                        window['channel'].unbind('loginStatus', loginFailed);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                var displayProfileCharts = function(data){
+                        setTimeout(function () {
+                            var pieChartData = data.profileChartData;
+                            // $('#pieChartProfile').show();
+                            var pieChart = new CanvasJS.Chart("pieChartProfile", {
+                                    theme: "theme1",//theme1
+                                    title:{
+                                        text: "Your total energy usage",
+                                        // fontSize: 30             
+                                    },
+                                    data: [              
+                                        {   
+                                            // indexLabelFontSize: 15,
+                                            type: "pie",
+                                            dataPoints: pieChartData
+                                        }
+                                    ]
+                                });
+                                pieChart.render();
+                        },1000);
+                        // $.mobile.changePage($('#page1'),{allowSamePageTransition:true});
+                        window['channel'].unbind('client-profile_chart', displayProfileCharts);
+                    }
+                    logoutMobile = function(data){
+                        // logOut();
+                        navigator.app.exitApp();
+                    };
+                window['channel'].bind('client-logoutMobile', logoutMobile);
+                window['channel'].bind('client-profile_chart', displayProfileCharts);
+                window['channel'].bind('client-loadingComplete', SubmitLoginFormLC);
+            }
+        // ------------------------------------
+        
+
+        // Sending signal to WEB APP to go back to login page ------
+            function goBackToLoginPage() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goBackToLoginPage', {});
+                var goBackToLoginPageLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete',goBackToLoginPageLC );
+                        $.mobile.changePage($('#login-signup'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete',goBackToLoginPageLC );
+            }
+        // ------------------------------------
+
+        // Sending signal to web app to change page to register.html ------
+            function goToRegister() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToRegister', {});
+                var goToRegisterLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', goToRegisterLC);
+                        $.mobile.changePage($('#register'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                        // pusher.disconnect();
+                    }; 
+                window['channel'].bind('client-loadingComplete', goToRegisterLC);
+            }
+        //---------------------------------------------
+
+        //------- Tell the app to go to the leaderboard
+            function goToLeaderBoard() {
+                console.log('in goToLeaderBoard');
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'Loading Leaderboard',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToLeaderBoard', {});
+                var goToLeaderBoardLC = function(data){
+                        $.mobile.loading( 'hide');
+                        console.log('in goToLeaderBoard unbinded client-loadingComplete');
+                        window['channel'].unbind('client-loadingComplete', goToLeaderBoardLC);
+                        $.mobile.changePage($('#page2'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                var yourRank = function(data){
+                    if(parseInt(data.rank) > 3) {
+                        $('#rankDiv').html('<h1 style="color:red">Your rank is '+data.rank+' try to save more energy to be from the first 3 planet savers ;)</h1>');
+                    }
+                    else{
+                        if(parseInt(data.rank) == 1){
+                            $('#rankDiv').html('<h1 style="color:green">Your rank is '+data.rank+' .. a true planet saver ;)</h1>');    
+                        }
+                        else{
+                            if(parseInt(data.rank) <=3 && parseInt(data.rank)!= 1){
+                                $('#rankDiv').html('<h1 style="color:orange">Your rank is '+data.rank+' .. Congratulations you are one of the top 3 planet savers ;)</h1>');    
+                            }
+                        }
+                        
+                    }
+                    window['channel'].unbind('yourRank', yourRank);
+                    console.log('in goToLeaderBoard unbinded yourRank');
+                }
+                window['channel'].bind('yourRank', yourRank);
+                console.log('in goToLeaderBoard binded yourRank');
+                window['channel'].bind('client-loadingComplete', goToLeaderBoardLC);
+                console.log('in goToLeaderBoard binded client-loadingComplete');
+            }
+        //---------------------------------------------
+
+        // Sending signal to web app to change page to chart.html ------
+            function goToCharts() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $('#FromMonths').empty();
+                $('#FromYears').empty();
+                $('#ToMonths').empty();
+                $('#ToYears').empty();
+                $.mobile.loading( 'show' , {theme:'a',text:'Loading...',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToChart', {});
+                var showCharts = true;
+                var goToChartsDD = function(data){
+                        window['channel'].unbind('months', goToChartsDD);
+                        $('#FromMonths').empty();
+                        $('#ToMonths').empty();
+                        $('#FromYears').empty();
+                        $('#ToYears').empty();
+                        var months = data.months;
+                        var years = data.years;
+                        if(months.length == 0 && years.length == 0){
+                            showCharts = false;
+                        }
+                        for(var i=0; i<months.length; i++) {
+                            var month = months[i];
+                            var MonthNewOption = '<option value='+month+'>'+month+'</option>'
+                            $('#FromMonths').append(MonthNewOption);
+                            $('#ToMonths').append(MonthNewOption);
+                        }
+
+                        for(var j=0; j<years.length; j++) {
+                            var year = years[j];
+                            var YearNewOption = '<option value='+year+'>'+year+'</option>'
+                            $('#FromYears').append(YearNewOption);
+                            $('#ToYears').append(YearNewOption);
+                        }
+                    };
+
+                var goToChartsLC = function(data){
+                        $.mobile.loading( 'hide');
+                            window['channel'].unbind('client-loadingComplete', goToChartsLC);
+                            window['channel'].unbind('months', goToChartsDD);
+                        if(showCharts){
+                            $.mobile.changePage($('#page3'),{transition: "flip"});
+                        }
+                        else{
+                            alert('You dont have any data yet');
+                        }
+                        $('a').removeClass('ui-disabled');
+                    };
+
+                window['channel'].bind('client-loadingComplete', goToChartsLC);
+                window['channel'].bind('dates', goToChartsDD);
+            }
+        //---------------------------------------------
+
+        // Sending signal to web app to view charts ------
+            function viewCharts() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'Loading charts',textVisible:true});
+                var FromMonthSelect = document.getElementById("FromMonths");
+                var ToMonthSelect = document.getElementById("ToMonths");
+                var FromYearSelect = document.getElementById("FromYears");
+                var ToYearSelect = document.getElementById("ToYears");
+                var FromDays = document.getElementById("FromDays");
+                var ToDays = document.getElementById("ToDays");
+                var FromMonth = FromMonthSelect.options[FromMonthSelect.selectedIndex].text;
+                var ToMonth = ToMonthSelect.options[ToMonthSelect.selectedIndex].text;
+                var FromYear = FromYearSelect.options[FromYearSelect.selectedIndex].text;
+                var ToYear = ToYearSelect.options[ToYearSelect.selectedIndex].text;
+                var FromDay = FromDays.options[FromDays.selectedIndex].text;
+                var ToDay = ToDays.options[ToDays.selectedIndex].text;
+                var triggered = window['channel'].trigger('client-viewCharts', {'FromMonth':FromMonth,'ToMonth':ToMonth, 'FromYear':FromYear , 'ToYear':ToYear, 'FromDay':FromDay, 'ToDay':ToDay});
+                
+                var viewChartsLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', viewChartsLC);
+                        $.mobile.changePage($('#page4'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+
+                var displayChartsViewCharts = function(data){
+                    setTimeout(function () {
+                        var ViewChartspieChartData = data.viewChartPieData;
+                        var ViewChartsbarChartData = data.viewChartBarData;
+                        var ViewChartPieCanvas = new CanvasJS.Chart("ViewChartPieCanvas", {
+                            theme: "theme2",//theme1
+                            title:{
+                                text: "Total energy usage within the dates entered"
+                            },
+                            data: [              
+                                {
+                                type: "pie",
+                                dataPoints: ViewChartspieChartData
+                                }
+                            ]
+                        });
+                        ViewChartPieCanvas.render();
+
+                        var ViewChartBarCanvas = new CanvasJS.Chart("ViewChartBarCanvas", {
+                            theme: "theme1",//theme1
+                            title:{
+                                text: "Total energy usage within the dates entered sorted monthly"             
+                            },
+                            data: ViewChartsbarChartData
+                        });
+                        ViewChartBarCanvas.render();
+                    },1000);
+                        window['channel'].unbind('client-view_charts', displayChartsViewCharts);
+                };
+
+                window['channel'].bind('client-view_charts', displayChartsViewCharts);
+                window['channel'].bind('client-loadingComplete', viewChartsLC);
+            }
+        //---------------------------------------------
+
+
+        // Sending signal to web app to sroll up the profile page ------
+            function scrollUpProfile() {
+                var triggered = window['channel'].trigger('client-scrollUpProfile', {});
+            }
+        //---------------------------------------------
+
+        // Sending signal to web app to sroll down the profile page ------
+            function scrollDownProfile() {
+                var triggered = window['channel'].trigger('client-scrollDownProfile', {});
+            }
+        //---------------------------------------------
+
+        // Sending signal to web app to go back to page start page.html (start page) ------
+            function goBackToStartPage() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToStartPage', {});
+                var goBackToStartPageLC = function(data){
+                        $.mobile.loading('hide');
+                        window['channel'].unbind('client-loadingComplete', goBackToStartPageLC);
+                        $.mobile.changePage($('#startPage'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', goBackToStartPageLC);
+            }
+        //---------------------------------------------
+
+
+        //starting the app with the launching of the login screen
+            function startPage() {
+                userActivityDetected()
+                window['pusher'] = new Pusher('35bf6495b4677801c17e');
+                window['channel'] = pusher.subscribe(channelName);
+                Pusher.channel_auth_endpoint = 'http://137.250.171.211:8000/auth/';
+                Pusher.channel_auth_transport = 'ajax';
+                window['channel'].bind('pusher:subscription_succeeded', subscriptionSucceeded);
+                startInactivityCheck();
+                // var migratingContent = function(data){
+                //                         $('#'+data.page).append(data.content);
+                //                     }
+                // window['channel'].bind('client-migratingContent',migratingContent);
+                var startPageLC = function(data){
+                                    $.mobile.loading( 'hide');
+                                    window['channel'].unbind('pusher:subscription_succeeded', subscriptionSucceeded);
+                                    window['channel'].unbind('client-loadingComplete', startPageLC);
+                                    // window['channel'].unbind('loginStatus', loginFailed);
+                                    $.mobile.changePage($('#login-signup'),{transition: "flow"});
+                                    $('a').removeClass('ui-disabled');
+                                    $('#LoginColorDiv').removeClass();
+                                    $('#RegisterColorDiv').removeClass();
+                                    $('#AddDeviceColorDiv').removeClass();
+                                    $('#ProfileColorDiv').removeClass();
+                                    $('#ChartsColorDiv').removeClass();
+                                    $('#LoginColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#RegisterColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#AddDeviceColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#ProfileColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                    $('#ChartsColorDiv').addClass('glowing-box-'+window['userNumber']);
+                                };
+                    loginFailed = function(data) {
+                    $.mobile.loading( 'hide');
+                    $('a').removeClass('ui-disabled');
+                    window['channel'].unbind('pusher:subscription_succeeded', subscriptionSucceeded);
+                    window['channel'].unbind('client-loadingComplete', startPageLC);
+                    alert('Login failed please check your username and password :)');
+                }
+                window['channel'].bind('loginStatus', loginFailed);
+                window['channel'].bind('client-loadingComplete', startPageLC);
+            //-----------------------------
+                function subscriptionSucceeded() {
+                    var triggered = window['channel'].trigger('client-startPage', {});
+                }
+            }   
+        // --------------------------------------------
+
+        //tell the web app to go to the add device page 
+            function goToAddDevice() {
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goToAddDevice', {});
+                var goToAddDeviceLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', goToAddDeviceLC);
+                        $.mobile.changePage($('#page2'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', goToAddDeviceLC);
+            }   
+        // --------------------------------------------
+
+        //tell the web app to ADD the device 
+            function AddDevice() {
+                var device_name = document.getElementById('device_name').value
+                if(device_name == ""){
+                    alert("Please enter a device name.");
+                }
+                else{
+                    $('a').addClass('ui-disabled');
+                    $('#ExitApp').removeClass('ui-disabled');
+                    $('#CancelExit').removeClass('ui-disabled');
+                    $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                    var triggered = window['channel'].trigger('client-AddDevice', {'device_name':device_name});
+                    var AddDeviceLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', AddDeviceLC);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                    window['channel'].bind('client-loadingComplete', AddDeviceLC);
+                }
+            }   
+        // --------------------------------------------
+
+        //tell the web app to go back from the profile.html page
+            function goBackToProfile() {
+                userActivityDetected();
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $('#FromMonths').empty();
+                $('#FromYears').empty();
+                $('#ToMonths').empty();
+                $('#ToYears').empty();
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-goBackToProfile', {});
+                var goBackToProfileLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete',goBackToProfileLC);
+                        $.mobile.changePage($('#page1'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete',goBackToProfileLC);
+            }   
+        // --------------------------------------------
+
+
+        //tell the web app to log out the user
+            function logOut() {
+                userActivityDetected()
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $('#ViewChartPieCanvas').empty();
+                $('#ViewChartBarCanvas').empty();
+                $('#pieChartProfile').empty();
+                $('#rankDiv').empty();
+                $('#username').val('');
+                $('#usernamee').val('');
+                $('#password').val('');
+                $('#passwordd').val('');
+                $('#emaill').val('');
+                $('#verifyPasswordd').val('');
+                try{
+                    $('#radio-choice-1').attr("checked",false).checkboxradio("refresh");
+                    $('#radio-choice-2').attr("checked",false).checkboxradio("refresh");
+                    $("#FromDays").selectmenu('refresh', true);
+                    $("#ToDays").selectmenu('refresh', true);
+                    $('#FromMonths').empty().selectmenu('refresh', true);;
+                    $('#FromYears').empty().selectmenu('refresh', true);;
+                    $('#ToMonths').empty().selectmenu('refresh', true);;
+                    $('#ToYears').empty().selectmenu('refresh', true);;  
+                }
+                catch(err){}
+                $.mobile.loading( 'show' , {theme:'a',text:'',textVisible:true});
+                var triggered = window['channel'].trigger('client-logout',{});
+                var logOutLC = function(data){
+                        $.mobile.loading( 'hide');
+                        window['channel'].unbind('client-loadingComplete', logOutLC);
+                        window['channel'].unbind('client-logoutMobile', logoutMobile);
+                        $.mobile.changePage($('#startPage'),{transition: "flip"});
+                        $('a').removeClass('ui-disabled');
+                    };
+                window['channel'].bind('client-loadingComplete', logOutLC);
+            }   
+        // --------------------------------------------
+
+
+
+        // initiallizing a connection and reserving a place on the screen ------
+            function start() {
+                $('a').addClass('ui-disabled');
+                $('#ExitApp').removeClass('ui-disabled');
+                $('#CancelExit').removeClass('ui-disabled');
+                $.mobile.loading( 'show', { theme: "a", text: "Connecting", textonly: false , textVisible:true });
+            //Pusher Config --------------- 
+                channelName = "private-SaveE";
+                var pusher = new Pusher('35bf6495b4677801c17e');
+                var channel = pusher.subscribe('private-SaveE');
+                Pusher.channel_auth_endpoint = 'http://137.250.171.211:8000/auth/';
+                Pusher.channel_auth_transport = 'ajax';
+                var screenFull = function(data){
+                    $.mobile.loading( 'hide');
+                    alert('The screen is full right now :)');
+                    $('a').removeClass('ui-disabled');
+
+                    channel.unbind('client-screenFull', screenFull);
+                };
+                channel.bind('pusher:subscription_succeeded', subscriptionSucceeded);
+                channel.bind('client-screenFull', screenFull);
+                channel.bind('client-changeChannelName',
+                    function(data) {
+                        // if(data.channelName != "-1"){
+                            channelName = channelName + data.channelName;
+                            window['userNumber'] = data.channelName;
+                            pusher.disconnect();
+                            startPage();
+                        // }
+                    }
+                );
+            //-----------------------------
+                function subscriptionSucceeded() {
+                    var triggered = channel.trigger('client-start', {});
+                }
+            }
+        //---------------------------------------------
+        //subscribing to swiping events ---------------
+            $$('#startPage').swipeLeft(function(){
+            });
+            $$('#startPage').swipeRight(function(){
+            });
+            $$('#startPage').swipeUp(function(){
+            });
+            $$('#startPage').swipeDown(function(){
+            });
+            $$('#login-signup').swipeLeft(function(){
+            });
+            $$('#login-signup').swipeRight(function(){
+            });
+            $$('#login-signup').swipeUp(function(){
+            });
+            $$('#login-signup').swipeDown(function(){
+            });
+            $$('#register').swipeLeft(function(){
+            });
+            $$('#register').swipeRight(function(){
+            });
+            $$('#register').swipeUp(function(){
+            });
+            $$('#register').swipeDown(function(){
+            });
+            $$('#page1').swipeLeft(function(){
+                userActivityDetected();
+                var triggered = window['channel'].trigger('client-scrollLeftProfile', {});
+            });
+            $$('#page1').swipeRight(function(){
+                // userActivityDetected();
+                var triggered = window['channel'].trigger('client-scrollRightProfile', {});
+            });
+            $$('#page1').swipeUp(function(){
+                // userActivityDetected();
+                // var y = $('#page1').scrollTop();
+                // $('#page1 .viewCharts').scrollTop(y-150);
+                var triggered = window['channel'].trigger('client-scrollUpProfile', {});
+            });
+            $$('#page1').swipeDown(function(){
+                userActivityDetected();
+                // var y = $('#page1').scrollTop();
+                // $('#page1 .viewCharts').scrollTop(y+150);
+                var triggered = window['channel'].trigger('client-scrollDownProfile', {});
+            });
+            $$('#page3').swipeLeft(function(){
+            });
+            $$('#page3').swipeRight(function(){
+            });
+            $$('#page3').swipeUp(function(){
+            });
+            $$('#page3').swipeDown(function(){
+            });
+            $$('#page4 .viewCharts').swipeLeft(function(){
+                // $("#page4").animate(
+                //     {scrollLeft: "-="-200}, 1000
+                // );
+            });
+            $$('#page4').swipeRight(function(){
+            });
+            $$('#page4').swipeUp(function(){
+                userActivityDetected();
+                var y = $('#page4').scrollTop();
+                $('#page4').scrollTop(y+120);
+                var triggered = window['channel'].trigger('client-scrollUpViewCharts', {});
+            });
+            $$('#page4').swipeDown(function(){
+                userActivityDetected();
+                var y = $('#page4').scrollTop();
+                $('#page4').scrollTop(y-120);
+                var triggered = window['channel'].trigger('client-scrollDownViewCharts', {});
+            });    
+        </script>
+    </body>
+</html>
