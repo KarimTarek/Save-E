@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  25 AUG 2013 15:56
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  2 SEP 2013 15:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1090,7 +1090,7 @@ LaTeX Font Info:    Try loading font information for U+stmry on input line 3.
 sed, duplicate ignored
 <to be read again> 
                    \relax 
-l.27 ...{chapter}{List of Figures}{37}{section*.7}
+l.27 ...{chapter}{List of Figures}{39}{section*.7}
                                                    [1])pdfTeX warning (ext4): d
 estination with the same identifier (name{page.ii}) has been already used, dupl
 icate ignored
@@ -1440,23 +1440,23 @@ Package pdftex.def Info: Example9.png used on input line 400.
 (pdftex.def)             Requested size: 383.0pt x 181.78278pt.
  [20 <./Example8.png> <./Example9.png>]
 
-./Bachelor Thesis.tex:409: LaTeX Error: There's no line here to end.
+./Bachelor Thesis.tex:410: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.409 \newline
+l.410 \newline
                \noindent So simply the game mechanics of the system consists...
 
 ? 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--417
+Underfull \hbox (badness 10000) in paragraph at lines 410--418
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--417
+Underfull \hbox (badness 10000) in paragraph at lines 410--418
 
  []
 
@@ -1464,194 +1464,209 @@ Underfull \hbox (badness 10000) in paragraph at lines 409--417
 
 ] [23] [24
 
-]
-./Bachelor Thesis.tex:446: Undefined control sequence.
-l.446 \centring
+] [25]
+./Bachelor Thesis.tex:448: Undefined control sequence.
+l.448 \centring
                
 ? 
-<Example11.png, id=339, 1110.1475pt x 458.71375pt>
+<Example11.png, id=344, 1110.1475pt x 458.71375pt>
 File: Example11.png Graphic file (type png)
  <use Example11.png>
-Package pdftex.def Info: Example11.png used on input line 447.
+Package pdftex.def Info: Example11.png used on input line 449.
 (pdftex.def)             Requested size: 383.0pt x 158.25641pt.
- [25]
 
-./Bachelor Thesis.tex:453: LaTeX Error: There's no line here to end.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.453 \newline
-               \noindent The first question was if the user had such a syste...
-
-? 
-
-./Bachelor Thesis.tex:453: LaTeX Error: There's no line here to end.
+./Bachelor Thesis.tex:455: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.453 \newline
+l.455 \newline
                \noindent The first question was if the user had such a syste...
 
 ? 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+./Bachelor Thesis.tex:455: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.455 \newline
+               \noindent The first question was if the user had such a syste...
+
+? 
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--478
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
-[26 <./Example11.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 481--484
+
+Underfull \hbox (badness 10000) in paragraph at lines 455--482
 
  []
 
-[27]
-No file "Bachelor Thesis".bbl.
-[28] [29
-
-] [30]
-./Bachelor Thesis.tex:501: Undefined control sequence.
-l.501 \centring
+[26 <./Example11.png>] [27]
+./Bachelor Thesis.tex:484: Undefined control sequence.
+l.484 \centring
                
 ? 
-<Intro.png, id=366, 550.055pt x 756.8275pt>
+<SusScore.png, id=354, 63.5976pt x 35.05095pt>
+File: SusScore.png Graphic file (type png)
+ <use SusScore.png>
+Package pdftex.def Info: SusScore.png used on input line 485.
+(pdftex.def)             Requested size: 383.0pt x 211.09714pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 492--495
+
+ []
+
+[28 <./SusScore.png>]
+No file "Bachelor Thesis".bbl.
+[29] [30
+
+] [31] [32]
+./Bachelor Thesis.tex:512: Undefined control sequence.
+l.512 \centring
+               
+? 
+<Intro.png, id=377, 550.055pt x 756.8275pt>
 File: Intro.png Graphic file (type png)
  <use Intro.png>
-Package pdftex.def Info: Intro.png used on input line 502.
+Package pdftex.def Info: Intro.png used on input line 513.
 (pdftex.def)             Requested size: 383.0pt x 526.99251pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31
+ [33
 
 ]
-./Bachelor Thesis.tex:508: Undefined control sequence.
-l.508 \centring
+./Bachelor Thesis.tex:519: Undefined control sequence.
+l.519 \centring
                
 ? 
-<Tasks.png, id=372, 549.05125pt x 766.865pt>
+<Tasks.png, id=382, 549.05125pt x 766.865pt>
 File: Tasks.png Graphic file (type png)
  <use Tasks.png>
-Package pdftex.def Info: Tasks.png used on input line 509.
+Package pdftex.def Info: Tasks.png used on input line 520.
 (pdftex.def)             Requested size: 383.0pt x 534.95303pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32 <./Intro.png>]
-./Bachelor Thesis.tex:515: Undefined control sequence.
-l.515 \centring
+ [34 <./Intro.png>]
+./Bachelor Thesis.tex:526: Undefined control sequence.
+l.526 \centring
                
 ? 
-<Page1.png, id=378, 542.025pt x 754.82pt>
+<Page1.png, id=388, 542.025pt x 754.82pt>
 File: Page1.png Graphic file (type png)
  <use Page1.png>
-Package pdftex.def Info: Page1.png used on input line 516.
+Package pdftex.def Info: Page1.png used on input line 527.
 (pdftex.def)             Requested size: 383.0pt x 533.38057pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33 <./Tasks.png>]
-./Bachelor Thesis.tex:522: Undefined control sequence.
-l.522 \centring
+ [35 <./Tasks.png>]
+./Bachelor Thesis.tex:533: Undefined control sequence.
+l.533 \centring
                
 ? 
-<Page2.png, id=384, 552.0625pt x 760.8425pt>
+<Page2.png, id=394, 552.0625pt x 760.8425pt>
 File: Page2.png Graphic file (type png)
  <use Page2.png>
-Package pdftex.def Info: Page2.png used on input line 523.
+Package pdftex.def Info: Page2.png used on input line 534.
 (pdftex.def)             Requested size: 383.0pt x 527.86105pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34 <./Page1.png>]
-./Bachelor Thesis.tex:529: Undefined control sequence.
-l.529 \centring
+ [36 <./Page1.png>]
+./Bachelor Thesis.tex:540: Undefined control sequence.
+l.540 \centring
                
 ? 
-<Page3.png, id=390, 547.04375pt x 759.83875pt>
+<Page3.png, id=400, 547.04375pt x 759.83875pt>
 File: Page3.png Graphic file (type png)
  <use Page3.png>
-Package pdftex.def Info: Page3.png used on input line 530.
+Package pdftex.def Info: Page3.png used on input line 541.
 (pdftex.def)             Requested size: 383.0pt x 531.98784pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35 <./Page2.png>] [36 <./Page3.png>] (./Bachelor Thesis.lof
+ [37 <./Page2.png>] [38 <./Page3.png>] (./Bachelor Thesis.lof
 Overfull \hbox (15.64731pt too wide) in paragraph at lines 4--4
  [][] [][][]\OT1/cmr/m/n/12 This fig-ure show-ing the con-nec-tions made be-twe
 en the mo-bile,server 
  []
 
 
-Underfull \vbox (badness 5359) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [37
+ [39
 
 
 ])
-[38] (./Bachelor Thesis.lot) [39
+[40] (./Bachelor Thesis.lot) [41
 
-] [40
+] [42
 
 
-] (./Bachelor Thesis.loa) [41]
+] (./Bachelor Thesis.loa) [43]
 \tf@toc=\write8
 \openout8 = `"Bachelor Thesis.toc"'.
 
@@ -1664,25 +1679,21 @@ Underfull \vbox (badness 5359) has occurred while \output is active []
 \tf@loa=\write11
 \openout11 = `"Bachelor Thesis.loa"'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 592.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 592.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 603.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 603.
 
 (./Bachelor Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 592.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 592.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 603.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 603.
 Package rerunfilecheck Info: File `"Bachelor Thesis".out' has not changed.
 (rerunfilecheck)             Checksum: 97163684F7D05F19018732597F1A0652;3651.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 592.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 603.
  ) 
 Here is how much of TeX's memory you used:
- 15562 strings out of 493488
- 214721 string characters out of 3141326
- 318310 words of memory out of 3000000
- 18520 multiletter control sequences out of 15000+200000
+ 15571 strings out of 493488
+ 214838 string characters out of 3141326
+ 318149 words of memory out of 3000000
+ 18525 multiletter control sequences out of 15000+200000
  19265 words of font info for 67 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,12n,32p,1492b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1693,10 +1704,10 @@ usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
 r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr
 /local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></us
 r/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on "Bachelor Thesis.pdf" (53 pages, 2584823 bytes).
+Output written on "Bachelor Thesis.pdf" (55 pages, 2604693 bytes).
 PDF statistics:
- 507 PDF objects out of 1000 (max. 8388607)
- 420 compressed objects within 5 object streams
- 103 named destinations out of 1000 (max. 500000)
- 309 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 515 PDF objects out of 1000 (max. 8388607)
+ 425 compressed objects within 5 object streams
+ 106 named destinations out of 1000 (max. 500000)
+ 314 words of extra memory for PDF output out of 10000 (max. 10000000)
 
