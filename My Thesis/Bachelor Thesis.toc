@@ -23,6 +23,7 @@
 \contentsline {section}{\numberline {5.2}Experiment}{25}{section.5.2}
 \contentsline {section}{\numberline {5.3}Results}{26}{section.5.3}
 \contentsline {section}{\numberline {5.4}Future Work}{28}{section.5.4}
-\contentsline {appendix}{\chapternumberline {A}Questionnaire}{33}{appendix.A}
-\contentsline {chapter}{List of Figures}{39}{section*.7}
-\contentsline {chapter}{List of Tables}{41}{section*.8}
+\contentsline {chapter}{Bibliography}{31}{section*.8}
+\contentsline {appendix}{\chapternumberline {A}Questionnaire}{35}{appendix.A}
+\contentsline {chapter}{List of Figures}{41}{section*.9}
+\contentsline {chapter}{List of Tables}{43}{section*.10}
