@@ -368,9 +368,41 @@ One of the important milestones in the project were the responsiveness and the i
 \label{sec:UserData}
 User data which is simply represented as charts in the project and letting the user know their energy consumption was one of the objectives to increase energy awareness and to help users save energy so user data had to be made in order to illustrate to the user his consumption also helps in two points:
 \\
-\newline \noindent The first point: user data helps the user to know their detailed energy consumption and as a result the user can know where does the problem come from or from which device he consumes energy the most.
+\newline \noindent The first point: user data helps the user to know their detailed energy consumption and as a result the user can know where does the problem come from or from which device he consumes energy the most. This part is represented as two different representations of charts the first chart is on the users profiles and shows their total energy consumption as a pie chart including each device consumption in percentages as you can see in figure~\ref{fig:Example15}. So to give the user an overview of what his total energy consumption might be the carts were placed on the profile to allow the users to check them once they login to the system since its the first thing they view once they login.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=0.85\textwidth]{Example15.png}
+\caption{The figure shows the pie chart displaying the total energy consumption for a user.}
+\label{fig:Example15}
+\end{figure}
+
 \\
-\newline \noindent The second point: users may take advantage of the multi-user setup and use the system to compare each other's data in order to motivate both of them to save energy as that can give them rewards as we will see in the game mechanics section  \ref{sec:GameMechanics}.
+\newline \noindent The second type of charts is in the view charts section in the application its like the first type but more detailed and customized as the user wish. When users navigate to the view charts section they are asked to enter a duration in which they want to check their energy consumption within as illustrated in figure~\ref{fig:Example17}. The charts then are displayed as a pie and a bar chart, the pie chart first indicates the total energy usage in the dates entered displaying the energy consumption of each device in percentages while the bar chart displays also the energy consumption of each device but sorted or ordered monthly within also the dates the user entered. In order to get the picture more you can see figure~\ref{fig:Example16} to have an idea on how the charts are displayed.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=0.35\textwidth]{Example17.png}
+\caption{The figure shows how the users get to choose the dates they want to view their energy consumption within.}
+\label{fig:Example17}
+\end{figure}
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=0.85\textwidth]{Example16.png}
+\caption{The figure shows the bar chart displaying in more details the energy consumption of a user sorted monthly within the period he chose.}
+\label{fig:Example16}
+\end{figure}
+
+\\
+\newline \noindent The second point: comparing user data with each other on the display may be another advantage of user data and the multi-user feature as users may take advantage of the multi-user setup and use the system to compare each other's data on the display for example as shown in figure~\ref{fig:Example18} two users may be standing on the display and both are viewing their energy consumption they might take advantage as mentioned and compare their data in order to motivate both of them to save energy as that can give them rewards as we will see in the game mechanics section \ref{sec:GameMechanics}.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=0.75\textwidth]{Example18.png}
+\caption{The figure shows two users viewing their energy consumption on the public display.}
+\label{fig:Example18}
+\end{figure}
 
 \section{User Privacy}
 \label{sec:UserPrivacy}
@@ -395,28 +427,50 @@ Privacy was one of the important aspects of the project since the project was no
 \label{fig:Example9}
 \end{figure}
 
-\newpage
 \section{Game Mechanics}
 \label{sec:GameMechanics}
 Gamification or applying game mechanics is now widely used in many applications because it enhances the user experience with the application and involves more fun but in the same time it motivates users to challenge and compete against each other in order to be from the top three or the top ten players so this concept was used in the project to bring more interaction between the users and increase their motivation to compete against each other to save energy and gain badges and virtual money to be able to make their way up the leader board as it will be explained later in this section.
-
 \newline \noindent So simply the game mechanics of the system consists of:
 \\
 \newline \noindent 1- Levels: level is an indication about your total consumption also used by the leader board as the sorting key.
 \newline \noindent 2- Badges: a badge is gained when you cross a certain amount of money and as long as you are saving more money you gain more badges.
 \newline \noindent 3- Virtual Money: initially users have money then when the costs of their usages is calculated and deducted they loose them.
 \newline \noindent 4- Leader board: the leader board is the place where you can see all the users and their levels, badges, money and ranks.
-
 \\
 \newline \noindent So simply users at first have a certain amount of money by default then when they start measuring their energy consumption day by day the cost is calculated and deducted from the money they have so the more you consume energy the less the money you have and vice versa. Also when the system detects that the data is for a new month the system adds new money to the users so when the users save more energy and pay less, their money increase and when they reach a certain amount of money which is decided by the system, they gain badges which leads to a level up and improving their ranks on the leader board.
 \\
-\newline \noindent Now lets have a deeper look on the game mechanics within the application. First the levels are shown on the users profile page since it's the default once a user logs in the system levels are shown exactly at the top of the screen as in figure~\ref{fig:Example}. It is placed at the top to make it easy on the user navigating the application and other users to check each other's levels. Levels is just an indication or a representation on how much money and badges you have, as long as you save more energy you earn more money and gain more badges which leads to a level up. Level is also the main key all users are sorted upon in the leader board.
+\newline \noindent Now lets have a deeper look on the game mechanics within the application. First the levels are shown on the users profile page since it's the default once a user logs in the system levels are shown exactly at the top of the screen as in figure~\ref{fig:Example12}.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=0.85\textwidth]{Example12.png}
+\caption{This figure shows how the money and the level are displayed to the user.}
+\label{fig:Example12}
+\end{figure}
+
+\newline \noindent It is placed at the top to make it easy on the user navigating the application and other users to check each other's levels. Levels is just an indication or a representation on how much money and badges you have, as long as you save more energy you earn more money and gain more badges which leads to a level up. Level is also the main key all users are sorted upon in the leader board.
 \\
-\newpage \noindent Secondly, badges play a very important role in creating the competitive and fun environment for users to compete against each other for a certain goal. So in the application badges were used to make users eager to earn prizes when they save a certain amount of energy and motivate them to collect more badges on their profile which corresponds to saving more energy. Also badges play an important role in the level up mechanism since users level up when they pass a certain amount of money and collect more than a certain amount of badges. As you can see in figure~\ref{fig:Example} badges are displayed on users profiles.
+\newline \noindent Secondly, badges play a very important role in creating the competitive and fun environment for users to compete against each other for a certain goal. So in the application badges were used to make users eager to earn prizes when they save a certain amount of energy and motivate them to collect more badges on their profile which corresponds to saving more energy. Also badges play an important role in the level up mechanism since users level up when they pass a certain amount of money and collect more than a certain amount of badges. As you can see in figure~\ref{fig:Example13} badges are displayed on users profiles.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=0.35\textwidth]{Example13.png}
+\caption{This figure shows how the badges are displayed to the user.}
+\label{fig:Example13}
+\end{figure}
+
+\newline \noindent Virtual money is an important factor also in the application game mechanics it represents the points that each user has which also acts as an indication on how much energy the user is saving, the higher the user's consumption the lower virtual money he has because the cost of the user consumption is deducted from the money he has. Money also is displayed at the top of the users profiles on the right of users levels as shown in figure~\ref{fig:Example12}.
+
+\begin{figure}[H]
+\centring
+\includegraphics[width=0.85\textwidth]{Example14.png}
+\caption{This figure shows how the leader board is shown to the users.}
+\label{fig:Example14}
+\end{figure}
+
 \\
-\newline \noindent Virtual money is an important factor also in the application game mechanics it represents the points that each user has which also acts as an indication on how much energy the user is saving, the higher the user's consumption the lower virtual money he has because the cost of the user consumption is deducted from the money he has. Money also is displayed at the top of the users profiles on the right of users levels as shown in figure~\ref{fig:Example}.
-\\
-\newline \noindent Finally leader board is the place where all the users can see the level, money and badges of each other which also adds to the competitive environment in a way that all users are motivated to be from the first three rankings or in other words the top energy savers. Also it allow users to check their ranking among other users using the application just to give the users an idea on their energy consumption related to the people around them. As you can see in figure~\ref{fig:Example} the leader board is shown with users sorted by their levels also showing their badges and money.
+\newline \noindent Finally leader board is the place where all the users can see the level, money and badges of each other which also adds to the competitive environment in a way that all users are motivated to be from the first three rankings or in other words the top energy savers. Also it allow users to check their ranking among other users using the application just to give the users an idea on their energy consumption related to the people around them. As you can see in figure~\ref{fig:Example14} the leader board is shown with users sorted by their levels also showing their badges and money.
+
 
 %******************************************************************************
 % USER STUDY
