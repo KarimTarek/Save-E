@@ -11,20 +11,20 @@
 \contentsline {section}{\numberline {3.2}Concept}{10}{section.3.2}
 \contentsline {section}{\numberline {3.3}Connection}{10}{section.3.3}
 \contentsline {section}{\numberline {3.4}Multi-user setup}{12}{section.3.4}
-\contentsline {section}{\numberline {3.5}Synchronization}{16}{section.3.5}
-\contentsline {section}{\numberline {3.6}Tip Generator}{17}{section.3.6}
-\contentsline {section}{\numberline {3.7}Responsiveness And Interaction}{18}{section.3.7}
-\contentsline {section}{\numberline {3.8}User Data}{19}{section.3.8}
-\contentsline {section}{\numberline {3.9}User Privacy}{22}{section.3.9}
-\contentsline {section}{\numberline {3.10}Game Mechanics}{24}{section.3.10}
-\contentsline {chapter}{\chapternumberline {4}User Study}{29}{chapter.4}
-\contentsline {section}{\numberline {4.1}Participants}{29}{section.4.1}
-\contentsline {section}{\numberline {4.2}Experiment}{29}{section.4.2}
-\contentsline {section}{\numberline {4.3}Results}{30}{section.4.3}
-\contentsline {chapter}{\chapternumberline {5}Conclusion And Future Work}{33}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusion}{33}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{33}{section.5.2}
-\contentsline {chapter}{Bibliography}{35}{section*.8}
-\contentsline {appendix}{\chapternumberline {A}Questionnaire}{39}{appendix.A}
+\contentsline {section}{\numberline {3.5}Synchronization}{15}{section.3.5}
+\contentsline {section}{\numberline {3.6}Tip Generator}{16}{section.3.6}
+\contentsline {section}{\numberline {3.7}Responsiveness And Interaction}{17}{section.3.7}
+\contentsline {section}{\numberline {3.8}User Data}{18}{section.3.8}
+\contentsline {section}{\numberline {3.9}User Privacy}{21}{section.3.9}
+\contentsline {section}{\numberline {3.10}Game Mechanics}{23}{section.3.10}
+\contentsline {chapter}{\chapternumberline {4}User Study}{27}{chapter.4}
+\contentsline {section}{\numberline {4.1}Participants}{27}{section.4.1}
+\contentsline {section}{\numberline {4.2}Experiment}{27}{section.4.2}
+\contentsline {section}{\numberline {4.3}Results}{28}{section.4.3}
+\contentsline {chapter}{\chapternumberline {5}Conclusion And Future Work}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusion}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{31}{section.5.2}
+\contentsline {chapter}{Bibliography}{33}{section*.8}
+\contentsline {appendix}{\chapternumberline {A}Questionnaire}{37}{appendix.A}
 \contentsline {chapter}{List of Figures}{45}{section*.9}
 \contentsline {chapter}{List of Tables}{47}{section*.10}

@@ -262,7 +262,7 @@ Once the user presses connect on his mobile device a request is sent to the serv
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{ChannelsAndConnections.png}
+\includegraphics[width=0.85\textwidth]{ChannelsAndConnections.png}
 \caption{This figure showing the connections and the channels and how every user connects via his own channel.}
 \label{fig:ChannelsAndConnections}
 \end{figure}
@@ -270,20 +270,22 @@ Once the user presses connect on his mobile device a request is sent to the serv
 
 \section{Multi-user setup}
 \label{sec:Multi-userSetup}
-The multi-user setup was one of the challenging milestones in the project because normally when a web application is opened in a window it will have a session for the user opening that window. However to have a number of users doing actions in the same window, here the problem occurs. Because each user is supposed to have one session id which is stored by the browser window but when multiple-users start to navigate in one window the sessions replace each other, as a result the requests origin or the user who made that request will not be known.
-The problem was handled by passing the user id which is a unique key which identify a user to every page he visits once the user is logged in and neglecting the session id so doing this for all the users on the screen solves the problem of the sessions replacing each other and making sure to know where does this request comes from or from which user to avoid colliding of requests.
-\newline \noindent The organising and registering of a user on the display in order to start interacting with it was done by implementing a simple algorithm it's goal is to organise the order of the users and their slots on the screen to let the users interact on their specified slots by saving the number of users currently on the display in a local storage variable by the browser.
-\newline \noindent As you can see the following figure~\ref{fig:SlotNumbersAndStatus}
 \begin{figure}[H]
 \centring
-\includegraphics[width=0.90\textwidth]{SlotNumbersAndStatus.png}
+\includegraphics[width=0.80\textwidth]{SlotNumbersAndStatus.png}
 \caption{The figure shows the array of slot numbers on the display.}
 \label{fig:SlotNumbersAndStatus}
 \end{figure}
-\newline \noindent represents the array of screen slots numbers from one to four when a user press the connect button the mobile sends a signal via a general channel to the server which then loops on the slot status array in figure~\ref{fig:SlotNumbersAndStatus}.
 
+The multi-user setup was one of the challenging milestones in the project because normally when a web application is opened in a window it will have a session for the user opening that window. However to have a number of users doing actions in the same window, here the problem occurs. Because each user is supposed to have one session id which is stored by the browser window but when multiple-users start to navigate in one window the sessions replace each other, as a result the requests origin or the user who made that request will not be known.
+The problem was handled by passing the user id which is a unique key which identify a user to every page he visits once the user is logged in and neglecting the session id so doing this for all the users on the screen solves the problem of the sessions replacing each other and making sure to know where does this request comes from or from which user to avoid colliding of requests.
+\\
+\newline \noindent The organising and registering of a user on the display in order to start interacting with it was done by implementing a simple algorithm it's goal is to organise the order of the users and their slots on the screen to let the users interact on their specified slots by saving the number of users currently on the display in a local storage variable by the browser.
+\\
+\newline \noindent As you can see the following figure~\ref{fig:SlotNumbersAndStatus} represents the array of screen slots numbers from one to four when a user press the connect button the mobile sends a signal via a general channel to the server which then loops on the slot status array in figure~\ref{fig:SlotNumbersAndStatus}.
+\\
 \newline \noindent And when it finds a free slot which means false it overwrites the false value with a true one and take its index to get the corresponding index in the slot numbers array in figure~\ref{fig:SlotNumbersAndStatus} then it sends the slot number which will be assigned to this user to the mobile device and connect to the channel of this number and display the content on the specified slot then it increment a local storage variable stored by the browser which keep track of the number of users on the display. For example imagine this situation:
-
+\\
 \newline \noindent Currently the public display has three users logged-in and another user wants to connect so as you can see in figure~\ref{fig:Example1} the Boolean array which represents the current busy slots of the screen indicates that slot 1,2 and 3 are taken.
 
 \begin{figure}[H]
@@ -293,8 +295,9 @@ The problem was handled by passing the user id which is a unique key which ident
 \label{fig:Example1}
 \end{figure}
 
-\newpage \noindent So once the user presses connect what the system does is the following:
+\noindent So once the user presses connect what the system does is the following:
 
+\newpage 
 \begin{figure}[H]
 \centring
 \includegraphics[width=0.75\textwidth]{Example2.png}
@@ -302,7 +305,7 @@ The problem was handled by passing the user id which is a unique key which ident
 \label{fig:Example2}
 \end{figure}
 
-\newline \noindent The system begins to loop on the array that contains the status of each slot on the screen until it finds a cell in the array in which the cell is "false" which means at this index in the Slot number array the slot is free then the system stops and replace the status with true instead of false then sends this number to the mobile in order to connect on the channel of that slot to be able to interact so here is a figure when the algorithm executed.
+\newline \noindent The system begins to loop on the array that contains the status of each slot on the screen until it finds a cell in the array in which the cell is "false" which means at this index in the Slot number array the slot is free then the system stops and replace the status with true instead of false then sends this number to the mobile in order to connect on the channel of that slot to be able to interact with it. Figure~\ref{fig:Example3} illustrates the arrays when the algorithm executed.
 
 \begin{figure}[H]
 \centring
@@ -567,21 +570,51 @@ As for future work on the application needs to be fully integrated with real use
 \appendixpage*
 \chapter{Questionnaire}
 \label{app:Questionnaire}
+
 This is the introduction, task and questionnaires that was given to the users to evaluate the system.
+\\
+\newline \noindent Introduction:
+\\
+\newline \noindent This application helps you to keep track of your energy consumption and compete with other users to save more energy.
+\\
+\newline \noindent The application mainly allows you to view charts of your energy usage and gain badges and virtual money as long as you save more energy. Also you can check your rank among other users too. Moreover you can hide your personal data to avoid anyone to see it.
+\\
+\newline \noindent Notes:
+\newline 1- Assume the data that you will see is your energy usage for 4 months.
+\newline 2- The system will log you out after 5 minutes if you are idle
+\\
+\newline \noindent Users:
+\newline 1- Benutzername: Bob Smith
+\newline Kennwort: b
 
 \begin{figure}[H]
 \centring
-\includegraphics[width=1\textwidth]{Intro.png}
-\caption{This figure shows the introduction that was given to the users while evaluating the system.}
+\includegraphics[width=0.85\textwidth]{Example19.png}
+\caption{This figure illustrates the buttons and main features in the application.}
 \label{fig:Intro}
 \end{figure}
 
-\begin{figure}[H]
-\centring
-\includegraphics[width=1\textwidth]{Tasks.png}
-\caption{This figure shows the tasks given to the users .}
-\label{fig:Tasks}
-\end{figure}
+\newpage
+\\
+\newline \noindent Tasks:
+\\
+\newline 1. Login.
+\newline 2. State your level.
+\newline 3. State the amount of money you have.
+\newline 4. State the badges that you've won.
+\newline 5. State the tip of the day.
+\newline 6. State your rank on the leader board.
+\newline 7. View your total energy usage:
+\newline - State in () the amount of energy your display used in total.
+\newline 8. View your energy usage from 1-August to 1-October:
+\newline - State in () the amount of energy your CPU used in total.
+\newline 9. Assume that a stranger suddenly appeared try to hide your data.
+\newline 10.Logout.
+
+\newpage
+\\
+\newline \noindent Questions:
+
 
 \begin{figure}[H]
 \centring
