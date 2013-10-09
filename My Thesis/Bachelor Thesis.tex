@@ -570,8 +570,7 @@ As for future work on the application needs to be fully integrated with real use
 \appendixpage*
 \chapter{Questionnaire}
 \label{app:Questionnaire}
-
-This is the introduction, task and questionnaires that was given to the users to evaluate the system.
+This is the introduction, tasks and questionnaires that was given to the users to evaluate the system.
 \\
 \newline \noindent Introduction:
 \\
@@ -587,56 +586,195 @@ This is the introduction, task and questionnaires that was given to the users to
 \newline 1- Benutzername: Bob Smith
 \newline Kennwort: b
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centring
-\includegraphics[width=0.85\textwidth]{Example19.png}
+\includegraphics[width=0.55\textwidth]{Example19.png}
 \caption{This figure illustrates the buttons and main features in the application.}
 \label{fig:Intro}
 \end{figure}
 
 \newpage
+\newline \noindent Here you can find the tasks that were given to the users to accomplish.
 \\
-\newline \noindent Tasks:
+\newline \noindent \textbf{Tasks}:
 \\
-\newline 1. Login.
-\newline 2. State your level.
-\newline 3. State the amount of money you have.
-\newline 4. State the badges that you've won.
-\newline 5. State the tip of the day.
-\newline 6. State your rank on the leader board.
-\newline 7. View your total energy usage:
-\newline - State in () the amount of energy your display used in total.
-\newline 8. View your energy usage from 1-August to 1-October:
-\newline - State in () the amount of energy your CPU used in total.
-\newline 9. Assume that a stranger suddenly appeared try to hide your data.
-\newline 10.Logout.
+\newline \indent 1. Login.
+\\
+\newline \indent 2. State your level.
+\\
+\newline \indent 3. State the amount of money you have.
+\\
+\newline \indent 4. State the badges that you've won.
+\\
+\newline \indent 5. State the tip of the day.
+\\
+\newline \indent 6. State your rank on the leader board.
+\\
+\newline \indent 7. View your total energy usage:
+\newline \indent \indent - State in (\%) the amount of energy your display used in total.
+\\
+\newline \indent 8. View your energy usage from 1-August to 1-October:
+\newline \indent \indent - State in (\%) the amount of energy your CPU used in total.
+\\
+\newline \indent 9. Assume that a stranger suddenly appeared try to hide your data.
+\\
+\newline \indent 10.Logout.
 
 \newpage
 \\
-\newline \noindent Questions:
+
+\onehalfspacing
 
 
-\begin{figure}[H]
-\centring
-\includegraphics[width=1\textwidth]{Page1.png}
-\caption{This figure shows the first page of the questionnaire.}
-\label{fig:Page1}
-\end{figure}
+\def\MBox{\Large\ensuremath{\Box}}
 
-\begin{figure}[H]
-\centring
-\includegraphics[width=1\textwidth]{Page2.png}
-\caption{This figure shows the second page of the questionnaire.}
-\label{fig:Page2}
-\end{figure}
+\newcolumntype{S}{>{\centering\arraybackslash}m{3.0em}}
+\newcolumntype{X}{>{\centering\arraybackslash}m{1.0em}}
 
-\begin{figure}[H]
-\centring
-\includegraphics[width=1\textwidth]{Page3.png}
-\caption{This figure shows the third page of the questionnaire.}
-\label{fig:Page3}
-\end{figure}
+\renewcommand{\tabularxcolumn}[1]{m{#1}} % redefine 'X' to use 'm'
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Beginning of questionnaire command definitions         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 2010 by Sven Hartenstein
+%% mail@svenhartenstein.de
+%% http://www.svenhartenstein.de
+%%
+%% Please be warned that this is NOT a full-featured framework for
+%% creating (all sorts of) questionnaires. Rather, it is a small
+%% collection of LaTeX commands that I found useful when creating a
+%% questionnaire. Feel free to copy and adjust any parts you like.
+%% Most probably, you will want to change the commands, so that they
+%% fit your taste.
+%%
+%% Also note that I am not a LaTeX expert! Things can very likely be
+%% done much more elegant than I was able to. If you have suggestions
+%% about what can be done better please send me an email. I intend to
+%% add good tipps to my website and to name contributers of course.
 
+%% \Qq = Questionaire question. Oh, this is just too simple. It helps
+%% making it easy to globally change the appearance of questions.
+\newcommand{\Qq}[1]{\textbf{#1}}
+
+%% \QO = Circle or box to be ticked. Used both by direct call and by
+%% \Qrating and \Qlist.
+\newcommand{\QO}{$\ocircle$}% or: $\ocircle$
+
+%% \Qrating = Automatically create a rating scale with NUM steps, like
+%% this: 0--0--0--0--0.
+\newcounter{qr}
+\newcommand{\Qrating}[1]{\QO\forloop{qr}{1}{\value{qr} < #1}{---\QO}}
+
+%% \Qline = Again, this is very simple. It helps setting the line
+%% thickness globally. Used both by direct call and by \Qlines.
+\newcommand{\Qline}[1]{\rule{#1}{0.6pt}}
+
+%% \Qlines = Insert NUM lines with width=\linewith. You can change the
+%% \vskip value to adjust the spacing.
+\newcounter{ql}
+\newcommand{\Qlines}[1]{\forloop{ql}{0}{\value{ql}<#1}{\vskip0em\Qline{\linewidth}}}
+
+%% \Qlist = This is an environment very similar to itemize but with
+%% \QO in front of each list item. Useful for classical multiple
+%% choice. Change leftmargin and topsep accourding to your taste.
+\newenvironment{Qlist}{%
+  \renewcommand{\labelitemi}{\QO}
+  \begin{itemize}[leftmargin=1.5em,topsep=-.5em]
+}{%
+  \end{itemize}
+}
+
+%% \Qtab = A "tabulator simulation". The first argument is the
+%% distance from the left margin. The second argument is content which
+%% is indented within the current row.
+\newlength{\qt}
+\newcommand{\Qtab}[2]{
+  \setlength{\qt}{\linewidth}
+  \addtolength{\qt}{-#1}
+%  \hfill\parbox[t]{\qt}{\raggedright #2}
+\parbox[t]{\qt}{\raggedright #2}
+
+}
+
+%% \Qitem = Item with automatic numbering. The first optional argument
+%% can be used to create sub-items like 2a, 2b, 2c, ... The item
+%% number is increased if the first argument is omitted or equals 'a'.
+%% You will have to adjust this if you prefer a different numbering
+%% scheme. Adjust topsep and leftmargin as needed.
+\newcounter{itemnummer}
+\newcommand{\Qitem}[2][]{% #1 optional, #2 notwendig
+  \ifthenelse{\equal{#1}{}}{\stepcounter{itemnummer}}{}
+  \ifthenelse{\equal{#1}{a}}{\stepcounter{itemnummer}}{}
+  \begin{enumerate}[topsep=2pt,leftmargin=2.8em]
+  \item[\textbf{\arabic{itemnummer}#1.}] #2
+  \end{enumerate}
+}
+
+%% \QItem = Like \Qitem but with alternating background color. This
+%% might be error prone as I hard-coded some lengths (-5.25pt and
+%% -3pt)! I do not yet understand why I need them.
+\definecolor{bgodd}{rgb}{0.9,0.9,0.9}
+\definecolor{bgeven}{rgb}{0.95,0.95,0.95}
+\newcounter{itemoddeven}
+\newlength{\gb}
+\newcommand{\QItem}[2][]{% #1 optional, #2 notwendig
+  \setlength{\gb}{\linewidth}
+  %\setlength{\gb}{19cm}
+  \addtolength{\gb}{-5.25pt}
+  
+  %\addtolength{\gb}{-5.25pt}
+  \ifthenelse{\equal{\value{itemoddeven}}{0}}{%
+    \noindent\colorbox{bgeven}{\hskip-3pt\begin{minipage}{\gb}\bigskip\Qitem[#1]{#2}\vspace{5 mm}\end{minipage}}%
+    \stepcounter{itemoddeven}%
+    
+  }{%
+    \noindent\colorbox{bgodd}{\hskip-3pt\begin{minipage}{\gb}\bigskip\Qitem[#1]{#2}\vspace{5 mm}\end{minipage}}%
+    \setcounter{itemoddeven}{0}%
+    
+  }
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of questionnaire command definitions               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newline \noindent The following is the System Usability Scale questionnaire in addition to questions related to the motivation to save energy.
+\\
+\\ 
+\makebox[\textwidth]{%
+\begin{tabularx}{17cm}{ X S S S S S S}
+\textbf{Questionnaire:}
+\\
+\\
+   &  & \footnotesize{Strongly disagree} &  &  &  & \footnotesize{Strongly agree}\\
+   &  & 1 & 2 & 3 & 4 & 5\\
+  %\aline
+\textbf{1. I think that I would like to use this system frequently.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
+%\hline
+ & & & & & & \\
+\textbf{2. I found the system unnecessarily complex.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
+ & & & & & & \\
+\textbf{3. I thought the system was easy to use.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
+ & & & & & & \\
+\textbf{4. I think that I would need the support of a technical person to be able to use this system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
+\textbf{5. I found the various functions in this system were well integrated.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
+\textbf{6. I thought there was too much inconsistency in this system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
+\textbf{7. I would imagine that most people would learn to use this system very quickly.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
+\end{tabularx}%
+}
+
+\newpage
+
+\makebox[\textwidth]{%
+\begin{tabularx}{17cm}{ X S S S S S S}
+\textbf{8. I found the system very cumbersome to use.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
+\textbf{9. I felt very confident using the system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
+\textbf{10. I needed to learn a lot of things before I could get going with this system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\& & & & & & \\
+\textbf{11. The system would motivate me to save more energy.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\& & & & & & \\
+\textbf{12. The system provided all the information i needed on my energy usage.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
+
+\end{tabularx}%
+}
 %This is the place where the appendices are supposed to be. Appendices are everything that would just blow up your thesis but are still of some interest for a reader that wants to get a deeper grasp on the details of your work.
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  9 OCT 2013 13:21
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  9 OCT 2013 16:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -815,7 +815,8 @@ Type  H <return>  for immediate help.
 l.59 \renewcommand{\bibitempages}
                                  [1]{\newblock {\scriptsize [\mbox{cited at ...
 
-? 
+? s
+OK, entering \scrollmode...
 (/usr/local/texlive/2012/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/05/13 v6.82q Hypertext links for LaTeX
 
@@ -1180,7 +1181,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ./Bachelor Thesis.tex:253: Undefined control sequence.
 l.253 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Connection_figure.png, id=286, 1001.7425pt x 480.79625pt>
 File: Connection_figure.png Graphic file (type png)
 
@@ -1196,7 +1202,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 258--262
 ./Bachelor Thesis.tex:264: Undefined control sequence.
 l.264 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <ChannelsAndConnections.png, id=299, 791.95876pt x 536.0025pt>
 File: ChannelsAndConnections.png Graphic file (type png)
 
@@ -1207,7 +1218,12 @@ Package pdftex.def Info: ChannelsAndConnections.png used on input line 265.
 ./Bachelor Thesis.tex:274: Undefined control sequence.
 l.274 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <SlotNumbersAndStatus.png, id=300, 558.085pt x 457.71pt>
 File: SlotNumbersAndStatus.png Graphic file (type png)
 
@@ -1241,7 +1257,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 280--290
 ./Bachelor Thesis.tex:292: Undefined control sequence.
 l.292 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example1.png, id=315, 508.90125pt x 258.9675pt>
 File: Example1.png Graphic file (type png)
  <use Example1.png>
@@ -1251,7 +1272,12 @@ Package pdftex.def Info: Example1.png used on input line 293.
 ./Bachelor Thesis.tex:302: Undefined control sequence.
 l.302 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example2.png, id=322, 573.14125pt x 354.32375pt>
 File: Example2.png Graphic file (type png)
  <use Example2.png>
@@ -1268,11 +1294,19 @@ Type  H <return>  for immediate help.
 l.308 \newline
                \noindent The system begins to loop on the array that contain...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 ./Bachelor Thesis.tex:311: Undefined control sequence.
 l.311 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example3.png, id=324, 568.1225pt x 327.2225pt>
 File: Example3.png Graphic file (type png)
  <use Example3.png>
@@ -1289,12 +1323,20 @@ Type  H <return>  for immediate help.
 l.317 \newline
                \noindent Then it sends the corresponding number in the slot ...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [14 <./Example2.png> <./Example3.png>]
 ./Bachelor Thesis.tex:320: Undefined control sequence.
 l.320 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example4.png, id=332, 870.25125pt x 501.875pt>
 File: Example4.png Graphic file (type png)
  <use Example4.png>
@@ -1304,7 +1346,12 @@ Package pdftex.def Info: Example4.png used on input line 321.
 ./Bachelor Thesis.tex:331: Undefined control sequence.
 l.331 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example7.png, id=335, 995.72pt x 540.0175pt>
 File: Example7.png Graphic file (type png)
  <use Example7.png>
@@ -1317,7 +1364,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ./Bachelor Thesis.tex:342: Undefined control sequence.
 l.342 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example10.png, id=345, 519.9425pt x 112.42pt>
 File: Example10.png Graphic file (type png)
  <use Example10.png>
@@ -1327,7 +1379,12 @@ Package pdftex.def Info: Example10.png used on input line 343.
 ./Bachelor Thesis.tex:353: Undefined control sequence.
 l.353 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example5.png, id=353, 772.8875pt x 512.91624pt>
 File: Example5.png Graphic file (type png)
  <use Example5.png>
@@ -1344,11 +1401,19 @@ Type  H <return>  for immediate help.
 l.359 \newline
                \noindent Then if another user wants to log-in and navigates,...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 ./Bachelor Thesis.tex:362: Undefined control sequence.
 l.362 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example6.png, id=355, 787.94376pt x 515.9275pt>
 File: Example6.png Graphic file (type png)
  <use Example6.png>
@@ -1368,7 +1433,10 @@ Type  H <return>  for immediate help.
 l.368 \newline
                \noindent This was made by implementing css classes for each ...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 372--375
 
@@ -1378,7 +1446,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--375
 ./Bachelor Thesis.tex:377: Undefined control sequence.
 l.377 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example15.png, id=367, 516.93124pt x 359.3425pt>
 File: Example15.png Graphic file (type png)
  <use Example15.png>
@@ -1395,7 +1468,10 @@ Type  H <return>  for immediate help.
 l.384 \newline
                \noindent The second type of charts is in the view charts sec...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 
 ./Bachelor Thesis.tex:384: LaTeX Error: There's no line here to end.
 
@@ -1406,11 +1482,19 @@ Type  H <return>  for immediate help.
 l.384 \newline
                \noindent The second type of charts is in the view charts sec...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 ./Bachelor Thesis.tex:387: Undefined control sequence.
 l.387 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example17.png, id=370, 349.305pt x 529.98pt>
 File: Example17.png Graphic file (type png)
  <use Example17.png>
@@ -1423,7 +1507,12 @@ Underfull \vbox (badness 3701) has occurred while \output is active []
 ./Bachelor Thesis.tex:394: Undefined control sequence.
 l.394 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example16.png, id=379, 699.61375pt x 462.72874pt>
 File: Example16.png Graphic file (type png)
  <use Example16.png>
@@ -1440,7 +1529,10 @@ Type  H <return>  for immediate help.
 l.401 \newline
                \noindent The second point: comparing user data with each oth...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 
 ./Bachelor Thesis.tex:401: LaTeX Error: There's no line here to end.
 
@@ -1451,12 +1543,20 @@ Type  H <return>  for immediate help.
 l.401 \newline
                \noindent The second point: comparing user data with each oth...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [20 <./Example17.png> <./Example16.png>]
 ./Bachelor Thesis.tex:404: Undefined control sequence.
 l.404 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example18.png, id=386, 769.87625pt x 506.89375pt>
 File: Example18.png Graphic file (type png)
  <use Example18.png>
@@ -1466,7 +1566,12 @@ Package pdftex.def Info: Example18.png used on input line 405.
 ./Bachelor Thesis.tex:420: Undefined control sequence.
 l.420 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example8.png, id=390, 738.76pt x 362.35374pt>
 File: Example8.png Graphic file (type png)
  <use Example8.png>
@@ -1486,7 +1591,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 412--424
 ./Bachelor Thesis.tex:427: Undefined control sequence.
 l.427 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example9.png, id=396, 731.73375pt x 347.2975pt>
 File: Example9.png Graphic file (type png)
  <use Example9.png>
@@ -1514,7 +1624,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 435--446
 ./Bachelor Thesis.tex:448: Undefined control sequence.
 l.448 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example12.png, id=408, 842.14626pt x 142.5325pt>
 File: Example12.png Graphic file (type png)
  <use Example12.png>
@@ -1531,7 +1646,10 @@ Type  H <return>  for immediate help.
 l.454 \newline
                \noindent It is placed at the top to make it easy on the user...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 454--457
 
@@ -1540,7 +1658,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 454--457
 ./Bachelor Thesis.tex:459: Undefined control sequence.
 l.459 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example13.png, id=410, 465.74pt x 528.97626pt>
 File: Example13.png Graphic file (type png)
  <use Example13.png>
@@ -1560,11 +1683,19 @@ Type  H <return>  for immediate help.
 l.465 \newline
                \noindent Virtual money is an important factor also in the ap...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 ./Bachelor Thesis.tex:468: Undefined control sequence.
 l.468 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example14.png, id=418, 678.535pt x 456.70625pt>
 File: Example14.png Graphic file (type png)
  <use Example14.png>
@@ -1581,7 +1712,10 @@ Type  H <return>  for immediate help.
 l.475 \newline
                \noindent Finally leader board is the place where all the use...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 
 ./Bachelor Thesis.tex:475: LaTeX Error: There's no line here to end.
 
@@ -1592,14 +1726,22 @@ Type  H <return>  for immediate help.
 l.475 \newline
                \noindent Finally leader board is the place where all the use...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 [25 <./Example13.png> <./Example14.png>] [26] [27
 
 ]
 ./Bachelor Thesis.tex:499: Undefined control sequence.
 l.499 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example11.png, id=436, 1110.1475pt x 458.71375pt>
 File: Example11.png Graphic file (type png)
  <use Example11.png>
@@ -1616,7 +1758,10 @@ Type  H <return>  for immediate help.
 l.506 \newline
                \noindent The first question was if the user had such a syste...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 
 ./Bachelor Thesis.tex:506: LaTeX Error: There's no line here to end.
 
@@ -1627,7 +1772,10 @@ Type  H <return>  for immediate help.
 l.506 \newline
                \noindent The first question was if the user had such a syste...
 
-? 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 506--533
 
@@ -1697,7 +1845,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 506--533
 ./Bachelor Thesis.tex:535: Undefined control sequence.
 l.535 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <SusScore.png, id=449, 63.5976pt x 35.05095pt>
 File: SusScore.png Graphic file (type png)
  <use SusScore.png>
@@ -1728,136 +1881,199 @@ Rogers, and
 ] [34
 
 ] [35] [36]
-Underfull \hbox (badness 10000) in paragraph at lines 574--589
+Underfull \hbox (badness 10000) in paragraph at lines 573--588
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--589
+Underfull \hbox (badness 10000) in paragraph at lines 573--588
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--589
+Underfull \hbox (badness 10000) in paragraph at lines 573--588
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--589
+Underfull \hbox (badness 10000) in paragraph at lines 573--588
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--589
+Underfull \hbox (badness 10000) in paragraph at lines 573--588
 
  []
 
-./Bachelor Thesis.tex:591: Undefined control sequence.
-l.591 \centring
+./Bachelor Thesis.tex:590: Undefined control sequence.
+l.590 \centring
                
-? 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 <Example19.png, id=484, 479.7925pt x 301.125pt>
 File: Example19.png Graphic file (type png)
  <use Example19.png>
-Package pdftex.def Info: Example19.png used on input line 592.
-(pdftex.def)             Requested size: 325.55234pt x 204.32578pt.
+Package pdftex.def Info: Example19.png used on input line 591.
+(pdftex.def)             Requested size: 210.65117pt x 132.21053pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [37
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[37
 
 ]
-[38 <./Example19.png>]
 
-./Bachelor Thesis.tex:599: LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.599 \newline
-               \noindent Tasks:
-? 
-
-./Bachelor Thesis.tex:599: LaTeX Error: There's no line here to end.
+./Bachelor Thesis.tex:597: LaTeX Error: There's no line here to end.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.599 \newline
-               \noindent Tasks:
-? 
+l.597 \newline
+               \noindent Here you can find the tasks that were given to the ...
 
-Underfull \hbox (badness 10000) in paragraph at lines 599--613
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
 
  []
 
-./Bachelor Thesis.tex:615: Undefined control sequence.
-l.615 \centring
-               
-? 
-<Tasks.png, id=495, 549.05125pt x 766.865pt>
-File: Tasks.png Graphic file (type png)
- <use Tasks.png>
-Package pdftex.def Info: Tasks.png used on input line 616.
-(pdftex.def)             Requested size: 383.0pt x 534.95303pt.
 
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--622
+
+ []
+
+[38 <./Example19.png>]
+
+./Bachelor Thesis.tex:625: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.625 
+      
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+./Bachelor Thesis.tex:626: Undefined control sequence.
+l.626 \onehalfspacing
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Class memoir Warning: Column X is already defined on input line 632.
+
+\c@qr=\count197
+\c@ql=\count198
+\qt=\skip202
+\c@itemnummer=\count199
+\c@itemoddeven=\count200
+\gb=\skip203
+
+./Bachelor Thesis.tex:741: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.741 \newline
+               \noindent The following is the System Usability Scale questio...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (1.7227pt too wide) in paragraph at lines 764--764
+ []|\OT1/cmr/m/n/10 Strongly 
+ []
+
+
+Overfull \hbox (1.7227pt too wide) in paragraph at lines 764--764
+ []|\OT1/cmr/m/n/10 Strongly 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 741--765
+
+ []
+
+[39]
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 768--779
+[][] 
+ []
+
+[40] (./Bachelor Thesis.lof
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39]
-./Bachelor Thesis.tex:622: Undefined control sequence.
-l.622 \centring
-               
-? 
-<Page1.png, id=500, 542.025pt x 754.82pt>
-File: Page1.png Graphic file (type png)
- <use Page1.png>
-Package pdftex.def Info: Page1.png used on input line 623.
-(pdftex.def)             Requested size: 383.0pt x 533.38057pt.
+ [41
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [40 <./Tasks.png>]
-./Bachelor Thesis.tex:629: Undefined control sequence.
-l.629 \centring
-               
-? 
-<Page2.png, id=506, 552.0625pt x 760.8425pt>
-File: Page2.png Graphic file (type png)
- <use Page2.png>
-Package pdftex.def Info: Page2.png used on input line 630.
-(pdftex.def)             Requested size: 383.0pt x 527.86105pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [41 <./Page1.png>]
-./Bachelor Thesis.tex:636: Undefined control sequence.
-l.636 \centring
-               
-? 
-<Page3.png, id=512, 547.04375pt x 759.83875pt>
-File: Page3.png Graphic file (type png)
- <use Page3.png>
-Package pdftex.def Info: Page3.png used on input line 637.
-(pdftex.def)             Requested size: 383.0pt x 531.98784pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [42 <./Page2.png>] [43 <./Page3.png>] [44
-
-] (./Bachelor Thesis.lof
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [45
 
 ])
-[46] (./Bachelor Thesis.lot) [47
+[42] (./Bachelor Thesis.lot) [43
 
-] [48
+] [44
 
 
-] (./Bachelor Thesis.loa) [49]
+] (./Bachelor Thesis.loa) [45]
 \tf@toc=\write8
 \openout8 = `"Bachelor Thesis.toc"'.
 
@@ -1870,42 +2086,40 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 \tf@loa=\write11
 \openout11 = `"Bachelor Thesis.loa"'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 699.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 699.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 835.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 835.
 
 (./Bachelor Thesis.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 699.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 699.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 835.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 835.
 Package rerunfilecheck Info: File `"Bachelor Thesis".out' has not changed.
 (rerunfilecheck)             Checksum: 4E7596B008E06D145BDF192AC01CF465;3903.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 699.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 835.
  ) 
 Here is how much of TeX's memory you used:
- 15709 strings out of 493488
- 216740 string characters out of 3141326
- 319604 words of memory out of 3000000
- 18598 multiletter control sequences out of 15000+200000
- 26858 words of font info for 95 fonts, out of 3000000 for 9000
+ 15727 strings out of 493488
+ 216868 string characters out of 3141326
+ 335185 words of memory out of 3000000
+ 18628 multiletter control sequences out of 15000+200000
+ 29682 words of font info for 105 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,12n,32p,1795b,378s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr
-/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/
-texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on "Bachelor Thesis.pdf" (61 pages, 2951203 bytes).
+ 38i,15n,32p,1795b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}</
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol12.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></u
+sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
+/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
+al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
+ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on "Bachelor Thesis.pdf" (57 pages, 2012616 bytes).
 PDF statistics:
- 662 PDF objects out of 1000 (max. 8388607)
- 554 compressed objects within 6 object streams
- 139 named destinations out of 1000 (max. 500000)
- 365 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 637 PDF objects out of 1000 (max. 8388607)
+ 536 compressed objects within 6 object streams
+ 131 named destinations out of 1000 (max. 500000)
+ 345 words of extra memory for PDF output out of 10000 (max. 10000000)
 

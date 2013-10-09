@@ -26,5 +26,5 @@
 \contentsline {section}{\numberline {5.2}Future Work}{31}{section.5.2}
 \contentsline {chapter}{Bibliography}{33}{section*.8}
 \contentsline {appendix}{\chapternumberline {A}Questionnaire}{37}{appendix.A}
-\contentsline {chapter}{List of Figures}{45}{section*.9}
-\contentsline {chapter}{List of Tables}{47}{section*.10}
+\contentsline {chapter}{List of Figures}{41}{section*.9}
+\contentsline {chapter}{List of Tables}{43}{section*.10}
