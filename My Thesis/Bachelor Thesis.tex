@@ -21,7 +21,7 @@
 \pagestyle{empty}
 This is actually the first page of the thesis and will be discarded after the print out. This is done because 
 the title page has to be an even page. The memoir style package used by this template makes different indentations 
-for odd and even pages which is usally done for better readability.  
+for odd and even pages which is usally done for better readability.
 \clearpage
 %******************************************************************************
 % TITLE PAGE
@@ -314,7 +314,7 @@ The problem was handled by passing the user id which is a unique key which ident
 \label{fig:Example3}
 \end{figure}
 
-\newline \noindent Then it sends the corresponding number in the slot numbers array which is "4" in this case to the mobile to be able to connect to slot four via its channel so as it appears in figure~\ref{fig:Example4} the number is then sent to the mobile and concatenated to the default channel name which is "Private-SaveE" as mentioned in the previous section. And by that it prevents any conflicts between users and let the system distinguish between user requests.
+\newline \noindent Then it sends the corresponding number in the slot numbers array which is "4" in this case to the mobile to be able to connect to slot four via its channel so as it appears in figure~\ref{fig:Example4} the number is then sent to the mobile and concatenated to the default channel name which is "Private-SaveE" as mentioned in the previous section. And by that it prevents any conflicts between users and also lets the system distinguishes between user's requests.
 
 \begin{figure}[H]
 \centring
@@ -325,7 +325,7 @@ The problem was handled by passing the user id which is a unique key which ident
 
 \section{Synchronization}
 \label{sec:Synchronization}
-Synchronization of the displays was done by also using the connections as mentioned in the Connections section \ref{sec:Connection}. So the system once the user pressed any button on his mobile to navigate the system on the display the mobile pops-up the loading widget which tells the user what the server is trying to do in that moment. Then while the request reachs the server, the server sends to the display what to show then an event is triggered on the channel which the user is connected to with a loading complete header which indicates that the request has successfully executed and the loading widget is removed from the user mobile screen and the page is changed to match the display contents. Here is an example in figure~\ref{fig:Example7} to illustrate more: 
+Synchronization of the displays was done by also using the connections as mentioned in the Connections section \ref{sec:Connection}. So first when the user presses any button on his mobile to navigate the system on the display the mobile pops-up the loading widget which tells the user what the server is trying to do in that moment. While the request reaches the server, the server sends to the display what to show. Secondly, an event is triggered on the channel which the user is connected to with a loading complete header which indicates that the request has successfully executed and the loading widget is removed from the user mobile screen then the page is changed to match the display contents. Here is an example in figure~\ref{fig:Example7} to illustrate more: 
 
 \begin{figure}[H]
 \centring
@@ -365,13 +365,13 @@ One of the important milestones in the project were the responsiveness and the i
 \label{fig:Example6}
 \end{figure}
 
-\newline \noindent This was made by implementing css classes for each element on the screen for each possible scenario for example when a user navigates on the display alone he is taking the whole screen alone and all the elements are given the css for that situation but then when another user signs in he trigger a function which then knows the page that each user is currently at and begin to change the css of each of the elements to the new situation so the css is all checked and changed when a user connects to the display and already there are other users. Also when a user navigates from one page to another, the same function is called but to only correct the css of any change happened and to maintain the correct user interface for all the users.
+\newline \noindent This was made by implementing css classes for each element on the screen for each possible scenario for example when a user navigates on the display alone he is taking the whole screen alone and all the elements are given the css for that situation. However, when another user signs-in he triggers a function which then knows the page that each user is currently at and begin to change the css of each of the elements to the new situation, so the css is all checked and changed when a user connects to the display and other users are already on the display. Moreover, when a user navigates from one page to another the same function is called but only to correct the css of any change happened and to maintain the correct user interface for all the users.
 
 \section{User Data}
 \label{sec:UserData}
-User data which is simply represented as charts in the project and letting the user know their energy consumption was one of the objectives to increase energy awareness and to help users save energy so user data had to be made in order to illustrate to the user his consumption also helps in two points:
+User data which is simply represented as charts in the project and letting the user know their energy consumption was one of the objectives to increase energy awareness and help users save energy. Therefore user data had to be made in order to illustrate to the user his consumption. In addition helping in two points:
 \\
-\newline \noindent The first point: user data helps the user to know their detailed energy consumption and as a result the user can know where does the problem come from or from which device he consumes energy the most. This part is represented as two different representations of charts the first chart is on the users profiles and shows their total energy consumption as a pie chart including each device consumption in percentages as you can see in figure~\ref{fig:Example15}. So to give the user an overview of what his total energy consumption might be the carts were placed on the profile to allow the users to check them once they login to the system since its the first thing they view once they login.
+\newline \noindent The first point: user data helps the user to know their detailed energy consumption and as a result the user can know where does the problem arise or from which device he consumes energy the most. This part is represented as two different types of charts. To begin with, the first chart is placed on user's profiles and shows their total energy consumption as a pie chart including each device consumption in percentages as you can see in figure~\ref{fig:Example15}. So to give the user an overview of what his total energy consumption might be, the charts were placed on the profile to allow the users to check them once they login to the system since its the first thing they view once they login.
 
 \begin{figure}[H]
 \centring
@@ -381,7 +381,7 @@ User data which is simply represented as charts in the project and letting the u
 \end{figure}
 
 \\
-\newline \noindent The second type of charts is in the view charts section in the application its like the first type but more detailed and customized as the user wish. When users navigate to the view charts section they are asked to enter a duration in which they want to check their energy consumption within as illustrated in figure~\ref{fig:Example17}. The charts then are displayed as a pie and a bar chart, the pie chart first indicates the total energy usage in the dates entered displaying the energy consumption of each device in percentages while the bar chart displays also the energy consumption of each device but sorted or ordered monthly within also the dates the user entered. In order to get the picture more you can see figure~\ref{fig:Example16} to have an idea on how the charts are displayed.
+\newline \noindent The second type of charts is placed in the view charts section in the application its like the first type but more detailed and customized to match the user preferences. When users navigate to the view charts section they are asked to enter a duration in which they want to check their energy consumption within as illustrated in figure~\ref{fig:Example17}. The charts then are displayed as a pie and a bar chart, the pie chart first indicates the total energy usage in the dates entered displaying the energy consumption of each device in percentages while the bar chart displays also the energy consumption of each device but sorted or ordered monthly within also the dates the user entered. In order to get the picture more you can see figure~\ref{fig:Example16} to have an idea on how the charts are displayed.
 
 \begin{figure}[H]
 \centring
@@ -398,7 +398,7 @@ User data which is simply represented as charts in the project and letting the u
 \end{figure}
 
 \\
-\newline \noindent The second point: comparing user data with each other on the display may be another advantage of user data and the multi-user feature as users may take advantage of the multi-user setup and use the system to compare each other's data on the display for example as shown in figure~\ref{fig:Example18} two users may be standing on the display and both are viewing their energy consumption they might take advantage as mentioned and compare their data in order to motivate both of them to save energy as that can give them rewards as we will see in the game mechanics section \ref{sec:GameMechanics}.
+\newline \noindent The second point: comparing user data with each other on the display may be another advantage of user data and the multi-user feature as users may take advantage of the multi-user setup and use the system to compare each other's data on the display for example as shown in figure~\ref{fig:Example18} two users may be standing on the display and both are viewing their energy consumption they might take advantage as mentioned and compare their data in order to motivate both of them to save energy. Since this will create a challenge between them due to the fact that they are given rewards according to their consumption level as shown in the game mechanics section \ref{sec:GameMechanics}.
 
 \begin{figure}[H]
 \centring
@@ -409,13 +409,13 @@ User data which is simply represented as charts in the project and letting the u
 
 \section{User Privacy}
 \label{sec:UserPrivacy}
-Privacy was one of the important aspects of the project since the project was not about creating an application to motivate people to save energy and increase their energy awareness only, but also a robust and trusted system, so privacy had to be implemented in the project in order to let the user feel safe at any time he doesn't want anyone to check his detailed energy consumption he just can hide his data from people and view it on his mobile screen instantaneously. So two privacy modes were created the high privacy mode which tells the system to hide the data from the public display and send the data to the mobile so the user only see his data on his mobile once he choose that option and the low privacy mode which is the normal mode, the data is kept at the display available for all users to see normally.
+Privacy was one of the important aspects of the project since the project was not about creating an application to motivate people to save energy and increase their energy awareness only, but also a robust and trusted system. Therefore, privacy had to be implemented in the project in order to add the option of hiding the detailed consumption and viewing it on the mobile screen instantaneously so that the user can use this option whenever he wants, which makes the user feel more safe. For this reason two privacy modes were created. First the high privacy mode which orders the system to hide the data from the public display and sends it to the mobile. Consequently only the user is able to see his data on the mobile. Secondly the low privacy mode which is the normal mode, the data is kept at the display available for all users to see normally.
 \\
-\newline \noindent But while trying to implement privacy there were certain constraints:
-\newline \noindent First the size limit of pusher service used for the connection between the public display and the mobile was only 10KB so sending the whole page to the mobile from the screen was not an option.
-\newline \noindent Second the css and user interface of the page on the screen was displayed using twitter bootstrap as mentioned in section \ref{sec:TechnologiesUsed} and on the mobile Jquery mobile was used, so two different technologies used as the interface for each the display and the mobile, as a result the data couldn't be sent directly to the mobile since the styles will replace each other.
+\newline \noindent However, certain constraints arose while trying to implement the privacy option:
+\newline \noindent First the size limit of pusher service used for the connection between the public display and the mobile was only 10KB thus sending the whole page to the mobile from the screen was not an option.
+\newline \noindent Secondly the css of the page on the public display was implemented using twitter bootstrap as mentioned in section \ref{sec:TechnologiesUsed} as for the mobile, Jquery mobile was used. since the two technologies were different, the data couldn't be sent directly to the mobile as this might lead to the replacement of styles.
 \\
-\newline \noindent The two problems were solved by just sending the crucial information which was the user data in this case because there is no point in hiding the level or the money you have because it already appears on the leader board and they are made to let people compete with each other not hide it from each other so the charts engine used were put on the mobile and the data of the charts was the only part sent so by that the first problem which was the size was solved also the second one was solved because nothing is required to be sent with the data and then the mobile gives the data to the charts engine on the mobile to render it and generate the charts on the mobile once the user chooses the high privacy option. As you can see in figure~\ref{fig:Example8}, the figure shows the application with the low privacy profile setting and figure~\ref{fig:Example9} with the high privacy profile setting.
+\newline \noindent The two problems were solved by just sending the crucial information which was the user consumption data in this case. As it already appears on the leader board and they are made to let people compete with each other, not to hide it. So the charts' engine used was put on the mobile and the data was the only part sent. Therefore the first problem, which was the size of the file transferred, was solved. The second problem was also solved because no styles or css files  are required to be sent with the data. The mobile then passes the data to the charts engine to render it and generate the charts once the user chooses the high privacy option. As you can see in figure~\ref{fig:Example8}, the figure shows the application with the low privacy profile setting and figure~\ref{fig:Example9} with the high privacy profile setting.
 \begin{figure}[H]
 \centring
 \includegraphics[width=1\textwidth]{Example8.png}
@@ -432,7 +432,7 @@ Privacy was one of the important aspects of the project since the project was no
 
 \section{Game Mechanics}
 \label{sec:GameMechanics}
-Gamification or applying game mechanics is now widely used in many applications because it enhances the user experience with the application and involves more fun but in the same time it motivates users to challenge and compete against each other in order to be from the top three or the top ten players so this concept was used in the project to bring more interaction between the users and increase their motivation to compete against each other to save energy and gain badges and virtual money to be able to make their way up the leader board as it will be explained later in this section.
+Gamification or applying game mechanics is now widely used in many applications because not only it enhances the user experience with the application and involves more fun but also it motivates users to challenge and compete against each other in order to be from the top three or the top ten players. As a result this concept was used in the project bringing more interaction between the users and increasing their motivation to compete against each other to save energy and gain badges and virtual money to be able to make their way up the leader board as it will be explained later in this section.
 \newline \noindent So simply the game mechanics of the system consists of:
 \\
 \newline \noindent 1- Levels: level is an indication about your total consumption also used by the leader board as the sorting key.
@@ -440,9 +440,9 @@ Gamification or applying game mechanics is now widely used in many applications 
 \newline \noindent 3- Virtual Money: initially users have money then when the costs of their usages is calculated and deducted they loose them.
 \newline \noindent 4- Leader board: the leader board is the place where you can see all the users and their levels, badges, money and ranks.
 \\
-\newline \noindent So simply users at first have a certain amount of money by default then when they start measuring their energy consumption day by day the cost is calculated and deducted from the money they have so the more you consume energy the less the money you have and vice versa. Also when the system detects that the data is for a new month the system adds new money to the users so when the users save more energy and pay less, their money increase and when they reach a certain amount of money which is decided by the system, they gain badges which leads to a level up and improving their ranks on the leader board.
+\newline \noindent At first users have a certain amount of money by default then when they start measuring their energy consumption day by day the cost is calculated and deducted from the money they have so the more you consume energy the less the money you have and vice versa. Also when the system detects that the data is for a new month the system adds new money to the users so when the users save more energy and pay less, their money increase and when they reach a certain amount of money which is decided by the system, they gain badges which leads to a level up and improving their ranks on the leader board.
 \\
-\newline \noindent Now lets have a deeper look on the game mechanics within the application. First the levels are shown on the users profile page since it's the default once a user logs in the system levels are shown exactly at the top of the screen as in figure~\ref{fig:Example12}.
+\newline \noindent Now lets have a deeper look on the game mechanics within the application. To begin with, the levels are shown on the users' profile page. Once the user logs in levels are shown exactly at the top of the screen as in figure~\ref{fig:Example12}.
 
 \begin{figure}[H]
 \centring
@@ -453,7 +453,7 @@ Gamification or applying game mechanics is now widely used in many applications 
 
 \newline \noindent It is placed at the top to make it easy on the user navigating the application and other users to check each other's levels. Levels is just an indication or a representation on how much money and badges you have, as long as you save more energy you earn more money and gain more badges which leads to a level up. Level is also the main key all users are sorted upon in the leader board.
 \\
-\newline \noindent Secondly, badges play a very important role in creating the competitive and fun environment for users to compete against each other for a certain goal. So in the application badges were used to make users eager to earn prizes when they save a certain amount of energy and motivate them to collect more badges on their profile which corresponds to saving more energy. Also badges play an important role in the level up mechanism since users level up when they pass a certain amount of money and collect more than a certain amount of badges. As you can see in figure~\ref{fig:Example13} badges are displayed on users profiles.
+\newline \noindent Secondly, badges play a very important role in creating the competitive and fun environment for users to compete against each other for a certain goal. As a result badges were used in the application to make users eager to earn prizes when they save a certain amount of energy and motivate them to collect more badges on their profile which corresponds to saving more energy. Also badges play an important role in the level up mechanism since users level up when they pass a certain amount of money and collect more than a certain amount of badges. As you can see in figure~\ref{fig:Example13} badges are displayed on users profiles.
 
 \begin{figure}[H]
 \centring
@@ -462,7 +462,7 @@ Gamification or applying game mechanics is now widely used in many applications 
 \label{fig:Example13}
 \end{figure}
 
-\newline \noindent Virtual money is an important factor also in the application game mechanics it represents the points that each user has which also acts as an indication on how much energy the user is saving, the higher the user's consumption the lower virtual money he has because the cost of the user consumption is deducted from the money he has. Money also is displayed at the top of the users profiles on the right of users levels as shown in figure~\ref{fig:Example12}.
+\newline \noindent Virtual money is an important factor also in the application game mechanics it represents the points that each user has which also acts as an indication on how much energy the user is saving, the higher the user's consumption the lower virtual money he has because the cost of the user consumption is deducted from the money he has. Money also is displayed at the top of the users' profiles as shown in figure~\ref{fig:Example12}.
 
 \begin{figure}[H]
 \centring
@@ -472,7 +472,7 @@ Gamification or applying game mechanics is now widely used in many applications 
 \end{figure}
 
 \\
-\newline \noindent Finally leader board is the place where all the users can see the level, money and badges of each other which also adds to the competitive environment in a way that all users are motivated to be from the first three rankings or in other words the top energy savers. Also it allow users to check their ranking among other users using the application just to give the users an idea on their energy consumption related to the people around them. As you can see in figure~\ref{fig:Example14} the leader board is shown with users sorted by their levels also showing their badges and money.
+\newline \noindent Finally leader board is the place where all the users can see the level, money and badges of each other which also adds to the competitive environment in a way that all users are motivated to be from the first three rankings or in other words the top energy savers. Moreover, it allows users to check their ranking with other users using the application just to give the users an idea on their energy consumption related to the people around them. As you can see in figure~\ref{fig:Example14} the leader board is shown with users sorted by their levels also showing their badges and money.
 
 
 %******************************************************************************
@@ -509,7 +509,7 @@ The results after analysing the data can be represented in this figure~\ref{fig:
 \\
 \newline \noindent The third question asked the users whether they see the system easy to use or not and the average result was 4.3 which indicates that the people agreed that it was easy to use and they didn't face any difficulties while navigating.
 \\
-\newline \noindent The fourth question stated whether the users faced difficulties to the extent that they would need the support of a technical person while using the system and the result had an average of 1.9 which is not agree so users didn't feel that the system is too hard that they would need the help of a technical person.
+\newline \noindent The fourth question stated whether the users faced difficulties to the extent that they would need the support of a technical person while using the system and the result had an average of 1.9 which is "not agree" so users didn't feel that the system is too hard that they would need the help of a technical person.
 \\
 \newline \noindent The fifth question asked the users if they see the different functions of the system well integrated and the average result was 4.2 which clearly says that the users had no problems with the system functions and that users saw them well integrated.
 \\
@@ -547,15 +547,15 @@ The results after analysing the data can be represented in this figure~\ref{fig:
 
 \section{Conclusion}
 \label{sec:Conclusion}
-So at the end we wanted to create a reliable, trusted system using modern ways like public displays and smartphones to attract more people also try to solve the energy consumption issue which is considered a global problem. We were motivated by the many ideas mentioned in different papers related to the interaction of users on the display and related to interactive public displays also how to display personalized content on it. A system was built taking into consideration all the recommendations found in papers with the resources available which keep track of users energy usage and allowing them to check their energy usages regularly also it gives users tips on small things they do everyday in order to change their attitude towards this things that wastes a lot of energy. Moreover we tried to take the advantage of multi-user architecture and game mechanics in order to create a competitive environment for users to compete in gaining more virtual money and gaining badges to level up which corresponds to saving more energy and in the same time providing a privacy profiles for users to choose between them if they didn't want anyone to check their consumption at any time instantaneously.
+To sum up the target was to create a reliable and trusted system using modern ways such as public displays and smartphones to attract more people. Moreover, trying to solve the energy consumption issue which is considered a global problem. We were motivated by the many ideas mentioned in different papers related to the interaction of users on the display and related to interactive public displays also how to display personalized content on it. A system was built taking into consideration all the recommendations found in papers with the resources available which keep track of users energy usage and allowing them to check their energy usages regularly also it gives users tips on small actions they do everyday in order to change their attitude towards this things that wastes a lot of energy. Furthermore, the advantage of multi-user architecture and game mechanics were taken into consideration, in order to create a competitive environment for users to compete in gaining more virtual money and gaining badges to level up, which corresponds to saving more energy and in the same time providing privacy profiles for users to choose between them.
 
 \section{Future Work}
 \label{sec:FutureWork}
-As for future work on the application needs to be fully integrated with real user devices instead of dummy data also a lot of features can be added as alerts for the users when they reach a certain amount of energy consumption for a certain device or for their total energy usage that the user themselves set. Also replacing the online service pusher which gives you the option to put realtime events in you application by an offline service so the user doesn't need to access the internet and can use the application while offline.
+As for future work, the application needs to be fully integrated with real user devices instead of dummy data also a lot of features can be added as alerts for the users when they reach a certain amount of energy consumption for a certain device or for their total energy usage that the user themselves set. Also replacing the online service pusher which gives you the option to put realtime events in you application by an offline service so the user does not need to access the internet and can use the application while being offline.
 \\
-\newline \noindent Moreover implementing a semaphore-like mechanism to prevent the shared variables which in this case is the number of users stored by the browser which can cause a problem in knowing the actual number of users and depending on it the layout could be broken also while connecting users manipulate a shared variable which is represented in the default channel all the users connects through it to the server before their data is displayed on the screen if two or more users connects at the same exact time a problem occurs and a conflict between requests occurs.
+\newline \noindent Moreover implementing a semaphore-like mechanism to prevent the shared variables which in this case are the number of users stored by the browser which can cause problems in knowing the actual number of users and depending on it, the layout could be broken. Furthermore, users manipulate a shared variable while connecting to the system which is represented in a default channel that all the users connect through to the server before their data is displayed on the screen, if two or more users connect at the same exact time, conflicts occur between requests.
 \\
-\newline \noindent Also creating a more responsive layout in order to help users feel more comfortable with the system maybe with more animations since from my point of view user interface is one of the most important factors that affects any product nowadays.
+\newline \noindent Finally a more responsive layout can be implemented in order to help users feel more comfortable with the system (for example, with more animations) since from my point of view user interface is one of the most important factors that affects any product nowadays.
 
 %******************************************************************************
 % BIBLIOGRAPHY
@@ -570,211 +570,42 @@ As for future work on the application needs to be fully integrated with real use
 \appendixpage*
 \chapter{Questionnaire}
 \label{app:Questionnaire}
-This is the introduction, tasks and questionnaires that was given to the users to evaluate the system.
-\\
-\newline \noindent Introduction:
-\\
-\newline \noindent This application helps you to keep track of your energy consumption and compete with other users to save more energy.
-\\
-\newline \noindent The application mainly allows you to view charts of your energy usage and gain badges and virtual money as long as you save more energy. Also you can check your rank among other users too. Moreover you can hide your personal data to avoid anyone to see it.
-\\
-\newline \noindent Notes:
-\newline 1- Assume the data that you will see is your energy usage for 4 months.
-\newline 2- The system will log you out after 5 minutes if you are idle
-\\
-\newline \noindent Users:
-\newline 1- Benutzername: Bob Smith
-\newline Kennwort: b
+The following are the introduction, task and questionnaire questions that was given to the users to evaluate the system.
 
 \begin{figure}[h]
 \centring
-\includegraphics[width=0.55\textwidth]{Example19.png}
-\caption{This figure illustrates the buttons and main features in the application.}
+\includegraphics[width=1\textwidth]{Intro.png}
+\caption{This figure shows the introduction that was given to the users while evaluating the system.}
 \label{fig:Intro}
 \end{figure}
 
-\newpage
-\newline \noindent Here you can find the tasks that were given to the users to accomplish.
-\\
-\newline \noindent \textbf{Tasks}:
-\\
-\newline \indent 1. Login.
-\\
-\newline \indent 2. State your level.
-\\
-\newline \indent 3. State the amount of money you have.
-\\
-\newline \indent 4. State the badges that you've won.
-\\
-\newline \indent 5. State the tip of the day.
-\\
-\newline \indent 6. State your rank on the leader board.
-\\
-\newline \indent 7. View your total energy usage:
-\newline \indent \indent - State in (\%) the amount of energy your display used in total.
-\\
-\newline \indent 8. View your energy usage from 1-August to 1-October:
-\newline \indent \indent - State in (\%) the amount of energy your CPU used in total.
-\\
-\newline \indent 9. Assume that a stranger suddenly appeared try to hide your data.
-\\
-\newline \indent 10.Logout.
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Tasks.png}
+\caption{This figure shows the tasks given to the users .}
+\label{fig:Tasks}
+\end{figure}
 
-\newpage
-\\
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Page1.png}
+\caption{This figure shows the first page of the questionnaire.}
+\label{fig:Page1}
+\end{figure}
 
-\onehalfspacing
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Page2.png}
+\caption{This figure shows the second page of the questionnaire.}
+\label{fig:Page2}
+\end{figure}
 
-
-\def\MBox{\Large\ensuremath{\Box}}
-
-\newcolumntype{S}{>{\centering\arraybackslash}m{3.0em}}
-\newcolumntype{X}{>{\centering\arraybackslash}m{1.0em}}
-
-\renewcommand{\tabularxcolumn}[1]{m{#1}} % redefine 'X' to use 'm'
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Beginning of questionnaire command definitions         %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% 2010 by Sven Hartenstein
-%% mail@svenhartenstein.de
-%% http://www.svenhartenstein.de
-%%
-%% Please be warned that this is NOT a full-featured framework for
-%% creating (all sorts of) questionnaires. Rather, it is a small
-%% collection of LaTeX commands that I found useful when creating a
-%% questionnaire. Feel free to copy and adjust any parts you like.
-%% Most probably, you will want to change the commands, so that they
-%% fit your taste.
-%%
-%% Also note that I am not a LaTeX expert! Things can very likely be
-%% done much more elegant than I was able to. If you have suggestions
-%% about what can be done better please send me an email. I intend to
-%% add good tipps to my website and to name contributers of course.
-
-%% \Qq = Questionaire question. Oh, this is just too simple. It helps
-%% making it easy to globally change the appearance of questions.
-\newcommand{\Qq}[1]{\textbf{#1}}
-
-%% \QO = Circle or box to be ticked. Used both by direct call and by
-%% \Qrating and \Qlist.
-\newcommand{\QO}{$\ocircle$}% or: $\ocircle$
-
-%% \Qrating = Automatically create a rating scale with NUM steps, like
-%% this: 0--0--0--0--0.
-\newcounter{qr}
-\newcommand{\Qrating}[1]{\QO\forloop{qr}{1}{\value{qr} < #1}{---\QO}}
-
-%% \Qline = Again, this is very simple. It helps setting the line
-%% thickness globally. Used both by direct call and by \Qlines.
-\newcommand{\Qline}[1]{\rule{#1}{0.6pt}}
-
-%% \Qlines = Insert NUM lines with width=\linewith. You can change the
-%% \vskip value to adjust the spacing.
-\newcounter{ql}
-\newcommand{\Qlines}[1]{\forloop{ql}{0}{\value{ql}<#1}{\vskip0em\Qline{\linewidth}}}
-
-%% \Qlist = This is an environment very similar to itemize but with
-%% \QO in front of each list item. Useful for classical multiple
-%% choice. Change leftmargin and topsep accourding to your taste.
-\newenvironment{Qlist}{%
-  \renewcommand{\labelitemi}{\QO}
-  \begin{itemize}[leftmargin=1.5em,topsep=-.5em]
-}{%
-  \end{itemize}
-}
-
-%% \Qtab = A "tabulator simulation". The first argument is the
-%% distance from the left margin. The second argument is content which
-%% is indented within the current row.
-\newlength{\qt}
-\newcommand{\Qtab}[2]{
-  \setlength{\qt}{\linewidth}
-  \addtolength{\qt}{-#1}
-%  \hfill\parbox[t]{\qt}{\raggedright #2}
-\parbox[t]{\qt}{\raggedright #2}
-
-}
-
-%% \Qitem = Item with automatic numbering. The first optional argument
-%% can be used to create sub-items like 2a, 2b, 2c, ... The item
-%% number is increased if the first argument is omitted or equals 'a'.
-%% You will have to adjust this if you prefer a different numbering
-%% scheme. Adjust topsep and leftmargin as needed.
-\newcounter{itemnummer}
-\newcommand{\Qitem}[2][]{% #1 optional, #2 notwendig
-  \ifthenelse{\equal{#1}{}}{\stepcounter{itemnummer}}{}
-  \ifthenelse{\equal{#1}{a}}{\stepcounter{itemnummer}}{}
-  \begin{enumerate}[topsep=2pt,leftmargin=2.8em]
-  \item[\textbf{\arabic{itemnummer}#1.}] #2
-  \end{enumerate}
-}
-
-%% \QItem = Like \Qitem but with alternating background color. This
-%% might be error prone as I hard-coded some lengths (-5.25pt and
-%% -3pt)! I do not yet understand why I need them.
-\definecolor{bgodd}{rgb}{0.9,0.9,0.9}
-\definecolor{bgeven}{rgb}{0.95,0.95,0.95}
-\newcounter{itemoddeven}
-\newlength{\gb}
-\newcommand{\QItem}[2][]{% #1 optional, #2 notwendig
-  \setlength{\gb}{\linewidth}
-  %\setlength{\gb}{19cm}
-  \addtolength{\gb}{-5.25pt}
-  
-  %\addtolength{\gb}{-5.25pt}
-  \ifthenelse{\equal{\value{itemoddeven}}{0}}{%
-    \noindent\colorbox{bgeven}{\hskip-3pt\begin{minipage}{\gb}\bigskip\Qitem[#1]{#2}\vspace{5 mm}\end{minipage}}%
-    \stepcounter{itemoddeven}%
-    
-  }{%
-    \noindent\colorbox{bgodd}{\hskip-3pt\begin{minipage}{\gb}\bigskip\Qitem[#1]{#2}\vspace{5 mm}\end{minipage}}%
-    \setcounter{itemoddeven}{0}%
-    
-  }
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% End of questionnaire command definitions               %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newline \noindent The following is the System Usability Scale questionnaire in addition to questions related to the motivation to save energy.
-\\
-\\ 
-\makebox[\textwidth]{%
-\begin{tabularx}{17cm}{ X S S S S S S}
-\textbf{Questionnaire:}
-\\
-\\
-   &  & \footnotesize{Strongly disagree} &  &  &  & \footnotesize{Strongly agree}\\
-   &  & 1 & 2 & 3 & 4 & 5\\
-  %\aline
-\textbf{1. I think that I would like to use this system frequently.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
-%\hline
- & & & & & & \\
-\textbf{2. I found the system unnecessarily complex.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
- & & & & & & \\
-\textbf{3. I thought the system was easy to use.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
- & & & & & & \\
-\textbf{4. I think that I would need the support of a technical person to be able to use this system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
-\textbf{5. I found the various functions in this system were well integrated.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
-\textbf{6. I thought there was too much inconsistency in this system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
-\textbf{7. I would imagine that most people would learn to use this system very quickly.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
-\end{tabularx}%
-}
-
-\newpage
-
-\makebox[\textwidth]{%
-\begin{tabularx}{17cm}{ X S S S S S S}
-\textbf{8. I found the system very cumbersome to use.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
-\textbf{9. I felt very confident using the system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\ & & & & & & \\
-\textbf{10. I needed to learn a lot of things before I could get going with this system.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\& & & & & & \\
-\textbf{11. The system would motivate me to save more energy.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\& & & & & & \\
-\textbf{12. The system provided all the information i needed on my energy usage.} &  & \MBox & \MBox & \MBox & \MBox & \MBox\\
-
-\end{tabularx}%
-}
+\begin{figure}[H]
+\centring
+\includegraphics[width=1\textwidth]{Page3.png}
+\caption{This figure shows the third page of the questionnaire.}
+\label{fig:Page3}
+\end{figure}
 %This is the place where the appendices are supposed to be. Appendices are everything that would just blow up your thesis but are still of some interest for a reader that wants to get a deeper grasp on the details of your work.
 
 
